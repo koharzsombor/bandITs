@@ -32,3 +32,6 @@ out/
 # VS code settings
 .vscode/
 *.code-workspace
+
+# Office temporary files
+~$*
