@@ -36,3 +36,4 @@ out/
 # Office temporary files
 ~$*
 *.tmp
+#.~lock*
