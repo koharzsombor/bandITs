@@ -1,3 +1,6 @@
+/**
+ *
+ */
 public class SpeedSpore extends Spore{
     /**
      * @param insect

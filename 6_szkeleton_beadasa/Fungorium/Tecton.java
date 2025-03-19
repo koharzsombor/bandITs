@@ -1,9 +1,10 @@
 import java.util.List;
+import java.util.Queue;
 
 /**
  *
  */
-public abstract class Tecton {
+public abstract class Tecton implements OnRoundBeginSubscriber {
     /**
      *
      */
@@ -19,6 +20,25 @@ public abstract class Tecton {
      */
     private int myceliumCapacity = 0;
 
+    /**
+     *
+     */
+    private Queue<Spore> spores;
+
+    /**
+     *
+     */
+    private MushroomBody mushroomBody;
+
+    /**
+     *
+     */
+    private Queue<Mycelium> mycelia;
+
+    /**
+     *
+     */
+    private List<Insect> occupants;
 
     /**
      * @return
@@ -63,16 +83,110 @@ public abstract class Tecton {
     }
 
     /**
-     * @return
-     */
-    public int getMyceliumCapacity() {
-        return myceliumCapacity;
-    }
-
-    /**
      * @param myceliumCapacity
      */
     public void setMyceliumCapacity(int myceliumCapacity) {
         this.myceliumCapacity = myceliumCapacity;
     }
+
+    /**
+     * @return
+     */
+    public Queue<Spore> getSpores() {
+        return spores;
+    }
+
+    /**
+     * @param spores
+     */
+    public void setSpores(Queue<Spore> spores) {
+        this.spores = spores;
+    }
+
+    /**
+     * @return
+     */
+    public MushroomBody getMushroomBody() {
+        return mushroomBody;
+    }
+
+    /**
+     * @param mushroomBody
+     */
+    public void setMushroomBody(MushroomBody mushroomBody) {
+        this.mushroomBody = mushroomBody;
+    }
+
+    /**
+     * @return
+     */
+    public Queue<Mycelium> getMycelia() {
+        return mycelia;
+    }
+
+    /**
+     * @param mycelia
+     */
+    public void setMycelia(Queue<Mycelium> mycelia) {
+        this.mycelia = mycelia;
+    }
+
+    /**
+     * @param tecton
+     * @return
+     */
+    public int distance(Tecton tecton) {
+        throw new UnsupportedOperationException("Not implemented");
+    }
+
+    /**
+     * @return
+     */
+    public boolean checkNeighbourMyceliaSustain() {
+        throw new UnsupportedOperationException("Not implemented");
+    }
+
+    /**
+     * @return
+     */
+    public boolean myceliaCheckSustain() {
+        throw new UnsupportedOperationException("Not implemented");
+    }
+
+    /**
+     * @return
+     */
+    public List<Insect> getOccupants() {
+        return occupants;
+    }
+
+    /**
+     * @param occupants
+     */
+    public void setOccupants(List<Insect> occupants) {
+        this.occupants = occupants;
+    }
+
+    /**
+     * @param insect
+     */
+    public void addOccupant(Insect insect) {
+        occupants.add(insect);
+    }
+
+    /**
+     * @param insect
+     */
+    public void removeOccupant(Insect insect) {
+        occupants.remove(insect);
+    }
+
+    /**
+     * @return
+     */
+    public boolean hasMycelium() {
+        return !mycelia.isEmpty();
+    }
+
+    public abstract void accept(TectonVisitor tectonVisitor, Mushroom mushroom);
 }

@@ -3,7 +3,7 @@
  */
 public class SlownessSpore extends Spore{
     /**
-     * @param insect 
+     * @param insect
      */
     @Override
     public void eatSpore(Insect insect) {
