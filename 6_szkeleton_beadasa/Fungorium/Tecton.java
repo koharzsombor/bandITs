@@ -188,5 +188,31 @@ public abstract class Tecton implements OnRoundBeginSubscriber {
         return !mycelia.isEmpty();
     }
 
+    /**
+     * @param mycelium
+     */
+    public void addMycelium(Mycelium mycelium) {
+        throw new UnsupportedOperationException("Not implemented");
+    }
+
+
+    /**
+     * @param spore
+     */
+    public void addSpore(Spore spore) {
+        throw new UnsupportedOperationException("Not implemented");
+    }
+
+    /**
+     * @param tecton
+     */
+    public void addNeighbour(Tecton tecton) {
+        throw new UnsupportedOperationException("Not implemented");
+    }
+
+    /**
+     * @param tectonVisitor
+     * @param mushroom
+     */
     public abstract void accept(TectonVisitor tectonVisitor, Mushroom mushroom);
 }
