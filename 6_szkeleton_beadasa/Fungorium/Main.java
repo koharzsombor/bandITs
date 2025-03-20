@@ -20,8 +20,10 @@ public class Main {
      * @param object
      */
     public static void mockDeletion(Object object) {
-        System.out.printf("%s %n", objectNames.get(object));
-        System.out.println("\t~finalize()");
+        if (printTrace) {
+            System.out.printf("%s %n", objectNames.get(object));
+            System.out.println("\t~finalize()");
+        }
     }
 
     /**
@@ -123,11 +125,11 @@ public class Main {
         B.addNeighbour(A);
         A.addNeighbour(B);
 
-        MushroomBody MB = new MushroomBody();
+        MushroomBody MB = new MushroomBody(A, "MB: MushroomBody");
         objectNames.put(MB, "MB: MushroomBody");
 
         A.setMushroomBody(MB);
-        MB.setLocation(A);
+        //MB.setLocation(A);
 
         //Test case
         printTrace = true;
@@ -137,6 +139,7 @@ public class Main {
         Mycelium m = new Mycelium(B, "m: Mycelium");
 
         objectNames.clear();
+        printTrace = false;
     }
 
     /**
@@ -192,7 +195,35 @@ public class Main {
      * 9. test case
      */
     private static void mushroomBodyGrowthSuccessOnFertileTecton() {
-        throw new UnsupportedOperationException("Not implemented");
+        //Init
+        FertileTecton T = new FertileTecton();
+        objectNames.put(T, "T: FertileTecton");
+
+        Mycelium M = new Mycelium(T, "m: Mycelium");
+        objectNames.put(M, "M: Mycelium");
+
+        SpeedSpore s3 = new SpeedSpore();
+        objectNames.put(s3, "s3: SpeedSpore");
+        SpeedSpore s2 = new SpeedSpore();
+        objectNames.put(s2, "s2: SpeedSpore");
+        SpeedSpore s1 = new SpeedSpore();
+        objectNames.put(s1, "s1: SpeedSpore");
+
+        M.setLocation(T);
+
+        T.addSpore(s3);
+        T.addSpore(s2);
+        T.addSpore(s1);
+
+        //Test case
+        printTrace = true;
+
+        System.out.println("Tester");
+        System.out.printf("\t=Create(%s)=> mb: MushroomBody%n", objectNames.get(T));
+        MushroomBody mb = new MushroomBody(T, "mb: MushroomBody");
+
+        objectNames.clear();
+        printTrace = false;
     }
 
     /**

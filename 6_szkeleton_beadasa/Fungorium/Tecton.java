@@ -30,7 +30,7 @@ public abstract class Tecton implements OnRoundBeginSubscriber {
     /**
      *
      */
-    private MushroomBody mushroomBody;
+    private MushroomBody mushroomBody = null;
 
     /**
      *
@@ -202,7 +202,7 @@ public abstract class Tecton implements OnRoundBeginSubscriber {
      * @param spore
      */
     public void addSpore(Spore spore) {
-        throw new UnsupportedOperationException("Not implemented");
+        this.spores.add(spore);
     }
 
     /**

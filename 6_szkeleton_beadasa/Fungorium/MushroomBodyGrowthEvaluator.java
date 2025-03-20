@@ -2,12 +2,16 @@
  *
  */
 public class MushroomBodyGrowthEvaluator extends TectonVisitor {
+    /**
+     *
+     */
+    private final MushroomBody creator;
 
     /**
      * @param mushroom
      */
-    MushroomBodyGrowthEvaluator(Mushroom mushroom) {
-        super(mushroom);
+    MushroomBodyGrowthEvaluator(MushroomBody mushroom) {
+        creator = mushroom;
     }
 
     /**
@@ -15,7 +19,11 @@ public class MushroomBodyGrowthEvaluator extends TectonVisitor {
      */
     @Override
     public void visit(FertileTecton tecton) {
-        throw new UnsupportedOperationException("Not implemented.");
+        if (Main.printTrace) {
+            System.out.printf("%s %n", Main.objectNames.get(this));
+            System.out.printf("\t=accept(%s, %s)=> %s %n", Main.objectNames.get(this), Main.objectNames.get(getCreator()), Main.objectNames.get(tecton));
+        }
+        tecton.accept(this, getCreator());
     }
 
     /**
@@ -23,7 +31,11 @@ public class MushroomBodyGrowthEvaluator extends TectonVisitor {
      */
     @Override
     public void visit(MultiLayeredTecton tecton) {
-        throw new UnsupportedOperationException("Not implemented.");
+        if (Main.printTrace) {
+            System.out.printf("%s %n", Main.objectNames.get(this));
+            System.out.printf("\t=accept(%s, %s)=> %s %n", Main.objectNames.get(this), Main.objectNames.get(getCreator()), Main.objectNames.get(tecton));
+        }
+        tecton.accept(this, getCreator());
     }
 
     /**
@@ -31,7 +43,11 @@ public class MushroomBodyGrowthEvaluator extends TectonVisitor {
      */
     @Override
     public void visit(AridTecton tecton) {
-        throw new UnsupportedOperationException("Not implemented.");
+        if (Main.printTrace) {
+            System.out.printf("%s %n", Main.objectNames.get(this));
+            System.out.printf("\t=accept(%s, %s)=> %s %n", Main.objectNames.get(this), Main.objectNames.get(getCreator()), Main.objectNames.get(tecton));
+        }
+        tecton.accept(this, getCreator());
     }
 
     /**
@@ -39,6 +55,15 @@ public class MushroomBodyGrowthEvaluator extends TectonVisitor {
      */
     @Override
     public void visit(SemiFertileTecton tecton) {
-        throw new UnsupportedOperationException("Not implemented.");
+        if (Main.printTrace) {
+            System.out.printf("%s %n", Main.objectNames.get(this));
+            System.out.printf("\t=accept(%s, %s)=> %s %n", Main.objectNames.get(this), Main.objectNames.get(getCreator()), Main.objectNames.get(tecton));
+        }
+        tecton.accept(this, getCreator());
+    }
+
+    @Override
+    public MushroomBody getCreator() {
+        return creator;
     }
 }

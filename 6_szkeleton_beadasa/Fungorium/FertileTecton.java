@@ -15,17 +15,23 @@ public class FertileTecton extends Tecton {
      */
     @Override
     public void accept(MyceliumGrowthEvaluator myceliumGrowthEvaluator, Mycelium mycelium) {
-        System.out.printf("%s\n", Main.objectNames.get(this));
+        if (Main.printTrace) {
+            System.out.printf("%s\n", Main.objectNames.get(this));
+        }
 
         if (getMycelia().size() >= getMyceliaCapacity()) {
-            System.out.printf("\t=delete()=> %s", Main.objectNames.get(mycelium));
+            if (Main.printTrace) {
+                System.out.printf("\t=delete()=> %s", Main.objectNames.get(mycelium));
+            }
             mycelium.delete();
             return;
         }
 
         getMycelia().offer(mycelium);
 
-        System.out.printf("\t=grow(sporeCount)=> %s %n", Main.objectNames.get(mycelium));
+        if (Main.printTrace) {
+            System.out.printf("\t=grow(sporeCount)=> %s %n", Main.objectNames.get(mycelium));
+        }
         mycelium.grow(getSpores().size());
     }
 
@@ -35,7 +41,24 @@ public class FertileTecton extends Tecton {
      */
     @Override
     public void accept(MushroomBodyGrowthEvaluator mushroomBodyGrowthEvaluator, MushroomBody mushroomBody) {
+        if (Main.printTrace) {
+            System.out.printf("%s\n", Main.objectNames.get(this));
+        }
 
+        if (getSpores().size() != 3) {
+            if (Main.printTrace) {
+                System.out.printf("\t=delete()=> %s", Main.objectNames.get(mushroomBody));
+            }
+            mushroomBody.delete();
+            return;
+        }
+
+        setMushroomBody(mushroomBody);
+
+        if (Main.printTrace) {
+            System.out.printf("\t=grow(sporeCount)=> %s %n", Main.objectNames.get(mushroomBody));
+        }
+        mushroomBody.grow(getSpores().size());
     }
 
     /**
