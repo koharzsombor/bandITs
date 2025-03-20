@@ -150,9 +150,32 @@ public class Main {
     private static void myceliumGrowthFailureDueToLackOfSpaceOnFertileTecton() {
         //Init
         printTrace = false;
+        FertileTecton B = new FertileTecton();
+        objectNames.put(B, "B: FertileTecton");
 
+        FertileTecton A = new FertileTecton();
+        objectNames.put(A, "A: FertileTecton");
+
+        B.addNeighbour(A);
+        A.addNeighbour(B);
+
+        MushroomBody MB = new MushroomBody();
+        objectNames.put(MB, "MB: MushroomBody");
+
+        A.setMushroomBody(MB);
+
+        MB.setLocation(A);
+
+        Mycelium M = new Mycelium();
+        objectNames.put(M, "M: Mycelium");
+
+        B.addMycelium(M);
+        M.setLocation(B);
         //TestCase
         printTrace = true;
+        System.out.println("Tester");
+        System.out.printf("\t=Create(%s)=> M2: Mycelium%n", objectNames.get(B));
+        Mycelium m2 = new Mycelium(B, "M2: Mycelium");
 
         objectNames.clear();
     }
@@ -161,14 +184,68 @@ public class Main {
      * 3. test case
      */
     private static void myceliumGrowthSuccessOnSemiFertileTecton() {
-        throw new UnsupportedOperationException("Not implemented");
+        //Init
+        printTrace = false;
+
+        SemiFertileTecton B = new SemiFertileTecton();
+        objectNames.put(B, "B: SemiFertileTecton");
+
+        SemiFertileTecton A = new SemiFertileTecton();
+        objectNames.put(A, "A: SemiFertileTecton");
+
+        B.addNeighbour(A);
+        A.addNeighbour(B);
+
+        MushroomBody MB = new MushroomBody();
+        objectNames.put(MB, "MB: MushroomBody");
+
+        A.setMushroomBody(MB);
+        MB.setLocation(A);
+
+        //Test case
+        printTrace = true;
+
+        System.out.println("Tester");
+        System.out.printf("\t=Create(%s)=> m: Mycelium%n", objectNames.get(B));
+        Mycelium m = new Mycelium(B, "m: Mycelium");
+
+        objectNames.clear();
     }
 
     /**
      * 4. test case
      */
     private static void myceliumGrowthFailureDueToLackOfSpaceOnSemiFertileTecton() {
-        throw new UnsupportedOperationException("Not implemented");
+        //Init
+        printTrace = false;
+        SemiFertileTecton B = new SemiFertileTecton();
+        objectNames.put(B, "B: SemiFertileTecton");
+
+        SemiFertileTecton A = new SemiFertileTecton();
+        objectNames.put(A, "A: SemiFertileTecton");
+
+        B.addNeighbour(A);
+        A.addNeighbour(B);
+
+        MushroomBody MB = new MushroomBody();
+        objectNames.put(MB, "MB: MushroomBody");
+
+        A.setMushroomBody(MB);
+
+        MB.setLocation(A);
+
+        Mycelium M = new Mycelium();
+        objectNames.put(M, "M: Mycelium");
+
+        B.addMycelium(M);
+        M.setLocation(B);
+        //TestCase
+        printTrace = true;
+        System.out.println("Tester");
+        System.out.printf("\t=Create(%s)=> M2: Mycelium%n", objectNames.get(B));
+        Mycelium m2 = new Mycelium(B, "M2: Mycelium");
+
+        objectNames.clear();
     }
 
     /**

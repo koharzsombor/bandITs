@@ -15,7 +15,7 @@ public class FertileTecton extends Tecton {
      */
     @Override
     public void accept(MyceliumGrowthEvaluator myceliumGrowthEvaluator, Mycelium mycelium) {
-        System.out.printf("%s\n", Main.objectNames.get(this));
+        System.out.printf("%s %n", Main.objectNames.get(this));
 
         if (getMycelia().size() >= getMyceliaCapacity()) {
             System.out.printf("\t=delete()=> %s", Main.objectNames.get(mycelium));

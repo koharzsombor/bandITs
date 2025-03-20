@@ -2,10 +2,35 @@
  *
  */
 public class Mycelium extends Mushroom {
+    public Mycelium() {
+
+    }
+
     /**
      * @param location
      */
     public Mycelium(FertileTecton location, String name) {
+        Main.objectNames.put(this, name);
+
+        this.location = location;
+
+        if (Main.printTrace)
+            System.out.printf("%s %n", Main.objectNames.get(this));
+
+        MyceliumGrowthEvaluator myceliumGrowthEvaluator = new MyceliumGrowthEvaluator(this);
+
+        if (Main.printTrace) {
+            Main.objectNames.put(myceliumGrowthEvaluator, "MGE: MyceliumGrowthEvaluator");
+            System.out.printf("\t=Create(%s)=> %s %n", Main.objectNames.get(this), Main.objectNames.get(myceliumGrowthEvaluator));
+        }
+
+        myceliumGrowthEvaluator.visit(location);
+
+        if (Main.printTrace)
+            Main.mockDeletion(myceliumGrowthEvaluator);
+    }
+
+    public Mycelium(SemiFertileTecton location, String name) {
         Main.objectNames.put(this, name);
 
         this.location = location;

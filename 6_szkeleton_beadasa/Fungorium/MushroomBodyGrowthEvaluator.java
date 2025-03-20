@@ -7,7 +7,7 @@ public class MushroomBodyGrowthEvaluator extends TectonVisitor {
      * @param mushroom
      */
     MushroomBodyGrowthEvaluator(Mushroom mushroom) {
-        super(mushroom);
+        //super(mushroom);
     }
 
     /**
@@ -44,11 +44,6 @@ public class MushroomBodyGrowthEvaluator extends TectonVisitor {
 
     @Override
     public Mushroom getCreator() {
-        throw new UnsupportedOperationException("Not implemented!");
-    }
-
-    @Override
-    public void setCreator(Mushroom creator) {
         throw new UnsupportedOperationException("Not implemented!");
     }
 }

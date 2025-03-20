@@ -2,7 +2,9 @@
  *
  */
 public class MushroomBody extends Mushroom {
+    public MushroomBody() {
 
+    }
     /**
      *
      */
