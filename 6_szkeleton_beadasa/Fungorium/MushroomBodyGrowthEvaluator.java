@@ -41,4 +41,14 @@ public class MushroomBodyGrowthEvaluator extends TectonVisitor {
     public void visit(SemiFertileTecton tecton) {
         throw new UnsupportedOperationException("Not implemented.");
     }
+
+    @Override
+    public Mushroom getCreator() {
+        throw new UnsupportedOperationException("Not implemented!");
+    }
+
+    @Override
+    public void setCreator(Mushroom creator) {
+        throw new UnsupportedOperationException("Not implemented!");
+    }
 }

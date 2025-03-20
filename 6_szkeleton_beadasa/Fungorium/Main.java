@@ -20,6 +20,9 @@ public class Main {
      * @param object
      */
     public static void mockDeletion(Object object) {
+        if (!printTrace)
+            return;
+
         System.out.printf("%s %n", objectNames.get(object));
         System.out.println("\t~finalize()");
     }
@@ -114,6 +117,8 @@ public class Main {
      */
     private static void myceliumGrowthSuccessOnFertileTecton() {
         //Init
+        printTrace = false;
+
         FertileTecton B = new FertileTecton();
         objectNames.put(B, "B: FertileTecton");
 
@@ -143,7 +148,13 @@ public class Main {
      * 2. test case
      */
     private static void myceliumGrowthFailureDueToLackOfSpaceOnFertileTecton() {
-        throw new UnsupportedOperationException("Not implemented");
+        //Init
+        printTrace = false;
+
+        //TestCase
+        printTrace = true;
+
+        objectNames.clear();
     }
 
     /**
