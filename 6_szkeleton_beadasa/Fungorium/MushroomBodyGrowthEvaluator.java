@@ -4,6 +4,13 @@
 public class MushroomBodyGrowthEvaluator extends TectonVisitor {
 
     /**
+     * @param mushroom
+     */
+    MushroomBodyGrowthEvaluator(Mushroom mushroom) {
+        super(mushroom);
+    }
+
+    /**
      * @param tecton
      */
     @Override

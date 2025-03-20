@@ -3,19 +3,28 @@
  */
 public class SemiFertileTecton extends Tecton{
     /**
-     * @param tectonVisitor
-     * @param mushroom
-     */
-    @Override
-    public void accept(TectonVisitor tectonVisitor, Mushroom mushroom) {
-        throw new UnsupportedOperationException("Not implemented");
-    }
-
-    /**
      *
      */
     @Override
     public void onRoundBegin() {
         throw new UnsupportedOperationException("Not implemented");
+    }
+
+    /**
+     * @param MyceliumGrowthEvaluator
+     * @param mycelium
+     */
+    @Override
+    public void accept(MyceliumGrowthEvaluator MyceliumGrowthEvaluator, Mycelium mycelium) {
+
+    }
+
+    /**
+     * @param mushroomBodyGrowthEvaluator
+     * @param mushroomBody
+     */
+    @Override
+    public void accept(MushroomBodyGrowthEvaluator mushroomBodyGrowthEvaluator, MushroomBody mushroomBody) {
+
     }
 }

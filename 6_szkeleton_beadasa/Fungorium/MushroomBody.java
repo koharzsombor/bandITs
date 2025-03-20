@@ -11,6 +11,11 @@ public class MushroomBody extends Mushroom {
     /**
      *
      */
+    private Tecton location;
+
+    /**
+     *
+     */
     @Override
     public void delete() {
         throw new UnsupportedOperationException("Not implemented");
@@ -51,5 +56,19 @@ public class MushroomBody extends Mushroom {
      */
     public void ejectSpores(Tecton target) {
         throw new UnsupportedOperationException("Not implemented");
+    }
+
+    /**
+     * @return
+     */
+    public Tecton getLocation() {
+        return location;
+    }
+
+    /**
+     * @param location
+     */
+    public void setLocation(Tecton location) {
+        this.location = location;
     }
 }

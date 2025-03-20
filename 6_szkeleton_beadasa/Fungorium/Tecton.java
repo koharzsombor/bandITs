@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
@@ -13,7 +15,7 @@ public abstract class Tecton implements OnRoundBeginSubscriber {
     /**
      *
      */
-    private List<Tecton> neighbours;
+    private List<Tecton> neighbours = new ArrayList<>();
 
     /**
      *
@@ -23,7 +25,7 @@ public abstract class Tecton implements OnRoundBeginSubscriber {
     /**
      *
      */
-    private Queue<Spore> spores;
+    private Queue<Spore> spores = new LinkedList<>();
 
     /**
      *
@@ -33,12 +35,12 @@ public abstract class Tecton implements OnRoundBeginSubscriber {
     /**
      *
      */
-    private Queue<Mycelium> mycelia;
+    private Queue<Mycelium> mycelia = new LinkedList<>();
 
     /**
      *
      */
-    private List<Insect> occupants;
+    private List<Insect> occupants = new ArrayList<>();
 
     /**
      * @return
@@ -207,12 +209,18 @@ public abstract class Tecton implements OnRoundBeginSubscriber {
      * @param tecton
      */
     public void addNeighbour(Tecton tecton) {
-        throw new UnsupportedOperationException("Not implemented");
+        neighbours.add(tecton);
     }
 
     /**
-     * @param tectonVisitor
-     * @param mushroom
+     * @param MyceliumGrowthEvaluator
+     * @param mycelium
      */
-    public abstract void accept(TectonVisitor tectonVisitor, Mushroom mushroom);
+    public abstract void accept(MyceliumGrowthEvaluator MyceliumGrowthEvaluator, Mycelium mycelium);
+
+    /**
+     * @param mushroomBodyGrowthEvaluator
+     * @param mushroomBody
+     */
+    public abstract void accept(MushroomBodyGrowthEvaluator mushroomBodyGrowthEvaluator, MushroomBody mushroomBody);
 }

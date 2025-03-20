@@ -4,11 +4,21 @@
 public class MyceliumGrowthEvaluator extends TectonVisitor {
 
     /**
+     * @param mushroom
+     */
+    MyceliumGrowthEvaluator(Mycelium mushroom) {
+        super(mushroom);
+    }
+
+    /**
      * @param tecton
      */
     @Override
     public void visit(FertileTecton tecton) {
-        throw new UnsupportedOperationException("Not implemented.");
+        System.out.printf("%s\n", Main.objectNames.get(this));
+
+        System.out.printf("\t=accept(%s, %s)=> %s\n", Main.objectNames.get(this), Main.objectNames.get(getCreator()), Main.objectNames.get(tecton));
+        tecton.accept(this, (Mycelium)getCreator());
     }
 
     /**

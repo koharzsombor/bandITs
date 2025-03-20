@@ -3,9 +3,33 @@
  */
 public class Mycelium extends Mushroom {
     /**
+     * @param location
+     */
+    public Mycelium(FertileTecton location, String name) {
+        Main.objectNames.put(this, name);
+
+        this.location = location;
+
+        if (Main.printTrace)
+            System.out.printf("%s %n", Main.objectNames.get(this));
+
+        MyceliumGrowthEvaluator myceliumGrowthEvaluator = new MyceliumGrowthEvaluator(this);
+
+        if (Main.printTrace) {
+            Main.objectNames.put(myceliumGrowthEvaluator, "MGE: MyceliumGrowthEvaluator");
+            System.out.printf("\t=Create(%s)=> %s %n", Main.objectNames.get(this), Main.objectNames.get(myceliumGrowthEvaluator));
+        }
+
+        myceliumGrowthEvaluator.visit(location);
+
+        if (Main.printTrace)
+            Main.mockDeletion(myceliumGrowthEvaluator);
+    }
+
+    /**
      *
      */
-    private boolean growing = true;
+    private boolean growing = false;
 
     /**
      *
@@ -15,9 +39,15 @@ public class Mycelium extends Mushroom {
     /**
      *
      */
+    private int growTimer = 0;
+
+    /**
+     *
+     */
     @Override
     public void delete() {
-        throw new UnsupportedOperationException("Not implemented");
+        System.out.printf("%s %n", Main.objectNames.get(this));
+        Main.mockDeletion(this);
     }
 
     /**
@@ -25,7 +55,8 @@ public class Mycelium extends Mushroom {
      */
     @Override
     public void grow(int sporeCount) {
-        throw new UnsupportedOperationException("Not implemented");
+        growing = true;
+        growTimer = sporeCount > 0 ? 1 : 2;
     }
 
     /**

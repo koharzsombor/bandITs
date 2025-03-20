@@ -1,9 +1,29 @@
+import java.util.HashMap;
 import java.util.Scanner;
 
 /**
  * A program futtatásért és tesztelő - program összeköttetésért felelős osztály.
  */
 public class Main {
+    /**
+     *
+     */
+    public static final HashMap<Object, String> objectNames = new HashMap<>();
+
+    /**
+     *
+     */
+    public static boolean printTrace = false;
+
+
+    /**
+     * @param object
+     */
+    public static void mockDeletion(Object object) {
+        System.out.printf("%s %n", objectNames.get(object));
+        System.out.println("\t~finalize()");
+    }
+
     /**
      * A program futtatása ezzel a függvénnyel kezdődik.
      * @param args Futtatáshoz átadott paraméterek, jelen programban ezzel nem kezdünk semmit.
@@ -93,7 +113,30 @@ public class Main {
      * 1. test case
      */
     private static void myceliumGrowthSuccessOnFertileTecton() {
-        throw new UnsupportedOperationException("Not implemented");
+        //Init
+        FertileTecton B = new FertileTecton();
+        objectNames.put(B, "B: FertileTecton");
+
+        FertileTecton A = new FertileTecton();
+        objectNames.put(A, "A: FertileTecton");
+
+        B.addNeighbour(A);
+        A.addNeighbour(B);
+
+        MushroomBody MB = new MushroomBody();
+        objectNames.put(MB, "MB: MushroomBody");
+
+        A.setMushroomBody(MB);
+        MB.setLocation(A);
+
+        //Test case
+        printTrace = true;
+
+        System.out.println("Tester");
+        System.out.printf("\t=Create(%s)=> m: Mycelium%n", objectNames.get(B));
+        Mycelium m = new Mycelium(B, "m: Mycelium");
+
+        objectNames.clear();
     }
 
     /**
