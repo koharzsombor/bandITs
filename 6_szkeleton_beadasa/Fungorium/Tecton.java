@@ -202,7 +202,7 @@ public abstract class Tecton implements OnRoundBeginSubscriber {
      * @param spore
      */
     public void addSpore(Spore spore) {
-        throw new UnsupportedOperationException("Not implemented");
+        getSpores().offer(spore);
     }
 
     /**
@@ -210,6 +210,20 @@ public abstract class Tecton implements OnRoundBeginSubscriber {
      */
     public void addNeighbour(Tecton tecton) {
         neighbours.add(tecton);
+    }
+
+    /**
+     * @param insect
+     */
+    public void eatSpore(Insect insect) {
+        if (Main.printTrace) {
+            System.out.println(Main.objectNames.get(this));
+            System.out.printf("\t=eatSpore(%s)=> %s %n", Main.objectNames.get(insect), Main.objectNames.get(spores.peek()));
+        }
+        Spore spore = spores.poll();
+        spore.eatSpore(insect);
+
+        Main.mockDeletion(spore);
     }
 
     /**

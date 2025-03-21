@@ -1,12 +1,17 @@
 /**
  *
  */
-public class StunSpore extends Spore{
+public class StunSpore extends Spore {
     /**
      * @param insect
      */
     @Override
     public void eatSpore(Insect insect) {
-        throw new UnsupportedOperationException("Not implemented");
+        if (Main.printTrace) {
+            System.out.println(Main.objectNames.get(this));
+            System.out.printf("\t=beStunned()=> %s", Main.objectNames.get(insect));
+        }
+
+        insect.beStunned();
     }
 }

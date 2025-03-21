@@ -6,7 +6,7 @@ public class SemiFertileTecton extends Tecton {
      *
      */
     public SemiFertileTecton() {
-        setMyceliaCapacity(3);
+        setMyceliaCapacity(1);
     }
 
     /**
@@ -26,7 +26,7 @@ public class SemiFertileTecton extends Tecton {
         System.out.printf("%s %n", Main.objectNames.get(this));
 
         if (getMycelia().size() >= getMyceliaCapacity()) {
-            System.out.printf("\t=delete()=> %s", Main.objectNames.get(mycelium));
+            System.out.printf("\t=delete()=> %s %n", Main.objectNames.get(mycelium));
             mycelium.delete();
             return;
         }
