@@ -247,6 +247,7 @@ public class Main {
         objectNames.put(s1, "s1: SpeedSpore");
 
         M.setLocation(T);
+        T.addMycelium(M);
 
         T.addSpore(s3);
         T.addSpore(s2);
@@ -284,6 +285,7 @@ public class Main {
         objectNames.put(s1, "s1: SpeedSpore");
 
         M.setLocation(T);
+        T.addMycelium(M);
 
         //T.addSpore(s3);
         T.addSpore(s2);
@@ -354,6 +356,7 @@ public class Main {
         objectNames.put(s1, "s1: SpeedSpore");
 
         M.setLocation(T);
+        T.addMycelium(M);
 
         T.addSpore(s3);
         T.addSpore(s2);
@@ -389,6 +392,7 @@ public class Main {
         objectNames.put(s1, "s1: SpeedSpore");
 
         M.setLocation(T);
+        T.addMycelium(M);
 
         T.addSpore(s3);
         T.addSpore(s2);
@@ -425,7 +429,9 @@ public class Main {
         SpeedSpore s1 = new SpeedSpore();
         objectNames.put(s1, "s1: SpeedSpore");
 
+
         M.setLocation(T);
+        T.addMycelium(M);
 
         //T.addSpore(s3);
         T.addSpore(s2);
@@ -496,6 +502,7 @@ public class Main {
         objectNames.put(s1, "s1: SpeedSpore");
 
         M.setLocation(T);
+        T.addMycelium(M);
 
         T.addSpore(s3);
         T.addSpore(s2);
@@ -531,6 +538,7 @@ public class Main {
         objectNames.put(s1, "s1: SpeedSpore");
 
         M.setLocation(T);
+        T.addMycelium(M);
 
         T.addSpore(s3);
         T.addSpore(s2);
@@ -568,6 +576,7 @@ public class Main {
         objectNames.put(s1, "s1: SpeedSpore");
 
         M.setLocation(T);
+        T.addMycelium(M);
 
         //T.addSpore(s3);
         T.addSpore(s2);
@@ -638,6 +647,7 @@ public class Main {
         objectNames.put(s1, "s1: SpeedSpore");
 
         M.setLocation(T);
+        T.addMycelium(M);
 
         T.addSpore(s3);
         T.addSpore(s2);
