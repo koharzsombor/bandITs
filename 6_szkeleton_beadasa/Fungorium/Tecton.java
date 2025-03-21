@@ -194,7 +194,7 @@ public abstract class Tecton implements OnRoundBeginSubscriber {
      * @param mycelium
      */
     public void addMycelium(Mycelium mycelium) {
-        throw new UnsupportedOperationException("Not implemented");
+        this.mycelia.add(mycelium);
     }
 
 

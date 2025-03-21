@@ -211,6 +211,8 @@ public class Main {
 
         M.setLocation(T);
 
+        T.addMycelium(M);
+
         T.addSpore(s3);
         T.addSpore(s2);
         T.addSpore(s1);
