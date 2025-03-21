@@ -45,7 +45,7 @@ public class FertileTecton extends Tecton {
             System.out.printf("%s\n", Main.objectNames.get(this));
         }
 
-        if (getSpores().size() != 3) {
+        if (getSpores().size() != 3 || getMushroomBody() == null || getMycelia().isEmpty()) {
             if (Main.printTrace) {
                 System.out.printf("\t=delete()=> %s", Main.objectNames.get(mushroomBody));
             }
