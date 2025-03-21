@@ -13,12 +13,63 @@ public class MushroomBody extends Mushroom {
      */
     private Tecton location;
 
+
     /**
-     *
+     * @param location
+     * @param name
      */
+    public MushroomBody(FertileTecton location, String name) {
+        Main.objectNames.put(this, name);
+
+        this.location = location;
+
+        if (Main.printTrace)
+            System.out.printf("%s %n", Main.objectNames.get(this));
+
+        MushroomBodyGrowthEvaluator mushroomBodyGrowthEvaluator = new MushroomBodyGrowthEvaluator(this);
+
+        if (Main.printTrace) {
+            Main.objectNames.put(mushroomBodyGrowthEvaluator, "MBGE: MushroomBodyGrowthEvaluator");
+            System.out.printf("\t=Create(%s)=> %s %n", Main.objectNames.get(this), Main.objectNames.get(mushroomBodyGrowthEvaluator));
+        }
+
+        mushroomBodyGrowthEvaluator.visit(location);
+
+        if (Main.printTrace)
+            Main.mockDeletion(mushroomBodyGrowthEvaluator);
+
+    }
+
+    public MushroomBody(SemiFertileTecton location, String name) {
+        Main.objectNames.put(this, name);
+
+        this.location = location;
+
+        if (Main.printTrace)
+            System.out.printf("%s %n", Main.objectNames.get(this));
+
+        MushroomBodyGrowthEvaluator mushroomBodyGrowthEvaluator = new MushroomBodyGrowthEvaluator(this);
+
+        if (Main.printTrace) {
+            Main.objectNames.put(mushroomBodyGrowthEvaluator, "MBGE: MushroomBodyGrowthEvaluator");
+            System.out.printf("\t=Create(%s)=> %s %n", Main.objectNames.get(this), Main.objectNames.get(mushroomBodyGrowthEvaluator));
+        }
+
+        mushroomBodyGrowthEvaluator.visit(location);
+
+        if (Main.printTrace)
+            Main.mockDeletion(mushroomBodyGrowthEvaluator);
+
+    }
+
+
+
     @Override
     public void delete() {
-        throw new UnsupportedOperationException("Not implemented");
+        if (Main.printTrace) {
+            System.out.printf("%n");
+        }
+        Main.mockDeletion(this);
     }
 
     /**
@@ -26,7 +77,7 @@ public class MushroomBody extends Mushroom {
      */
     @Override
     public void grow(int sporeCount) {
-        throw new UnsupportedOperationException("Not implemented");
+        // Currently nothing
     }
 
     /**

@@ -2,12 +2,16 @@
  *
  */
 public class MyceliumGrowthEvaluator extends TectonVisitor {
+    /**
+     *
+     */
+    private final Mycelium creator;
 
     /**
      * @param mushroom
      */
     MyceliumGrowthEvaluator(Mycelium mushroom) {
-        super(mushroom);
+        creator = mushroom;
     }
 
     /**
@@ -15,10 +19,11 @@ public class MyceliumGrowthEvaluator extends TectonVisitor {
      */
     @Override
     public void visit(FertileTecton tecton) {
-        System.out.printf("%s\n", Main.objectNames.get(this));
-
-        System.out.printf("\t=accept(%s, %s)=> %s\n", Main.objectNames.get(this), Main.objectNames.get(getCreator()), Main.objectNames.get(tecton));
-        tecton.accept(this, (Mycelium)getCreator());
+        if (Main.printTrace) {
+            System.out.printf("%s %n", Main.objectNames.get(this));
+            System.out.printf("\t=accept(%s, %s)=> %s %n", Main.objectNames.get(this), Main.objectNames.get(getCreator()), Main.objectNames.get(tecton));
+        }
+        tecton.accept(this, getCreator());
     }
 
     /**
@@ -26,7 +31,11 @@ public class MyceliumGrowthEvaluator extends TectonVisitor {
      */
     @Override
     public void visit(MultiLayeredTecton tecton) {
-        throw new UnsupportedOperationException("Not implemented.");
+        if (Main.printTrace) {
+            System.out.printf("%s %n", Main.objectNames.get(this));
+            System.out.printf("\t=accept(%s, %s)=> %s %n", Main.objectNames.get(this), Main.objectNames.get(getCreator()), Main.objectNames.get(tecton));
+        }
+        tecton.accept(this, getCreator());
     }
 
     /**
@@ -34,7 +43,11 @@ public class MyceliumGrowthEvaluator extends TectonVisitor {
      */
     @Override
     public void visit(AridTecton tecton) {
-        throw new UnsupportedOperationException("Not implemented.");
+        if (Main.printTrace) {
+            System.out.printf("%s %n", Main.objectNames.get(this));
+            System.out.printf("\t=accept(%s, %s)=> %s %n", Main.objectNames.get(this), Main.objectNames.get(getCreator()), Main.objectNames.get(tecton));
+        }
+        tecton.accept(this, getCreator());
     }
 
     /**
@@ -42,6 +55,15 @@ public class MyceliumGrowthEvaluator extends TectonVisitor {
      */
     @Override
     public void visit(SemiFertileTecton tecton) {
-        throw new UnsupportedOperationException("Not implemented.");
+        if (Main.printTrace) {
+            System.out.printf("%s %n", Main.objectNames.get(this));
+            System.out.printf("\t=accept(%s, %s)=> %s %n", Main.objectNames.get(this), Main.objectNames.get(getCreator()), Main.objectNames.get(tecton));
+        }
+        tecton.accept(this, getCreator());
+    }
+
+    @Override
+    public Mycelium getCreator() {
+        return creator;
     }
 }
