@@ -10,12 +10,12 @@ public class Insect {
     /**
      *
      */
-    private int maxMoves;
+    private int maxMoves = 2;
 
     /**
      *
      */
-    private int remainingMoves;
+    private int remainingMoves = 0;
 
     /**
      *
@@ -30,7 +30,7 @@ public class Insect {
     /**
      *
      */
-    private InsectState state;
+    private InsectState state = InsectState.NORMAL;
 
     /**
      * @return
@@ -127,7 +127,12 @@ public class Insect {
      *
      */
     public void eatSpore() {
-        throw new UnsupportedOperationException("Not implemented");
+        if (Main.printTrace) {
+            System.out.println(Main.objectNames.get(this));
+            System.out.printf("\t=eatSpore(%s)=> %s %n", Main.objectNames.get(this), Main.objectNames.get(getLocation()));
+        }
+
+        getLocation().eatSpore(this);
     }
 
     /**
@@ -141,28 +146,28 @@ public class Insect {
      *
      */
     public void beSlow() {
-        throw new UnsupportedOperationException("Not implemented");
+        setState(InsectState.SLOW);
     }
 
     /**
      *
      */
     public void beFast() {
-        throw new UnsupportedOperationException("Not implemented");
+        setState(InsectState.FAST);
     }
 
     /**
      *
      */
     public void preventCut() {
-        throw new UnsupportedOperationException("Not implemented");
+        setState(InsectState.CANNOT_CUT);
     }
 
     /**
      *
      */
     public void beStunned() {
-        throw new UnsupportedOperationException("Not implemented");
+        setState(InsectState.STUN);
     }
 
     /**

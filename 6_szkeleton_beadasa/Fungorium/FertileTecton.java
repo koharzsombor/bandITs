@@ -30,9 +30,16 @@ public class FertileTecton extends Tecton {
         getMycelia().offer(mycelium);
 
         if (Main.printTrace) {
-            System.out.printf("\t=grow(sporeCount)=> %s %n", Main.objectNames.get(mycelium));
+          System.out.println("\t=size()=> TectonSpores");
+          System.out.println("\t<=sporeCount= TectonSpores");
         }
-        mycelium.grow(getSpores().size());
+          
+        int sporeCount = getSpores().size();
+          
+        if (Main.printTrace)
+          System.out.printf("\t=grow(sporeCount)=> %s %n", Main.objectNames.get(mycelium));
+          
+        mycelium.grow(sporeCount);
     }
 
     /**

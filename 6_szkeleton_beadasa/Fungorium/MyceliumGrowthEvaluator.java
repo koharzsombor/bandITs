@@ -23,6 +23,7 @@ public class MyceliumGrowthEvaluator extends TectonVisitor {
             System.out.printf("%s %n", Main.objectNames.get(this));
             System.out.printf("\t=accept(%s, %s)=> %s %n", Main.objectNames.get(this), Main.objectNames.get(getCreator()), Main.objectNames.get(tecton));
         }
+      
         tecton.accept(this, getCreator());
     }
 
@@ -47,6 +48,7 @@ public class MyceliumGrowthEvaluator extends TectonVisitor {
             System.out.printf("%s %n", Main.objectNames.get(this));
             System.out.printf("\t=accept(%s, %s)=> %s %n", Main.objectNames.get(this), Main.objectNames.get(getCreator()), Main.objectNames.get(tecton));
         }
+
         tecton.accept(this, getCreator());
     }
 

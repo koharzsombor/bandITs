@@ -2,6 +2,10 @@
  *
  */
 public class Mycelium extends Mushroom {
+    public Mycelium() {
+
+    }
+
     /**
      * @param location
      */
@@ -67,9 +71,6 @@ public class Mycelium extends Mushroom {
      */
     @Override
     public void delete() {
-        if (Main.printTrace) {
-            System.out.printf("%n");
-        }
         Main.mockDeletion(this);
     }
 

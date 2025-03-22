@@ -66,4 +66,3 @@ public class MushroomBodyGrowthEvaluator extends TectonVisitor {
     public MushroomBody getCreator() {
         return creator;
     }
-}
