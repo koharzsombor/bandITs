@@ -65,6 +65,16 @@ public class Main {
                         case 23 -> preventCutSporeEaten();
                         case 24 -> speedSporeEaten();
                         case 25 -> slownessSporeEaten();
+                        case 26 -> tectonBreak();
+                        case 27 -> insectMoveSucces();
+                        case 28 -> insectMoveNeighbourFail();
+                        case 29 -> insectMoveMyceliumFail();
+                        case 30 -> insectCutMycelium();
+                        case 31 -> insectRunAway();
+                        case 32 -> mushroomBodySuccesfullEjectSpore1Distance();
+                        case 33 -> mushroomBodySuccesfullEjectSpore2Distance();
+                        case 34 -> mushroomBodyFailedEjectSpore2Distance();
+                        case 35 -> mushroomBodyFailedEjectSpore3Distance();
                         default -> System.out.println("A megadott szám nem értelmezhető teszt sorszámaként!");
                     }
                 }
@@ -109,6 +119,16 @@ public class Main {
         System.out.println("23.\t„PreventCut” típusú Spóra elfogyasztása");
         System.out.println("24.\t„Speed” típusú Spóra elfogyasztása");
         System.out.println("25.\t„Slowness” típusú Spóra elfogyasztása");
+        System.out.println("26.\tTecton törés");
+        System.out.println("27.\tInsect mozgása előfeltételnek megfelelő tektonra");
+        System.out.println("28.\tInsect mozgása szomsédsági feltételen megbukó tektonra");
+        System.out.println("29.\tInsect mozgása Mycelium feltételen megbukó tektonra");
+        System.out.println("30.\tRovar általi gombafonál elvágás");
+        System.out.println("31.\tRovar elmenekülése");
+        System.out.println("32.\tGombatest sikeres spórakilövése szomszédos tectonra");
+        System.out.println("33.\tGombatest sikeres spórakilövése szomszédjával szomszédos tectonra");
+        System.out.println("34.\tGombatest sikertelen spórakilövése szomszédjávol szomszédos tectonra");
+        System.out.println("35.\tGombatest sikertelen spórakilövése túl messze levő tectonra");
     }
 
     /**
@@ -394,6 +414,10 @@ public class Main {
 
     /**
      * 9. test case
+     *
+     * Egy gombatest sikeres novesztese egy FertileTecton tipusu tektonra,
+     * pontosabban a tektonon van legalabb 3 spora, 1 mycelium/fonal es nincs rajta
+     * meg gombatest
      */
     private static void mushroomBodyGrowthSuccessOnFertileTecton() {
         //Init
@@ -431,6 +455,9 @@ public class Main {
 
     /**
      * 10. test case
+     *
+     * Gombatest sikertelen novesztese a FertileTectonra mivel mar van az adott
+     * tektonon gombatest (es egy tektonon megengedett gombatestek mennyisege 1)
      */
     private static void mushroomBodyGrowthFailureDueToLackOfSpaceOnFertileTecton() {
         //Init
@@ -469,6 +496,10 @@ public class Main {
 
     /**
      * 11. test case
+     *
+     * Gombatest sikertelen novesztese Fertile tektonra, mivel nincs eleg spora
+     * az adott tektonon. A tesztesedben 3 helyett csak 2 sporat gyartunk le. Igy nincs
+     * meg a megadott minimum 3 spora ami kell a gombatest novesztesere
      */
     private static void mushroomBodyGrowthFailureDueToLackOfSporesOnFertileTecton() {
         //Init
@@ -505,6 +536,10 @@ public class Main {
 
     /**
      * 12. test case
+     *
+     * Gombatest sikertelen novesztese Fertile tektonra, mivel nincs rajta egy mycelium sem
+     * az adott tektonon. Igy nincs meg a legalabb egy mycelium ami feltetele a gombatest
+     * novesztesenek
      */
     private static void mushroomBodyGrowthFailureDueToLackOfMyceliaOnFertileTecton() {
         //Init
@@ -540,6 +575,10 @@ public class Main {
 
     /**
      * 13. test case
+     *
+     * Egy gombatest sikeres novesztese egy AridTecton tipusu tektonra,
+     * pontosabban a tektonon van legalabb 3 spora, 1 mycelium/fonal es nincs rajta
+     * meg gombatest
      */
     private static void mushroomBodyGrowthSuccessOnAridTecton() {
         //Init
@@ -576,6 +615,9 @@ public class Main {
 
     /**
      * 14. test case
+     *
+     * Gombatest sikertelen novesztese a AridTectonra mivel mar van az adott
+     * tektonon gombatest (es egy tektonon megengedett gombatestek mennyisege 1)
      */
     private static void mushroomBodyGrowthFailureDueToLackOfSpaceOnAridTecton() {
         //Init
@@ -614,6 +656,10 @@ public class Main {
 
     /**
      * 15. test case
+     *
+     * Gombatest sikertelen novesztese Arid tektonra, mivel nincs eleg spora
+     * az adott tektonon. A tesztesedben 3 helyett csak 2 sporat gyartunk le. Igy nincs
+     * meg a megadott minimum 3 spora ami kell a gombatest novesztesere
      */
     private static void mushroomBodyGrowthFailureDueToLackOfSporesOnAridTecton() {
         //Init
@@ -651,6 +697,10 @@ public class Main {
 
     /**
      * 16. test case
+     *
+     * Gombatest sikertelen novesztese Arod tektonra, mivel nincs rajta egy mycelium sem
+     * az adott tektonon. Igy nincs meg a legalabb egy mycelium ami feltetele a gombatest
+     * novesztesenek
      */
     private static void mushroomBodyGrowthFailureDueToLackOfMyceliaOnAridTecton() {
         //Init
@@ -686,6 +736,10 @@ public class Main {
 
     /**
      * 17. test case
+     *
+     * Egy gombatest sikeres novesztese egy MultiLayeredTecton tipusu tektonra,
+     * pontosabban a tektonon van legalabb 3 spora, 1 mycelium/fonal es nincs rajta
+     * meg gombatest
      */
     private static void mushroomBodyGrowthSuccessOnMultiLayeredTecton() {
         //Init
@@ -722,6 +776,9 @@ public class Main {
 
     /**
      * 18. test case
+     *
+     * Gombatest sikertelen novesztese a MultiLayeredTectonra mivel mar van az adott
+     * tektonon gombatest (es egy tektonon megengedett gombatestek mennyisege 1)
      */
     private static void mushroomBodyGrowthFailureDueToLackOfSpaceOnMultiLayeredTecton() {
         //Init
@@ -760,6 +817,10 @@ public class Main {
 
     /**
      * 19. test case
+     *
+     * Gombatest sikertelen novesztese MultiLayered tektonra, mivel nincs eleg spora
+     * az adott tektonon. A tesztesedben 3 helyett csak 2 sporat gyartunk le. Igy nincs
+     * meg a megadott minimum 3 spora ami kell a gombatest novesztesere
      */
     private static void mushroomBodyGrowthFailureDueToLackOfSporesOnMultiLayeredTecton() {
         //Init
@@ -796,6 +857,10 @@ public class Main {
 
     /**
      * 20. test case
+     *
+     * Gombatest sikertelen novesztese MultiLayered tektonra, mivel nincs rajta egy mycelium sem
+     * az adott tektonon. Igy nincs meg a legalabb egy mycelium ami feltetele a gombatest
+     * novesztesenek
      */
     private static void mushroomBodyGrowthFailureDueToLackOfMyceliaOnMultiLayeredTecton() {
         //Init
@@ -831,6 +896,9 @@ public class Main {
 
     /**
      * 21. test case
+     *
+     * Gombatest sikertelen novesztese SemiFertileTectonra, mivel erre a tektonra
+     * nem engedett gombatestet noveszteni, csak sporat es myceliumot
      */
     private static void mushroomBodyGrowthFailureOnSemiFertileTecton() {
         //Init
@@ -963,5 +1031,208 @@ public class Main {
         //Test case
         printTrace = true;
         I.eatSpore();
+    }
+
+    /**
+     * 26. test case
+     */
+    private static void tectonBreak(){
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+
+    /**
+     * 27. test case
+     */
+    private static void insectMoveSucces(){
+        //Init
+        FertileTecton A = new FertileTecton();
+        FertileTecton B = new FertileTecton();
+        objectNames.put(A, "A: FertileTecton");
+        objectNames.put(B, "B: FertileTecton");
+        A.addNeighbour(B);
+        B.addNeighbour(A);
+
+        Mycelium M = new Mycelium();
+        objectNames.put(M, "M: Mycelium");
+        B.addMycelium(M);
+        M.setLocation(B);
+
+        Insect I = new Insect();
+        objectNames.put(I, "I: Insect");
+        A.addOccupant(I);
+        I.setLocation(A);
+
+        //Test case
+        printTrace = true;
+
+        System.out.println("Tester");
+        System.out.printf("\t=move(%s)=> %s %n", objectNames.get(B), objectNames.get(I));
+        I.move(B);
+
+        objectNames.clear();
+        printTrace = false;
+    }
+
+    /**
+     * 28. test case
+     */
+    private static void insectMoveNeighbourFail(){
+        //Init
+        FertileTecton A = new FertileTecton();
+        FertileTecton B = new FertileTecton();
+        objectNames.put(A, "A: FertileTecton");
+        objectNames.put(B, "B: FertileTecton");
+
+        Mycelium M = new Mycelium();
+        objectNames.put(M, "M: Mycelium");
+        B.addMycelium(M);
+        M.setLocation(B);
+
+        Insect I = new Insect();
+        objectNames.put(I, "I: Insect");
+        A.addOccupant(I);
+        I.setLocation(A);
+
+        //Test case
+        printTrace = true;
+
+        System.out.println("Tester");
+        System.out.printf("\t=move(%s)=> %s %n", objectNames.get(B), objectNames.get(I));
+        I.move(B);
+
+        objectNames.clear();
+        printTrace = false;
+    }
+
+    /**
+     * 29. test case
+     */
+    private static void insectMoveMyceliumFail(){
+        //Init
+        FertileTecton A = new FertileTecton();
+        FertileTecton B = new FertileTecton();
+        objectNames.put(A, "A: FertileTecton");
+        objectNames.put(B, "B: FertileTecton");
+        A.addNeighbour(B);
+        B.addNeighbour(A);
+
+        Insect I = new Insect();
+        objectNames.put(I, "I: Insect");
+        A.addOccupant(I);
+        I.setLocation(A);
+
+        //Test case
+        printTrace = true;
+
+        System.out.println("Tester");
+        System.out.printf("\t=move(%s)=> %s %n", objectNames.get(B), objectNames.get(I));
+        I.move(B);
+
+        objectNames.clear();
+        printTrace = false;
+    }
+
+    /**
+     * 30. test case
+     */
+    private static void insectCutMycelium(){
+        //Init
+        FertileTecton A = new FertileTecton();
+        FertileTecton B = new FertileTecton();
+        objectNames.put(A, "A: FertileTecton");
+        objectNames.put(B, "B: FertileTecton");
+        A.addNeighbour(B);
+        B.addNeighbour(A);
+
+        Mycelium M = new Mycelium();
+        objectNames.put(M, "M: Mycelium");
+        B.addMycelium(M);
+        M.setLocation(B);
+
+        Insect I = new Insect();
+        objectNames.put(I, "I: Insect");
+        A.addOccupant(I);
+        I.setLocation(A);
+
+        Mycelium M2 = new Mycelium();
+        objectNames.put(M2, "M2: Mycelium");
+        A.addMycelium(M2);
+        M2.setLocation(A);
+
+        //Test case
+        printTrace = true;
+
+        System.out.println("Tester");
+        System.out.printf("\t=cutMycelium()=> %s %n", objectNames.get(A));
+        A.cutMycelium();
+
+        objectNames.clear();
+        printTrace = false;
+    }
+
+    /**
+     * 31. test case
+     */
+    private static void insectRunAway(){
+        //Init
+        FertileTecton A = new FertileTecton();
+        FertileTecton B = new FertileTecton();
+        FertileTecton C = new FertileTecton();
+        objectNames.put(A, "A: FertileTecton");
+        objectNames.put(B, "B: FertileTecton");
+        objectNames.put(C, "C: FertileTecton");
+        A.addNeighbour(C);
+        C.addNeighbour(B);
+        C.addNeighbour(A);
+        B.addNeighbour(C);
+
+        Mycelium M = new Mycelium();
+        objectNames.put(M, "M: Mycelium");
+        B.addMycelium(M);
+        M.setLocation(B);
+
+        Insect I = new Insect();
+        objectNames.put(I, "I: Insect");
+        A.addOccupant(I);
+        I.setLocation(A);
+
+        //Test case
+        printTrace = true;
+
+        System.out.println("Tester");
+        System.out.printf("\t=runAway()=> %s %n", objectNames.get(I));
+        I.runAway();
+
+        objectNames.clear();
+        printTrace = false;
+    }
+
+    /**
+     * 32. test case
+     */
+    private static void mushroomBodySuccesfullEjectSpore1Distance(){
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    /**
+     * 33. test case
+     */
+    private static void mushroomBodySuccesfullEjectSpore2Distance(){
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    /**
+     * 34. test case
+     */
+    private static void mushroomBodyFailedEjectSpore2Distance(){
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    /**
+     * 35. test case
+     */
+    private static void mushroomBodyFailedEjectSpore3Distance(){
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 }

@@ -120,7 +120,7 @@ public class Insect {
      *
      */
     public void cutMycelium() {
-        throw new UnsupportedOperationException("Not implemented");
+        location.cutMycelium();
     }
 
     /**
@@ -139,7 +139,12 @@ public class Insect {
      * @param target
      */
     public void move(Tecton target) {
-        throw new UnsupportedOperationException("Not implemented");
+        if(Main.printTrace) {
+            System.out.println(Main.objectNames.get(this));
+            System.out.printf("\t=moveInsect(%s, %s)=> %s %n", Main.objectNames.get(this), Main.objectNames.get(getLocation()), Main.objectNames.get(target));
+        }
+
+        target.moveInsect(this, location);
     }
 
     /**
@@ -174,6 +179,6 @@ public class Insect {
      *
      */
     public void runAway() {
-        throw new UnsupportedOperationException("Not implemented");
+
     }
 }
