@@ -19,9 +19,11 @@ public class MyceliumGrowthEvaluator extends TectonVisitor {
      */
     @Override
     public void visit(FertileTecton tecton) {
-        System.out.printf("%s %n", Main.objectNames.get(this));
-
-        System.out.printf("\t=accept(%s, %s)=> %s %n", Main.objectNames.get(this), Main.objectNames.get(getCreator()), Main.objectNames.get(tecton));
+        if (Main.printTrace) {
+            System.out.printf("%s %n", Main.objectNames.get(this));
+            System.out.printf("\t=accept(%s, %s)=> %s %n", Main.objectNames.get(this), Main.objectNames.get(getCreator()), Main.objectNames.get(tecton));
+        }
+      
         tecton.accept(this, getCreator());
     }
 
@@ -30,9 +32,10 @@ public class MyceliumGrowthEvaluator extends TectonVisitor {
      */
     @Override
     public void visit(MultiLayeredTecton tecton) {
-        System.out.printf("%s %n", Main.objectNames.get(this));
-
-        System.out.printf("\t=accept(%s, %s)=> %s %n", Main.objectNames.get(this), Main.objectNames.get(getCreator()), Main.objectNames.get(tecton));
+        if (Main.printTrace) {
+            System.out.printf("%s %n", Main.objectNames.get(this));
+            System.out.printf("\t=accept(%s, %s)=> %s %n", Main.objectNames.get(this), Main.objectNames.get(getCreator()), Main.objectNames.get(tecton));
+        }
         tecton.accept(this, getCreator());
     }
 
@@ -41,9 +44,11 @@ public class MyceliumGrowthEvaluator extends TectonVisitor {
      */
     @Override
     public void visit(AridTecton tecton) {
-        System.out.printf("%s %n", Main.objectNames.get(this));
+        if (Main.printTrace) {
+            System.out.printf("%s %n", Main.objectNames.get(this));
+            System.out.printf("\t=accept(%s, %s)=> %s %n", Main.objectNames.get(this), Main.objectNames.get(getCreator()), Main.objectNames.get(tecton));
+        }
 
-        System.out.printf("\t=accept(%s, %s)=> %s %n", Main.objectNames.get(this), Main.objectNames.get(getCreator()), Main.objectNames.get(tecton));
         tecton.accept(this, getCreator());
     }
 
@@ -52,9 +57,10 @@ public class MyceliumGrowthEvaluator extends TectonVisitor {
      */
     @Override
     public void visit(SemiFertileTecton tecton) {
-        System.out.printf("%s %n", Main.objectNames.get(this));
-
-        System.out.printf("\t=accept(%s, %s)=> %s %n", Main.objectNames.get(this), Main.objectNames.get(getCreator()), Main.objectNames.get(tecton));
+        if (Main.printTrace) {
+            System.out.printf("%s %n", Main.objectNames.get(this));
+            System.out.printf("\t=accept(%s, %s)=> %s %n", Main.objectNames.get(this), Main.objectNames.get(getCreator()), Main.objectNames.get(tecton));
+        }
         tecton.accept(this, getCreator());
     }
 

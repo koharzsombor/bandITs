@@ -30,7 +30,7 @@ public abstract class Tecton implements OnRoundBeginSubscriber {
     /**
      *
      */
-    private MushroomBody mushroomBody;
+    private MushroomBody mushroomBody = null;
 
     /**
      *

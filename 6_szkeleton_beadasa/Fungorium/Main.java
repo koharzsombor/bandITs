@@ -20,11 +20,10 @@ public class Main {
      * @param object
      */
     public static void mockDeletion(Object object) {
-        if (!printTrace)
-            return;
-
-        System.out.printf("%s %n", objectNames.get(object));
-        System.out.println("\t~finalize()");
+        if (printTrace) {
+            System.out.printf("%s \n", objectNames.get(object));
+            System.out.println("\t~finalize()");
+        }
     }
 
     /**
@@ -128,11 +127,11 @@ public class Main {
         B.addNeighbour(A);
         A.addNeighbour(B);
 
-        MushroomBody MB = new MushroomBody();
+        MushroomBody MB = new MushroomBody(A, "MB: MushroomBody");
         objectNames.put(MB, "MB: MushroomBody");
 
         A.setMushroomBody(MB);
-        MB.setLocation(A);
+        //MB.setLocation(A);
 
         //Test case
         printTrace = true;
@@ -142,6 +141,7 @@ public class Main {
         Mycelium m = new Mycelium(B, "m: Mycelium");
 
         objectNames.clear();
+        printTrace = false;
     }
 
     /**
@@ -396,91 +396,473 @@ public class Main {
      * 9. test case
      */
     private static void mushroomBodyGrowthSuccessOnFertileTecton() {
-        throw new UnsupportedOperationException("Not implemented");
+        //Init
+        FertileTecton T = new FertileTecton();
+        objectNames.put(T, "T: FertileTecton");
+
+        Mycelium M = new Mycelium(T, "m: Mycelium");
+        objectNames.put(M, "M: Mycelium");
+
+        SpeedSpore s3 = new SpeedSpore();
+        objectNames.put(s3, "s3: SpeedSpore");
+        SpeedSpore s2 = new SpeedSpore();
+        objectNames.put(s2, "s2: SpeedSpore");
+        SpeedSpore s1 = new SpeedSpore();
+        objectNames.put(s1, "s1: SpeedSpore");
+
+        M.setLocation(T);
+
+        T.addMycelium(M);
+
+        T.addSpore(s3);
+        T.addSpore(s2);
+        T.addSpore(s1);
+
+        //Test case
+        printTrace = true;
+
+        System.out.println("Tester");
+        System.out.printf("\t=Create(%s)=> mb: MushroomBody%n", objectNames.get(T));
+        MushroomBody mb = new MushroomBody(T, "mb: MushroomBody");
+
+        objectNames.clear();
+        printTrace = false;
     }
 
     /**
      * 10. test case
      */
     private static void mushroomBodyGrowthFailureDueToLackOfSpaceOnFertileTecton() {
-        throw new UnsupportedOperationException("Not implemented");
+        //Init
+        FertileTecton T = new FertileTecton();
+        objectNames.put(T, "T: FertileTecton");
+
+        Mycelium M = new Mycelium(T, "m: Mycelium");
+        objectNames.put(M, "M: Mycelium");
+
+        SpeedSpore s3 = new SpeedSpore();
+        objectNames.put(s3, "s3: SpeedSpore");
+        SpeedSpore s2 = new SpeedSpore();
+        objectNames.put(s2, "s2: SpeedSpore");
+        SpeedSpore s1 = new SpeedSpore();
+        objectNames.put(s1, "s1: SpeedSpore");
+
+        M.setLocation(T);
+        T.addMycelium(M);
+
+        T.addSpore(s3);
+        T.addSpore(s2);
+        T.addSpore(s1);
+
+        //Test case
+        MushroomBody first = new MushroomBody(T, "first: MushroomBody");
+
+        printTrace = true;
+
+        System.out.println("Tester");
+        System.out.printf("\t=Create(%s)=> mb: MushroomBody%n", objectNames.get(T));
+        MushroomBody mb = new MushroomBody(T, "mb: MushroomBody");
+
+        objectNames.clear();
+        printTrace = false;
     }
 
     /**
      * 11. test case
      */
     private static void mushroomBodyGrowthFailureDueToLackOfSporesOnFertileTecton() {
-        throw new UnsupportedOperationException("Not implemented");
+        //Init
+        FertileTecton T = new FertileTecton();
+        objectNames.put(T, "T: FertileTecton");
+
+        Mycelium M = new Mycelium(T, "m: Mycelium");
+        objectNames.put(M, "M: Mycelium");
+
+        //SpeedSpore s3 = new SpeedSpore();
+        //objectNames.put(s3, "s3: SpeedSpore");
+        SpeedSpore s2 = new SpeedSpore();
+        objectNames.put(s2, "s2: SpeedSpore");
+        SpeedSpore s1 = new SpeedSpore();
+        objectNames.put(s1, "s1: SpeedSpore");
+
+        M.setLocation(T);
+        T.addMycelium(M);
+
+        //T.addSpore(s3);
+        T.addSpore(s2);
+        T.addSpore(s1);
+
+        //Test case
+        printTrace = true;
+
+        System.out.println("Tester");
+        System.out.printf("\t=Create(%s)=> mb: MushroomBody%n", objectNames.get(T));
+        MushroomBody mb = new MushroomBody(T, "mb: MushroomBody");
+
+        objectNames.clear();
+        printTrace = false;
     }
 
     /**
      * 12. test case
      */
     private static void mushroomBodyGrowthFailureDueToLackOfMyceliaOnFertileTecton() {
-        throw new UnsupportedOperationException("Not implemented");
+        //Init
+        FertileTecton T = new FertileTecton();
+        objectNames.put(T, "T: FertileTecton");
+
+        //Mycelium M = new Mycelium(T, "m: Mycelium");
+        //objectNames.put(M, "M: Mycelium");
+
+        SpeedSpore s3 = new SpeedSpore();
+        objectNames.put(s3, "s3: SpeedSpore");
+        SpeedSpore s2 = new SpeedSpore();
+        objectNames.put(s2, "s2: SpeedSpore");
+        SpeedSpore s1 = new SpeedSpore();
+        objectNames.put(s1, "s1: SpeedSpore");
+
+        //M.setLocation(T);
+
+        T.addSpore(s3);
+        T.addSpore(s2);
+        T.addSpore(s1);
+
+        //Test case
+        printTrace = true;
+
+        System.out.println("Tester");
+        System.out.printf("\t=Create(%s)=> mb: MushroomBody%n", objectNames.get(T));
+        MushroomBody mb = new MushroomBody(T, "mb: MushroomBody");
+
+        objectNames.clear();
+        printTrace = false;
     }
 
     /**
      * 13. test case
      */
     private static void mushroomBodyGrowthSuccessOnAridTecton() {
-        throw new UnsupportedOperationException("Not implemented");
+        //Init
+        AridTecton T = new AridTecton();
+        objectNames.put(T, "T: AridTecton");
+
+        Mycelium M = new Mycelium(T, "m: Mycelium");
+        objectNames.put(M, "M: Mycelium");
+
+        SpeedSpore s3 = new SpeedSpore();
+        objectNames.put(s3, "s3: SpeedSpore");
+        SpeedSpore s2 = new SpeedSpore();
+        objectNames.put(s2, "s2: SpeedSpore");
+        SpeedSpore s1 = new SpeedSpore();
+        objectNames.put(s1, "s1: SpeedSpore");
+
+        M.setLocation(T);
+        T.addMycelium(M);
+
+        T.addSpore(s3);
+        T.addSpore(s2);
+        T.addSpore(s1);
+
+        //Test case
+        printTrace = true;
+
+        System.out.println("Tester");
+        System.out.printf("\t=Create(%s)=> mb: MushroomBody%n", objectNames.get(T));
+        MushroomBody mb = new MushroomBody(T, "mb: MushroomBody");
+
+        objectNames.clear();
+        printTrace = false;
     }
 
     /**
      * 14. test case
      */
     private static void mushroomBodyGrowthFailureDueToLackOfSpaceOnAridTecton() {
-        throw new UnsupportedOperationException("Not implemented");
+        //Init
+        AridTecton T = new AridTecton();
+        objectNames.put(T, "T: AridTecton");
+
+        Mycelium M = new Mycelium(T, "m: Mycelium");
+        objectNames.put(M, "M: Mycelium");
+
+        SpeedSpore s3 = new SpeedSpore();
+        objectNames.put(s3, "s3: SpeedSpore");
+        SpeedSpore s2 = new SpeedSpore();
+        objectNames.put(s2, "s2: SpeedSpore");
+        SpeedSpore s1 = new SpeedSpore();
+        objectNames.put(s1, "s1: SpeedSpore");
+
+        M.setLocation(T);
+        T.addMycelium(M);
+
+        T.addSpore(s3);
+        T.addSpore(s2);
+        T.addSpore(s1);
+
+        //Test case
+        MushroomBody first = new MushroomBody(T, "First: MuhsroomBody");
+
+        printTrace = true;
+
+        System.out.println("Tester");
+        System.out.printf("\t=Create(%s)=> mb: MushroomBody%n", objectNames.get(T));
+        MushroomBody mb = new MushroomBody(T, "mb: MushroomBody");
+
+        objectNames.clear();
+        printTrace = false;
     }
 
     /**
      * 15. test case
      */
     private static void mushroomBodyGrowthFailureDueToLackOfSporesOnAridTecton() {
-        throw new UnsupportedOperationException("Not implemented");
+        //Init
+        AridTecton T = new AridTecton();
+        objectNames.put(T, "T: AridTecton");
+
+        Mycelium M = new Mycelium(T, "m: Mycelium");
+        objectNames.put(M, "M: Mycelium");
+
+        //SpeedSpore s3 = new SpeedSpore();
+        //objectNames.put(s3, "s3: SpeedSpore");
+        SpeedSpore s2 = new SpeedSpore();
+        objectNames.put(s2, "s2: SpeedSpore");
+        SpeedSpore s1 = new SpeedSpore();
+        objectNames.put(s1, "s1: SpeedSpore");
+
+
+        M.setLocation(T);
+        T.addMycelium(M);
+
+        //T.addSpore(s3);
+        T.addSpore(s2);
+        T.addSpore(s1);
+
+        //Test case
+        printTrace = true;
+
+        System.out.println("Tester");
+        System.out.printf("\t=Create(%s)=> mb: MushroomBody%n", objectNames.get(T));
+        MushroomBody mb = new MushroomBody(T, "mb: MushroomBody");
+
+        objectNames.clear();
+        printTrace = false;
     }
 
     /**
      * 16. test case
      */
     private static void mushroomBodyGrowthFailureDueToLackOfMyceliaOnAridTecton() {
-        throw new UnsupportedOperationException("Not implemented");
+        //Init
+        AridTecton T = new AridTecton();
+        objectNames.put(T, "T: AridTecton");
+
+        //Mycelium M = new Mycelium(T, "m: Mycelium");
+        //objectNames.put(M, "M: Mycelium");
+
+        SpeedSpore s3 = new SpeedSpore();
+        objectNames.put(s3, "s3: SpeedSpore");
+        SpeedSpore s2 = new SpeedSpore();
+        objectNames.put(s2, "s2: SpeedSpore");
+        SpeedSpore s1 = new SpeedSpore();
+        objectNames.put(s1, "s1: SpeedSpore");
+
+        //M.setLocation(T);
+
+        T.addSpore(s3);
+        T.addSpore(s2);
+        T.addSpore(s1);
+
+        //Test case
+        printTrace = true;
+
+        System.out.println("Tester");
+        System.out.printf("\t=Create(%s)=> mb: MushroomBody%n", objectNames.get(T));
+        MushroomBody mb = new MushroomBody(T, "mb: MushroomBody");
+
+        objectNames.clear();
+        printTrace = false;
     }
 
     /**
      * 17. test case
      */
     private static void mushroomBodyGrowthSuccessOnMultiLayeredTecton() {
-        throw new UnsupportedOperationException("Not implemented");
+        //Init
+        MultiLayeredTecton T = new MultiLayeredTecton();
+        objectNames.put(T, "T: MultiLayeredTecton");
+
+        Mycelium M = new Mycelium(T, "m: Mycelium");
+        objectNames.put(M, "M: Mycelium");
+
+        SpeedSpore s3 = new SpeedSpore();
+        objectNames.put(s3, "s3: SpeedSpore");
+        SpeedSpore s2 = new SpeedSpore();
+        objectNames.put(s2, "s2: SpeedSpore");
+        SpeedSpore s1 = new SpeedSpore();
+        objectNames.put(s1, "s1: SpeedSpore");
+
+        M.setLocation(T);
+        T.addMycelium(M);
+
+        T.addSpore(s3);
+        T.addSpore(s2);
+        T.addSpore(s1);
+
+        //Test case
+        printTrace = true;
+
+        System.out.println("Tester");
+        System.out.printf("\t=Create(%s)=> mb: MushroomBody%n", objectNames.get(T));
+        MushroomBody mb = new MushroomBody(T, "mb: MushroomBody");
+
+        objectNames.clear();
+        printTrace = false;
     }
 
     /**
      * 18. test case
      */
     private static void mushroomBodyGrowthFailureDueToLackOfSpaceOnMultiLayeredTecton() {
-        throw new UnsupportedOperationException("Not implemented");
+        //Init
+        MultiLayeredTecton T = new MultiLayeredTecton();
+        objectNames.put(T, "T: MultiLayeredTecton");
+
+        Mycelium M = new Mycelium(T, "m: Mycelium");
+        objectNames.put(M, "M: Mycelium");
+
+        SpeedSpore s3 = new SpeedSpore();
+        objectNames.put(s3, "s3: SpeedSpore");
+        SpeedSpore s2 = new SpeedSpore();
+        objectNames.put(s2, "s2: SpeedSpore");
+        SpeedSpore s1 = new SpeedSpore();
+        objectNames.put(s1, "s1: SpeedSpore");
+
+        M.setLocation(T);
+        T.addMycelium(M);
+
+        T.addSpore(s3);
+        T.addSpore(s2);
+        T.addSpore(s1);
+
+        //Test case
+        MushroomBody first = new MushroomBody(T, "first: MushroomBody");
+
+        printTrace = true;
+
+        System.out.println("Tester");
+        System.out.printf("\t=Create(%s)=> mb: MushroomBody%n", objectNames.get(T));
+        MushroomBody mb = new MushroomBody(T, "mb: MushroomBody");
+
+        objectNames.clear();
+        printTrace = false;
     }
 
     /**
      * 19. test case
      */
     private static void mushroomBodyGrowthFailureDueToLackOfSporesOnMultiLayeredTecton() {
-        throw new UnsupportedOperationException("Not implemented");
+        //Init
+        MultiLayeredTecton T = new MultiLayeredTecton();
+        objectNames.put(T, "T: MultiLayeredTecton");
+
+        Mycelium M = new Mycelium(T, "m: Mycelium");
+        objectNames.put(M, "M: Mycelium");
+
+        //SpeedSpore s3 = new SpeedSpore();
+        //objectNames.put(s3, "s3: SpeedSpore");
+        SpeedSpore s2 = new SpeedSpore();
+        objectNames.put(s2, "s2: SpeedSpore");
+        SpeedSpore s1 = new SpeedSpore();
+        objectNames.put(s1, "s1: SpeedSpore");
+
+        M.setLocation(T);
+        T.addMycelium(M);
+
+        //T.addSpore(s3);
+        T.addSpore(s2);
+        T.addSpore(s1);
+
+        //Test case
+        printTrace = true;
+
+        System.out.println("Tester");
+        System.out.printf("\t=Create(%s)=> mb: MushroomBody%n", objectNames.get(T));
+        MushroomBody mb = new MushroomBody(T, "mb: MushroomBody");
+
+        objectNames.clear();
+        printTrace = false;
     }
 
     /**
      * 20. test case
      */
     private static void mushroomBodyGrowthFailureDueToLackOfMyceliaOnMultiLayeredTecton() {
-        throw new UnsupportedOperationException("Not implemented");
+        //Init
+        MultiLayeredTecton T = new MultiLayeredTecton();
+        objectNames.put(T, "T: MultiLayeredTecton");
+
+        //Mycelium M = new Mycelium(T, "m: Mycelium");
+        //objectNames.put(M, "M: Mycelium");
+
+        SpeedSpore s3 = new SpeedSpore();
+        objectNames.put(s3, "s3: SpeedSpore");
+        SpeedSpore s2 = new SpeedSpore();
+        objectNames.put(s2, "s2: SpeedSpore");
+        SpeedSpore s1 = new SpeedSpore();
+        objectNames.put(s1, "s1: SpeedSpore");
+
+        //M.setLocation(T);
+
+        T.addSpore(s3);
+        T.addSpore(s2);
+        T.addSpore(s1);
+
+        //Test case
+        printTrace = true;
+
+        System.out.println("Tester");
+        System.out.printf("\t=Create(%s)=> mb: MushroomBody%n", objectNames.get(T));
+        MushroomBody mb = new MushroomBody(T, "mb: MushroomBody");
+
+        objectNames.clear();
+        printTrace = false;
     }
 
     /**
      * 21. test case
      */
     private static void mushroomBodyGrowthFailureOnSemiFertileTecton() {
-        throw new UnsupportedOperationException("Not implemented");
+        //Init
+        SemiFertileTecton T = new SemiFertileTecton();
+        objectNames.put(T, "T: SemiFertileTecton");
+
+        Mycelium M = new Mycelium(T, "m: Mycelium");
+        objectNames.put(M, "M: Mycelium");
+
+        SpeedSpore s3 = new SpeedSpore();
+        objectNames.put(s3, "s3: SpeedSpore");
+        SpeedSpore s2 = new SpeedSpore();
+        objectNames.put(s2, "s2: SpeedSpore");
+        SpeedSpore s1 = new SpeedSpore();
+        objectNames.put(s1, "s1: SpeedSpore");
+
+        M.setLocation(T);
+        T.addMycelium(M);
+
+        T.addSpore(s3);
+        T.addSpore(s2);
+        T.addSpore(s1);
+
+        //Test case
+        printTrace = true;
+
+        System.out.println("Tester");
+        System.out.printf("\t=Create(%s)=> mb: MushroomBody%n", objectNames.get(T));
+        MushroomBody mb = new MushroomBody(T, "mb: MushroomBody");
+
+        objectNames.clear();
+        printTrace = false;
     }
 
     /**
