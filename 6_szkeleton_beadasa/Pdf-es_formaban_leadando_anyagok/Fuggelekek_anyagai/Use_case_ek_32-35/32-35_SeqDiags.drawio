@@ -50,14 +50,14 @@
             <mxPoint x="115" y="120" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="2SF9xz7FlcvW37IOg3pz-15" value="distance:int" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
-          <mxGeometry x="175" y="170" width="80" height="30" as="geometry" />
+        <mxCell id="2SF9xz7FlcvW37IOg3pz-15" value="distance: int" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="170" y="170" width="90" height="30" as="geometry" />
         </mxCell>
         <mxCell id="2SF9xz7FlcvW37IOg3pz-16" value="" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};participant=umlActor;" parent="1" vertex="1">
-          <mxGeometry y="40" width="20" height="300" as="geometry" />
+          <mxGeometry y="40" width="20" height="400" as="geometry" />
         </mxCell>
         <mxCell id="2SF9xz7FlcvW37IOg3pz-17" value="Tesztelő" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
-          <mxGeometry x="-20" y="17" width="60" height="30" as="geometry" />
+          <mxGeometry x="-20" y="15" width="60" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
@@ -113,14 +113,14 @@
             <mxPoint x="115" y="120" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="QDC-WgJCfNxAtzn9mLjs-12" value="distance:int" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
-          <mxGeometry x="175" y="170" width="80" height="30" as="geometry" />
+        <mxCell id="QDC-WgJCfNxAtzn9mLjs-12" value="distance: int" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="170" y="170" width="90" height="30" as="geometry" />
         </mxCell>
         <mxCell id="QDC-WgJCfNxAtzn9mLjs-13" value="" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};participant=umlActor;" parent="1" vertex="1">
-          <mxGeometry y="40" width="20" height="300" as="geometry" />
+          <mxGeometry y="40" width="20" height="400" as="geometry" />
         </mxCell>
         <mxCell id="QDC-WgJCfNxAtzn9mLjs-14" value="Tesztelő" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
-          <mxGeometry x="-20" y="17" width="60" height="30" as="geometry" />
+          <mxGeometry x="-20" y="16" width="60" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
@@ -159,14 +159,14 @@
             <mxPoint x="115" y="120" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="I28WtOdwdVACNjVYCoG4-12" value="distance:int" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
-          <mxGeometry x="175" y="170" width="80" height="30" as="geometry" />
+        <mxCell id="I28WtOdwdVACNjVYCoG4-12" value="distance: int" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="170" y="170" width="90" height="30" as="geometry" />
         </mxCell>
         <mxCell id="I28WtOdwdVACNjVYCoG4-13" value="" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};participant=umlActor;" parent="1" vertex="1">
-          <mxGeometry y="40" width="20" height="300" as="geometry" />
+          <mxGeometry y="40" width="20" height="400" as="geometry" />
         </mxCell>
         <mxCell id="I28WtOdwdVACNjVYCoG4-14" value="Tesztelő" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
-          <mxGeometry x="-20" y="16" width="60" height="30" as="geometry" />
+          <mxGeometry x="-20" y="15" width="60" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
@@ -205,14 +205,14 @@
             <mxPoint x="115" y="120" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="vwc1YrXPGnmcSRxvvpjL-11" value="distance:int" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="vwc1YrXPGnmcSRxvvpjL-1" vertex="1">
-          <mxGeometry x="175" y="170" width="80" height="30" as="geometry" />
+        <mxCell id="vwc1YrXPGnmcSRxvvpjL-11" value="distance: int" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="vwc1YrXPGnmcSRxvvpjL-1" vertex="1">
+          <mxGeometry x="170" y="170" width="90" height="30" as="geometry" />
         </mxCell>
         <mxCell id="vwc1YrXPGnmcSRxvvpjL-12" value="" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};participant=umlActor;" parent="vwc1YrXPGnmcSRxvvpjL-1" vertex="1">
-          <mxGeometry y="40" width="20" height="300" as="geometry" />
+          <mxGeometry y="40" width="20" height="400" as="geometry" />
         </mxCell>
         <mxCell id="vwc1YrXPGnmcSRxvvpjL-13" value="Tesztelő" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="vwc1YrXPGnmcSRxvvpjL-1" vertex="1">
-          <mxGeometry x="-20" y="16" width="60" height="30" as="geometry" />
+          <mxGeometry x="-20" y="15" width="60" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
