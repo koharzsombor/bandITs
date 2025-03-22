@@ -179,39 +179,6 @@ public class Insect {
      *
      */
     public void runAway() {
-        boolean found=false;
-        Tecton chosenTecton = getLocation();
-        while(found==false) {
-            //Ide fog jönni a random tectonválasztás
-            //TectonBreak eset
-            if(Main.objectNames.get(location.getNeighbours().getFirst().getNeighbours().getFirst()).equals(Main.objectNames.get(getLocation()))) {
-                if (Main.printTrace) {
-                    System.out.println(Main.objectNames.get(this));
-                    System.out.printf("\t=hasMycelium()=> %s %n <=foundTecton: bool= %s %n", Main.objectNames.get(location.getNeighbours().getFirst()), Main.objectNames.get(this));
-                }
-                chosenTecton = location.getNeighbours().getFirst();
-                found = chosenTecton.hasMycelium();
-            }
-            //runAway test eset
-            else {
-                if (Main.printTrace) {
-                    System.out.println(Main.objectNames.get(this));
-                    System.out.printf("\t=hasMycelium()=> %s %n <=foundTecton: bool= %s %n", Main.objectNames.get(location.getNeighbours().getFirst()), Main.objectNames.get(this));
-                    System.out.printf("\t=hasMycelium()=> %s %n <=foundTecton: bool= %s %n", Main.objectNames.get(location.getNeighbours().getFirst().getNeighbours().getFirst()), Main.objectNames.get(this));
-                }
-                chosenTecton = location.getNeighbours().getFirst();
-                found = chosenTecton.hasMycelium();
-                chosenTecton = chosenTecton.getNeighbours().getFirst();
-                found = chosenTecton.hasMycelium();
-            }
-        }
-        if(Main.printTrace) {
-            System.out.printf("\t=addOccupant(%s)=> %s %n", Main.objectNames.get(this), Main.objectNames.get(chosenTecton));
-            System.out.printf("\t=removeOccupant(%s)=> %s %n", Main.objectNames.get(this), Main.objectNames.get(location));
-        }
-        chosenTecton.addOccupant(this);
-        location.removeOccupant(this);
-        this.setLocation(chosenTecton);
 
     }
 }

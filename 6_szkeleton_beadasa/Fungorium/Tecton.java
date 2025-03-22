@@ -145,11 +145,7 @@ public abstract class Tecton implements OnRoundBeginSubscriber {
      * @return
      */
     public boolean checkNeighbourMyceliaSustain() {
-        boolean sustained = true;
-        for(Tecton t: neighbours){
-            if(t.myceliaCheckSustain()==false) sustained = false;
-        }
-        return sustained;
+        throw new UnsupportedOperationException("Not implemented");
     }
 
     /**
@@ -227,8 +223,7 @@ public abstract class Tecton implements OnRoundBeginSubscriber {
             System.out.println(Main.objectNames.get(this));
             System.out.printf("\t=cut()=> %s %n", Main.objectNames.get(mycelia.element()));
         }
-        //mycelia.element().cut();
-        mycelia.remove(mycelia.element());
+        //mycelia.poll().cut();
         if(mycelia.isEmpty() || !occupants.isEmpty()) {
             List<Insect> temp = new ArrayList<>();
             for(Insect I: occupants){
@@ -238,7 +233,9 @@ public abstract class Tecton implements OnRoundBeginSubscriber {
                 if(Main.printTrace) {
                     System.out.printf("\trunAway()=> %s %n", Main.objectNames.get(I));
                 }
+                Main.printTrace=false;
                 I.runAway();
+                Main.printTrace=true;
             }
         }
     }
