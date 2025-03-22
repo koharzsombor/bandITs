@@ -190,7 +190,7 @@ public abstract class Tecton implements OnRoundBeginSubscriber {
     public void moveInsect(Insect insect, Tecton insectLocation) {
         if(Main.printTrace) {
             System.out.println(Main.objectNames.get(this));
-            System.out.printf("\t=distance(%s)=> %s %n \t<=dist: int =%s %n", Main.objectNames.get(this), Main.objectNames.get(insectLocation), Main.objectNames.get(this));
+            System.out.printf("\t=distance(%s)=> %s %n \t<=distance: int =%s %n", Main.objectNames.get(this), Main.objectNames.get(insectLocation), Main.objectNames.get(insectLocation));
         }
         int distance = insectLocation.distance(this);
         if(distance==1 && this.hasMycelium()){
