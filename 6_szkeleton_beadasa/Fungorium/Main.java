@@ -394,6 +394,10 @@ public class Main {
 
     /**
      * 9. test case
+     *
+     * Egy gombatest sikeres novesztese egy FertileTecton tipusu tektonra,
+     * pontosabban a tektonon van legalabb 3 spora, 1 mycelium/fonal es nincs rajta
+     * meg gombatest
      */
     private static void mushroomBodyGrowthSuccessOnFertileTecton() {
         //Init
@@ -431,6 +435,9 @@ public class Main {
 
     /**
      * 10. test case
+     *
+     * Gombatest sikertelen novesztese a FertileTectonra mivel mar van az adott
+     * tektonon gombatest (es egy tektonon megengedett gombatestek mennyisege 1)
      */
     private static void mushroomBodyGrowthFailureDueToLackOfSpaceOnFertileTecton() {
         //Init
@@ -469,6 +476,10 @@ public class Main {
 
     /**
      * 11. test case
+     *
+     * Gombatest sikertelen novesztese Fertile tektonra, mivel nincs eleg spora
+     * az adott tektonon. A tesztesedben 3 helyett csak 2 sporat gyartunk le. Igy nincs
+     * meg a megadott minimum 3 spora ami kell a gombatest novesztesere
      */
     private static void mushroomBodyGrowthFailureDueToLackOfSporesOnFertileTecton() {
         //Init
@@ -505,6 +516,10 @@ public class Main {
 
     /**
      * 12. test case
+     *
+     * Gombatest sikertelen novesztese Fertile tektonra, mivel nincs rajta egy mycelium sem
+     * az adott tektonon. Igy nincs meg a legalabb egy mycelium ami feltetele a gombatest
+     * novesztesenek
      */
     private static void mushroomBodyGrowthFailureDueToLackOfMyceliaOnFertileTecton() {
         //Init
@@ -540,6 +555,10 @@ public class Main {
 
     /**
      * 13. test case
+     *
+     * Egy gombatest sikeres novesztese egy AridTecton tipusu tektonra,
+     * pontosabban a tektonon van legalabb 3 spora, 1 mycelium/fonal es nincs rajta
+     * meg gombatest
      */
     private static void mushroomBodyGrowthSuccessOnAridTecton() {
         //Init
@@ -576,6 +595,9 @@ public class Main {
 
     /**
      * 14. test case
+     *
+     * Gombatest sikertelen novesztese a AridTectonra mivel mar van az adott
+     * tektonon gombatest (es egy tektonon megengedett gombatestek mennyisege 1)
      */
     private static void mushroomBodyGrowthFailureDueToLackOfSpaceOnAridTecton() {
         //Init
@@ -614,6 +636,10 @@ public class Main {
 
     /**
      * 15. test case
+     *
+     * Gombatest sikertelen novesztese Arid tektonra, mivel nincs eleg spora
+     * az adott tektonon. A tesztesedben 3 helyett csak 2 sporat gyartunk le. Igy nincs
+     * meg a megadott minimum 3 spora ami kell a gombatest novesztesere
      */
     private static void mushroomBodyGrowthFailureDueToLackOfSporesOnAridTecton() {
         //Init
@@ -651,6 +677,10 @@ public class Main {
 
     /**
      * 16. test case
+     *
+     * Gombatest sikertelen novesztese Arod tektonra, mivel nincs rajta egy mycelium sem
+     * az adott tektonon. Igy nincs meg a legalabb egy mycelium ami feltetele a gombatest
+     * novesztesenek
      */
     private static void mushroomBodyGrowthFailureDueToLackOfMyceliaOnAridTecton() {
         //Init
@@ -686,6 +716,10 @@ public class Main {
 
     /**
      * 17. test case
+     *
+     * Egy gombatest sikeres novesztese egy MultiLayeredTecton tipusu tektonra,
+     * pontosabban a tektonon van legalabb 3 spora, 1 mycelium/fonal es nincs rajta
+     * meg gombatest
      */
     private static void mushroomBodyGrowthSuccessOnMultiLayeredTecton() {
         //Init
@@ -722,6 +756,9 @@ public class Main {
 
     /**
      * 18. test case
+     *
+     * Gombatest sikertelen novesztese a MultiLayeredTectonra mivel mar van az adott
+     * tektonon gombatest (es egy tektonon megengedett gombatestek mennyisege 1)
      */
     private static void mushroomBodyGrowthFailureDueToLackOfSpaceOnMultiLayeredTecton() {
         //Init
@@ -760,6 +797,10 @@ public class Main {
 
     /**
      * 19. test case
+     *
+     * Gombatest sikertelen novesztese MultiLayered tektonra, mivel nincs eleg spora
+     * az adott tektonon. A tesztesedben 3 helyett csak 2 sporat gyartunk le. Igy nincs
+     * meg a megadott minimum 3 spora ami kell a gombatest novesztesere
      */
     private static void mushroomBodyGrowthFailureDueToLackOfSporesOnMultiLayeredTecton() {
         //Init
@@ -796,6 +837,10 @@ public class Main {
 
     /**
      * 20. test case
+     *
+     * Gombatest sikertelen novesztese MultiLayered tektonra, mivel nincs rajta egy mycelium sem
+     * az adott tektonon. Igy nincs meg a legalabb egy mycelium ami feltetele a gombatest
+     * novesztesenek
      */
     private static void mushroomBodyGrowthFailureDueToLackOfMyceliaOnMultiLayeredTecton() {
         //Init
@@ -831,6 +876,9 @@ public class Main {
 
     /**
      * 21. test case
+     *
+     * Gombatest sikertelen novesztese SemiFertileTectonra, mivel erre a tektonra
+     * nem engedett gombatestet noveszteni, csak sporat es myceliumot
      */
     private static void mushroomBodyGrowthFailureOnSemiFertileTecton() {
         //Init

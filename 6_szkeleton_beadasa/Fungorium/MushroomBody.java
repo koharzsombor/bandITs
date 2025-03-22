@@ -2,23 +2,28 @@
  *
  */
 public class MushroomBody extends Mushroom {
+    /**
+     * Default konstruktor
+     */
     public MushroomBody() {
 
     }
     /**
-     *
+     * A megmaradt kilovesek szamat tarolja
      */
     private int remainingEjects;
 
     /**
-     *
+     * Azt a tektont tarolja melyen van az adott gombatest
      */
     private Tecton location;
 
 
     /**
-     * @param location
-     * @param name
+     * Konstruktor FertileTecton, AridTecton es MultiLayeredTecton eseten, itt eleg a Fertile Tectont
+     * hasznalni mivel a masik ketto ennek leszarmazottja
+     * @param location - A tekton ahol a gombatest letre szeretne jonni
+     * @param name - a neve az adott gombatestnek, ez a kiirashoz kell
      */
     public MushroomBody(FertileTecton location, String name) {
         Main.objectNames.put(this, name);
@@ -42,6 +47,11 @@ public class MushroomBody extends Mushroom {
 
     }
 
+    /**
+     * Konstruktor SemiFertileTecton eseten
+     * @param location - A tekton ahol a gombatest letre szeretne jonni
+     * @param name - a neve az adott gombatestnek, ez a kiirashoz kell
+     */
     public MushroomBody(SemiFertileTecton location, String name) {
         Main.objectNames.put(this, name);
 
@@ -65,7 +75,10 @@ public class MushroomBody extends Mushroom {
     }
 
 
-
+    /**
+     *  A test torlesere szolgalo metodus
+     *  Szol a Main osztalynak is a mockDeletion fuggvenyenek
+     */
     @Override
     public void delete() {
         if (Main.printTrace) {
@@ -75,7 +88,10 @@ public class MushroomBody extends Mushroom {
     }
 
     /**
-     * @param sporeCount
+     * A Jelenleg nem tartalmaz implementaciot
+     * @param sporeCount - Az absztrakt Mushroom osztalybol valo orokles miatt szukseges
+     *                   itt nem, csak a Mycelium novesztesekor fontos, a novesztes sebessege miatt
+     *                   A gombatest novesztese azonnali
      */
     @Override
     public void grow(int sporeCount) {
@@ -83,7 +99,7 @@ public class MushroomBody extends Mushroom {
     }
 
     /**
-     *
+     * A jatek koroz kezdetekor torteno akciok ide kerulnek, jelenleg nem implementalva
      */
     @Override
     public void onTurnBegin() {
@@ -91,35 +107,40 @@ public class MushroomBody extends Mushroom {
     }
 
     /**
-     * @return
+     * Visszaadja a megmaradt kilovesek szamat
+     * @return - a megmaradt kilovesek szama
      */
     public int getRemainingEjects() {
         return remainingEjects;
     }
 
     /**
-     * @param remainingEjects
+     * Beallitja a megmaradt kilovesek szamat
+     * @param remainingEjects - Az uj kilovesek szama
      */
     public void setRemainingEjects(int remainingEjects) {
         this.remainingEjects = remainingEjects;
     }
 
     /**
-     * @param target
+     * Sporakat lo ki egy adott tektonra
+     * @param target - A celpont tekton, ahova a sporakat szeretnenk kiloni
      */
     public void ejectSpores(Tecton target) {
         throw new UnsupportedOperationException("Not implemented");
     }
 
     /**
-     * @return
+     * Visszaadja a helyszint, ahol a gombatest talalhato
+     * @return - a tekton amin az adott gombatest van
      */
     public Tecton getLocation() {
         return location;
     }
 
     /**
-     * @param location
+     * Beallitja a test helyszinet vagyis hogy melyik tektonon van
+     * @param location - A tekton ahova szeretnenk elhelyezni a gombatestet
      */
     public void setLocation(Tecton location) {
         this.location = location;

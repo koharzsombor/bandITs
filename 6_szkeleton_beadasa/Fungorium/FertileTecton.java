@@ -1,5 +1,6 @@
 /**
- *
+ *  A FertileTecton egy olyan tekton amelyen gombatest es gombafonal is novekedhet
+ *  Legfeljebb 1 gombafonal es 1 gombatest novekedhet rajta
  */
 public class FertileTecton extends Tecton {
     /**
@@ -43,8 +44,12 @@ public class FertileTecton extends Tecton {
     }
 
     /**
-     * @param mushroomBodyGrowthEvaluator
-     * @param mushroomBody
+     * Elfogad egy MushroomBodyGrowthEvaluator es egy MushroomBody objektumot,
+     * es vegrehajtja a novekedest vagy az adott MushroomBody torleset aszerint hogy
+     * megvannak a megfelelo korulmenyek-e vagy sem a gombatest novekedesere
+     * @param mushroomBodyGrowthEvaluator - Az evaluator, ennek segitsegevel tud a gombatest
+     *                                    kommunikalni a tektonnal
+     * @param mushroomBody - A gombatest amely szeretne az adott tektonra ranolni
      */
     @Override
     public void accept(MushroomBodyGrowthEvaluator mushroomBodyGrowthEvaluator, MushroomBody mushroomBody) {
@@ -52,6 +57,8 @@ public class FertileTecton extends Tecton {
             System.out.printf("%s\n", Main.objectNames.get(this));
         }
 
+        // Logika a novekedes vagy torlesi folyamat alapjan
+        // Pontosabban ha van legalabb 3 spora, nincs meg gombatest a tektonon es van legalabb egy gombafonal
         if (getSpores().size() < 3 || getMushroomBody() != null || getMycelia().isEmpty()) {
             if (Main.printTrace) {
                 System.out.printf("\t=delete()=> %s", Main.objectNames.get(mushroomBody));
@@ -69,7 +76,8 @@ public class FertileTecton extends Tecton {
     }
 
     /**
-     *
+     * A kor/Turn kezdeten hivodo metodus
+     * Jelenleg nem tartalmaz implementaciot
      */
     @Override
     public void onRoundBegin() {
