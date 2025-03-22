@@ -65,6 +65,9 @@ public class Main {
                         case 23 -> preventCutSporeEaten();
                         case 24 -> speedSporeEaten();
                         case 25 -> slownessSporeEaten();
+                        case 26 -> insectMoveSucces();
+                        case 27 -> insectMoveNeighbourFail();
+                        case 28 -> insectMoveMyceliumFail();
                         default -> System.out.println("A megadott szám nem értelmezhető teszt sorszámaként!");
                     }
                 }
@@ -109,6 +112,9 @@ public class Main {
         System.out.println("23.\t„PreventCut” típusú Spóra elfogyasztása");
         System.out.println("24.\t„Speed” típusú Spóra elfogyasztása");
         System.out.println("25.\t„Slowness” típusú Spóra elfogyasztása");
+        System.out.println("26.\tInsect mozgása előfeltételnek megfelelő tektonra");
+        System.out.println("27.\tInsect mozgása szomsédsági feltételen megbukó tektonra");
+        System.out.println("28.\tInsect mozgása Mycelium feltételen megbukó tektonra");
     }
 
     /**
@@ -963,5 +969,97 @@ public class Main {
         //Test case
         printTrace = true;
         I.eatSpore();
+    }
+
+    /**
+     * 26. test case
+     */
+    private static void insectMoveSucces(){
+        //Init
+        FertileTecton A = new FertileTecton();
+        FertileTecton B = new FertileTecton();
+        objectNames.put(A, "A: FertileTecton");
+        objectNames.put(B, "B: FertileTecton");
+        A.addNeighbour(B);
+        B.addNeighbour(A);
+
+        Mycelium M = new Mycelium();
+        objectNames.put(M, "M: Mycelium");
+        B.addMycelium(M);
+        M.setLocation(B);
+
+        Insect I = new Insect();
+        objectNames.put(I, "I: Insect");
+        A.addOccupant(I);
+        I.setLocation(A);
+
+        //Test case
+        printTrace = true;
+
+        System.out.println("Tester");
+        System.out.printf("\t=move(%s)=> %s %n", objectNames.get(B), objectNames.get(I));
+        I.move(B);
+
+        objectNames.clear();
+        printTrace = false;
+    }
+
+    /**
+     * 27. test case
+     */
+    private static void insectMoveNeighbourFail(){
+        //Init
+        FertileTecton A = new FertileTecton();
+        FertileTecton B = new FertileTecton();
+        objectNames.put(A, "A: FertileTecton");
+        objectNames.put(B, "B: FertileTecton");
+
+        Mycelium M = new Mycelium();
+        objectNames.put(M, "M: Mycelium");
+        B.addMycelium(M);
+        M.setLocation(B);
+
+        Insect I = new Insect();
+        objectNames.put(I, "I: Insect");
+        A.addOccupant(I);
+        I.setLocation(A);
+
+        //Test case
+        printTrace = true;
+
+        System.out.println("Tester");
+        System.out.printf("\t=move(%s)=> %s %n", objectNames.get(B), objectNames.get(I));
+        I.move(B);
+
+        objectNames.clear();
+        printTrace = false;
+    }
+
+    /**
+     * 28. test case
+     */
+    private static void insectMoveMyceliumFail(){
+        //Init
+        FertileTecton A = new FertileTecton();
+        FertileTecton B = new FertileTecton();
+        objectNames.put(A, "A: FertileTecton");
+        objectNames.put(B, "B: FertileTecton");
+        A.addNeighbour(B);
+        B.addNeighbour(A);
+
+        Insect I = new Insect();
+        objectNames.put(I, "I: Insect");
+        A.addOccupant(I);
+        I.setLocation(A);
+
+        //Test case
+        printTrace = true;
+
+        System.out.println("Tester");
+        System.out.printf("\t=move(%s)=> %s %n", objectNames.get(B), objectNames.get(I));
+        I.move(B);
+
+        objectNames.clear();
+        printTrace = false;
     }
 }
