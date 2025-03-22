@@ -248,6 +248,10 @@ public abstract class Tecton implements OnRoundBeginSubscriber {
         getSpores().offer(spore);
     }
 
+    public void transferSpores(List<Spore> newSpores) {
+        spores.addAll(newSpores);
+    }
+
     /**
      * @param tecton
      */

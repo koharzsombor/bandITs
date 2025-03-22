@@ -1212,27 +1212,159 @@ public class Main {
      * 32. test case
      */
     private static void mushroomBodySuccesfullEjectSpore1Distance(){
-        throw new UnsupportedOperationException("Not implemented yet");
+        //Init
+        FertileTecton A = new FertileTecton();
+        FertileTecton B = new FertileTecton();
+        FertileTecton C = new FertileTecton();
+        FertileTecton D = new FertileTecton();
+        objectNames.put(A, "A: FertileTecton");
+        objectNames.put(B, "B: FertileTecton");
+        objectNames.put(C, "C: FertileTecton");
+        objectNames.put(D, "D: FertileTecton");
+        A.addNeighbour(B);
+        B.addNeighbour(A);
+        B.addNeighbour(C);
+        C.addNeighbour(B);
+        C.addNeighbour(D);
+        D.addNeighbour(C);
+
+        MushroomBody MB = new MushroomBody();
+        objectNames.put(MB, "MB: MushroomBody");
+        A.setMushroomBody(MB);
+        MB.setLocation(A);
+        MB.setRemainingEjects(3);
+
+        SpeedSpore S = new SpeedSpore();
+        MB.addSpore(S);
+
+        //Test case
+        printTrace = true;
+
+        System.out.println("Tester");
+        System.out.printf("\t=ejectSpores(%s)=> %s %n", objectNames.get(B), objectNames.get(MB));
+        MB.ejectSpores(B);
+
+        objectNames.clear();
+        printTrace = false;
     }
 
     /**
      * 33. test case
      */
     private static void mushroomBodySuccesfullEjectSpore2Distance(){
-        throw new UnsupportedOperationException("Not implemented yet");
+        //Init
+        FertileTecton A = new FertileTecton();
+        FertileTecton B = new FertileTecton();
+        FertileTecton C = new FertileTecton();
+        FertileTecton D = new FertileTecton();
+        objectNames.put(A, "A: FertileTecton");
+        objectNames.put(B, "B: FertileTecton");
+        objectNames.put(C, "C: FertileTecton");
+        objectNames.put(D, "D: FertileTecton");
+        A.addNeighbour(B);
+        B.addNeighbour(A);
+        B.addNeighbour(C);
+        C.addNeighbour(B);
+        C.addNeighbour(D);
+        D.addNeighbour(C);
+
+        MushroomBody MB = new MushroomBody();
+        objectNames.put(MB, "MB: MushroomBody");
+        A.setMushroomBody(MB);
+        MB.setLocation(A);
+        MB.setRemainingEjects(1);
+
+        SpeedSpore S = new SpeedSpore();
+        MB.addSpore(S);
+
+        //Test case
+        printTrace = true;
+
+        System.out.println("Tester");
+        System.out.printf("\t=ejectSpores(%s)=> %s %n", objectNames.get(C), objectNames.get(MB));
+        MB.ejectSpores(C);
+
+        objectNames.clear();
+        printTrace = false;
     }
 
     /**
      * 34. test case
      */
     private static void mushroomBodyFailedEjectSpore2Distance(){
-        throw new UnsupportedOperationException("Not implemented yet");
+        //Init
+        FertileTecton A = new FertileTecton();
+        FertileTecton B = new FertileTecton();
+        FertileTecton C = new FertileTecton();
+        FertileTecton D = new FertileTecton();
+        objectNames.put(A, "A: FertileTecton");
+        objectNames.put(B, "B: FertileTecton");
+        objectNames.put(C, "C: FertileTecton");
+        objectNames.put(D, "D: FertileTecton");
+        A.addNeighbour(B);
+        B.addNeighbour(A);
+        B.addNeighbour(C);
+        C.addNeighbour(B);
+        C.addNeighbour(D);
+        D.addNeighbour(C);
+
+        MushroomBody MB = new MushroomBody();
+        objectNames.put(MB, "MB: MushroomBody");
+        A.setMushroomBody(MB);
+        MB.setLocation(A);
+        MB.setRemainingEjects(3);
+
+        SpeedSpore S = new SpeedSpore();
+        MB.addSpore(S);
+
+        //Test case
+        printTrace = true;
+
+        System.out.println("Tester");
+        System.out.printf("\t=ejectSpores(%s)=> %s %n", objectNames.get(C), objectNames.get(MB));
+        MB.ejectSpores(C);
+
+        objectNames.clear();
+        printTrace = false;
     }
 
     /**
      * 35. test case
      */
     private static void mushroomBodyFailedEjectSpore3Distance(){
-        throw new UnsupportedOperationException("Not implemented yet");
+        //Init
+        FertileTecton A = new FertileTecton();
+        FertileTecton B = new FertileTecton();
+        FertileTecton C = new FertileTecton();
+        FertileTecton D = new FertileTecton();
+        objectNames.put(A, "A: FertileTecton");
+        objectNames.put(B, "B: FertileTecton");
+        objectNames.put(C, "C: FertileTecton");
+        objectNames.put(D, "D: FertileTecton");
+        A.addNeighbour(B);
+        B.addNeighbour(A);
+        B.addNeighbour(C);
+        C.addNeighbour(B);
+        C.addNeighbour(D);
+        D.addNeighbour(C);
+
+        MushroomBody MB = new MushroomBody();
+        objectNames.put(MB, "MB: MushroomBody");
+        A.setMushroomBody(MB);
+        MB.setLocation(A);
+        MB.setRemainingEjects(3);
+
+        SpeedSpore S = new SpeedSpore();
+        MB.addSpore(S);
+
+        //Test case
+        printTrace = true;
+
+        System.out.println("Tester");
+        System.out.printf("\t=ejectSpores(%s)=> %s %n", objectNames.get(D), objectNames.get(MB));
+        MB.ejectSpores(D);
+
+        objectNames.clear();
+        printTrace = false;
     }
 }
