@@ -145,7 +145,8 @@ public abstract class Tecton implements OnRoundBeginSubscriber {
      * @return
      */
     public boolean checkNeighbourMyceliaSustain() {
-        throw new UnsupportedOperationException("Not implemented");
+        //Nothing
+        return true;
     }
 
     /**
@@ -224,7 +225,7 @@ public abstract class Tecton implements OnRoundBeginSubscriber {
             System.out.println(Main.objectNames.get(this));
             System.out.printf("\t=cut()=> %s %n", Main.objectNames.get(mycelia.element()));
         }
-        //mycelia.poll().cut();
+        mycelia.poll().cut();
         if (mycelia.isEmpty() || !occupants.isEmpty()) {
             List<Insect> temp = new ArrayList<>();
             for (Insect I : occupants) {
