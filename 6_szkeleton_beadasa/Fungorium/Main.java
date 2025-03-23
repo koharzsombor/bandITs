@@ -1171,27 +1171,36 @@ public class Main {
         //Init
         printTrace = false;
         FertileTecton A = new FertileTecton();
-        FertileTecton B = new FertileTecton();
-        FertileTecton C = new FertileTecton();
-
         objectNames.put(A, "A: FertileTecton");
+
+        FertileTecton B = new FertileTecton();
         objectNames.put(B, "B: FertileTecton");
+
+        FertileTecton C = new FertileTecton();
         objectNames.put(C, "C: FertileTecton");
 
-        A.addNeighbour(C);
-        C.addNeighbour(B);
-        C.addNeighbour(A);
-        B.addNeighbour(C);
+        Mycelium MB = new Mycelium();
+        objectNames.put(MB, "MB: Mycelium");
 
-        Mycelium M = new Mycelium();
-        objectNames.put(M, "M: Mycelium");
-        B.addMycelium(M);
-        M.setLocation(B);
+        Mycelium MC = new Mycelium();
+        objectNames.put(MB, "MC: Mycelium");
 
         Insect I = new Insect();
         objectNames.put(I, "I: Insect");
+
+        B.addMycelium(MB);
+        MB.setLocation(B);
+
+        C.addMycelium(MC);
+        MC.setLocation(C);
+
         A.addOccupant(I);
         I.setLocation(A);
+
+        B.addNeighbour(A);
+        A.addNeighbour(B);
+        A.addNeighbour(C);
+        C.addNeighbour(A);
 
         //Test case
         printTrace = true;
