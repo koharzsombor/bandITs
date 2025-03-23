@@ -290,7 +290,7 @@
             <mxPoint x="520" y="360" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="nsJz5velbdg8NP3HNg8H-24" value="&lt;div&gt;5. «Create»&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rotation=25;" vertex="1" connectable="0" parent="nsJz5velbdg8NP3HNg8H-23">
+        <mxCell id="nsJz5velbdg8NP3HNg8H-24" value="&lt;div&gt;6. «Create»&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rotation=25;" vertex="1" connectable="0" parent="nsJz5velbdg8NP3HNg8H-23">
           <mxGeometry x="-0.1182" y="2" relative="1" as="geometry">
             <mxPoint x="-12" y="5" as="offset" />
           </mxGeometry>
@@ -301,7 +301,7 @@
             <mxPoint x="180" y="360" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="nsJz5velbdg8NP3HNg8H-28" value="&lt;div&gt;4. «Create»&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rotation=-25;" vertex="1" connectable="0" parent="nsJz5velbdg8NP3HNg8H-27">
+        <mxCell id="nsJz5velbdg8NP3HNg8H-28" value="&lt;div&gt;5. «Create»&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rotation=-25;" vertex="1" connectable="0" parent="nsJz5velbdg8NP3HNg8H-27">
           <mxGeometry x="-0.1182" y="2" relative="1" as="geometry">
             <mxPoint x="5" y="12" as="offset" />
           </mxGeometry>
@@ -321,7 +321,7 @@
             <mxPoint x="300" y="100" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="nsJz5velbdg8NP3HNg8H-32" value="&lt;div&gt;6. «Create»&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rotation=65;" vertex="1" connectable="0" parent="nsJz5velbdg8NP3HNg8H-31">
+        <mxCell id="nsJz5velbdg8NP3HNg8H-32" value="&lt;div&gt;7. «Create»&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rotation=65;" vertex="1" connectable="0" parent="nsJz5velbdg8NP3HNg8H-31">
           <mxGeometry x="-0.1182" y="2" relative="1" as="geometry">
             <mxPoint x="9" y="-11" as="offset" />
           </mxGeometry>
@@ -332,7 +332,7 @@
             <mxPoint x="170" y="210" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="nsJz5velbdg8NP3HNg8H-41" value="7. AddMycelium(MB)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rotation=15;fontSize=10;" vertex="1" connectable="0" parent="nsJz5velbdg8NP3HNg8H-40">
+        <mxCell id="nsJz5velbdg8NP3HNg8H-41" value="8. AddMycelium(MB)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rotation=15;fontSize=10;" vertex="1" connectable="0" parent="nsJz5velbdg8NP3HNg8H-40">
           <mxGeometry x="-0.1182" y="2" relative="1" as="geometry">
             <mxPoint x="-8" y="10" as="offset" />
           </mxGeometry>
@@ -343,7 +343,7 @@
             <mxPoint x="180" y="320" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="nsJz5velbdg8NP3HNg8H-43" value="8. SetLocation(B)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rotation=-15;fontSize=10;" vertex="1" connectable="0" parent="nsJz5velbdg8NP3HNg8H-42">
+        <mxCell id="nsJz5velbdg8NP3HNg8H-43" value="9. SetLocation(B)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rotation=-15;fontSize=10;" vertex="1" connectable="0" parent="nsJz5velbdg8NP3HNg8H-42">
           <mxGeometry x="-0.1182" y="2" relative="1" as="geometry">
             <mxPoint x="-29" y="-4" as="offset" />
           </mxGeometry>
@@ -354,7 +354,7 @@
             <mxPoint x="520" y="330" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="0yv-2fmjYvhlYPWyxtwk-2" value="10. SetLocation(C)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rotation=23;fontSize=10;" vertex="1" connectable="0" parent="0yv-2fmjYvhlYPWyxtwk-1">
+        <mxCell id="0yv-2fmjYvhlYPWyxtwk-2" value="11. SetLocation(C)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rotation=23;fontSize=10;" vertex="1" connectable="0" parent="0yv-2fmjYvhlYPWyxtwk-1">
           <mxGeometry x="-0.1182" y="2" relative="1" as="geometry">
             <mxPoint x="15" y="-5" as="offset" />
           </mxGeometry>
@@ -365,7 +365,7 @@
             <mxPoint x="530" y="210" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="0yv-2fmjYvhlYPWyxtwk-4" value="9. AddMycelium(MC)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rotation=341;fontSize=10;" vertex="1" connectable="0" parent="0yv-2fmjYvhlYPWyxtwk-3">
+        <mxCell id="0yv-2fmjYvhlYPWyxtwk-4" value="10. AddMycelium(MC)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rotation=341;fontSize=10;" vertex="1" connectable="0" parent="0yv-2fmjYvhlYPWyxtwk-3">
           <mxGeometry x="-0.1182" y="2" relative="1" as="geometry">
             <mxPoint x="19" y="4" as="offset" />
           </mxGeometry>
@@ -376,7 +376,7 @@
             <mxPoint x="400" y="160" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="FJINl6FfrMkQ_Ohd0mbM-2" value="11. addOccupant(I)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rotation=-65;fontSize=8;" connectable="0" vertex="1" parent="FJINl6FfrMkQ_Ohd0mbM-1">
+        <mxCell id="FJINl6FfrMkQ_Ohd0mbM-2" value="12. addOccupant(I)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rotation=-65;fontSize=8;" connectable="0" vertex="1" parent="FJINl6FfrMkQ_Ohd0mbM-1">
           <mxGeometry x="-0.1182" y="2" relative="1" as="geometry">
             <mxPoint x="-6" y="-8" as="offset" />
           </mxGeometry>
@@ -387,7 +387,7 @@
             <mxPoint x="270" y="100" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="KmIYVT0WO68sdJhmvYjd-2" value="12. setLocation(A)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rotation=60;fontSize=10;" connectable="0" vertex="1" parent="KmIYVT0WO68sdJhmvYjd-1">
+        <mxCell id="KmIYVT0WO68sdJhmvYjd-2" value="13. setLocation(A)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rotation=60;fontSize=10;" connectable="0" vertex="1" parent="KmIYVT0WO68sdJhmvYjd-1">
           <mxGeometry x="-0.1182" y="2" relative="1" as="geometry">
             <mxPoint x="-18" y="-10" as="offset" />
           </mxGeometry>
@@ -420,7 +420,7 @@
             <mxPoint x="180" y="190" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="uMfMvKfItBi5J2LSDHsg-4" value="13. AddNeighbour(A)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rotation=30;fontSize=10;" connectable="0" vertex="1" parent="uMfMvKfItBi5J2LSDHsg-3">
+        <mxCell id="uMfMvKfItBi5J2LSDHsg-4" value="14. AddNeighbour(A)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rotation=30;fontSize=10;" connectable="0" vertex="1" parent="uMfMvKfItBi5J2LSDHsg-3">
           <mxGeometry x="-0.1182" y="2" relative="1" as="geometry">
             <mxPoint x="2" y="-19" as="offset" />
           </mxGeometry>
@@ -431,7 +431,7 @@
             <mxPoint x="520" y="180" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="uMfMvKfItBi5J2LSDHsg-6" value="16. AddNeighbour(A)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rotation=-30;fontSize=9;" connectable="0" vertex="1" parent="uMfMvKfItBi5J2LSDHsg-5">
+        <mxCell id="uMfMvKfItBi5J2LSDHsg-6" value="15. AddNeighbour(A)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rotation=-30;fontSize=9;" connectable="0" vertex="1" parent="uMfMvKfItBi5J2LSDHsg-5">
           <mxGeometry x="-0.1182" y="2" relative="1" as="geometry">
             <mxPoint x="-6" y="-5" as="offset" />
           </mxGeometry>
@@ -442,7 +442,7 @@
             <mxPoint x="450" y="100" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="uMfMvKfItBi5J2LSDHsg-8" value="14. AddNeighbour(B)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rotation=-60;fontSize=9;" connectable="0" vertex="1" parent="uMfMvKfItBi5J2LSDHsg-7">
+        <mxCell id="uMfMvKfItBi5J2LSDHsg-8" value="15. AddNeighbour(B)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rotation=-60;fontSize=9;" connectable="0" vertex="1" parent="uMfMvKfItBi5J2LSDHsg-7">
           <mxGeometry x="-0.1182" y="2" relative="1" as="geometry">
             <mxPoint x="24" y="7" as="offset" />
           </mxGeometry>
