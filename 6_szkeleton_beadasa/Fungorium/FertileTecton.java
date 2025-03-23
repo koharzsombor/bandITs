@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  *  A FertileTecton egy olyan tekton amelyen gombatest es gombafonal is novekedhet
  *  Legfeljebb 1 gombafonal es 1 gombatest novekedhet rajta
@@ -8,6 +10,7 @@ public class FertileTecton extends Tecton {
      */
     public FertileTecton() {
         setMyceliaCapacity(1);
+        setBreakTimer(1);
     }
 
     /**
@@ -77,10 +80,63 @@ public class FertileTecton extends Tecton {
 
     /**
      * A kor/Turn kezdeten hivodo metodus
-     * Jelenleg nem tartalmaz implementaciot
+     * Itt tortenik a tektontores es annak kovetkezmenyei
+     * (myceliumok elvagasa, Insectek elmenekulese, )
      */
     @Override
     public void onRoundBegin() {
-        throw new UnsupportedOperationException("Not implemented");
+
+        boolean originalPrintTrace = Main.printTrace;
+
+        if (Main.printTrace) {
+            System.out.printf("\t=onTurnBegin()=> A: FertileTecton%n");
+        }
+
+        setBreakTimer(getBreakTimer() - 1);
+
+        if (getBreakTimer() <= 0) {
+
+            if (Main.printTrace) {
+                System.out.printf("%s\n", Main.objectNames.get(this));
+            }
+
+
+            while( !getMycelia().isEmpty()) {
+                Mycelium mycelium = getMycelia().poll();
+                assert mycelium != null;
+
+                System.out.printf("\t=cut()=> %s\n", Main.objectNames.get(mycelium));
+
+                Main.printTrace = false;
+                mycelium.cut();
+                Main.printTrace = originalPrintTrace;
+            }
+
+            // Egy temp lista melyben az Insectek lesznek eltarolva mivel sima
+            // iteracio kozben ki fognak esni elemek a listabol
+            // ez csak egy masolata az eredeti Occupants Listanak
+            ArrayList<Insect> temp = new ArrayList<>(getOccupants());
+
+            for (Insect o : temp) {
+                if (Main.printTrace) {
+                    System.out.printf("\t=runAway()=> %s\n", Main.objectNames.get(o));
+                }
+                Main.printTrace = false;
+                o.runAway();
+                Main.printTrace = originalPrintTrace;
+            }
+
+            FertileTecton newt = new FertileTecton();
+            Main.objectNames.put(newt, "newt: FertileTecton");
+            if (Main.printTrace) {
+                System.out.printf("\t=Create()=> %s%n", Main.objectNames.get(newt));
+            }
+            newt.addNeighbour(this);
+            if (Main.printTrace) {
+                System.out.printf("\t=addNeighbour(%s)=> %s%n", Main.objectNames.get(this), Main.objectNames.get(newt));
+            }
+            this.addNeighbour(newt);
+
+        }
     }
 }

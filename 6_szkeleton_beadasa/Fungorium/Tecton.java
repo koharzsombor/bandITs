@@ -145,14 +145,14 @@ public abstract class Tecton implements OnRoundBeginSubscriber {
      * @return
      */
     public boolean checkNeighbourMyceliaSustain() {
-        throw new UnsupportedOperationException("Not implemented");
+        return true;
     }
 
     /**
      * @return
      */
     public boolean myceliaCheckSustain() {
-        throw new UnsupportedOperationException("Not implemented");
+        return true;
     }
 
     /**

@@ -102,46 +102,46 @@ public class Main {
      */
     private static void printTestOptions() {
         System.out.println("\nVálassza ki, melyik teszt esetet szeretné lefuttatni, a sorszáma megadásával:");
-        System.out.println("1.\tElőfeltételnek megfelelő gombafonál növesztés „Fertile” típusú tektonra");
-        System.out.println("2.\tGombafonál növesztés „Fertile” típusú tektonra, amin már van gombafonál");
-        System.out.println("3.\tElőfeltételnek megfelelő gombafonál növesztés „SemiFertile” típusú tektonra");
-        System.out.println("4.\tGombafonál növesztés „SemiFertile” típusú tektonra, amin már van gombafonál");
-        System.out.println("5.\tElőfeltételnek megfelelő gombafonál növesztés „Arid” típusú tektonra");
-        System.out.println("6.\tGombafonál növesztés „Arid” típusú tektonra, amin már van gombafonál");
-        System.out.println("7.\tElőfeltételnek megfelelő gombafonál növesztés „MultiLayered” típusú tektonra");
-        System.out.println("8.\tGombafonál növesztés „MultiLayered” típusú tektonra, amin 3 gombafonál van");
-        System.out.println("9.\tElőfeltételnek megfelelő gombatest növesztés „Fertile” típusú tektonra");
-        System.out.println("10.\tGombatest növesztés „Fertile” típusú tektonra, amin már van gombatest");
-        System.out.println("11.\tGombatest növesztés „Fertile” típusú tektonra, amin nincs elég spóra");
-        System.out.println("12.\tGombatest növesztés „Fertile” típusú tektonra, amin nincs gombafonál");
-        System.out.println("13.\tElőfeltételnek megfelelő gombatest növesztés „Arid” típusú tektonra");
-        System.out.println("14.\tGombatest növesztés „Arid” típusú tektonra, amin már van gombatest");
-        System.out.println("15.\tGombatest növesztés „Arid” típusú tektonra, amin nincs elég spóra");
-        System.out.println("16.\tGombatest növesztés „Arid” típusú tektonra, amin nincs gombafonál");
-        System.out.println("17.\tElőfeltételnek megfelelő gombatest növesztés „MultiLayered” típusú tektonra");
-        System.out.println("18.\tGombatest növesztés „MultiLayered” típusú tektonra, amin már van gombatest");
-        System.out.println("19.\tGombatest növesztés „MultiLayered” típusú tektonra, amin nincs elég spóra");
-        System.out.println("20.\tGombatest növesztés „MultiLayered” típusú tektonra, amin nincs gombafonál");
-        System.out.println("21.\tGombatest növesztés „SemiFertile” típusú tektonra");
-        System.out.println("22.\t„Stun” típusú Spóra elfogyasztása");
-        System.out.println("23.\t„PreventCut” típusú Spóra elfogyasztása");
-        System.out.println("24.\t„Speed” típusú Spóra elfogyasztása");
-        System.out.println("25.\t„Slowness” típusú Spóra elfogyasztása");
-        System.out.println("26.\tTecton törés");
-        System.out.println("27.\tInsect mozgása előfeltételnek megfelelő tektonra");
-        System.out.println("28.\tInsect mozgása szomsédsági feltételen megbukó tektonra");
-        System.out.println("29.\tInsect mozgása Mycelium feltételen megbukó tektonra");
+        System.out.println("1.\tGombafonál sikeres növesztése szomszédos FertileTectonra (nem MultiLayeredTecton és nem AridTecton)");
+        System.out.println("2.\tGombafonál sikertelen növesztése szomszédos FertileTectonra (nem MultiLayeredTecton és nem AridTecton), amelyen már van gombafonál");
+        System.out.println("3.\tGombafonál sikeres növesztése szomszédos SemiFertileTectonra");
+        System.out.println("4.\tGombafonál sikertelen növesztése szomszédos SemiFertileTectonra, amelyen már van gombafonál");
+        System.out.println("5.\tGombafonál sikeres növesztése szomszédos AridTectonra");
+        System.out.println("6.\tGombafonál sikertelen növesztése szomszédos AridTectonra, amelyen már van gombafonál");
+        System.out.println("7.\tGombafonál sikeres növesztése szomszédos MultiLayeredTectonra");
+        System.out.println("8.\tGombafonál sikertelen növesztése szomszédos MultiLayeredTectonra, amelyen már van 3 db gombafonál");
+        System.out.println("9.\tGombatest sikeres növesztése FertileTectonra (nem MultiLayeredTecton és nem AridTecton)");
+        System.out.println("10.\tGombatest sikertelen növesztése FertileTectonra, amin már van gombatest (nem MultiLayeredTecton és nem AridTecton)");
+        System.out.println("11.\tGombatest sikertelen növesztése FertileTectonra, amin nincs elég spóra (nem MultiLayeredTecton és nem AridTecton)");
+        System.out.println("12.\tGombatest sikertelen növesztése FertileTectonra, amin nincs gombafonál (nem MultiLayeredTecton és nem AridTecton)");
+        System.out.println("13.\tGombatest sikeres növesztése AridTectonra");
+        System.out.println("14.\tGombatest sikertelen növesztése AridTectonra, amin már van gombatest");
+        System.out.println("15.\tGombatest sikertelen növesztése AridTectonra, amin nincs elég spóra");
+        System.out.println("16.\tGombatest sikertelen növesztése AridTectonra, amin nincs gombafonál");
+        System.out.println("17.\tGombatest sikeres növesztése MultiLayeredTectonra");
+        System.out.println("18.\tGombatest sikertelen növesztése MultiLayeredTectonra, amin már van gombatest");
+        System.out.println("19.\tGombatest sikertelen növesztése MultiLayeredTectonra, amin nincs elég spóra");
+        System.out.println("20.\tGombatest sikertelen növesztése MultiLayeredTectonra, amin nincs gombafonál");
+        System.out.println("21.\tGombatest sikertelen növesztése SemiFertileTectonra");
+        System.out.println("22.\t„StunSpore elfogyasztása");
+        System.out.println("23.\t„PreventCutSpore elfogyasztása");
+        System.out.println("24.\t„SpeedSpore elfogyasztása");
+        System.out.println("25.\t„SlownessSpore elfogyasztása");
+        System.out.println("26.\tTektontörés");
+        System.out.println("27.\tRovar sikeres mozgása");
+        System.out.println("28.\tRovar sikertelen mozgása nem szomszédos tektonra");
+        System.out.println("29.\tRovar sikertelen mozgása olyan tektonra, ahol nincs gombafonál");
         System.out.println("30.\tRovar általi gombafonál elvágás");
         System.out.println("31.\tRovar elmenekülése");
-        System.out.println("32.\tGombatest sikeres spórakilövése szomszédos tectonra");
-        System.out.println("33.\tGombatest sikeres spórakilövése szomszédjával szomszédos tectonra");
-        System.out.println("34.\tGombatest sikertelen spórakilövése szomszédjávol szomszédos tectonra");
-        System.out.println("35.\tGombatest sikertelen spórakilövése túl messze levő tectonra");
+        System.out.println("32.\tGombatest sikeres spórakilövése szomszédos tektonra");
+        System.out.println("33.\tGombatest sikeres spórakilövése szomszédos tekton szomszédjára");
+        System.out.println("34.\tGombatest sikertelen spórakilövése szomszédos tekton szomszédjára");
+        System.out.println("35.\tGombatest sikertelen spórakilövése szomszédos tekton szomszédjánál távolabb lévő tektonra");
     }
 
     /**
      * 1. test case:
-     * Előfeltételnek megfelelő gombafonál növesztés „Fertile” típusú tektonra.
+     * Gombafonál sikeres növesztése szomszédos FertileTectonra (nem MultiLayeredTecton és nem AridTecton)
      */
     private static void myceliumGrowthSuccessOnFertileTecton() {
         //Init
@@ -175,7 +175,7 @@ public class Main {
 
     /**
      * 2. test case:
-     * Gombafonál növesztés „Fertile” típusú tektonra, amin már van gombafonál.
+     * Gombafonál sikertelen növesztése szomszédos FertileTectonra (nem MultiLayeredTecton és nem AridTecton), amelyen már van gombafonál
      */
     private static void myceliumGrowthFailureDueToLackOfSpaceOnFertileTecton() {
         //Init
@@ -212,7 +212,7 @@ public class Main {
 
     /**
      * 3. test case:
-     * Előfeltételnek megfelelő gombafonál növesztés „SemiFertile” típusú tektonra.
+     * Gombafonál sikeres növesztése szomszédos SemiFertileTectonra
      */
     private static void myceliumGrowthSuccessOnSemiFertileTecton() {
         //Init
@@ -245,7 +245,7 @@ public class Main {
 
     /**
      * 4. test case:
-     * Gombafonál növesztés „SemiFertile” típusú tektonra, amin már van gombafonál.
+     * Gombafonál sikertelen növesztése szomszédos SemiFertileTectonra, amelyen már van gombafonál
      */
     private static void myceliumGrowthFailureDueToLackOfSpaceOnSemiFertileTecton() {
         //Init
@@ -282,7 +282,7 @@ public class Main {
 
     /**
      * 5. test case
-     * Előfeltételnek megfelelő gombafonál növesztés „Arid” típusú tektonra.
+     * Gombafonál sikeres növesztése szomszédos AridTectonra
      */
     private static void myceliumGrowthSuccessOnAridTecton() {
         //Init
@@ -315,7 +315,7 @@ public class Main {
 
     /**
      * 6. test case
-     * Gombafonál növesztés „Arid” típusú tektonra, amin már van gombafonál.
+     *  Gombafonál sikertelen növesztése szomszédos AridTectonra, amelyen már van gombafonál
      */
     private static void myceliumGrowthFailureDueToLackOfSpaceOnAridTecton() {
         //Init
@@ -352,7 +352,7 @@ public class Main {
 
     /**
      * 7. test case
-     * Előfeltételnek megfelelő gombafonál növesztés „MultiLayered” típusú tektonra.
+     * Gombafonál sikeres növesztése szomszédos MultiLayeredTectonra
      */
     private static void myceliumGrowthSuccessOnMultiLayeredTecton() {
         //Init
@@ -385,7 +385,7 @@ public class Main {
 
     /**
      * 8. test case:
-     * Gombafonál növesztés „MultiLayered” típusú tektonra, amin 3 gombafonál van.
+     * Gombafonál sikertelen növesztése szomszédos MultiLayeredTectonra, amelyen már van 3 db gombafonál
      */
     private static void myceliumGrowthFailureDueToLackOfSpaceOnMultiLayeredTecton() {
         //Init
@@ -430,10 +430,12 @@ public class Main {
 
     /**
      * 9. test case:
-     * Előfeltételnek megfelelő gombatest növesztés „Fertile” típusú tektonra.
+     * Gombatest sikeres növesztése FertileTectonra (nem MultiLayeredTecton és nem AridTecton)
      */
     private static void mushroomBodyGrowthSuccessOnFertileTecton() {
         //Init
+        printTrace = false;
+
         FertileTecton T = new FertileTecton();
         objectNames.put(T, "T: FertileTecton");
 
@@ -468,10 +470,12 @@ public class Main {
 
     /**
      * 10. test case:
-     * Gombatest növesztés „Fertile” típusú tektonra, amin már van gombatest.
+     * Gombatest sikertelen növesztése FertileTectonra, amin már van gombatest (nem MultiLayeredTecton és nem AridTecton)
      */
     private static void mushroomBodyGrowthFailureDueToLackOfSpaceOnFertileTecton() {
         //Init
+        printTrace = false;
+
         FertileTecton T = new FertileTecton();
         objectNames.put(T, "T: FertileTecton");
 
@@ -507,10 +511,12 @@ public class Main {
 
     /**
      * 11. test case:
-     * Gombatest növesztés „Fertile” típusú tektonra, amin nincs elég spóra.
+     * Gombatest sikertelen növesztése FertileTectonra, amin nincs elég spóra (nem MultiLayeredTecton és nem AridTecton)
      */
     private static void mushroomBodyGrowthFailureDueToLackOfSporesOnFertileTecton() {
         //Init
+        printTrace = false;
+
         FertileTecton T = new FertileTecton();
         objectNames.put(T, "T: FertileTecton");
 
@@ -544,10 +550,12 @@ public class Main {
 
     /**
      * 12. test case:
-     * Gombatest növesztés „Fertile” típusú tektonra, amin nincs gombafonál.
+     * Gombatest sikertelen növesztése FertileTectonra, amin nincs gombafonál (nem MultiLayeredTecton és nem AridTecton)
      */
     private static void mushroomBodyGrowthFailureDueToLackOfMyceliaOnFertileTecton() {
         //Init
+        printTrace = false;
+
         FertileTecton T = new FertileTecton();
         objectNames.put(T, "T: FertileTecton");
 
@@ -580,10 +588,12 @@ public class Main {
 
     /**
      * 13. test case:
-     * Előfeltételnek megfelelő gombatest növesztés „Arid” típusú tektonra.
+     * Gombatest sikeres növesztése AridTectonra
      */
     private static void mushroomBodyGrowthSuccessOnAridTecton() {
         //Init
+        printTrace = false;
+
         AridTecton T = new AridTecton();
         objectNames.put(T, "T: AridTecton");
 
@@ -617,10 +627,12 @@ public class Main {
 
     /**
      * 14. test case:
-     * Gombatest növesztés „Arid” típusú tektonra, amin már van gombatest.
+     * Gombatest sikertelen növesztése AridTectonra, amin már van gombatest
      */
     private static void mushroomBodyGrowthFailureDueToLackOfSpaceOnAridTecton() {
         //Init
+        printTrace = false;
+
         AridTecton T = new AridTecton();
         objectNames.put(T, "T: AridTecton");
 
@@ -656,10 +668,12 @@ public class Main {
 
     /**
      * 15. test case:
-     * Gombatest növesztés „Arid” típusú tektonra, amin nincs elég spóra.
+     * Gombatest sikertelen növesztése AridTectonra, amin nincs elég spóra
      */
     private static void mushroomBodyGrowthFailureDueToLackOfSporesOnAridTecton() {
         //Init
+        printTrace = false;
+
         AridTecton T = new AridTecton();
         objectNames.put(T, "T: AridTecton");
 
@@ -694,10 +708,12 @@ public class Main {
 
     /**
      * 16. test case:
-     * Gombatest növesztés „Arid” típusú tektonra, amin nincs gombafonál.
+     * Gombatest sikertelen növesztése AridTectonra, amin nincs gombafonál
      */
     private static void mushroomBodyGrowthFailureDueToLackOfMyceliaOnAridTecton() {
         //Init
+        printTrace = false;
+
         AridTecton T = new AridTecton();
         objectNames.put(T, "T: AridTecton");
 
@@ -730,10 +746,12 @@ public class Main {
 
     /**
      * 17. test case:
-     * Előfeltételnek megfelelő gombatest növesztés „MultiLayered” típusú tektonra.
+     * Gombatest sikeres növesztése MultiLayeredTectonra
      */
     private static void mushroomBodyGrowthSuccessOnMultiLayeredTecton() {
         //Init
+        printTrace = false;
+
         MultiLayeredTecton T = new MultiLayeredTecton();
         objectNames.put(T, "T: MultiLayeredTecton");
 
@@ -767,10 +785,12 @@ public class Main {
 
     /**
      * 18. test case:
-     * Gombatest növesztés „MultiLayered” típusú tektonra, amin már van gombatest.
+     * Gombatest sikertelen növesztése MultiLayeredTectonra, amin már van gombatest
      */
     private static void mushroomBodyGrowthFailureDueToLackOfSpaceOnMultiLayeredTecton() {
         //Init
+        printTrace = false;
+
         MultiLayeredTecton T = new MultiLayeredTecton();
         objectNames.put(T, "T: MultiLayeredTecton");
 
@@ -806,10 +826,12 @@ public class Main {
 
     /**
      * 19. test case:
-     * Gombatest növesztés „MultiLayered” típusú tektonra, amin nincs elég spóra.
+     * Gombatest sikertelen növesztése MultiLayeredTectonra, amin nincs elég spóra
      */
     private static void mushroomBodyGrowthFailureDueToLackOfSporesOnMultiLayeredTecton() {
         //Init
+        printTrace = false;
+
         MultiLayeredTecton T = new MultiLayeredTecton();
         objectNames.put(T, "T: MultiLayeredTecton");
 
@@ -843,10 +865,12 @@ public class Main {
 
     /**
      * 20. test case:
-     * Gombatest növesztés „MultiLayered” típusú tektonra, amin nincs gombafonál.
+     * Gombatest sikertelen növesztése MultiLayeredTectonra, amin nincs gombafonál
      */
     private static void mushroomBodyGrowthFailureDueToLackOfMyceliaOnMultiLayeredTecton() {
         //Init
+        printTrace = false;
+
         MultiLayeredTecton T = new MultiLayeredTecton();
         objectNames.put(T, "T: MultiLayeredTecton");
 
@@ -879,10 +903,12 @@ public class Main {
 
     /**
      * 21. test case:
-     * Gombatest növesztés „SemiFertile” típusú tektonra.
+     * Gombatest sikertelen növesztése SemiFertileTectonra
      */
     private static void mushroomBodyGrowthFailureOnSemiFertileTecton() {
         //Init
+        printTrace = false;
+
         SemiFertileTecton T = new SemiFertileTecton();
         objectNames.put(T, "T: SemiFertileTecton");
 
@@ -916,7 +942,7 @@ public class Main {
 
     /**
      * 22. test case:
-     * „Stun” típusú Spóra elfogyasztása.
+     * StunSpore elfogyasztása
      */
     private static void stunSporeEaten() {
         //Init
@@ -944,7 +970,7 @@ public class Main {
 
     /**
      * 23. test case:
-     * „PreventCut” típusú Spóra elfogyasztása.
+     * PreventCutSpore elfogyasztása
      */
     private static void preventCutSporeEaten() {
         //Init
@@ -972,7 +998,7 @@ public class Main {
 
     /**
      * 24. test case:
-     * „Speed” típusú Spóra elfogyasztása.
+     * SpeedSpore elfogyasztása
      */
     private static void speedSporeEaten() {
         //Init
@@ -1000,7 +1026,7 @@ public class Main {
 
     /**
      * 25. test case:
-     * „Slowness” típusú Spóra elfogyasztása.
+     * SlownessSpore elfogyasztása
      */
     private static void slownessSporeEaten() {
         //Init
@@ -1027,15 +1053,48 @@ public class Main {
     }
 
     /**
-     * 26. test case
+     * 26. test case:
+     * Tektontörés
      */
     private static void tectonBreak(){
-        throw new UnsupportedOperationException("Not implemented yet");
+        //Init
+        printTrace = false;
+        FertileTecton A = new FertileTecton();
+        objectNames.put(A, "A: FertileTecton");
+
+        FertileTecton B = new FertileTecton();
+        objectNames.put(B, "B: FertileTecton");
+
+        A.addNeighbour(B);
+        B.addNeighbour(A);
+
+        Mycelium M = new Mycelium(A, "m: Mycelium");
+        objectNames.put(M, "M: Mycelium");
+
+        MushroomBody MB = new MushroomBody();
+        objectNames.put(MB, "MB: MushroomBody");
+        B.setMushroomBody(MB);
+        MB.setLocation(B);
+
+        Insect I = new Insect();
+        objectNames.put(I, "I: Insect");
+        A.addOccupant(I);
+        I.setLocation(A);
+
+        //Test Case
+        // Itt be van allitva a tores, hogy megtortenjen egy kor utan
+        printTrace = true;
+        System.out.println("Tester");
+        A.onRoundBegin();
+
+
+
     }
 
 
     /**
-     * 27. test case
+     * 27. test case:
+     * Rovar sikeres mozgása
      */
     private static void insectMoveSucces(){
         //Init
@@ -1068,7 +1127,8 @@ public class Main {
     }
 
     /**
-     * 28. test case
+     * 28. test case:
+     * Rovar sikertelen mozgása nem szomszédos tektonra
      */
     private static void insectMoveNeighbourFail(){
         //Init
@@ -1099,7 +1159,8 @@ public class Main {
     }
 
     /**
-     * 29. test case
+     * 29. test case:
+     * Rovar sikertelen mozgása olyan tektonra, ahol nincs gombafonál
      */
     private static void insectMoveMyceliumFail(){
         //Init
@@ -1127,7 +1188,8 @@ public class Main {
     }
 
     /**
-     * 30. test case
+     * 30. test case:
+     * Rovar általi gombafonál elvágás
      */
     private static void insectCutMycelium(){
         //Init
@@ -1165,7 +1227,8 @@ public class Main {
     }
 
     /**
-     * 31. test case
+     * 31. test case:
+     * Rovar elmenekülése
      */
     private static void insectRunAway(){
         //Init
@@ -1202,28 +1265,32 @@ public class Main {
     }
 
     /**
-     * 32. test case
+     * 32. test case:
+     * Gombatest sikeres spórakilövése szomszédos tektonra
      */
     private static void mushroomBodySuccesfullEjectSpore1Distance(){
         throw new UnsupportedOperationException("Not implemented yet");
     }
 
     /**
-     * 33. test case
+     * 33. test case:
+     * Gombatest sikeres spórakilövése szomszédos tekton szomszédjára
      */
     private static void mushroomBodySuccesfullEjectSpore2Distance(){
         throw new UnsupportedOperationException("Not implemented yet");
     }
 
     /**
-     * 34. test case
+     * 34. test case:
+     * Gombatest sikertelen spórakilövése szomszédos tekton szomszédjára
      */
     private static void mushroomBodyFailedEjectSpore2Distance(){
         throw new UnsupportedOperationException("Not implemented yet");
     }
 
     /**
-     * 35. test case
+     * 35. test case:
+     * Gombatest sikertelen spórakilövése szomszédos tekton szomszédjánál távolabb lévő tektonra
      */
     private static void mushroomBodyFailedEjectSpore3Distance(){
         throw new UnsupportedOperationException("Not implemented yet");
