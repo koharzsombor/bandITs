@@ -122,7 +122,10 @@ public class Insect {
      *
      */
     public void cutMycelium() {
-        location.cutMycelium();
+        if(getRemainingMoves()>0) {
+            location.cutMycelium();
+            setRemainingMoves(getRemainingMoves()-1);
+        }
     }
 
     /**
@@ -146,7 +149,9 @@ public class Insect {
             System.out.printf("\t=moveInsect(%s, %s)=> %s %n", Main.objectNames.get(this), Main.objectNames.get(getLocation()), Main.objectNames.get(target));
         }
 
-        target.moveInsect(this, location);
+        if(getRemainingMoves()>0) {
+            target.moveInsect(this, location);
+        }
     }
 
     /**

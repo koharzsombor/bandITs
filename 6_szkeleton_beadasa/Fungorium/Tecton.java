@@ -253,7 +253,7 @@ public abstract class Tecton implements OnRoundBeginSubscriber {
     public void moveInsect(Insect insect, Tecton insectLocation) {
         if(Main.printTrace) {
             System.out.println(Main.objectNames.get(this));
-            System.out.printf("\t=distance(%s)=> %s %n \t<=dist: int =%s %n", Main.objectNames.get(this), Main.objectNames.get(insectLocation), Main.objectNames.get(this));
+            System.out.printf("\t=distance(%s)=> %s %n \t<=distance: int =%s %n", Main.objectNames.get(this), Main.objectNames.get(insectLocation), Main.objectNames.get(insectLocation));
         }
         int distance = insectLocation.distance(this);
         if(distance==1 && this.hasMycelium()){
@@ -264,6 +264,7 @@ public abstract class Tecton implements OnRoundBeginSubscriber {
             insectLocation.removeOccupant(insect);
             this.addOccupant(insect);
             insect.setLocation(this);
+            insect.setRemainingMoves(insect.getRemainingMoves()-1);
         }
     }
 
@@ -282,23 +283,26 @@ public abstract class Tecton implements OnRoundBeginSubscriber {
     }
 
     public void cutMycelium() {
-        if(Main.printTrace) {
+        boolean originalPrintTrace = Main.printTrace;
+
+        if (Main.printTrace) {
             System.out.println(Main.objectNames.get(this));
             System.out.printf("\t=cut()=> %s %n", Main.objectNames.get(mycelia.element()));
         }
-        //mycelia.poll().cut();
-        if(mycelia.isEmpty() || !occupants.isEmpty()) {
+
+        mycelia.poll().cut();
+        if (mycelia.isEmpty() || !occupants.isEmpty()) {
             List<Insect> temp = new ArrayList<>();
-            for(Insect I: occupants){
+            for (Insect I : occupants) {
                 temp.add(I);
             }
-            for(Insect I: temp){
-                if(Main.printTrace) {
+            for (Insect I : temp) {
+                if (Main.printTrace) {
                     System.out.printf("\trunAway()=> %s %n", Main.objectNames.get(I));
                 }
-                Main.printTrace=false;
+                Main.printTrace = false;
                 I.runAway();
-                Main.printTrace=true;
+                Main.printTrace = originalPrintTrace;
             }
         }
     }
@@ -309,6 +313,10 @@ public abstract class Tecton implements OnRoundBeginSubscriber {
      */
     public void addSpore(Spore spore) {
         getSpores().offer(spore);
+    }
+
+    public void transferSpores(List<Spore> newSpores) {
+        spores.addAll(newSpores);
     }
 
     /**
