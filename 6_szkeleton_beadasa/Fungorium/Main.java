@@ -5,6 +5,8 @@ import java.util.Scanner;
  * A program futtatásért és tesztelő - program összeköttetésért felelős osztály.
  */
 public class Main {
+    public static Scanner selectScanner = new Scanner(System.in);
+
     /**
      * Az objektumoknak a neveit tárolja, csak a modell tesztelése céljából létezik.
      */
@@ -37,7 +39,7 @@ public class Main {
         System.out.println("Fungorium - Szekeleton");
         printTestOptions();
 
-        try(Scanner selectScanner = new Scanner(System.in)) {
+        try {
             while (selectScanner.hasNext()) {
                 if (selectScanner.hasNextInt()) {
                     int input = selectScanner.nextInt();
@@ -93,6 +95,9 @@ public class Main {
 
                 printTestOptions();
             }
+        }
+        finally {
+            selectScanner.close();
         }
     }
 
@@ -1269,6 +1274,7 @@ public class Main {
      */
     private static void insectMoveSucces(){
         //Init
+        printTrace = false;
         FertileTecton A = new FertileTecton();
         FertileTecton B = new FertileTecton();
         objectNames.put(A, "A: FertileTecton");
@@ -1285,6 +1291,7 @@ public class Main {
         objectNames.put(I, "I: Insect");
         A.addOccupant(I);
         I.setLocation(A);
+        I.setRemainingMoves(1);
 
         //Test case
         printTrace = true;
@@ -1294,7 +1301,6 @@ public class Main {
         I.move(B);
 
         objectNames.clear();
-        printTrace = false;
     }
 
     /**
@@ -1307,6 +1313,7 @@ public class Main {
      */
     private static void insectMoveNeighbourFail(){
         //Init
+        printTrace = false;
         FertileTecton A = new FertileTecton();
         FertileTecton B = new FertileTecton();
         objectNames.put(A, "A: FertileTecton");
@@ -1321,6 +1328,7 @@ public class Main {
         objectNames.put(I, "I: Insect");
         A.addOccupant(I);
         I.setLocation(A);
+        I.setRemainingMoves(1);
 
         //Test case
         printTrace = true;
@@ -1330,7 +1338,6 @@ public class Main {
         I.move(B);
 
         objectNames.clear();
-        printTrace = false;
     }
 
     /**
@@ -1343,6 +1350,7 @@ public class Main {
      */
     private static void insectMoveMyceliumFail(){
         //Init
+        printTrace = false;
         FertileTecton A = new FertileTecton();
         FertileTecton B = new FertileTecton();
         objectNames.put(A, "A: FertileTecton");
@@ -1354,6 +1362,7 @@ public class Main {
         objectNames.put(I, "I: Insect");
         A.addOccupant(I);
         I.setLocation(A);
+        I.setRemainingMoves(1);
 
         //Test case
         printTrace = true;
@@ -1363,7 +1372,6 @@ public class Main {
         I.move(B);
 
         objectNames.clear();
-        printTrace = false;
     }
 
     /**
@@ -1375,8 +1383,9 @@ public class Main {
      *     3. A tekton jelet küld a szomszédos tektonjainak, hogy nézzék meg, hogy a rajtuk levő fonalak össze vannak-e kötve gombatesttel.
      *     4. Mivel a vágás után nincs több fonal A tektonon, jelet küld a rajta levő rovaroknak, hogy meneküljenek el.
      */
-    private static void insectCutMycelium(){
+    private static void insectCutMycelium() {
         //Init
+        printTrace = false;
         FertileTecton A = new FertileTecton();
         FertileTecton B = new FertileTecton();
         objectNames.put(A, "A: FertileTecton");
@@ -1393,6 +1402,7 @@ public class Main {
         objectNames.put(I, "I: Insect");
         A.addOccupant(I);
         I.setLocation(A);
+        I.setRemainingMoves(1);
 
         Mycelium M2 = new Mycelium();
         objectNames.put(M2, "M2: Mycelium");
@@ -1407,7 +1417,6 @@ public class Main {
         A.cutMycelium();
 
         objectNames.clear();
-        printTrace = false;
     }
 
     /**
@@ -1423,26 +1432,38 @@ public class Main {
      */
     private static void insectRunAway(){
         //Init
+        printTrace = false;
         FertileTecton A = new FertileTecton();
-        FertileTecton B = new FertileTecton();
-        FertileTecton C = new FertileTecton();
         objectNames.put(A, "A: FertileTecton");
-        objectNames.put(B, "B: FertileTecton");
-        objectNames.put(C, "C: FertileTecton");
-        A.addNeighbour(C);
-        C.addNeighbour(B);
-        C.addNeighbour(A);
-        B.addNeighbour(C);
 
-        Mycelium M = new Mycelium();
-        objectNames.put(M, "M: Mycelium");
-        B.addMycelium(M);
-        M.setLocation(B);
+        FertileTecton B = new FertileTecton();
+        objectNames.put(B, "B: FertileTecton");
+
+        FertileTecton C = new FertileTecton();
+        objectNames.put(C, "C: FertileTecton");
+
+        Mycelium MB = new Mycelium();
+        objectNames.put(MB, "MB: Mycelium");
+
+        Mycelium MC = new Mycelium();
+        objectNames.put(MB, "MC: Mycelium");
 
         Insect I = new Insect();
         objectNames.put(I, "I: Insect");
+
+        B.addMycelium(MB);
+        MB.setLocation(B);
+
+        C.addMycelium(MC);
+        MC.setLocation(C);
+
         A.addOccupant(I);
         I.setLocation(A);
+
+        B.addNeighbour(A);
+        A.addNeighbour(B);
+        A.addNeighbour(C);
+        C.addNeighbour(A);
 
         //Test case
         printTrace = true;
@@ -1452,7 +1473,6 @@ public class Main {
         I.runAway();
 
         objectNames.clear();
-        printTrace = false;
     }
 
     /**
@@ -1466,7 +1486,40 @@ public class Main {
      *        MB gombatest utasítására B FertileTecton az MB gombatest által kilőtt spórákat hozzáadja a rajta (B FertileTectonon) lévő spórák listájához.
      */
     private static void mushroomBodySuccesfullEjectSpore1Distance(){
-        throw new UnsupportedOperationException("Not implemented yet");
+        //Init
+        printTrace = false;
+        FertileTecton A = new FertileTecton();
+        FertileTecton B = new FertileTecton();
+        FertileTecton C = new FertileTecton();
+        FertileTecton D = new FertileTecton();
+        objectNames.put(A, "A: FertileTecton");
+        objectNames.put(B, "B: FertileTecton");
+        objectNames.put(C, "C: FertileTecton");
+        objectNames.put(D, "D: FertileTecton");
+        A.addNeighbour(B);
+        B.addNeighbour(A);
+        B.addNeighbour(C);
+        C.addNeighbour(B);
+        C.addNeighbour(D);
+        D.addNeighbour(C);
+
+        MushroomBody MB = new MushroomBody();
+        objectNames.put(MB, "MB: MushroomBody");
+        A.setMushroomBody(MB);
+        MB.setLocation(A);
+        MB.setRemainingEjects(3);
+
+        SpeedSpore S = new SpeedSpore();
+        MB.addSpore(S);
+
+        //Test case
+        printTrace = true;
+
+        System.out.println("Tester");
+        System.out.printf("\t=ejectSpores(%s)=> %s %n", objectNames.get(B), objectNames.get(MB));
+        MB.ejectSpores(B);
+
+        objectNames.clear();
     }
 
     /**
@@ -1480,7 +1533,40 @@ public class Main {
      *        MB gombatest utasítására C FertileTecton az MB gombatest által kilőtt spórákat hozzáadja a rajta (C FertileTectonon) lévő spórák listájához.
      */
     private static void mushroomBodySuccesfullEjectSpore2Distance(){
-        throw new UnsupportedOperationException("Not implemented yet");
+        //Init
+        printTrace = false;
+        FertileTecton A = new FertileTecton();
+        FertileTecton B = new FertileTecton();
+        FertileTecton C = new FertileTecton();
+        FertileTecton D = new FertileTecton();
+        objectNames.put(A, "A: FertileTecton");
+        objectNames.put(B, "B: FertileTecton");
+        objectNames.put(C, "C: FertileTecton");
+        objectNames.put(D, "D: FertileTecton");
+        A.addNeighbour(B);
+        B.addNeighbour(A);
+        B.addNeighbour(C);
+        C.addNeighbour(B);
+        C.addNeighbour(D);
+        D.addNeighbour(C);
+
+        MushroomBody MB = new MushroomBody();
+        objectNames.put(MB, "MB: MushroomBody");
+        A.setMushroomBody(MB);
+        MB.setLocation(A);
+        MB.setRemainingEjects(1);
+
+        SpeedSpore S = new SpeedSpore();
+        MB.addSpore(S);
+
+        //Test case
+        printTrace = true;
+
+        System.out.println("Tester");
+        System.out.printf("\t=ejectSpores(%s)=> %s %n", objectNames.get(C), objectNames.get(MB));
+        MB.ejectSpores(C);
+
+        objectNames.clear();
     }
 
     /**
@@ -1493,7 +1579,40 @@ public class Main {
      *     4. Mivel nem ez MB gombatest utolsó kilövése, így szomszédos tekton szomszédjára, azaz C FertileTectonra nem lőhet spórát.
      */
     private static void mushroomBodyFailedEjectSpore2Distance(){
-        throw new UnsupportedOperationException("Not implemented yet");
+        //Init
+        printTrace = false;
+        FertileTecton A = new FertileTecton();
+        FertileTecton B = new FertileTecton();
+        FertileTecton C = new FertileTecton();
+        FertileTecton D = new FertileTecton();
+        objectNames.put(A, "A: FertileTecton");
+        objectNames.put(B, "B: FertileTecton");
+        objectNames.put(C, "C: FertileTecton");
+        objectNames.put(D, "D: FertileTecton");
+        A.addNeighbour(B);
+        B.addNeighbour(A);
+        B.addNeighbour(C);
+        C.addNeighbour(B);
+        C.addNeighbour(D);
+        D.addNeighbour(C);
+
+        MushroomBody MB = new MushroomBody();
+        objectNames.put(MB, "MB: MushroomBody");
+        A.setMushroomBody(MB);
+        MB.setLocation(A);
+        MB.setRemainingEjects(3);
+
+        SpeedSpore S = new SpeedSpore();
+        MB.addSpore(S);
+
+        //Test case
+        printTrace = true;
+
+        System.out.println("Tester");
+        System.out.printf("\t=ejectSpores(%s)=> %s %n", objectNames.get(C), objectNames.get(MB));
+        MB.ejectSpores(C);
+
+        objectNames.clear();
     }
 
     /**
@@ -1506,6 +1625,39 @@ public class Main {
      *     4. Mivel D FertileTecton túl messze van, rá MB gombatest nem lőhet spórát.
      */
     private static void mushroomBodyFailedEjectSpore3Distance(){
-        throw new UnsupportedOperationException("Not implemented yet");
+        //Init
+        printTrace = false;
+        FertileTecton A = new FertileTecton();
+        FertileTecton B = new FertileTecton();
+        FertileTecton C = new FertileTecton();
+        FertileTecton D = new FertileTecton();
+        objectNames.put(A, "A: FertileTecton");
+        objectNames.put(B, "B: FertileTecton");
+        objectNames.put(C, "C: FertileTecton");
+        objectNames.put(D, "D: FertileTecton");
+        A.addNeighbour(B);
+        B.addNeighbour(A);
+        B.addNeighbour(C);
+        C.addNeighbour(B);
+        C.addNeighbour(D);
+        D.addNeighbour(C);
+
+        MushroomBody MB = new MushroomBody();
+        objectNames.put(MB, "MB: MushroomBody");
+        A.setMushroomBody(MB);
+        MB.setLocation(A);
+        MB.setRemainingEjects(3);
+
+        SpeedSpore S = new SpeedSpore();
+        MB.addSpore(S);
+
+        //Test case
+        printTrace = true;
+
+        System.out.println("Tester");
+        System.out.printf("\t=ejectSpores(%s)=> %s %n", objectNames.get(D), objectNames.get(MB));
+        MB.ejectSpores(D);
+
+        objectNames.clear();
     }
 }

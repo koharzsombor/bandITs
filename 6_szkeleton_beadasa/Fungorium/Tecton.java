@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 /**
  *
@@ -85,13 +82,6 @@ public abstract class Tecton implements OnRoundBeginSubscriber {
     }
 
     /**
-     * @param myceliumCapacity
-     */
-    public void setMyceliumCapacity(int myceliumCapacity) {
-        this.myceliumCapacity = myceliumCapacity;
-    }
-
-    /**
      * @return
      */
     public Queue<Spore> getSpores() {
@@ -134,25 +124,98 @@ public abstract class Tecton implements OnRoundBeginSubscriber {
     }
 
     /**
-     * @param tecton
-     * @return
+     * A függvény megadja, hogy milyen messze van egy cél tekton a jelenlegi tektontól.
+     * @param tecton A cél tekton.
+     * @return A távolság a jelen és a cél tekton között.
      */
     public int distance(Tecton tecton) {
-        throw new UnsupportedOperationException("Not implemented");
+        Map<Tecton, Integer> distances = new HashMap<>();
+        Queue<Tecton> queue = new LinkedList<>();
+
+        distances.put(this, 0);
+        queue.add(this);
+
+        //BFS
+        while (!queue.isEmpty()) {
+            Tecton current = queue.poll();
+            int currentDistance = distances.get(current);
+
+            if (current == tecton)
+                return currentDistance;
+
+            for (Tecton neighbour : current.neighbours) {
+                distances.computeIfAbsent(neighbour, distance -> {
+                    queue.add(neighbour);
+                    return currentDistance + 1;
+                });
+            }
+        }
+
+        return -1;
     }
 
     /**
-     * @return
+     * A tektonok összegsége, aminek fonalai nincsenek összeköttetésben gombatestel, ezért el fognak pusztulni.
      */
-    public boolean checkNeighbourMyceliaSustain() {
-        return true;
+    private Set<Tecton> notSustained = new HashSet<>();
+
+    /**
+     * Azok a szomszédok összessége, amelyen van gombafonál vagy gombatest.
+     * @return A szomszédos tektonok, amin van gombafonál vagy gombatest.
+     */
+    private List<Tecton> neighboursWithMycelia() {
+        return neighbours.stream().filter(t -> (t.hasMycelium()) || (t.mushroomBody != null)).toList();
     }
 
     /**
-     * @return
+     * A függvény megnézi, hogy a szomszédos tektonok és velük gombafonállal össsze
+     * kötött tektonok még összekötteésbe állnak-e gombatestel.
      */
-    public boolean myceliaCheckSustain() {
-        return true;
+    public void checkNeighbourMyceliaSustain() {
+        notSustained.clear();
+
+        neighbours.forEach(Tecton::myceliaCheckSustain);
+
+        for (Tecton tecton : notSustained) {
+            for (Mycelium m : tecton.getMycelia()) {
+                tecton.mycelia.remove(m);
+                m.delete();
+            }
+        }
+    }
+
+    /**
+     * A függvény megnézi, hogy a tekton és velük gombafonállal össsze
+     * kötött tektonok még összekötteésbe állnak-e gombatestel.
+     */
+    private void myceliaCheckSustain() {
+        Set<Tecton> connected = new HashSet<>();
+        Queue<Tecton> queue = new LinkedList<>();
+        Set<Tecton> visited = new HashSet<>();
+
+        boolean hasMushroomBody = false;
+
+        queue.add(this);
+        visited.add(this);
+
+        //BFS
+        while (!queue.isEmpty()) {
+            Tecton current = queue.poll();
+
+            connected.add(current);
+            if (current.mushroomBody != null)
+                hasMushroomBody = true;
+
+            for (Tecton neighbour : neighboursWithMycelia()) {
+                if (visited.add(neighbour)) {
+                    queue.add(neighbour);
+                }
+            }
+        }
+
+        if (!hasMushroomBody) {
+            notSustained.addAll(connected);
+        }
     }
 
     /**
@@ -190,7 +253,7 @@ public abstract class Tecton implements OnRoundBeginSubscriber {
     public void moveInsect(Insect insect, Tecton insectLocation) {
         if(Main.printTrace) {
             System.out.println(Main.objectNames.get(this));
-            System.out.printf("\t=distance(%s)=> %s %n \t<=dist: int =%s %n", Main.objectNames.get(this), Main.objectNames.get(insectLocation), Main.objectNames.get(this));
+            System.out.printf("\t=distance(%s)=> %s %n \t<=distance: int =%s %n", Main.objectNames.get(this), Main.objectNames.get(insectLocation), Main.objectNames.get(insectLocation));
         }
         int distance = insectLocation.distance(this);
         if(distance==1 && this.hasMycelium()){
@@ -201,6 +264,7 @@ public abstract class Tecton implements OnRoundBeginSubscriber {
             insectLocation.removeOccupant(insect);
             this.addOccupant(insect);
             insect.setLocation(this);
+            insect.setRemainingMoves(insect.getRemainingMoves()-1);
         }
     }
 
@@ -219,23 +283,26 @@ public abstract class Tecton implements OnRoundBeginSubscriber {
     }
 
     public void cutMycelium() {
-        if(Main.printTrace) {
+        boolean originalPrintTrace = Main.printTrace;
+
+        if (Main.printTrace) {
             System.out.println(Main.objectNames.get(this));
             System.out.printf("\t=cut()=> %s %n", Main.objectNames.get(mycelia.element()));
         }
-        //mycelia.poll().cut();
-        if(mycelia.isEmpty() || !occupants.isEmpty()) {
+
+        mycelia.poll().cut();
+        if (mycelia.isEmpty() || !occupants.isEmpty()) {
             List<Insect> temp = new ArrayList<>();
-            for(Insect I: occupants){
+            for (Insect I : occupants) {
                 temp.add(I);
             }
-            for(Insect I: temp){
-                if(Main.printTrace) {
+            for (Insect I : temp) {
+                if (Main.printTrace) {
                     System.out.printf("\trunAway()=> %s %n", Main.objectNames.get(I));
                 }
-                Main.printTrace=false;
+                Main.printTrace = false;
                 I.runAway();
-                Main.printTrace=true;
+                Main.printTrace = originalPrintTrace;
             }
         }
     }
@@ -246,6 +313,10 @@ public abstract class Tecton implements OnRoundBeginSubscriber {
      */
     public void addSpore(Spore spore) {
         getSpores().offer(spore);
+    }
+
+    public void transferSpores(List<Spore> newSpores) {
+        spores.addAll(newSpores);
     }
 
     /**
