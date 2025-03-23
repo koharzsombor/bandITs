@@ -1046,6 +1046,7 @@ public class Main {
      */
     private static void insectMoveSucces(){
         //Init
+        printTrace = false;
         FertileTecton A = new FertileTecton();
         FertileTecton B = new FertileTecton();
         objectNames.put(A, "A: FertileTecton");
@@ -1072,7 +1073,6 @@ public class Main {
         I.move(B);
 
         objectNames.clear();
-        printTrace = false;
     }
 
     /**
@@ -1080,6 +1080,7 @@ public class Main {
      */
     private static void insectMoveNeighbourFail(){
         //Init
+        printTrace = false;
         FertileTecton A = new FertileTecton();
         FertileTecton B = new FertileTecton();
         objectNames.put(A, "A: FertileTecton");
@@ -1104,7 +1105,6 @@ public class Main {
         I.move(B);
 
         objectNames.clear();
-        printTrace = false;
     }
 
     /**
@@ -1112,6 +1112,7 @@ public class Main {
      */
     private static void insectMoveMyceliumFail(){
         //Init
+        printTrace = false;
         FertileTecton A = new FertileTecton();
         FertileTecton B = new FertileTecton();
         objectNames.put(A, "A: FertileTecton");
@@ -1133,7 +1134,6 @@ public class Main {
         I.move(B);
 
         objectNames.clear();
-        printTrace = false;
     }
 
     /**
@@ -1141,6 +1141,7 @@ public class Main {
      */
     private static void insectCutMycelium(){
         //Init
+        printTrace = false;
         FertileTecton A = new FertileTecton();
         FertileTecton B = new FertileTecton();
         objectNames.put(A, "A: FertileTecton");
@@ -1172,7 +1173,6 @@ public class Main {
         A.cutMycelium();
 
         objectNames.clear();
-        printTrace = false;
     }
 
     /**
@@ -1180,6 +1180,7 @@ public class Main {
      */
     private static void insectRunAway(){
         //Init
+        printTrace = false;
         FertileTecton A = new FertileTecton();
         FertileTecton B = new FertileTecton();
         FertileTecton C = new FertileTecton();
@@ -1209,7 +1210,6 @@ public class Main {
         I.runAway();
 
         objectNames.clear();
-        printTrace = false;
     }
 
     /**
@@ -1217,6 +1217,7 @@ public class Main {
      */
     private static void mushroomBodySuccesfullEjectSpore1Distance(){
         //Init
+        printTrace = false;
         FertileTecton A = new FertileTecton();
         FertileTecton B = new FertileTecton();
         FertileTecton C = new FertileTecton();
@@ -1249,7 +1250,6 @@ public class Main {
         MB.ejectSpores(B);
 
         objectNames.clear();
-        printTrace = false;
     }
 
     /**
@@ -1257,6 +1257,7 @@ public class Main {
      */
     private static void mushroomBodySuccesfullEjectSpore2Distance(){
         //Init
+        printTrace = false;
         FertileTecton A = new FertileTecton();
         FertileTecton B = new FertileTecton();
         FertileTecton C = new FertileTecton();
@@ -1289,7 +1290,6 @@ public class Main {
         MB.ejectSpores(C);
 
         objectNames.clear();
-        printTrace = false;
     }
 
     /**
@@ -1297,6 +1297,7 @@ public class Main {
      */
     private static void mushroomBodyFailedEjectSpore2Distance(){
         //Init
+        printTrace = false;
         FertileTecton A = new FertileTecton();
         FertileTecton B = new FertileTecton();
         FertileTecton C = new FertileTecton();
@@ -1329,7 +1330,6 @@ public class Main {
         MB.ejectSpores(C);
 
         objectNames.clear();
-        printTrace = false;
     }
 
     /**
@@ -1337,6 +1337,7 @@ public class Main {
      */
     private static void mushroomBodyFailedEjectSpore3Distance(){
         //Init
+        printTrace = false;
         FertileTecton A = new FertileTecton();
         FertileTecton B = new FertileTecton();
         FertileTecton C = new FertileTecton();
@@ -1369,6 +1370,5 @@ public class Main {
         MB.ejectSpores(D);
 
         objectNames.clear();
-        printTrace = false;
     }
 }
