@@ -89,7 +89,7 @@ public class FertileTecton extends Tecton {
         boolean originalPrintTrace = Main.printTrace;
 
         if (Main.printTrace) {
-            System.out.printf("\t=onTurnBegin()=> A: FertileTecton%n");
+            System.out.printf("\t=onTurnBegin()=> %s%n", Main.objectNames.get(this));
         }
 
         setBreakTimer(getBreakTimer() - 1);

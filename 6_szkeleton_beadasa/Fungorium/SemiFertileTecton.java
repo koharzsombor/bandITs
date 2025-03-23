@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * A SemiFertileTecton egy olyan tekton, melyen nem nolhet gombatest
  * gombafonal mint a legtobb tektonnal csask 1 nolhet
@@ -8,15 +10,7 @@ public class SemiFertileTecton extends Tecton {
      */
     public SemiFertileTecton() {
         setMyceliaCapacity(1);
-    }
-
-    /**
-     * A kor/Turn kezdeten hivodo metodus
-     * Jelenleg nem tartalmaz implementaciot
-     */
-    @Override
-    public void onRoundBegin() {
-        throw new UnsupportedOperationException("Not implemented");
+        setBreakTimer(1);
     }
 
     /**
@@ -68,5 +62,67 @@ public class SemiFertileTecton extends Tecton {
             System.out.printf("\t=delete()=> %s", Main.objectNames.get(mushroomBody));
         }
         mushroomBody.delete();
+    }
+
+    /**
+     * A kor/Turn kezdeten hivodo metodus
+     * Itt tortenik a tektontores es annak kovetkezmenyei
+     * (myceliumok elvagasa, Insectek elmenekulese, )
+     */
+    @Override
+    public void onRoundBegin() {
+
+        boolean originalPrintTrace = Main.printTrace;
+
+        if (Main.printTrace) {
+            System.out.printf("\t=onTurnBegin()=> %s%n", Main.objectNames.get(this));
+        }
+
+        setBreakTimer(getBreakTimer() - 1);
+
+        if (getBreakTimer() <= 0) {
+
+            if (Main.printTrace) {
+                System.out.printf("%s\n", Main.objectNames.get(this));
+            }
+
+
+            while( !getMycelia().isEmpty()) {
+                Mycelium mycelium = getMycelia().poll();
+                assert mycelium != null;
+
+                System.out.printf("\t=cut()=> %s\n", Main.objectNames.get(mycelium));
+
+                Main.printTrace = false;
+                mycelium.cut();
+                Main.printTrace = originalPrintTrace;
+            }
+
+            // Egy temp lista melyben az Insectek lesznek eltarolva mivel sima
+            // iteracio kozben ki fognak esni elemek a listabol
+            // ez csak egy masolata az eredeti Occupants Listanak
+            ArrayList<Insect> temp = new ArrayList<>(getOccupants());
+
+            for (Insect o : temp) {
+                if (Main.printTrace) {
+                    System.out.printf("\t=runAway()=> %s\n", Main.objectNames.get(o));
+                }
+                Main.printTrace = false;
+                o.runAway();
+                Main.printTrace = originalPrintTrace;
+            }
+
+            FertileTecton newt = new FertileTecton();
+            Main.objectNames.put(newt, "newt: FertileTecton");
+            if (Main.printTrace) {
+                System.out.printf("\t=Create()=> %s%n", Main.objectNames.get(newt));
+            }
+            newt.addNeighbour(this);
+            if (Main.printTrace) {
+                System.out.printf("\t=addNeighbour(%s)=> %s%n", Main.objectNames.get(this), Main.objectNames.get(newt));
+            }
+            this.addNeighbour(newt);
+
+        }
     }
 }
