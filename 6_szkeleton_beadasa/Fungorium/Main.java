@@ -1129,8 +1129,9 @@ public class Main {
     /**
      * 30. test case
      */
-    private static void insectCutMycelium(){
+    private static void insectCutMycelium() {
         //Init
+        printTrace = false;
         FertileTecton A = new FertileTecton();
         FertileTecton B = new FertileTecton();
         objectNames.put(A, "A: FertileTecton");
@@ -1161,7 +1162,6 @@ public class Main {
         A.cutMycelium();
 
         objectNames.clear();
-        printTrace = false;
     }
 
     /**
@@ -1169,12 +1169,15 @@ public class Main {
      */
     private static void insectRunAway(){
         //Init
+        printTrace = false;
         FertileTecton A = new FertileTecton();
         FertileTecton B = new FertileTecton();
         FertileTecton C = new FertileTecton();
+
         objectNames.put(A, "A: FertileTecton");
         objectNames.put(B, "B: FertileTecton");
         objectNames.put(C, "C: FertileTecton");
+
         A.addNeighbour(C);
         C.addNeighbour(B);
         C.addNeighbour(A);
@@ -1198,7 +1201,6 @@ public class Main {
         I.runAway();
 
         objectNames.clear();
-        printTrace = false;
     }
 
     /**

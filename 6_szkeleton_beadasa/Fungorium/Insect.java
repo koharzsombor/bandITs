@@ -1,7 +1,4 @@
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Set;
+import java.util.*;
 
 /**
  *
@@ -181,7 +178,7 @@ public class Insect {
     }
 
     /**
-     *
+     * A rovar elfut egy véletlenszerű tektonra, ahol van gombafonál.
      */
     public void runAway() {
         Set<Tecton> available = new HashSet<>();
@@ -191,12 +188,21 @@ public class Insect {
         queue.add(getLocation());
         visited.add(location);
 
-        //BFS again
+        //BFS
         while (!queue.isEmpty()) {
             Tecton current = queue.poll();
 
-            if (current.hasMycelium())
+            boolean hasMycelium;
+            if (Main.printTrace) {
+                System.out.println(Main.objectNames.get(this));
+                System.out.printf("\t=hasMycelium()=> %s %n", Main.objectNames.get(current));
+                System.out.printf("\t<=hasMycelium= %s %n", Main.objectNames.get(current));
+            }
+
+            hasMycelium = current.hasMycelium();
+            if (hasMycelium) {
                 available.add(current);
+            }
 
             for (Tecton neighbour : location.getNeighbours()) {
                 if (visited.add(neighbour)) {
@@ -205,6 +211,46 @@ public class Insect {
             }
         }
 
-        
+        if (available.isEmpty())
+            return;
+
+        Tecton selectedTecton = null;
+        if (Main.printTrace) {
+            System.out.println("\t=selectedTecton=> input");
+            System.out.println("Kérem adja meg, hogy melyik tektonra meneküljön a rovar!");
+
+            try(Scanner selectScanner = new Scanner(System.in)) {
+                while (selectedTecton == null) {
+                    available.forEach(t -> System.out.println(Main.objectNames.get(t)));
+
+                    String input = selectScanner.nextLine();
+
+                    for (Tecton tecton : available) {
+                        if (Main.objectNames.get(tecton).toLowerCase().charAt(0) == input.toLowerCase().charAt(0)) {
+                            selectedTecton = tecton;
+                        }
+                    }
+                }
+            }
+
+            System.out.println("\t<=selectedTecton= input");
+        }
+        else {
+            int item = new Random().nextInt(available.size());
+            int i = 0;
+            for(Tecton tecton : available)  {
+                if (i == item)
+                    selectedTecton = tecton;
+                i++;
+            }
+        }
+        if (selectedTecton != null) {
+            setLocation(selectedTecton);
+
+            if (Main.printTrace)
+                System.out.printf("\t=addOccupant(%s)=> %s %n", Main.objectNames.get(this), Main.objectNames.get(selectedTecton));
+
+            selectedTecton.addOccupant(this);
+        }
     }
 }
