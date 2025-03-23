@@ -144,7 +144,7 @@ public abstract class Tecton implements OnRoundBeginSubscriber {
                 return currentDistance;
 
             for (Tecton neighbour : current.neighbours) {
-                distances.computeIfAbsent(neighbour, _ -> {
+                distances.computeIfAbsent(neighbour, distance -> {
                     queue.add(neighbour);
                     return currentDistance + 1;
                 });
