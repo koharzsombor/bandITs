@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  *
  */
@@ -18,6 +20,10 @@ public class MushroomBody extends Mushroom {
      */
     private Tecton location;
 
+    /**
+     * Ez a lista tárolja a MushroomBody által termelt spórákat
+     */
+    private ArrayList<Spore> MushroomSpores = new ArrayList<Spore>();
 
     /**
      * Konstruktor FertileTecton, AridTecton es MultiLayeredTecton eseten, itt eleg a Fertile Tectont
@@ -123,11 +129,40 @@ public class MushroomBody extends Mushroom {
     }
 
     /**
+     * @return
+     */
+    public ArrayList<Spore> getSpores() {
+        return MushroomSpores;
+    }
+
+    /**
+     * Hozzáadja a newSpore-t a spórák listájához
+     * @param newSpore
+     */
+    public void addSpore(Spore newSpore) {
+        MushroomSpores.add(newSpore);
+    }
+
+    /**
      * Sporakat lo ki egy adott tektonra
      * @param target - A celpont tekton, ahova a sporakat szeretnenk kiloni
      */
     public void ejectSpores(Tecton target) {
-        throw new UnsupportedOperationException("Not implemented");
+        if(!MushroomSpores.isEmpty() && getRemainingEjects() > 0) {
+            if (Main.printTrace) {
+                System.out.println(Main.objectNames.get(this));
+                System.out.printf("\t=distance(%s)=> %s %n \t<=distance: int =%s %n ", Main.objectNames.get(target), Main.objectNames.get(location), Main.objectNames.get(location));
+            }
+            int distance = location.distance(target);
+            if ((distance == 1 && getRemainingEjects()>=1) || (distance == 2 && getRemainingEjects() == 1)) {
+                if (Main.printTrace) {
+                    System.out.printf("\t=transferSpores(spores)=> %s %n", Main.objectNames.get(target));
+                }
+                target.transferSpores(MushroomSpores);
+                MushroomSpores.clear();
+                setRemainingEjects(getRemainingEjects()-1);
+            }
+        }
     }
 
     /**
