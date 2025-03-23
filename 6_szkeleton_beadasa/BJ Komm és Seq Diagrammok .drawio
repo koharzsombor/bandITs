@@ -1319,7 +1319,7 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="4Ux76-bDISIwhXDdKn0W-27" value="&lt;div&gt;A felhasználó kiválaszt egyet, azok közül, amelyeken van tekton.&lt;/div&gt;&lt;div&gt;Ez véletlenszerűen lesz kiválasztva a végső implementációban.&lt;/div&gt;" style="shape=note;size=20;whiteSpace=wrap;html=1;" parent="HdlSCGkl1SWqdlWBGv8y-1" vertex="1">
+        <mxCell id="4Ux76-bDISIwhXDdKn0W-27" value="&lt;div&gt;A felhasználó kiválaszt egyet, azok közül, amelyeken van gombafonál.&lt;/div&gt;&lt;div&gt;Ez véletlenszerűen lesz kiválasztva a végső implementációban.&lt;/div&gt;" style="shape=note;size=20;whiteSpace=wrap;html=1;" parent="HdlSCGkl1SWqdlWBGv8y-1" vertex="1">
           <mxGeometry x="50" y="445" width="200" height="105" as="geometry" />
         </mxCell>
         <mxCell id="4Ux76-bDISIwhXDdKn0W-28" value="choosenTecton: FertileTecton" style="html=1;whiteSpace=wrap;" parent="HdlSCGkl1SWqdlWBGv8y-1" vertex="1">
