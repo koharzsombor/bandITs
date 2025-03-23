@@ -1,14 +1,15 @@
 /**
- *
+ * A gomba egy részét ábrázoló osztály, azaz a közös ősosztálya a gombatestnek és a gombafonálnak.
  */
 public abstract class Mushroom implements OnTurnBeginSubscriber {
     /**
-     *
+     * A gombarész kitörlése.
      */
     public abstract void delete();
 
     /**
-     * @param sporeCount
+     * A gombarész növekedése.
+     * @param sporeCount A növekedés helyének spóraszáma.
      */
     public abstract void grow(int sporeCount);
 }
