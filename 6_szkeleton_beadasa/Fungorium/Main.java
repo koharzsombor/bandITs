@@ -5,6 +5,8 @@ import java.util.Scanner;
  * A program futtatásért és tesztelő - program összeköttetésért felelős osztály.
  */
 public class Main {
+    public static Scanner selectScanner = new Scanner(System.in);
+
     /**
      * Az objektumoknak a neveit tárolja, csak a modell tesztelése céljából létezik.
      */
@@ -37,7 +39,7 @@ public class Main {
         System.out.println("Fungorium - Szekeleton");
         printTestOptions();
 
-        try(Scanner selectScanner = new Scanner(System.in)) {
+        try {
             while (selectScanner.hasNext()) {
                 if (selectScanner.hasNextInt()) {
                     int input = selectScanner.nextInt();
@@ -93,6 +95,9 @@ public class Main {
 
                 printTestOptions();
             }
+        }
+        finally {
+            selectScanner.close();
         }
     }
 
