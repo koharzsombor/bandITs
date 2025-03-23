@@ -145,7 +145,9 @@ public abstract class Tecton implements OnRoundBeginSubscriber {
      * @return
      */
     public boolean checkNeighbourMyceliaSustain() {
-        //Nothing
+        for(Tecton t: neighbours) {
+            t.myceliaCheckSustain();
+        }
         return true;
     }
 
