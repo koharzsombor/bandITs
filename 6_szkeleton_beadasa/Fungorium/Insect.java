@@ -1,3 +1,6 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.*;
 
 /**
@@ -224,16 +227,15 @@ public class Insect {
             System.out.println("\t=selectedTecton=> input");
             System.out.println("Kérem adja meg, hogy melyik tektonra meneküljön a rovar!");
 
-            try(Scanner selectScanner = new Scanner(System.in)) {
-                while (selectedTecton == null) {
-                    available.forEach(t -> System.out.println(Main.objectNames.get(t)));
+            while (selectedTecton == null) {
+                available.forEach(t -> System.out.println(Main.objectNames.get(t)));
 
-                    String input = selectScanner.nextLine();
+                String input = Main.selectScanner.nextLine();
 
-                    for (Tecton tecton : available) {
-                        if (Main.objectNames.get(tecton).toLowerCase().charAt(0) == input.toLowerCase().charAt(0)) {
-                            selectedTecton = tecton;
-                        }
+                for (Tecton tecton : available) {
+                    if (Main.objectNames.get(tecton).toLowerCase().charAt(0) == input.toLowerCase().charAt(0)) {
+                        selectedTecton = tecton;
+                        break;
                     }
                 }
             }
