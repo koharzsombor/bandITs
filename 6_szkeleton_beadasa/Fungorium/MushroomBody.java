@@ -153,8 +153,7 @@ public class MushroomBody extends Mushroom {
                 System.out.println(Main.objectNames.get(this));
                 System.out.printf("\t=distance(%s)=> %s %n \t<=distance: int =%s %n ", Main.objectNames.get(target), Main.objectNames.get(location), Main.objectNames.get(location));
             }
-            //int distance = location.distance(target);
-            int distance =2;
+            int distance = location.distance(target);
             if ((distance == 1 && getRemainingEjects()>=1) || (distance == 2 && getRemainingEjects() == 1)) {
                 if (Main.printTrace) {
                     System.out.printf("\t=transferSpores(spores)=> %s %n", Main.objectNames.get(target));

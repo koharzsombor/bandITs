@@ -1062,6 +1062,7 @@ public class Main {
         objectNames.put(I, "I: Insect");
         A.addOccupant(I);
         I.setLocation(A);
+        I.setRemainingMoves(1);
 
         //Test case
         printTrace = true;
@@ -1093,6 +1094,7 @@ public class Main {
         objectNames.put(I, "I: Insect");
         A.addOccupant(I);
         I.setLocation(A);
+        I.setRemainingMoves(1);
 
         //Test case
         printTrace = true;
@@ -1121,6 +1123,7 @@ public class Main {
         objectNames.put(I, "I: Insect");
         A.addOccupant(I);
         I.setLocation(A);
+        I.setRemainingMoves(1);
 
         //Test case
         printTrace = true;
@@ -1154,6 +1157,7 @@ public class Main {
         objectNames.put(I, "I: Insect");
         A.addOccupant(I);
         I.setLocation(A);
+        I.setRemainingMoves(1);
 
         Mycelium M2 = new Mycelium();
         objectNames.put(M2, "M2: Mycelium");
