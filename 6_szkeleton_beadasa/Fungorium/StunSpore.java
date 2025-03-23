@@ -1,9 +1,10 @@
 /**
- *
+ * Olyan spóra, amelyet elfogyasztva a rovar megbénul és a következő 1 kör alatt nem tud semmilyen aktivitást kifejteni.
  */
 public class StunSpore extends Spore {
     /**
-     * @param insect
+     * A spórát megevő rovart lebénítja.
+     * @param insect A spórát megevő rovar.
      */
     @Override
     public void eatSpore(Insect insect) {
