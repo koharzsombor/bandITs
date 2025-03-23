@@ -1,10 +1,12 @@
 /**
- *
+ * Olyan spóra, amelynek elfogyasztása megakadályozza a rovart abban, hogy fonalat vágjon el.
+ * Ez a hatás 3 körön át tart
  */
 public class PreventCutSpore extends Spore {
 
     /**
-     * @param insect
+     * Egy rovar megeszi a spórát, ennek hatására nem tud gombafonalat elvágni.
+     * @param insect A spórát megevő rovar.
      */
     @Override
     public void eatSpore(Insect insect) {

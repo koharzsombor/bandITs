@@ -1,5 +1,6 @@
 /**
- * Spórát ábrázoló osztály
+ * Spóra – a gombatest termeli. A spóra hatását az elfogyasztása következményeként a rovar internalizálja.
+ * Egy spóra lehet PreventCutSpore, SlownessSpore, SpeedSpore vagy StunSpore,
  */
 public abstract class Spore {
     /**
