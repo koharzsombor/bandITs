@@ -1413,6 +1413,13 @@ public class Main {
     /**
      * 31. test case:
      * Rovar elmenekülése
+     *
+     *     1. I rovar jelet kap a tesztelőtől, hogy menekülnie kell.
+     *     2. A rovar megnézi a Use-case-ben szereplő tektonokról, hogy tudna-e rájuk menekülni (van-e rajtuk gombafonál).
+     *     3. I rovar (alap esetben véletlenszerűen,) jelen esetben a a felhasználótól kapott bemenet alapján, kiválaszt egy tektont.
+     *     4. Ha van a kiválasztott tektonon van gombafonál akkor teljesül az átmenekülésnek a feltétele.
+     *     5. I rovar szól a kiválasztott tektonnak, hogy most már rajta van.
+     *     6. I rovar beállítja az új helyének a kiválasztott tektont.
      */
     private static void insectRunAway(){
         //Init
