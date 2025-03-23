@@ -1,20 +1,16 @@
 /**
- * A Mushroom osztaly egy absztrakt osztaly
- *  * Definialja a novekedes es torles funkcionalitasait
- *  * Minden Mushroom tipusu objektum automatikusan egy Turn kezdetenek esemenyere reagal
+ * A gomba egy részét ábrázoló osztály, azaz a közös ősosztálya a gombatestnek és a gombafonálnak.
  */
 public abstract class Mushroom implements OnTurnBeginSubscriber {
     /**
-     *  Az osztaly egyed torleset megvalosito absztrakt metodus
-     *  Minden alosztalynak implementalnia kell
+     * A gombarész kitörlése.
+public abstract class Mushroom implements OnTurnBeginSubscriber {
      */
     public abstract void delete();
 
     /**
-     * Celja a metodust meghivo objektum novesztese egy adott tektonra
-     * Minden alosztalynak meg kell hataroznia ennek a funkcionalitasat
-     * @param sporeCount - A Mycelium novesztesekor szukseges, ha > 0 akkor
-     *                   gyorsabban no/kevesebb Turn alatt
+     * A gombarész növekedése.
+     * @param sporeCount A növekedés helyének spóraszáma.
      */
     public abstract void grow(int sporeCount);
 }

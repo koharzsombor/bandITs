@@ -1,29 +1,36 @@
 /**
- *
+ * Egy segédosztály, ami a tekton típusok és a gombarészek közti kommunikációban segít.
+ * A szükséges kommunikáció befejezésével az osztály megszűnik.
  */
 public abstract class TectonVisitor {
     /**
-     * @param tecton
+     * "Fertile" típusú tektonnal való kommunikáció.
+     * @param tecton A tekton amivel kommunikálni szeretnénk.
      */
     public abstract void visit(FertileTecton tecton);
 
     /**
-     * @param tecton
+     * "MultiLayered" típusú tektonnal való kommunikáció.
+     * @param tecton A tekton amivel kommunikálni szeretnénk.
      */
     public abstract void visit(MultiLayeredTecton tecton);
 
     /**
-     * @param tecton
+     * "Arid" típusú tektonnal való kommunikáció.
+     * @param tecton A tekton amivel kommunikálni szeretnénk.
      */
     public abstract void visit(AridTecton tecton);
 
     /**
-     * @param tecton
+     * "SemiFertile" típusú tektonnal való kommunikáció.
+     * @param tecton A tekton amivel kommunikálni szeretnénk.
      */
     public abstract void visit(SemiFertileTecton tecton);
 
     /**
-     * @return
+     * A kommunikációnak a gombarész tagjának getterje.
+     * Ez minden implementációban más lesz, ezért absztrakt.
+     * @return A gombarész, aki a kommunikációt végzi.
      */
     public abstract Mushroom getCreator();
 }

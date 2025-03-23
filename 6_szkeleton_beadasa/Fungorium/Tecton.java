@@ -256,7 +256,8 @@ public abstract class Tecton implements OnRoundBeginSubscriber {
     }
 
     /**
-     * @param insect
+     * A tektonon lévő spórákból az elsőt a kapott rovar megeszi, majd a megevett spórát kitörli.
+     * @param insect A rovar, ami a spórát megeszi.
      */
     public void eatSpore(Insect insect) {
         if (Main.printTrace) {
@@ -264,14 +265,17 @@ public abstract class Tecton implements OnRoundBeginSubscriber {
             System.out.printf("\t=eatSpore(%s)=> %s %n", Main.objectNames.get(insect), Main.objectNames.get(spores.peek()));
         }
         Spore spore = spores.poll();
-        spore.eatSpore(insect);
 
-        Main.mockDeletion(spore);
+        if (spore != null) {
+            spore.eatSpore(insect);
+            Main.mockDeletion(spore);
+        }
     }
 
     /**
-     * @param MyceliumGrowthEvaluator
-     * @param mycelium
+     * Eldönti, hogy az adott gombafonál nőhet-e ezen a tektonon.
+     * @param MyceliumGrowthEvaluator A kommunikációban segítő visitor.
+     * @param mycelium Az adott gombafonál, amelyikről a tekton eldönti, hogy ránőhet-e.
      */
     public abstract void accept(MyceliumGrowthEvaluator MyceliumGrowthEvaluator, Mycelium mycelium);
 
