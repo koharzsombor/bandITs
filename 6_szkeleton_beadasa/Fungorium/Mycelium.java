@@ -109,6 +109,7 @@ public class Mycelium extends Mushroom {
      *
      */
     public void cut() {
+        delete();
         location.checkNeighbourMyceliaSustain();
     }
 
