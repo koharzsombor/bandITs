@@ -223,10 +223,13 @@ public abstract class Tecton implements OnRoundBeginSubscriber {
     }
 
     public void cutMycelium() {
+        boolean originalPrintTrace = Main.printTrace;
+
         if (Main.printTrace) {
             System.out.println(Main.objectNames.get(this));
             System.out.printf("\t=cut()=> %s %n", Main.objectNames.get(mycelia.element()));
         }
+
         mycelia.poll().cut();
         if (mycelia.isEmpty() || !occupants.isEmpty()) {
             List<Insect> temp = new ArrayList<>();
@@ -239,7 +242,7 @@ public abstract class Tecton implements OnRoundBeginSubscriber {
                 }
                 Main.printTrace = false;
                 I.runAway();
-                Main.printTrace = true;
+                Main.printTrace = originalPrintTrace;
             }
         }
     }
