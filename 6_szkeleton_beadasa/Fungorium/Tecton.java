@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 /**
  *
@@ -134,11 +131,34 @@ public abstract class Tecton implements OnRoundBeginSubscriber {
     }
 
     /**
-     * @param tecton
-     * @return
+     * A függvény megadja, hogy milyen messze van egy cél tekton a jelenlegi tektontól.
+     * @param tecton A cél tekton.
+     * @return A távolság a jelen és a cél tekton között.
      */
     public int distance(Tecton tecton) {
-        throw new UnsupportedOperationException("Not implemented");
+        Map<Tecton, Integer> distances = new HashMap<>();
+        Queue<Tecton> queue = new LinkedList<>();
+
+        distances.put(this, 0);
+        queue.add(this);
+
+        //BFS
+        while (!queue.isEmpty()) {
+            Tecton current = queue.poll();
+            int currentDistance = distances.get(current);
+
+            if (current == tecton)
+                return currentDistance;
+
+            for (Tecton neighbour : current.neighbours) {
+                distances.computeIfAbsent(neighbour, _ -> {
+                    queue.add(neighbour);
+                    return currentDistance + 1;
+                });
+            }
+        }
+
+        return -1;
     }
 
     /**

@@ -1,3 +1,8 @@
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Set;
+
 /**
  *
  */
@@ -179,6 +184,27 @@ public class Insect {
      *
      */
     public void runAway() {
+        Set<Tecton> available = new HashSet<>();
+        Queue<Tecton> queue = new LinkedList<>();
+        Set<Tecton> visited = new HashSet<>();
 
+        queue.add(getLocation());
+        visited.add(location);
+
+        //BFS again
+        while (!queue.isEmpty()) {
+            Tecton current = queue.poll();
+
+            if (current.hasMycelium())
+                available.add(current);
+
+            for (Tecton neighbour : location.getNeighbours()) {
+                if (visited.add(neighbour)) {
+                    queue.add(neighbour);
+                }
+            }
+        }
+
+        
     }
 }
