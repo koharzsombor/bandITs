@@ -23,7 +23,7 @@ public class MushroomBody extends Mushroom {
     /**
      * Ez a lista tárolja a MushroomBody által termelt spórákat
      */
-    private ArrayList<Spore> spores = new ArrayList<Spore>();
+    private ArrayList<Spore> MushroomSpores = new ArrayList<Spore>();
 
     /**
      * Konstruktor FertileTecton, AridTecton es MultiLayeredTecton eseten, itt eleg a Fertile Tectont
@@ -132,7 +132,7 @@ public class MushroomBody extends Mushroom {
      * @return
      */
     public ArrayList<Spore> getSpores() {
-        return spores;
+        return MushroomSpores;
     }
 
     /**
@@ -140,7 +140,7 @@ public class MushroomBody extends Mushroom {
      * @param newSpore
      */
     public void addSpore(Spore newSpore) {
-        spores.add(newSpore);
+        MushroomSpores.add(newSpore);
     }
 
     /**
@@ -148,17 +148,20 @@ public class MushroomBody extends Mushroom {
      * @param target - A celpont tekton, ahova a sporakat szeretnenk kiloni
      */
     public void ejectSpores(Tecton target) {
-        if(!spores.isEmpty()) {
+        if(!MushroomSpores.isEmpty() && getRemainingEjects() > 0) {
             if (Main.printTrace) {
                 System.out.println(Main.objectNames.get(this));
                 System.out.printf("\t=distance(%s)=> %s %n \t<=distance: int =%s %n ", Main.objectNames.get(target), Main.objectNames.get(location), Main.objectNames.get(location));
             }
-            int distance = location.distance(target);
+            //int distance = location.distance(target);
+            int distance =2;
             if ((distance == 1 && getRemainingEjects()>=1) || (distance == 2 && getRemainingEjects() == 1)) {
                 if (Main.printTrace) {
                     System.out.printf("\t=transferSpores(spores)=> %s %n", Main.objectNames.get(target));
                 }
-                target.transferSpores(spores);
+                target.transferSpores(MushroomSpores);
+                MushroomSpores.clear();
+                setRemainingEjects(getRemainingEjects()-1);
             }
         }
     }
