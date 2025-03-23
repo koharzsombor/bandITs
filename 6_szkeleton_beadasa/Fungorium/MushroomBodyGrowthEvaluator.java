@@ -1,21 +1,25 @@
 /**
- *
+ * A MushroomBodyGrowthEvaluator osztaly a MushroomBody osztaly novekedeset
+ * es interakcioit kezeli kulonbozo Tecton-
+ * Feladata a Tecton helyszinek meglatogatasa es a kapcsolodo novekedesi folyamatok vegrehajtasa
  */
 public class MushroomBodyGrowthEvaluator extends TectonVisitor {
     /**
-     *
+     * A MushroomBody objektum, amely ezt az evaluatort letrehozta
      */
     private final MushroomBody creator;
 
     /**
-     * @param mushroom
+     * Konstruktor a MushroomBodyGrowthEvaluator letrehozasahoz
+     * @param mushroom - A MushroomBody, amelyhez ez az evaluator tartoztatva van
      */
     MushroomBodyGrowthEvaluator(MushroomBody mushroom) {
         creator = mushroom;
     }
 
     /**
-     * @param tecton
+     * Meglatogat egy FertileTecton helyszint, es vegrehajtja a kapcsolodo muveleteket
+     * @param tecton - Az eppen latogatott FertileTecton objektum
      */
     @Override
     public void visit(FertileTecton tecton) {
@@ -27,7 +31,8 @@ public class MushroomBodyGrowthEvaluator extends TectonVisitor {
     }
 
     /**
-     * @param tecton
+     * Meglatogat egy MultiLayeredTecton helyszint, es vegrehajtja a kapcsolodo muveleteket
+     * @param tecton - Az eppen latogatott MultiLayeredTecton objektum
      */
     @Override
     public void visit(MultiLayeredTecton tecton) {
@@ -39,7 +44,8 @@ public class MushroomBodyGrowthEvaluator extends TectonVisitor {
     }
 
     /**
-     * @param tecton
+     * Meglatogat egy AridTecton helyszint, es vegrehajtja a kapcsolodo muveleteket
+     * @param tecton - Az eppen latogatott AridTecton objektum
      */
     @Override
     public void visit(AridTecton tecton) {
@@ -51,7 +57,8 @@ public class MushroomBodyGrowthEvaluator extends TectonVisitor {
     }
 
     /**
-     * @param tecton
+     * Meglatogat egy SemiFertileTecton helyszint, es vegrehajtja a kapcsolodo muveleteket
+     * @param tecton - Az eppen latogatott SemiFertileTecton objektum
      */
     @Override
     public void visit(SemiFertileTecton tecton) {
@@ -62,6 +69,10 @@ public class MushroomBodyGrowthEvaluator extends TectonVisitor {
         tecton.accept(this, getCreator());
     }
 
+    /**
+     * Visszaadja a MushroomBody objektumot, amely az evaluatort letrehozta
+     * @return - Az evaluatorhoz tartozo MushroomBody objektum
+     */
     @Override
     public MushroomBody getCreator() {
         return creator;

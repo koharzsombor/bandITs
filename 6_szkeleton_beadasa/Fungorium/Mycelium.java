@@ -129,7 +129,7 @@ public class Mycelium extends Mushroom {
      * egy gombatesthez.
      */
     public void cut() {
-        throw new UnsupportedOperationException("Not implemented");
+        location.checkNeighbourMyceliaSustain();
     }
 
     /**

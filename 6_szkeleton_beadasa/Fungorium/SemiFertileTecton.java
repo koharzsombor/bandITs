@@ -1,16 +1,18 @@
 /**
- *
+ * A SemiFertileTecton egy olyan tekton, melyen nem nolhet gombatest
+ * gombafonal mint a legtobb tektonnal csask 1 nolhet
  */
 public class SemiFertileTecton extends Tecton {
     /**
-     *
+     * Ez a metodus beallitja hogy hany mycelium/fonal nolhet az adott tektonon
      */
     public SemiFertileTecton() {
         setMyceliaCapacity(1);
     }
 
     /**
-     *
+     * A kor/Turn kezdeten hivodo metodus
+     * Jelenleg nem tartalmaz implementaciot
      */
     @Override
     public void onRoundBegin() {
@@ -42,8 +44,11 @@ public class SemiFertileTecton extends Tecton {
     }
 
     /**
-     * @param mushroomBodyGrowthEvaluator
-     * @param mushroomBody
+     * Elfogad egy MushroomBodyGrowthEvaluator es egy MushroomBody objektumot,
+     * es mivel nem szabad gombatest noljon vegrehajtja az adott MushroomBody torleset
+     * @param mushroomBodyGrowthEvaluator - Az evaluator, ennek segitsegevel tud a gombatest
+     *                                    kommunikalni a tektonnal
+     * @param mushroomBody - A gombatest amely szeretne az adott tektonra ranolni
      */
     @Override
     public void accept(MushroomBodyGrowthEvaluator mushroomBodyGrowthEvaluator, MushroomBody mushroomBody) {
