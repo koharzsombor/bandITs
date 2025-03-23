@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 /**
  *
@@ -85,13 +82,6 @@ public abstract class Tecton implements OnRoundBeginSubscriber {
     }
 
     /**
-     * @param myceliumCapacity
-     */
-    public void setMyceliumCapacity(int myceliumCapacity) {
-        this.myceliumCapacity = myceliumCapacity;
-    }
-
-    /**
      * @return
      */
     public Queue<Spore> getSpores() {
@@ -134,28 +124,98 @@ public abstract class Tecton implements OnRoundBeginSubscriber {
     }
 
     /**
-     * @param tecton
-     * @return
+     * A függvény megadja, hogy milyen messze van egy cél tekton a jelenlegi tektontól.
+     * @param tecton A cél tekton.
+     * @return A távolság a jelen és a cél tekton között.
      */
     public int distance(Tecton tecton) {
-        throw new UnsupportedOperationException("Not implemented");
-    }
+        Map<Tecton, Integer> distances = new HashMap<>();
+        Queue<Tecton> queue = new LinkedList<>();
 
-    /**
-     * @return
-     */
-    public boolean checkNeighbourMyceliaSustain() {
-        for(Tecton t: neighbours) {
-            t.myceliaCheckSustain();
+        distances.put(this, 0);
+        queue.add(this);
+
+        //BFS
+        while (!queue.isEmpty()) {
+            Tecton current = queue.poll();
+            int currentDistance = distances.get(current);
+
+            if (current == tecton)
+                return currentDistance;
+
+            for (Tecton neighbour : current.neighbours) {
+                distances.computeIfAbsent(neighbour, _ -> {
+                    queue.add(neighbour);
+                    return currentDistance + 1;
+                });
+            }
         }
-        return true;
+
+        return -1;
     }
 
     /**
-     * @return
+     * A tektonok összegsége, aminek fonalai nincsenek összeköttetésben gombatestel, ezért el fognak pusztulni.
      */
-    public boolean myceliaCheckSustain() {
-        throw new UnsupportedOperationException("Not implemented");
+    private Set<Tecton> notSustained = new HashSet<>();
+
+    /**
+     * Azok a szomszédok összessége, amelyen van gombafonál vagy gombatest.
+     * @return A szomszédos tektonok, amin van gombafonál vagy gombatest.
+     */
+    private List<Tecton> neighboursWithMycelia() {
+        return neighbours.stream().filter(t -> (t.hasMycelium()) || (t.mushroomBody != null)).toList();
+    }
+
+    /**
+     * A függvény megnézi, hogy a szomszédos tektonok és velük gombafonállal össsze
+     * kötött tektonok még összekötteésbe állnak-e gombatestel.
+     */
+    public void checkNeighbourMyceliaSustain() {
+        notSustained.clear();
+
+        neighbours.forEach(Tecton::myceliaCheckSustain);
+
+        for (Tecton tecton : notSustained) {
+            for (Mycelium m : tecton.getMycelia()) {
+                tecton.mycelia.remove(m);
+                m.delete();
+            }
+        }
+    }
+
+    /**
+     * A függvény megnézi, hogy a tekton és velük gombafonállal össsze
+     * kötött tektonok még összekötteésbe állnak-e gombatestel.
+     */
+    private void myceliaCheckSustain() {
+        Set<Tecton> connected = new HashSet<>();
+        Queue<Tecton> queue = new LinkedList<>();
+        Set<Tecton> visited = new HashSet<>();
+
+        boolean hasMushroomBody = false;
+
+        queue.add(this);
+        visited.add(this);
+
+        //BFS
+        while (!queue.isEmpty()) {
+            Tecton current = queue.poll();
+
+            connected.add(current);
+            if (current.mushroomBody != null)
+                hasMushroomBody = true;
+
+            for (Tecton neighbour : neighboursWithMycelia()) {
+                if (visited.add(neighbour)) {
+                    queue.add(neighbour);
+                }
+            }
+        }
+
+        if (!hasMushroomBody) {
+            notSustained.addAll(connected);
+        }
     }
 
     /**
