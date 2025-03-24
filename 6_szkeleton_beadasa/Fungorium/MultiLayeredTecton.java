@@ -23,7 +23,7 @@ public class MultiLayeredTecton extends FertileTecton {
     @Override
     public void accept(MushroomBodyGrowthEvaluator mushroomBodyGrowthEvaluator, MushroomBody mushroomBody) {
         if (Main.printTrace) {
-            System.out.printf("%s\n", Main.objectNames.get(this));
+            System.out.printf("%s %n", Main.objectNames.get(this));
         }
 
         // Logika a novekedes vagy torlesi folyamat alapjan
