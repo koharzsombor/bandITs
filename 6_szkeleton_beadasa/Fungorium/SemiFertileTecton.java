@@ -14,8 +14,9 @@ public class SemiFertileTecton extends Tecton {
     }
 
     /**
-     * @param MyceliumGrowthEvaluator
-     * @param mycelium
+     * Eldönti, hogy az adott gombafonál nőhet-e ezen a tektonon.
+     * @param MyceliumGrowthEvaluator A kommunikációban segítő visitor.
+     * @param mycelium Az adott gombafonál, amelyikről a tekton eldönti, hogy ránőhet-e.
      */
     @Override
     public void accept(MyceliumGrowthEvaluator MyceliumGrowthEvaluator, Mycelium mycelium) {
@@ -25,7 +26,7 @@ public class SemiFertileTecton extends Tecton {
 
         if (getMycelia().size() >= getMyceliaCapacity()) {
             if (Main.printTrace) {
-                System.out.printf("\t=delete()=> %s %n", Main.objectNames.get(mycelium));
+                System.out.printf("\t=delete()=> %s", Main.objectNames.get(mycelium));
             }
             mycelium.delete();
             return;
