@@ -32,6 +32,9 @@ public class Mycelium extends Mushroom {
             System.out.printf("\t=Create(%s)=> %s %n", Main.objectNames.get(this), Main.objectNames.get(myceliumGrowthEvaluator));
         }
 
+        if (Main.printTrace)
+            System.out.printf("\t=visit(%s)=> %s %n", Main.objectNames.get(location), Main.objectNames.get(myceliumGrowthEvaluator));
+
         myceliumGrowthEvaluator.visit(location);
 
         if (Main.printTrace)
@@ -59,6 +62,9 @@ public class Mycelium extends Mushroom {
             Main.objectNames.put(myceliumGrowthEvaluator, "MGE: MyceliumGrowthEvaluator");
             System.out.printf("\t=Create(%s)=> %s %n", Main.objectNames.get(this), Main.objectNames.get(myceliumGrowthEvaluator));
         }
+
+        if (Main.printTrace)
+            System.out.printf("\t=visit(%s)=> %s %n", Main.objectNames.get(location), Main.objectNames.get(myceliumGrowthEvaluator));
 
         myceliumGrowthEvaluator.visit(location);
 
