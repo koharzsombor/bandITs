@@ -1109,6 +1109,7 @@ public class Main {
 
         //Test case
         printTrace = true;
+        System.out.println("Tester");
         I.eatSpore();
 
         objectNames.clear();
@@ -1143,6 +1144,7 @@ public class Main {
 
         //Test case
         printTrace = true;
+        System.out.println("Tester");
         I.eatSpore();
 
         objectNames.clear();
@@ -1177,6 +1179,7 @@ public class Main {
 
         //Test case
         printTrace = true;
+        System.out.println("Tester");
         I.eatSpore();
 
         objectNames.clear();
@@ -1211,6 +1214,7 @@ public class Main {
 
         //Test case
         printTrace = true;
+        System.out.println("Tester");
         I.eatSpore();
 
         objectNames.clear();
