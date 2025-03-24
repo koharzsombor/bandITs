@@ -1,5 +1,7 @@
 /**
- * Egy gombafonált ábrázoló osztály.
+ * Gombafonál – olyan gombarész, amelyre gombatest nőhet.
+ * Elvágása esetén a gombafonál akkor is fennmarad, ha olyan tektonon halad át, amelyen található gombatest.
+ * Új gombatestet olyan gombafonál növeszthet, amely összeköttetésben áll az eredeti gombatestével.
  */
 public class Mycelium extends Mushroom {
     /**

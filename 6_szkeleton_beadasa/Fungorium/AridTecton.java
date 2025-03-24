@@ -5,6 +5,46 @@
  *  valamint reagal minden kor/Turn elejen
  */
 public class AridTecton extends FertileTecton implements OnTurnBeginSubscriber {
+    /**
+     * Az mutatja, hogy hány kör múlva szívja fel a gombafonalat a tekton.
+     */
+    private int absorbCountdown = 0;
+
+    /**
+     * Eldönti, hogy a kapott gombafonál nőhet-e ezen a tektonon.
+     * Ha a gombafonál sikeresen nőtt ide, a felszívódási számláló elkezdődik.
+     * @param myceliumGrowthEvaluator A kommunikációt segítő segédobjektum.
+     * @param mycelium A gombafonál, ami ide szeretne nőni.
+     */
+    @Override
+    public void accept(MyceliumGrowthEvaluator myceliumGrowthEvaluator, Mycelium mycelium) {
+        if (Main.printTrace) {
+            System.out.printf("%s %n", Main.objectNames.get(this));
+        }
+
+        if (getMycelia().size() >= getMyceliaCapacity()) {
+            if (Main.printTrace) {
+                System.out.printf("\t=delete()=> %s", Main.objectNames.get(mycelium));
+            }
+            mycelium.delete();
+            return;
+        }
+
+        getMycelia().offer(mycelium);
+
+        if (Main.printTrace) {
+          System.out.println("\t=size()=> TectonSpores");
+          System.out.println("\t<=sporeCount= TectonSpores");
+        }
+
+        int sporeCount = getSpores().size();
+
+        if (Main.printTrace)
+          System.out.printf("\t=grow(sporeCount)=> %s %n", Main.objectNames.get(mycelium));
+
+        mycelium.grow(sporeCount);
+        absorbCountdown = 5;
+    }
 
     /**
      * Elfogad egy MushroomBodyGrowthEvaluator es egy MushroomBody objektumot,
@@ -16,7 +56,7 @@ public class AridTecton extends FertileTecton implements OnTurnBeginSubscriber {
      */
     public void accept(MushroomBodyGrowthEvaluator mushroomBodyGrowthEvaluator, MushroomBody mushroomBody) {
         if (Main.printTrace) {
-            System.out.printf("%s\n", Main.objectNames.get(this));
+            System.out.printf("%s %n", Main.objectNames.get(this));
         }
 
         // Logika a novekedes vagy torlesi folyamat alapjan
@@ -38,11 +78,19 @@ public class AridTecton extends FertileTecton implements OnTurnBeginSubscriber {
     }
 
     /**
-     *  A kor/Turn kezdeten hivodo metodus
-     *  Jelenleg nem tartalmaz implementaciot
+     * Minden kör elején csökkenti az időzítőt, majd ha eléri a nullát felszívja a tektont.
      */
     @Override
     public void onTurnBegin() {
-        throw new UnsupportedOperationException("Not implemented");
+        if (absorbCountdown > 0) {
+            absorbCountdown--;
+
+            if (absorbCountdown <= 0) {
+                Mycelium mycelium = getMycelia().poll();
+
+                if (mycelium != null)
+                    mycelium.delete();
+            }
+        }
     }
 }

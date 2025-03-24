@@ -1,9 +1,11 @@
 /**
- *
+ * Olyan spóra, amelynek elfogyasztása lelassítja a rovart, így egy kör alatt csak 1 lépést tehet meg.
+ * Ez a hatás 3 körön át tart.
  */
 public class SlownessSpore extends Spore {
     /**
-     * @param insect
+     * A rovar lassú állapotba kerül a spóra megevése következtében.
+     * @param insect A rovar ami a spórát megeszi.
      */
     @Override
     public void eatSpore(Insect insect) {

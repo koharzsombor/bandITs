@@ -18,7 +18,6 @@ public class Main {
      */
     public static boolean printTrace = false;
 
-
     /**
      * Egy objektum kitörlését szimuláló funkció, mivel a java nem képes explicit objektumokat kitörölni, ezért így írjuk le.
      * @param object A "kitörlendő" objektum.

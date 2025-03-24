@@ -1,15 +1,17 @@
 import java.util.ArrayList;
+import java.util.List;
 
 /**
- *
+ * Gombatest – olyan gombarész, amely a spórák termeléséért és kilövéséért felelős. 3 spórakilövés után elpusztul.
+ * A gombatest az utolsó kilövése előtt csak valamely szomszédjára lőhet spórát.
+ * Fejlettnek az utolsó kilövése során minősül, amely abban nyilvánul meg,
+ * hogy ekkor a szomszédja szomszédjára is tud lőni.
  */
 public class MushroomBody extends Mushroom {
     /**
      * Default konstruktor
      */
-    public MushroomBody() {
-
-    }
+    public MushroomBody() {}
     /**
      * A megmaradt kilovesek szamat tarolja
      */
@@ -23,7 +25,7 @@ public class MushroomBody extends Mushroom {
     /**
      * Ez a lista tárolja a MushroomBody által termelt spórákat
      */
-    private ArrayList<Spore> MushroomSpores = new ArrayList<Spore>();
+    private List<Spore> mushroomSpores = new ArrayList<>();
 
     /**
      * Konstruktor FertileTecton, AridTecton es MultiLayeredTecton eseten, itt eleg a Fertile Tectont
@@ -100,9 +102,7 @@ public class MushroomBody extends Mushroom {
      *                   A gombatest novesztese azonnali
      */
     @Override
-    public void grow(int sporeCount) {
-        // Currently nothing
-    }
+    public void grow(int sporeCount) {}
 
     /**
      * A jatek koroz kezdetekor torteno akciok ide kerulnek, jelenleg nem implementalva
@@ -131,8 +131,8 @@ public class MushroomBody extends Mushroom {
     /**
      * @return
      */
-    public ArrayList<Spore> getSpores() {
-        return MushroomSpores;
+    public List<Spore> getSpores() {
+        return mushroomSpores;
     }
 
     /**
@@ -140,7 +140,7 @@ public class MushroomBody extends Mushroom {
      * @param newSpore
      */
     public void addSpore(Spore newSpore) {
-        MushroomSpores.add(newSpore);
+        mushroomSpores.add(newSpore);
     }
 
     /**
@@ -148,7 +148,7 @@ public class MushroomBody extends Mushroom {
      * @param target - A celpont tekton, ahova a sporakat szeretnenk kiloni
      */
     public void ejectSpores(Tecton target) {
-        if(!MushroomSpores.isEmpty() && getRemainingEjects() > 0) {
+        if(!mushroomSpores.isEmpty() && getRemainingEjects() > 0) {
             if (Main.printTrace) {
                 System.out.println(Main.objectNames.get(this));
                 System.out.printf("\t=distance(%s)=> %s %n \t<=distance: int =%s %n ", Main.objectNames.get(target), Main.objectNames.get(location), Main.objectNames.get(location));
@@ -158,8 +158,8 @@ public class MushroomBody extends Mushroom {
                 if (Main.printTrace) {
                     System.out.printf("\t=transferSpores(spores)=> %s %n", Main.objectNames.get(target));
                 }
-                target.transferSpores(MushroomSpores);
-                MushroomSpores.clear();
+                target.transferSpores(mushroomSpores);
+                mushroomSpores.clear();
                 setRemainingEjects(getRemainingEjects()-1);
             }
         }

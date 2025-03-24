@@ -6,7 +6,7 @@ import java.util.ArrayList;
  */
 public class FertileTecton extends Tecton {
     /**
-     *
+     * Alapvető konstruktor. A gombafonál kapacítást 1-re állítja.
      */
     public FertileTecton() {
         setMyceliaCapacity(1);
@@ -14,13 +14,14 @@ public class FertileTecton extends Tecton {
     }
 
     /**
-     * @param myceliumGrowthEvaluator
-     * @param mycelium
+     * Eldönti, hogy a kapott gombafonál nőhet-e ezen a tektonon.
+     * @param myceliumGrowthEvaluator A kommunikációt segítő segédobjektum.
+     * @param mycelium A gombafonál, ami ide szeretne nőni.
      */
     @Override
     public void accept(MyceliumGrowthEvaluator myceliumGrowthEvaluator, Mycelium mycelium) {
         if (Main.printTrace) {
-            System.out.printf("%s\n", Main.objectNames.get(this));
+            System.out.printf("%s %n", Main.objectNames.get(this));
         }
 
         if (getMycelia().size() >= getMyceliaCapacity()) {
@@ -57,7 +58,7 @@ public class FertileTecton extends Tecton {
     @Override
     public void accept(MushroomBodyGrowthEvaluator mushroomBodyGrowthEvaluator, MushroomBody mushroomBody) {
         if (Main.printTrace) {
-            System.out.printf("%s\n", Main.objectNames.get(this));
+            System.out.printf("%s %n", Main.objectNames.get(this));
         }
 
         // Logika a novekedes vagy torlesi folyamat alapjan
