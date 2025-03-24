@@ -92,6 +92,9 @@ public class Mycelium extends Mushroom {
      */
     @Override
     public void delete() {
+        if (Main.printTrace)
+            System.out.println();
+
         Main.mockDeletion(this);
     }
 
