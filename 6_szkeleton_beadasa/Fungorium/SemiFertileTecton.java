@@ -35,8 +35,8 @@ public class SemiFertileTecton extends Tecton {
         getMycelia().offer(mycelium);
 
         if (Main.printTrace) {
-            System.out.printf("\t=size()=> TectonSpores");
-            System.out.printf("\t<=sporeCount= TectonSpores");
+            System.out.println("\t=size()=> TectonSpores");
+            System.out.println("\t<=sporeCount= TectonSpores");
         }
 
         int sporeCount = getSpores().size();
@@ -84,7 +84,7 @@ public class SemiFertileTecton extends Tecton {
         if (getBreakTimer() <= 0) {
 
             if (Main.printTrace) {
-                System.out.printf("%s\n", Main.objectNames.get(this));
+                System.out.printf("%s %n", Main.objectNames.get(this));
             }
 
 
@@ -92,7 +92,7 @@ public class SemiFertileTecton extends Tecton {
                 Mycelium mycelium = getMycelia().poll();
                 assert mycelium != null;
 
-                System.out.printf("\t=cut()=> %s\n", Main.objectNames.get(mycelium));
+                System.out.printf("\t=cut()=> %s %n", Main.objectNames.get(mycelium));
 
                 Main.printTrace = false;
                 mycelium.cut();
@@ -106,7 +106,7 @@ public class SemiFertileTecton extends Tecton {
 
             for (Insect o : temp) {
                 if (Main.printTrace) {
-                    System.out.printf("\t=runAway()=> %s\n", Main.objectNames.get(o));
+                    System.out.printf("\t=runAway()=> %s %n", Main.objectNames.get(o));
                 }
                 Main.printTrace = false;
                 o.runAway();
