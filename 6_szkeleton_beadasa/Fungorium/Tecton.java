@@ -229,28 +229,32 @@ public abstract class Tecton implements OnRoundBeginSubscriber {
     }
 
     /**
-     * @return
+     * A tektonon lévő rovarok listájának getterje.
+     * @return A tektonon lévő rovarok.
      */
     public List<Insect> getOccupants() {
         return occupants;
     }
 
     /**
-     * @param occupants
+     * A tektonon lévő rovarok listájának setterje
+     * @param occupants A tektonra kerülő rovarok.
      */
     public void setOccupants(List<Insect> occupants) {
         this.occupants = occupants;
     }
 
     /**
-     * @param insect
+     * Hozzáad egy rovart a tektonhoz.
+     * @param insect A tekton új rovarja.
      */
     public void addOccupant(Insect insect) {
         occupants.add(insect);
     }
 
     /**
-     * @param insect
+     * Levesz egy rovart a tektonról.
+     * @param insect A rovart, amit le szeretnénk venni.
      */
     public void removeOccupant(Insect insect) {
         occupants.remove(insect);
@@ -280,14 +284,16 @@ public abstract class Tecton implements OnRoundBeginSubscriber {
     }
 
     /**
-     * @return
+     * Megadja, hogy van-e legalább 1 gombafonál a tektonon.
+     * @return Igaz ha van gombafonál, hamis ha nincs.
      */
     public boolean hasMycelium() {
         return !mycelia.isEmpty();
     }
 
     /**
-     * @param mycelium
+     * Hozzáad egy gombafonalat a tektonhoz.
+     * @param mycelium A tekton új gombafonala.
      */
     public void addMycelium(Mycelium mycelium) {
         mycelia.offer(mycelium);
@@ -301,7 +307,7 @@ public abstract class Tecton implements OnRoundBeginSubscriber {
 
         if (Main.printTrace) {
             System.out.println(Main.objectNames.get(this));
-            System.out.printf("\t=cut()=> %s %n", Main.objectNames.get(mycelia.element()));
+            System.out.printf("\t=cut()=> %s", Main.objectNames.get(mycelia.element()));
         }
 
         mycelia.poll().cut();
