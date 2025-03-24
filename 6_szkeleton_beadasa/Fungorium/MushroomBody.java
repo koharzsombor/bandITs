@@ -48,6 +48,9 @@ public class MushroomBody extends Mushroom {
             System.out.printf("\t=Create(%s)=> %s %n", Main.objectNames.get(this), Main.objectNames.get(mushroomBodyGrowthEvaluator));
         }
 
+        if (Main.printTrace)
+            System.out.printf("\t=visit(%s)=> %s %n", Main.objectNames.get(location), Main.objectNames.get(mushroomBodyGrowthEvaluator));
+
         mushroomBodyGrowthEvaluator.visit(location);
 
         if (Main.printTrace)
@@ -74,6 +77,9 @@ public class MushroomBody extends Mushroom {
             Main.objectNames.put(mushroomBodyGrowthEvaluator, "MBGE: MushroomBodyGrowthEvaluator");
             System.out.printf("\t=Create(%s)=> %s %n", Main.objectNames.get(this), Main.objectNames.get(mushroomBodyGrowthEvaluator));
         }
+
+        if (Main.printTrace)
+            System.out.printf("\t=visit(%s)=> %s %n", Main.objectNames.get(location), Main.objectNames.get(mushroomBodyGrowthEvaluator));
 
         mushroomBodyGrowthEvaluator.visit(location);
 
