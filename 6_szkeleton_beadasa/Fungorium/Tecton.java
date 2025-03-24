@@ -257,8 +257,9 @@ public abstract class Tecton implements OnRoundBeginSubscriber {
     }
 
     /**
-     * @param insect
-     * @param insectLocation
+     * Egy rovart a jelenelgi tektonra mozgartja.
+     * @param insect A mozgatott rovar.
+     * @param insectLocation A rovar eredeti helye.
      */
     public void moveInsect(Insect insect, Tecton insectLocation) {
         if(Main.printTrace) {
@@ -322,21 +323,24 @@ public abstract class Tecton implements OnRoundBeginSubscriber {
 
 
     /**
-     * @param spore
+     * Hozzáad egy spórát a tektonhoz,
+     * @param spore Az új spóra.
      */
     public void addSpore(Spore spore) {
         getSpores().offer(spore);
     }
 
     /**
-     * @param newSpores
+     * Hozzáad egyszerre több spórát a tektonhoz.
+     * @param newSpores Az új spórák listája.
      */
     public void transferSpores(List<Spore> newSpores) {
         spores.addAll(newSpores);
     }
 
     /**
-     * @param tecton
+     * Egy új szomszédot ad a tektonnak.
+     * @param tecton Az új szomszéd tekton.
      */
     public void addNeighbour(Tecton tecton) {
         neighbours.add(tecton);
