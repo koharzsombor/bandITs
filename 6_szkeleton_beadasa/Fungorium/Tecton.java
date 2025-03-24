@@ -41,84 +41,93 @@ public abstract class Tecton implements OnRoundBeginSubscriber {
     private List<Insect> occupants = new ArrayList<>();
 
     /**
-     * @return
+     * A tektöntörés időzitő getterje.
+     * @return A tektontörés időzítő jelenlegi értéke.
      */
     public int getBreakTimer() {
         return breakTimer;
     }
 
     /**
-     * @param breakTimer
+     * A tektöntörés időzitő setterje.
+     * @param breakTimer Az új idő, ami alatt eltörik a tekton.
      */
     public void setBreakTimer(int breakTimer) {
         this.breakTimer = breakTimer;
     }
 
     /**
-     * @return
+     * A tekton szomszédainak getterje.
+     * @return A tekton szomszédai.
      */
     public List<Tecton> getNeighbours() {
         return neighbours;
     }
 
     /**
-     * @param neighbours
+     * A tekton szomszédainak setterje.
+     * @param neighbours A tekton új szomszédai.
      */
     public void setNeighbours(List<Tecton> neighbours) {
         this.neighbours = neighbours;
     }
 
     /**
-     * @return
+     * A maximális gombafonál szám getterje.
+     * @return A maximális gombafonál szám.
      */
     public int getMyceliaCapacity() {
         return myceliumCapacity;
     }
 
     /**
-     * @param myceliaCapacity
+     * A maximális gombafonál szám setterje.
+     * @param myceliaCapacity Az új maximális gomafonal szám.
      */
     public void setMyceliaCapacity(int myceliaCapacity) {
         this.myceliumCapacity = myceliaCapacity;
     }
 
     /**
-     * @return
+     * A tektonon lévő spórák getterje.
+     * @return A tektonon lévő spórák.
      */
     public Queue<Spore> getSpores() {
         return spores;
     }
 
     /**
-     * @param spores
+     * A tektonon lévő spórák setterje.
+     * @param spores A tekton új spórái.
      */
     public void setSpores(Queue<Spore> spores) {
         this.spores = spores;
     }
 
     /**
-     * @return
+     * A tektonon lévő gombatest getterje.
+     * @return A tektonon lévő gombatest.
      */
     public MushroomBody getMushroomBody() {
         return mushroomBody;
     }
 
-    /**
-     * @param mushroomBody
+    /** A tektonon lévő gombatest setterje.
+     * @param mushroomBody A tekton új gombatestje.
      */
     public void setMushroomBody(MushroomBody mushroomBody) {
         this.mushroomBody = mushroomBody;
     }
 
-    /**
-     * @return
+    /** A tektonon lévő gombafonalak getterje.
+     * @return A tektonon lévő gombafonalak.
      */
     public Queue<Mycelium> getMycelia() {
         return mycelia;
     }
 
-    /**
-     * @param mycelia
+    /** A tektonon lévő gombafonalak setterje.
+     * @param mycelia A tekton új gombafonalai.
      */
     public void setMycelia(Queue<Mycelium> mycelia) {
         this.mycelia = mycelia;

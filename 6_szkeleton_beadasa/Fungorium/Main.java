@@ -211,16 +211,16 @@ public class Main {
 
         MB.setLocation(A);
 
-        Mycelium M = new Mycelium();
-        objectNames.put(M, "M: Mycelium");
+        Mycelium M1 = new Mycelium();
+        objectNames.put(M1, "M1: Mycelium");
 
-        B.addMycelium(M);
-        M.setLocation(B);
+        B.addMycelium(M1);
+        M1.setLocation(B);
         //TestCase
         printTrace = true;
         System.out.println("Tester");
-        System.out.printf("\t=Create(%s)=> M2: Mycelium%n", objectNames.get(B));
-        Mycelium m2 = new Mycelium(B, "M2: Mycelium");
+        System.out.printf("\t=Create(%s)=> M: Mycelium%n", objectNames.get(B));
+        Mycelium m = new Mycelium(B, "M: Mycelium");
 
         objectNames.clear();
     }
@@ -292,16 +292,16 @@ public class Main {
 
         MB.setLocation(A);
 
-        Mycelium M = new Mycelium();
-        objectNames.put(M, "M: Mycelium");
+        Mycelium M1 = new Mycelium();
+        objectNames.put(M1, "M1: Mycelium");
 
-        B.addMycelium(M);
-        M.setLocation(B);
+        B.addMycelium(M1);
+        M1.setLocation(B);
         //TestCase
         printTrace = true;
         System.out.println("Tester");
-        System.out.printf("\t=Create(%s)=> M2: Mycelium%n", objectNames.get(B));
-        Mycelium m2 = new Mycelium(B, "M2: Mycelium");
+        System.out.printf("\t=Create(%s)=> M: Mycelium%n", objectNames.get(B));
+        Mycelium m = new Mycelium(B, "M: Mycelium");
 
         objectNames.clear();
     }
@@ -373,16 +373,16 @@ public class Main {
 
         MB.setLocation(A);
 
-        Mycelium M = new Mycelium();
-        objectNames.put(M, "M: Mycelium");
+        Mycelium M1 = new Mycelium();
+        objectNames.put(M1, "M1: Mycelium");
 
-        B.addMycelium(M);
-        M.setLocation(B);
+        B.addMycelium(M1);
+        M1.setLocation(B);
         //TestCase
         printTrace = true;
         System.out.println("Tester");
-        System.out.printf("\t=Create(%s)=> M2: Mycelium%n", objectNames.get(B));
-        Mycelium m2 = new Mycelium(B, "M2: Mycelium");
+        System.out.printf("\t=Create(%s)=> M: Mycelium%n", objectNames.get(B));
+        Mycelium M = new Mycelium(B, "M: Mycelium");
 
         objectNames.clear();
     }
@@ -473,7 +473,7 @@ public class Main {
 
         //Test case
         printTrace = true;
-        Mycelium M4 = new Mycelium(B, "M4: Mycelium");
+        Mycelium M = new Mycelium(B, "M: Mycelium");
     }
 
     /**
@@ -1396,10 +1396,10 @@ public class Main {
         A.addNeighbour(B);
         B.addNeighbour(A);
 
-        Mycelium M = new Mycelium();
-        objectNames.put(M, "M: Mycelium");
-        B.addMycelium(M);
-        M.setLocation(B);
+        Mycelium M1 = new Mycelium();
+        objectNames.put(M1, "M1: Mycelium");
+        B.addMycelium(M1);
+        M1.setLocation(B);
 
         Insect I = new Insect();
         objectNames.put(I, "I: Insect");
@@ -1407,10 +1407,10 @@ public class Main {
         I.setLocation(A);
         I.setRemainingMoves(1);
 
-        Mycelium M2 = new Mycelium();
-        objectNames.put(M2, "M2: Mycelium");
-        A.addMycelium(M2);
-        M2.setLocation(A);
+        Mycelium M = new Mycelium();
+        objectNames.put(M, "M: Mycelium");
+        A.addMycelium(M);
+        M.setLocation(A);
 
         //Test case
         printTrace = true;
