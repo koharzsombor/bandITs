@@ -1,41 +1,42 @@
 import java.util.*;
 
 /**
- *
+ * A Tektonok közös ősosztálya
  */
 public abstract class Tecton implements OnRoundBeginSubscriber {
     /**
-     *
+     * Az időzitő amely ha elér 0-ra a tekton eltörik
      */
     private int breakTimer = 0;
 
     /**
-     *
+     * A tektonnal szomszédos tektonon listája
      */
     private List<Tecton> neighbours = new ArrayList<>();
 
     /**
-     *
+     * Maximum ennyi gombafonál lehet az adott tektonon
      */
     private int myceliumCapacity = 0;
 
     /**
-     *
+     * Az adott tektonon lévő spórák listája
      */
     private Queue<Spore> spores = new LinkedList<>();
 
     /**
-     *
+     * Itt van eltárolva ha az adott tektonon van-e gombatest
+     * null - nincs
      */
     private MushroomBody mushroomBody = null;
 
     /**
-     *
+     * Az adott tektonon lévő gombafonalak listája
      */
     private Queue<Mycelium> mycelia = new LinkedList<>();
 
     /**
-     *
+     * Az adott tektonon lévő bogarak listája
      */
     private List<Insect> occupants = new ArrayList<>();
 
@@ -282,6 +283,9 @@ public abstract class Tecton implements OnRoundBeginSubscriber {
         mycelia.offer(mycelium);
     }
 
+    /**
+     * A fonal elvágására használt metódus
+     */
     public void cutMycelium() {
         boolean originalPrintTrace = Main.printTrace;
 
@@ -351,8 +355,9 @@ public abstract class Tecton implements OnRoundBeginSubscriber {
     public abstract void accept(MyceliumGrowthEvaluator MyceliumGrowthEvaluator, Mycelium mycelium);
 
     /**
-     * @param mushroomBodyGrowthEvaluator
-     * @param mushroomBody
+     * Eldönti, hogy az adott gombatest nőhet-e ezen a tektonon.
+     * @param mushroomBodyGrowthEvaluator A kommunikációban segítő visitor.
+     * @param mushroomBody Az adott gombatest, amelyikről a tekton eldönti, hogy ránőhet-e.
      */
     public abstract void accept(MushroomBodyGrowthEvaluator mushroomBodyGrowthEvaluator, MushroomBody mushroomBody);
 }

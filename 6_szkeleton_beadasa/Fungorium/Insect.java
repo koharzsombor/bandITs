@@ -72,20 +72,23 @@ public class Insect implements OnTurnBeginSubscriber {
     }
 
     /**
-     * @return
+     * A körben lévő maradék lépések számának lekérdezése
+     * @return - A körben lévő maradék lépéseket adja vissza
      */
     public int getRemainingMoves() {
         return remainingMoves;
     }
 
     /**
-     * @param remainingMoves
+     * Bealltja a maradék lépéseket a körre
+     * @param remainingMoves - Az új maradék lépések száma
      */
     public void setRemainingMoves(int remainingMoves) {
         this.remainingMoves = remainingMoves;
     }
 
     /**
+     * A játk alatt elfogyasztott spórák számának lekérdezése
      * @return
      */
     public int getSporesEaten() {
@@ -93,7 +96,8 @@ public class Insect implements OnTurnBeginSubscriber {
     }
 
     /**
-     * @param sporesEaten
+     * A játék alatt elfogyasztott spórák számának frissitése
+     * @param sporesEaten - Az új spóramennyiség amely el volt fogyasztva
      */
     public void setSporesEaten(int sporesEaten) {
         this.sporesEaten = sporesEaten;
