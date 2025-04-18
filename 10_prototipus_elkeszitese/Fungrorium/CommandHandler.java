@@ -1,3 +1,6 @@
+/**
+ * Parancsokat kezelő osztályok interfésze.
+ */
 public interface CommandHandler {
     /**
      * Kezeli a beérkező parancsokat.

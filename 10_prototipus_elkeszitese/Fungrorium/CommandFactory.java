@@ -1,5 +1,5 @@
 /**
- * Végrahajtható parancsokat példányosító objetum.
+ * Végrahajtható parancsokat példányosító objektum.
  */
 public interface CommandFactory {
     /**
