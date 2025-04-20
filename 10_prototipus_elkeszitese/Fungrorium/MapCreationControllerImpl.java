@@ -23,6 +23,11 @@ public class MapCreationControllerImpl implements MapCreationController {
     private TectonFactory tectonFactory;
 
     /**
+     * Éresíti a ráfeliratkozott objektumokat, hogyha a játékosok köre körbeért.
+     */
+    private RoundObserver roundObserver;
+
+    /**
      * A konstruktor automatikusan létrehozza a szükséges objektumokat.
      */
     public MapCreationControllerImpl() {
@@ -42,8 +47,10 @@ public class MapCreationControllerImpl implements MapCreationController {
     @Override
     public void createMycelium(Tecton tecton, String type, String name, Mycologist owner) {
         Mycelium mycelium = myceliumFactory.create(type, name, tecton);
-        if (owner != null)
+        if (owner != null) {
             owner.addMycelium(mycelium);
+            owner.subscribe(mycelium);
+        }
     }
 
     /**
@@ -55,8 +62,9 @@ public class MapCreationControllerImpl implements MapCreationController {
     @Override
     public void createMushroomBody(Tecton tecton, String name, Mycologist owner) {
         MushroomBody mushroomBody = mushroomBodyFactory.create(name, tecton);
-        if (owner != null)
+        if (owner != null) {
             owner.addMushroomBody(mushroomBody);
+        }
     }
 
     /**
@@ -68,8 +76,10 @@ public class MapCreationControllerImpl implements MapCreationController {
     @Override
     public void createInsect(Tecton tecton, String name, Entomologist owner) {
         Insect newInsect = insectFactory.create(name);
-        if (owner != null)
+        if (owner != null) {
             owner.addInsect(newInsect);
+            owner.subscribe(newInsect);
+        }
     }
 
     /**
@@ -80,6 +90,7 @@ public class MapCreationControllerImpl implements MapCreationController {
      */
     @Override
     public void createTecton(String type, String name) {
-        tectonFactory.create(type, name);
+        Tecton tecton = tectonFactory.create(type, name);
+        roundObserver.subscribe(tecton);
     }
 }

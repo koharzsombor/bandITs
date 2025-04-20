@@ -1,7 +1,7 @@
 /**
  * Egy rovarászt ábráoló osztály.
  */
-public interface Mycologist {
+public interface Mycologist extends Player {
     /**
      * Hozzáad egy gombafonalat a gombász saját gombafonalaihoz.
      * @param mycelium A játékos új gombafonala.

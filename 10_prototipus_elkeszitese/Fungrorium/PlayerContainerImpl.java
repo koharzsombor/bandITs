@@ -8,17 +8,22 @@ public class PlayerContainerImpl implements PlayerContainer {
     /**
      * A játékosok listája.
      */
-    private List<Player> players = new ArrayList<>();
+    private final List<Player> players = new ArrayList<>();
 
     /**
      * A gombászok listája.
      */
-    private List<Player> mycologists = new ArrayList<>();
+    private final List<Player> mycologists = new ArrayList<>();
 
     /**
      * A rovarászok listája.
      */
     private final List<Player> entomologists = new ArrayList<>();
+
+    /**
+     * Az objektum ami értesíti a feliratkozóit, ha a játékosok köre körbeért.
+     */
+    private RoundObserver roundObserver;
 
     /**
      * A jelenlegi játékos indexe, a játékosok listájában.
@@ -62,6 +67,14 @@ public class PlayerContainerImpl implements PlayerContainer {
     }
 
     /**
+     * Visszaállítja a jelenlegi játékost az 1. állapotjára.
+     */
+    @Override
+    public void resetCurrentPlayer() {
+        currentIndex = 0;
+    }
+
+    /**
      * A jelenlegi játékos a következő lesz. És visszadja a következő játékost.
      *
      * @return A következő játékos.
@@ -69,8 +82,11 @@ public class PlayerContainerImpl implements PlayerContainer {
     @Override
     public Player getNextPlayer() {
         currentIndex++;
-        if (currentIndex >= players.size())
+        if (currentIndex >= players.size()) {
             currentIndex = 0;
+            roundObserver.notifySubscribers();
+        }
+
 
         return players.get(currentIndex);
     }

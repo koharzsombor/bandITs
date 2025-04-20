@@ -1,7 +1,7 @@
 /**
  * Rovarászt ábrázoló osztály interfésze.
  */
-public interface Entomologist {
+public interface Entomologist extends Player {
     /**
      * Hozzáad egy rovart a rovarász saját rovaraihoz.
      * @param insect A rovarász új rovarja.

@@ -1,15 +1,15 @@
 /**
- * ADD_PLAYER parancs implementációja
+ * END_GAME parancs implementációja.
  */
-public class AddPlayerCommand extends CommandImpl {
+public class EndGameCommand extends CommandImpl {
 
     /**
      * A megadott bemenetből és végrehajtó játékosból csinál egy parancsot.
      *
      * @param inputCommand A bemenet amiből a parancs készül.
-     * @param actor        A parancsot  játékos.
+     * @param actor        A parancsot végrehajtó játékos.
      */
-    public AddPlayerCommand(InputCommand inputCommand, Player actor) {
+    public EndGameCommand(InputCommand inputCommand, Player actor) {
         super(inputCommand, actor);
     }
 
@@ -21,8 +21,8 @@ public class AddPlayerCommand extends CommandImpl {
     @Override
     public void execute(CommandHandler handler) {
         try {
-            PlayerController controller = (PlayerController)handler;
-            controller.createPlayer(input.params()[0], input.params()[1]);
+            GameEndManager gameEndManager = (GameEndManager) handler;
+            gameEndManager.showWinners();
         } catch (Exception e) {
             System.out.println(commandErrorMessage);
         }

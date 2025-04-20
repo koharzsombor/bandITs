@@ -19,6 +19,14 @@ public class CommandFactoryImpl implements CommandFactory {
                 return new CreateMushroomBodyCommand(command, actor);
             case "CREATE_INSECT":
                 return new CreateInsectCommand(command, actor);
+            case "END_TURN":
+                return new EndTurnCommand(command, null);
+            case "START_GAME":
+                return new BeginGameCommand(command, null);
+            case "SET_ENDGAMETIMER":
+                return new SetEndgameTimerCommand(command, null);
+            case "END_GAME":
+                return new EndGameCommand(command, null);
             default:
                 throw new UnsupportedOperationException("Command is not implemented in factory");
         }

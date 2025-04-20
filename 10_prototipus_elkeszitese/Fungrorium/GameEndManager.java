@@ -1,7 +1,7 @@
 /**
  * A játék kezdését és befejezését irányító osztály.
  */
-public interface GameEndManager extends RoundBeginSubscriber {
+public interface GameEndManager extends RoundBeginSubscriber, CommandHandler {
     /**
      * Beállítja a játék hosszát.
      * @param newLength Ahány körig tart a játék.

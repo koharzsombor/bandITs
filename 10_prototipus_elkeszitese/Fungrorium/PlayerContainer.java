@@ -16,6 +16,11 @@ public interface PlayerContainer {
     void removePlayer(Player player);
 
     /**
+     * Visszaállítja a jelenlegi játékost az 1. állapotjára.
+     */
+    void resetCurrentPlayer();
+
+    /**
      * A jelenlegi játékos a következő lesz. És visszadja a következő játékost.
      * @return A következő játékos.
      */
