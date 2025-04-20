@@ -4,7 +4,7 @@ import java.util.List;
 /**
  * A gombász implementációja.
  */
-public class MycologistImpl implements Mycologist {
+public class MycologistImpl extends PlayerImpl implements Mycologist {
     /**
      * A gombafonalak listája.
      */
@@ -14,6 +14,15 @@ public class MycologistImpl implements Mycologist {
      * A gombatestek listája.
      */
     private final List<MushroomBody> mushroomBodies = new ArrayList<>();
+
+    /**
+     * A játékos létrehozásához szükséges megadni a nevét.
+     *
+     * @param name A játékos neve.
+     */
+    public MycologistImpl(String name) {
+        super(name);
+    }
 
     /**
      * Hozzáad egy gombafonalat a gombász saját gombafonalaihoz.
@@ -75,5 +84,15 @@ public class MycologistImpl implements Mycologist {
     @Override
     public boolean ownsMushroomBody(MushroomBody mushroomBody) {
         return mushroomBodies.contains(mushroomBody);
+    }
+
+    /**
+     * Kiszámolja a játékos pontszámát.
+     *
+     * @return A játékos pontszáma.
+     */
+    @Override
+    public int calculateScore() {
+        throw new UnsupportedOperationException("Not implemented");
     }
 }

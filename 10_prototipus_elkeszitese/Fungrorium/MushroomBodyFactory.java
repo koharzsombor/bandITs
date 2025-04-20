@@ -8,5 +8,5 @@ public interface MushroomBodyFactory {
      * @param location A gombatest helye.
      * @return A példányosított gombatest.
      */
-    MushroomBody createMushroomBody(String name, Tecton location);
+    MushroomBody create(String name, Tecton location);
 }

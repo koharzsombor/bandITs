@@ -82,6 +82,9 @@ public class PlayerContainerImpl implements PlayerContainer {
      */
     @Override
     public Player getCurrentPlayer() {
+        if (players.isEmpty())
+            return null;
+
         return players.get(currentIndex);
     }
 

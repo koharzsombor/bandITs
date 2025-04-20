@@ -10,7 +10,7 @@ public class DefaultMushroomBodyFactory implements MushroomBodyFactory {
      * @return A példányosított gombatest.
      */
     @Override
-    public MushroomBody createMushroomBody(String name, Tecton location) {
+    public MushroomBody create(String name, Tecton location) {
         throw new UnsupportedOperationException("Not implemented");
     }
 }

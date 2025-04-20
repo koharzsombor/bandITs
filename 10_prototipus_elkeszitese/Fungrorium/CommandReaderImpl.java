@@ -16,7 +16,8 @@ public class CommandReaderImpl implements CommandReader {
     private final Queue<String> inputBuffer = new LinkedList<>();
 
     /**
-     * @param commandRouter
+     * A létrehozáshoz, szükség egy objektum aminek továbbküldheti a parancsot.
+     * @param commandRouter A parancsokat továbbküldő objektum.
      */
     public CommandReaderImpl(CommandRouter commandRouter) {
         this.commandRouter = commandRouter;
@@ -28,22 +29,20 @@ public class CommandReaderImpl implements CommandReader {
      */
     @Override
     public void readNextCommand() {
+        String nextLine;
         if (inputBuffer.isEmpty()) {
             try(Scanner inputScanner = new Scanner(System.in)) {
-                String nextLine = inputScanner.nextLine();
-                String[] splitLine = nextLine.split("\\s+");
-                String[] params = Arrays.copyOfRange(splitLine, 1, splitLine.length);
-
-                InputCommand command = new InputCommand(splitLine[0], params);
+                nextLine = inputScanner.nextLine();
             }
         }
         else {
-            String nextLine = inputBuffer.poll();
-            String[] splitLine = nextLine.split("\\s+");
-            String[] params = Arrays.copyOfRange(splitLine, 1, splitLine.length);
-
-            InputCommand command = new InputCommand(splitLine[0], params);
+            nextLine = inputBuffer.poll();
         }
+        String[] splitLine = nextLine.split("\\s+");
+        String[] params = Arrays.copyOfRange(splitLine, 1, splitLine.length);
+
+        InputCommand command = new InputCommand(splitLine[0], params);
+        commandRouter.routeCommand(command);
     }
 
     /**

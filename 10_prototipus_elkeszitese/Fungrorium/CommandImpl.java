@@ -13,7 +13,7 @@ public abstract class CommandImpl implements Command {
     /**
      * A megadott bemenetből és végrehajtó játékosból csinál egy parancsot.
      * @param inputCommand A bemenet amiből a parancs készül.
-     * @param actor A parancsot végrehajtó
+     * @param actor A parancsot végrehajtó játékos.
      */
     public CommandImpl(InputCommand inputCommand, Player actor) {
         input = inputCommand;
