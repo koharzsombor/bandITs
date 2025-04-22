@@ -15,7 +15,7 @@ public interface TectonView {
      * A tekton szomszédjainak a listáját adja vissza.
      * @return A tekton szomszédjainak listája.
      */
-    List<TectonView> getNeighbours();
+    List<Tecton> getNeighbours();
 
     List<Mycelium> getMycelia();
 

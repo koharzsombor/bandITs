@@ -1,2 +1,1 @@
-public interface Insect extends InsectControl, InsectView {
-}
+public interface Insect extends InsectControl, InsectView {}

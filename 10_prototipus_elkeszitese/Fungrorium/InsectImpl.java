@@ -241,7 +241,8 @@ public class InsectImpl implements Insect{
      */
     @Override
     public void split() {
-        Insect newInsect = new InsectImpl(location);
+        Insect newInsect = new InsectImpl(getLocation());
+        setSplitNum(getSplitNum() + 1);
         //Insert adding insect to registry
     }
 
@@ -269,7 +270,7 @@ public class InsectImpl implements Insect{
                 available.add(current);
             }
 
-            for (TectonView neighbour : getLocation().getNeighbours()) {
+            for (Tecton neighbour : getLocation().getNeighbours()) {
                 Tecton tneighbour = (Tecton) neighbour;
                 if (visited.add(tneighbour)) {
                     queue.add(tneighbour);
@@ -313,9 +314,9 @@ public class InsectImpl implements Insect{
      */
     //@Override
     public void onTurnBegin() {
-        if(effectTimer > 0){
-            effectTimer--;
-            if(effectTimer == 0){
+        if(getEffectTimer() > 0){
+            setEffectTimer(getEffectTimer() - 1);
+            if(getEffectTimer() == 0){
                 setState(InsectState.NORMAL);
                 setMaxMoves(2);
             }
