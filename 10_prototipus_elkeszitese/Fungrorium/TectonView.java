@@ -34,4 +34,17 @@ public interface TectonView {
      * @return A tektonon lévő gombatest.
      */
     MushroomBody getMushroomBody();
+
+    /**
+     * A tektonon lévő fonalakat visszaadja.
+     * @return A tektonon lévő fonalakat.
+     */
+    Queue<Mycelium> getMycelia();
+
+    /**
+     * True-t ad vissza ha van legalább 1 fonál (legyen az bármilyen típusu) a tektonon
+     * False-ot ad vissza ha nincs egy fonál sem a tektonon
+     * @return
+     */
+    boolean hasMycelium();
 }

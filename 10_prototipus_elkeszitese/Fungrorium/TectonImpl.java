@@ -143,7 +143,7 @@ public abstract class TectonImpl implements Tecton {
      */
     @Override
     public void setBreakTimer(int breakTimer) {
-
+        this.breakTimer = breakTimer;
     }
 
     /**
@@ -153,7 +153,8 @@ public abstract class TectonImpl implements Tecton {
      */
     @Override
     public void setNeighbours(List<Tecton> neighbours) {
-
+        this.neighbours.clear();
+        this.neighbours.addAll(neighbours);
     }
 
     /**
@@ -163,7 +164,7 @@ public abstract class TectonImpl implements Tecton {
      */
     @Override
     public void setMyceliaCapacity(int myceliaCapacity) {
-
+        this.myceliaCapacity = myceliaCapacity;
     }
 
     /**
@@ -173,7 +174,8 @@ public abstract class TectonImpl implements Tecton {
      */
     @Override
     public void setSpores(Queue<Spore> spores) {
-
+        this.spores.clear();
+        this.spores.addAll(spores);
     }
 
     /**
@@ -183,7 +185,7 @@ public abstract class TectonImpl implements Tecton {
      */
     @Override
     public void setMushroomBody(MushroomBody mushroomBody) {
-
+        this.mushroomBody = mushroomBody;
     }
 
     /**
@@ -193,7 +195,8 @@ public abstract class TectonImpl implements Tecton {
      */
     @Override
     public void setMycelia(Queue<Mycelium> mycelia) {
-
+        this.mycelia.clear();
+        this.mycelia.addAll(mycelia);
     }
 
     /**
@@ -203,7 +206,8 @@ public abstract class TectonImpl implements Tecton {
      */
     @Override
     public void setOccupants(List<Insect> occupants) {
-
+        this.occupants.clear();
+        this.occupants.addAll(occupants);
     }
 
     /**
@@ -213,7 +217,7 @@ public abstract class TectonImpl implements Tecton {
      */
     @Override
     public void addOccupant(Insect insect) {
-
+        this.occupants.add(insect);
     }
 
     /**
@@ -223,7 +227,7 @@ public abstract class TectonImpl implements Tecton {
      */
     @Override
     public void removeOccupant(Insect insect) {
-
+        this.occupants.remove(insect);
     }
 
     /**
@@ -233,7 +237,7 @@ public abstract class TectonImpl implements Tecton {
      */
     @Override
     public void addMycelium(Mycelium mycelium) {
-
+        this.mycelia.add(mycelium);
     }
 
     /**
@@ -243,7 +247,7 @@ public abstract class TectonImpl implements Tecton {
      */
     @Override
     public void addSpore(Spore spore) {
-
+        this.spores.add(spore);
     }
 
     /**
@@ -253,7 +257,7 @@ public abstract class TectonImpl implements Tecton {
      */
     @Override
     public void addNeighbour(Tecton neighbour) {
-
+        this.neighbours.add(neighbour);
     }
 
     /**
@@ -263,7 +267,7 @@ public abstract class TectonImpl implements Tecton {
      */
     @Override
     public int getBreakTimer() {
-        return 0;
+        return breakTimer;
     }
 
     /**
@@ -273,7 +277,7 @@ public abstract class TectonImpl implements Tecton {
      */
     @Override
     public List<TectonView> getNeighbours() {
-        return List.of();
+        return neighbours;
     }
 
     /**
@@ -283,7 +287,7 @@ public abstract class TectonImpl implements Tecton {
      */
     @Override
     public int getMyceliaCapacity() {
-        return 0;
+        return myceliaCapacity;
     }
 
     /**
@@ -293,16 +297,35 @@ public abstract class TectonImpl implements Tecton {
      */
     @Override
     public Queue<Spore> getSpores() {
-        return null;
+        return spores;
     }
 
     /**
-     * Visszaadja a tektonon lévő gombafonalat.
+     * Visszaadja a tektonon lévő gombatestet.
      *
      * @return A tektonon lévő gombatest.
      */
     @Override
     public MushroomBody getMushroomBody() {
-        return null;
+        return mushroomBody;
+    }
+
+    /**
+     * Visszaadja a tektonon lévő fonalat.
+     * @return A tektonon lévő fonalak listája
+     */
+    @Override
+    public Queue<Mycelium> getMycelia() {
+        return mycelia;
+    }
+
+    /**
+     * True ha van legalább egy fonál
+     * False ha nincs egy fonál sem a tektonon
+     * @return True vagy false a fentiek szerint
+     */
+    @Override
+    public boolean hasMycelium() {
+        return !mycelia.isEmpty();
     }
 }
