@@ -13,4 +13,10 @@ public interface CommandReader extends CommandHandler {
      * @param input A pufferbe helyezendő parancs.
      */
     void bufferCommand(String input);
+
+    /**
+     * Egy fájlban lévő összes sort külön parancsként a pufferbe helyez.
+     * @param path A fájl elérési útja.
+     */
+    void bufferFile(String path);
 }

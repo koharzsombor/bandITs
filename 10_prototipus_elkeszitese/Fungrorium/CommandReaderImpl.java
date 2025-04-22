@@ -54,4 +54,18 @@ public class CommandReaderImpl implements CommandReader {
     public void bufferCommand(String input) {
         inputBuffer.offer(input);
     }
+
+    /**
+     * Egy fájlban lévő összes sort külön parancsként a pufferbe helyez.
+     *
+     * @param path A fájl elérési útja.
+     */
+    @Override
+    public void bufferFile(String path) {
+        try (Scanner scanner = new Scanner("path")) {
+            while (scanner.hasNextLine()) {
+                inputBuffer.offer(scanner.nextLine());
+            }
+        }
+    }
 }
