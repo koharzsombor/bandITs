@@ -27,6 +27,8 @@ public class CommandFactoryImpl implements CommandFactory {
                 return new SetEndgameTimerCommand(command, null);
             case "END_GAME":
                 return new EndGameCommand(command, null);
+            case "GROW_MYCELIUM":
+                return new GrowMyceliumCommand(command, actor);
             default:
                 throw new UnsupportedOperationException("Command is not implemented in factory");
         }

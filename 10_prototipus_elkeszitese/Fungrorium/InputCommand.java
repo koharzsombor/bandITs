@@ -1,5 +1,3 @@
-import java.util.List;
-
 /**
  * Egy bemeneti parancs, részekre szétszedve.
  * @param commandName A parancs neve.
