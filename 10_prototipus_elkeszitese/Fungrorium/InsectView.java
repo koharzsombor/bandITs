@@ -1,5 +1,7 @@
+/**
+ * A Viewban használt Rovar interfész.
+ */
 public interface InsectView {
-
     /**
      * A rovar jelenlegi tartózkodási helyének getterje.
      * @return A rovar jelenlegi tartózkodási helye.

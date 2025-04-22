@@ -50,7 +50,43 @@ public interface InsectControl {
     public void cutMycelium();
 
     /**
-     * A rovar elmenekül egy, véletlenszerűen kiválasztott, alkalmas tektonra.
+     * A rovar megesz egy spórát,
+     */
+    public void eatSpore();
+
+    /**
+     * A rovar elmozdul a megadott céltektonra, ha van elég lépése a rovarnak.
+     * @param target A cél tekton.
+     */
+    public void move(Tecton target);
+
+    /**
+     * A rovar lassú állapotba kerül.
+     */
+    public void beSlow();
+
+    /**
+     * A rovar gyors állapotba kerül.
+     */
+    public void beFast();
+
+    /**
+     * A rovar olyan állapotba kerül, amitől nem tudja elvágni a gombafonalakat.
+     */
+    public void preventCut();
+
+    /**
+     * A rovar bénult állapotba kerül.
+     */
+    public void beStunned();
+
+    /**
+     * A rovar kettészakad
+     */
+    public void split();
+
+    /**
+     * A rovar elfut egy véletlenszerű tektonra, ahol van gombafonál.
      */
     public void runAway();
 

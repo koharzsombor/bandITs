@@ -76,4 +76,8 @@ public interface TectonControl {
      * @param neighbour A tekton új szomszédja.
      */
     void addNeighbour(Tecton neighbour);
+
+    void eatSpore(Insect insect);
+
+    void moveInsect(Insect insect, Tecton insectLocation);
 }

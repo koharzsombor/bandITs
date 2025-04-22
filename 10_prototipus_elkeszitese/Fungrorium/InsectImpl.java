@@ -169,6 +169,7 @@ public class InsectImpl implements Insect{
 
     public InsectImpl(Tecton location) {
         setLocation(location);
+        location.addOccupant(this);
     }
 
     /**
@@ -196,7 +197,7 @@ public class InsectImpl implements Insect{
     @Override
     public void move(Tecton target) {
         if(getRemainingMoves() > 0) {
-            target.moveInsect(this);
+            target.moveInsect(this, getLocation());
         }
     }
 
@@ -240,7 +241,8 @@ public class InsectImpl implements Insect{
      */
     @Override
     public void split() {
-        //How?
+        Insect newInsect = new InsectImpl(location);
+        //Insert adding insect to registry
     }
 
     /**
@@ -248,13 +250,13 @@ public class InsectImpl implements Insect{
      */
     @Override
     public void runAway() {
-        /*
+
         Set<Tecton> available = new HashSet<>();
         Queue<Tecton> queue = new LinkedList<>();
         Set<Tecton> visited = new HashSet<>();
 
         queue.add(getLocation());
-        visited.add(location);
+        visited.add(getLocation());
 
         //BFS
         while (!queue.isEmpty()) {
@@ -267,9 +269,10 @@ public class InsectImpl implements Insect{
                 available.add(current);
             }
 
-            for (Tecton neighbour : location.getNeighbours()) {
-                if (visited.add(neighbour)) {
-                    queue.add(neighbour);
+            for (TectonView neighbour : getLocation().getNeighbours()) {
+                Tecton tneighbour = (Tecton) neighbour;
+                if (visited.add(tneighbour)) {
+                    queue.add(tneighbour);
                 }
             }
         }
@@ -291,7 +294,6 @@ public class InsectImpl implements Insect{
 
             selectedTecton.addOccupant(this);
         }
-        */
     }
 
     /**
