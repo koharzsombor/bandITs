@@ -63,5 +63,5 @@ public interface Tecton extends TectonControl, TectonView {
      * Ha tud a rovar a jelen tectonra mozogni, akkor megcsinálja ezt a műveletet.
      * @param moveable A rovar, akit mozgat a függvény.
      */
-    void moveInscet(InsectMoveable moveable);
+    void moveInsect(InsectMoveable moveable);
 }

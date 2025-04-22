@@ -132,7 +132,7 @@ public abstract class TectonImpl implements Tecton {
      * @param moveable A rovar, akit mozgat a függvény.
      */
     @Override
-    public void moveInscet(InsectMoveable moveable) {
+    public void moveInsect(InsectMoveable moveable) {
 
     }
 
