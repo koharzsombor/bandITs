@@ -1,7 +1,7 @@
 /**
  * A gombatest (MushroomBody) és a gombafonál (Mycelium) objektumaira vonatkozó általános interfész.
  */
-public interface Mushroom {
+public interface Mushroom extends TurnBeginSubscriber {
 
     /**
      * A növekedési feltételek hiánya esetén kerül meghívásra az előzetesen létrehozott gombatest törlése céljából.
