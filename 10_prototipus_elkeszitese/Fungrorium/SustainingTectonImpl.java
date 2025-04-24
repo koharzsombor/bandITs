@@ -1,10 +1,9 @@
 import java.util.ArrayList;
 
-public class FertileTectonImpl implements FertileTecton {
+public class SustainingTectonImpl implements SustainingTecton {
 
-    FertileTectonImpl() {
+    SustainingTectonImpl() {
         setMyceliaCapacity(1);
-        //setBreakTimer();
     }
 
     @Override
@@ -53,6 +52,6 @@ public class FertileTectonImpl implements FertileTecton {
     }
 
     public boolean sustaining(){
-        return getMushroomBody() != null;
+        return true;
     }
 }

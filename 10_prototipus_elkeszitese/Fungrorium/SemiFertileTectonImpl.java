@@ -1,10 +1,9 @@
 import java.util.ArrayList;
 
-public class FertileTectonImpl implements FertileTecton {
+public class SemiFertileTectonImpl implements SemiFertileTecton {
 
-    FertileTectonImpl() {
+    SemiFertileTectonImpl() {
         setMyceliaCapacity(1);
-        //setBreakTimer();
     }
 
     @Override
@@ -22,13 +21,7 @@ public class FertileTectonImpl implements FertileTecton {
 
     @Override
     public void accept(MushroomBodyGrowthEvaluator mushroomBodyGrowthEvaluator, MushroomBody mushroomBody) {
-        if (getSpores().size() < 3 || getMushroomBody() != null || getMycelia().isEmpty()) {
-            mushroomBody.delete();
-            return;
-        }
-
-        setMushroomBody(mushroomBody);
-        mushroomBody.grow(getSpores().size());
+        mushroomBody.delete();
     }
 
     public void onRoundBegin() {
@@ -53,6 +46,6 @@ public class FertileTectonImpl implements FertileTecton {
     }
 
     public boolean sustaining(){
-        return getMushroomBody() != null;
+        return false;
     }
 }

@@ -1,10 +1,9 @@
 import java.util.ArrayList;
 
-public class FertileTectonImpl implements FertileTecton {
+public class MultiLayeredTectonImpl implements MultiLayeredTecton {
 
-    FertileTectonImpl() {
-        setMyceliaCapacity(1);
-        //setBreakTimer();
+    MultiLayeredTectonImpl() {
+        setMyceliaCapacity(3);
     }
 
     @Override

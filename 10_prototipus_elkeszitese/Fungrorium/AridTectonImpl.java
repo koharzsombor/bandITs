@@ -1,10 +1,11 @@
 import java.util.ArrayList;
 
-public class FertileTectonImpl implements FertileTecton {
+public class AridTectonImpl implements AridTecton {
 
-    FertileTectonImpl() {
+    private int abosrbCountdown;
+
+    AridTectonImpl() {
         setMyceliaCapacity(1);
-        //setBreakTimer();
     }
 
     @Override
@@ -18,9 +19,9 @@ public class FertileTectonImpl implements FertileTecton {
 
         int sporeCount = getSpores().size();
         mycelium.grow(sporeCount);
+        abosrbCountdown = 5;
     }
 
-    @Override
     public void accept(MushroomBodyGrowthEvaluator mushroomBodyGrowthEvaluator, MushroomBody mushroomBody) {
         if (getSpores().size() < 3 || getMushroomBody() != null || getMycelia().isEmpty()) {
             mushroomBody.delete();
@@ -32,6 +33,16 @@ public class FertileTectonImpl implements FertileTecton {
     }
 
     public void onRoundBegin() {
+        if (abosrbCountdown > 0) {
+            abosrbCountdown--;
+            if (abosrbCountdown <= 0) {
+                Mycelium mycelium = this.getMycelia().poll();
+                if (mycelium != null) {
+                    mycelium.delete();
+                }
+            }
+        }
+
         setBreakTimer(getBreakTimer() - 1);
 
         if (getBreakTimer() <= 0) {
@@ -52,7 +63,7 @@ public class FertileTectonImpl implements FertileTecton {
         }
     }
 
-    public boolean sustaining(){
+    public boolean sustaining() {
         return getMushroomBody() != null;
     }
 }

@@ -1,2 +1,2 @@
-public interface AridTecton extends Tecton {
+public interface AridTecton extends Tecton,FertileTecton {
 }
