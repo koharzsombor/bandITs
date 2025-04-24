@@ -15,7 +15,7 @@ public interface TectonView {
      * A tekton szomszédjainak a listáját adja vissza.
      * @return A tekton szomszédjainak listája.
      */
-    List<TectonView> getNeighbours();
+    List<TectonView> getNeighboursViews();
 
     /**
      * Visszadja a gombafonál kapacítását.
@@ -47,4 +47,6 @@ public interface TectonView {
      * @return
      */
     boolean hasMycelium();
+
+    List<Insect> getOccupants();
 }

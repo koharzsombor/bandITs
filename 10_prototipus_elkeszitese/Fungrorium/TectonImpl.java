@@ -52,16 +52,94 @@ public abstract class TectonImpl implements Tecton {
      */
     @Override
     public int distance(Tecton tecton) {
-        return 0;
+
+        Map<Tecton, Integer> distances = new HashMap<>();
+        Queue<Tecton> queue = new LinkedList<>();
+
+        distances.put(this, 0);
+        queue.add(this);
+
+        //BFS
+        while (!queue.isEmpty()) {
+            Tecton current = queue.poll();
+            int currentDistance = distances.get(current);
+
+            if (current == tecton)
+                return currentDistance;
+
+            for (Tecton neighbour : current.getNeighbours()) {
+                distances.computeIfAbsent(neighbour, distance -> {
+                    queue.add(neighbour);
+                    return currentDistance + 1;
+                });
+            }
+        }
+
+        return -1;
     }
 
     /**
      * Ellenörzi, hogy a szomszédos gombafonállal rendelkező tektonok a gombafonalakat valami
      * életben tartja-e. Ha nem tartja életben semmi akkor kitörli őket.
+     *
+     * @return
      */
     @Override
     public void checkNeighbourMyceliaSustain() {
+        notSustained.clear();
 
+        neighbours.forEach(Tecton::myceliaCheckSustain);
+
+
+        for (Tecton tecton : notSustained) {
+            for (Mycelium m : tecton.getMycelia()) {
+                tecton.getMycelia().remove(m);
+                m.delete();
+            }
+        }
+    }
+
+    /**
+     * A függvény megnézi, hogy a tekton és velük gombafonállal össsze
+     * kötött tektonok még összekötteésbe állnak-e gombatestel vagy SustainingTectonnal.
+     */
+    public void myceliaCheckSustain () {
+        Set<Tecton> connected = new HashSet<>();
+        Queue<Tecton> queue = new LinkedList<>();
+        Set<Tecton> visited = new HashSet<>();
+
+        boolean isSustaining = false;
+
+        queue.add(this);
+        visited.add(this);
+
+        //BFS
+        while (!queue.isEmpty()) {
+            Tecton current = queue.poll();
+
+            connected.add(current);
+            if (current.sustaining())
+                isSustaining = true;
+
+            for (Tecton neighbour : neighboursWithMycelia()) {
+                if (visited.add(neighbour)) {
+                    queue.add(neighbour);
+                }
+            }
+        }
+
+        if (!isSustaining) {
+            notSustained.addAll(connected);
+        }
+    }
+
+
+    /**
+    * Azok a szomszédok összessége, amelyen van gombafonál vagy gombatest.
+    * @return A szomszédos tektonok, amin van gombafonál vagy gombatest.
+     */
+    private List<Tecton> neighboursWithMycelia() {
+        return neighbours.stream().filter(t -> (t.hasMycelium()) || (t.getMushroomBody() != null)).toList();
     }
 
     /**
@@ -71,7 +149,7 @@ public abstract class TectonImpl implements Tecton {
      */
     @Override
     public void transferSpores(List<Spore> newSpores) {
-
+        this.spores.addAll(newSpores);
     }
 
     /**
@@ -105,17 +183,18 @@ public abstract class TectonImpl implements Tecton {
      */
     @Override
     public void killOccupants() {
-
     }
 
     /**
      * A megadott rovar megeszi a tektonon lévő, legrégebben ott tartózkodó spórát.
      *
-     * @param eater A spórát elfogyasztó rovar.
+     * @param insect A spórát elfogyasztó rovar.
      */
     @Override
-    public void eatSpore(SporeEater eater) {
-
+    public void eatSpore(Insect insect) {
+        if (!spores.isEmpty()) {
+            spores.poll().eatSpore(insect);
+            insect.setRemainingMoves(0);}
     }
 
     /**
@@ -123,17 +202,25 @@ public abstract class TectonImpl implements Tecton {
      */
     @Override
     public void cutMycelium() {
-
+        mycelia.poll().cutWithDelay();
     }
 
     /**
      * Ha tud a rovar a jelen tectonra mozogni, akkor megcsinálja ezt a műveletet.
      *
-     * @param moveable A rovar, akit mozgat a függvény.
+     * @param insect A rovar, akit mozgat a függvény.
      */
     @Override
-    public void moveInscet(InsectMoveable moveable) {
+    public void moveInsect(Insect insect) {
+        Tecton insectLocation = insect.getLocation();
+        int distance = insectLocation.distance(this);
 
+        if (distance==1 && this.hasMycelium()){
+            insectLocation.removeOccupant(insect);
+            this.addOccupant(insect);
+            insect.setLocation(this);
+            insect.setRemainingMoves(insect.getRemainingMoves()-1);
+        }
     }
 
     /**
@@ -276,8 +363,17 @@ public abstract class TectonImpl implements Tecton {
      * @return A tekton szomszédjainak listája.
      */
     @Override
-    public List<TectonView> getNeighbours() {
+    public List<Tecton> getNeighbours() {
         return neighbours;
+    }
+
+    /**
+     * Visszaadja a szomszédos tektonok listáját
+     * @return A szomszédos tektonok listája
+     */
+    @Override
+    public List<TectonView> getNeighboursViews() {
+        return new ArrayList<>(neighbours);
     }
 
     /**
@@ -327,5 +423,10 @@ public abstract class TectonImpl implements Tecton {
     @Override
     public boolean hasMycelium() {
         return !mycelia.isEmpty();
+    }
+
+    @Override
+    public List<Insect> getOccupants() {
+        return occupants;
     }
 }

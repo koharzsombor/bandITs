@@ -14,8 +14,11 @@ public interface Tecton extends TectonControl, TectonView {
     /**
      * Ellenörzi, hogy a szomszédos gombafonállal rendelkező tektonok a gombafonalakat valami
      * életben tartja-e. Ha nem tartja életben semmi akkor kitörli őket.
+     *
+     * @return
      */
     void checkNeighbourMyceliaSustain();
+
 
     /**
      * Hozzáad egyszerre több spórát a tektonhoz.
@@ -50,9 +53,9 @@ public interface Tecton extends TectonControl, TectonView {
 
     /**
      * A megadott rovar megeszi a tektonon lévő, legrégebben ott tartózkodó spórát.
-     * @param eater A spórát elfogyasztó rovar.
+     * @param insect A spórát elfogyasztó rovar.
      */
-    void eatSpore(SporeEater eater);
+    void eatSpore(Insect insect);
 
     /**
      * A tektonon lévő gombafonál elrágása.
@@ -61,7 +64,15 @@ public interface Tecton extends TectonControl, TectonView {
 
     /**
      * Ha tud a rovar a jelen tectonra mozogni, akkor megcsinálja ezt a műveletet.
-     * @param moveable A rovar, akit mozgat a függvény.
+     * @param insect A rovar, akit mozgat a függvény.
      */
-    void moveInscet(InsectMoveable moveable);
+    void moveInsect(Insect insect);
+
+    /**
+     * Visszaadja a szomszédos tektonokat.
+     * @return A szomszédos tektonok.
+     */
+    List<Tecton> getNeighbours();
+
+    void myceliaCheckSustain();
 }
