@@ -166,6 +166,10 @@ public class InsectImpl implements Insect, TurnBeginSubscriber{
         return splitNum;
     }
 
+    /**
+     * Konstruktor
+     * @param location Az a tecton, amelyiken az újonnan létrejött Insect van
+     */
     public InsectImpl(Tecton location) {
         setLocation(location);
         location.addOccupant(this);
