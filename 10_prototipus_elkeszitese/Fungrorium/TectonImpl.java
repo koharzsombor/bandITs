@@ -111,10 +111,10 @@ public abstract class TectonImpl implements Tecton {
     /**
      * A megadott rovar megeszi a tektonon lévő, legrégebben ott tartózkodó spórát.
      *
-     * @param eater A spórát elfogyasztó rovar.
+     * @param insect A spórát elfogyasztó rovar.
      */
     @Override
-    public void eatSpore(SporeEater eater) {
+    public void eatSpore(Insect insect) {
 
     }
 
@@ -129,10 +129,10 @@ public abstract class TectonImpl implements Tecton {
     /**
      * Ha tud a rovar a jelen tectonra mozogni, akkor megcsinálja ezt a műveletet.
      *
-     * @param moveable A rovar, akit mozgat a függvény.
+     * @param insect A rovar, akit mozgat a függvény.
      */
     @Override
-    public void moveInscet(InsectMoveable moveable) {
+    public void moveInsect(Insect insect) {
 
     }
 
@@ -272,7 +272,7 @@ public abstract class TectonImpl implements Tecton {
      * @return A tekton szomszédjainak listája.
      */
     @Override
-    public List<TectonView> getNeighbours() {
+    public List<Tecton> getNeighbours() {
         return List.of();
     }
 
