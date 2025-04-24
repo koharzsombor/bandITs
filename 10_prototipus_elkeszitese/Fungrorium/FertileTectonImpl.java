@@ -1,10 +1,10 @@
 import java.util.ArrayList;
 
-public class FertileTectonImpl implements FertileTecton {
+public class FertileTectonImpl extends TectonImpl {
 
     FertileTectonImpl() {
         setMyceliaCapacity(1);
-        //setBreakTimer();
+        //setBreakTimer(); itt randommal range: 2 es 150 kozott
     }
 
     @Override
@@ -38,7 +38,7 @@ public class FertileTectonImpl implements FertileTecton {
             while(!getMycelia().isEmpty()) {
                 Mycelium mycelium = getMycelia().poll();
                 assert mycelium != null;
-                mycelium.cut();
+                mycelium.cutImmediate();
             }
 
             ArrayList<Insect> temp =new ArrayList<Insect>(getOccupants());
@@ -46,7 +46,9 @@ public class FertileTectonImpl implements FertileTecton {
                 insect.runAway();
             }
 
-            FertileTecton newFertileTecton = new FertileTectonImpl();
+            breakCounter++;
+            FertileTectonImpl newFertileTecton = new FertileTectonImpl();
+            //Itt majd registry-be is belerakni TBI
             newFertileTecton.addNeighbour(this);
             this.addNeighbour(newFertileTecton);
         }

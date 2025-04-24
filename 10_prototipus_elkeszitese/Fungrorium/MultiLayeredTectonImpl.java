@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class MultiLayeredTectonImpl implements MultiLayeredTecton {
+public class MultiLayeredTectonImpl extends FertileTectonImpl {
 
     MultiLayeredTectonImpl() {
         setMyceliaCapacity(3);
@@ -37,7 +37,7 @@ public class MultiLayeredTectonImpl implements MultiLayeredTecton {
             while(!getMycelia().isEmpty()) {
                 Mycelium mycelium = getMycelia().poll();
                 assert mycelium != null;
-                mycelium.cut();
+                mycelium.cutImmediate();
             }
 
             ArrayList<Insect> temp =new ArrayList<Insect>(getOccupants());
@@ -45,7 +45,7 @@ public class MultiLayeredTectonImpl implements MultiLayeredTecton {
                 insect.runAway();
             }
 
-            FertileTecton newFertileTecton = new FertileTectonImpl();
+            FertileTectonImpl newFertileTecton = new FertileTectonImpl();
             newFertileTecton.addNeighbour(this);
             this.addNeighbour(newFertileTecton);
         }

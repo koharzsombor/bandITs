@@ -9,6 +9,7 @@ public abstract class TectonImpl implements Tecton {
      */
     private int breakTimer;
 
+    protected int breakCounter = 0;
     /**
      * A tektonnal szomszédos tektonok listája.
      */
@@ -183,6 +184,9 @@ public abstract class TectonImpl implements Tecton {
      */
     @Override
     public void killOccupants() {
+        for (Insect insect : occupants) {
+            insect.die();
+        }
     }
 
     /**

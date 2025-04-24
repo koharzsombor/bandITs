@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class AridTectonImpl implements AridTecton {
+public class AridTectonImpl extends FertileTectonImpl {
 
     private int abosrbCountdown;
 
@@ -49,7 +49,7 @@ public class AridTectonImpl implements AridTecton {
             while(!getMycelia().isEmpty()) {
                 Mycelium mycelium = getMycelia().poll();
                 assert mycelium != null;
-                mycelium.cut();
+                mycelium.cutImmediate();
             }
 
             ArrayList<Insect> temp =new ArrayList<Insect>(getOccupants());
@@ -57,7 +57,7 @@ public class AridTectonImpl implements AridTecton {
                 insect.runAway();
             }
 
-            FertileTecton newFertileTecton = new FertileTectonImpl();
+            FertileTectonImpl newFertileTecton = new FertileTectonImpl();
             newFertileTecton.addNeighbour(this);
             this.addNeighbour(newFertileTecton);
         }

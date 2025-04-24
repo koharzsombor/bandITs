@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class SustainingTectonImpl implements SustainingTecton {
+public class SustainingTectonImpl extends FertileTectonImpl {
 
     SustainingTectonImpl() {
         setMyceliaCapacity(1);
@@ -37,7 +37,7 @@ public class SustainingTectonImpl implements SustainingTecton {
             while(!getMycelia().isEmpty()) {
                 Mycelium mycelium = getMycelia().poll();
                 assert mycelium != null;
-                mycelium.cut();
+                mycelium.cutImmediate();
             }
 
             ArrayList<Insect> temp =new ArrayList<Insect>(getOccupants());
@@ -45,7 +45,7 @@ public class SustainingTectonImpl implements SustainingTecton {
                 insect.runAway();
             }
 
-            FertileTecton newFertileTecton = new FertileTectonImpl();
+            FertileTectonImpl newFertileTecton = new FertileTectonImpl();
             newFertileTecton.addNeighbour(this);
             this.addNeighbour(newFertileTecton);
         }

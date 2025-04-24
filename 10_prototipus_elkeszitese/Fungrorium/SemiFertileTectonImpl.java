@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class SemiFertileTectonImpl implements SemiFertileTecton {
+public class SemiFertileTectonImpl extends TectonImpl {
 
     SemiFertileTectonImpl() {
         setMyceliaCapacity(1);
@@ -31,7 +31,7 @@ public class SemiFertileTectonImpl implements SemiFertileTecton {
             while(!getMycelia().isEmpty()) {
                 Mycelium mycelium = getMycelia().poll();
                 assert mycelium != null;
-                mycelium.cut();
+                mycelium.cutImmediate();
             }
 
             ArrayList<Insect> temp =new ArrayList<Insect>(getOccupants());
@@ -39,7 +39,7 @@ public class SemiFertileTectonImpl implements SemiFertileTecton {
                 insect.runAway();
             }
 
-            FertileTecton newFertileTecton = new FertileTectonImpl();
+            FertileTectonImpl newFertileTecton = new FertileTectonImpl();
             newFertileTecton.addNeighbour(this);
             this.addNeighbour(newFertileTecton);
         }
