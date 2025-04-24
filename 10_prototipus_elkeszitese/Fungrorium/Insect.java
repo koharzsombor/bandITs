@@ -1,2 +1,1 @@
-public interface Insect extends SporeEater, InsectMoveable {
-}
+public interface Insect extends InsectControl, InsectView {}
