@@ -14,13 +14,12 @@ public class PlayerControllerImpl implements PlayerController {
     private PlayerFactory playerFactory;
 
     /**
-     * A létrehozáshoz szükséges egy tároló objektum és egy példányosító objektum.
-     * @param factory A példányosító objektum.
+     * A létrehozáshoz szükséges egy tároló objektum.
      * @param container A tároló objektum.
      */
-    public PlayerControllerImpl(PlayerFactory factory, PlayerContainer container) {
+    public PlayerControllerImpl(PlayerContainer container) {
         playerContainer = container;
-        playerFactory = factory;
+        playerFactory = new PlayerFactoryImpl();
     }
 
     /**
