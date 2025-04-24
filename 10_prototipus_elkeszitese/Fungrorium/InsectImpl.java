@@ -250,7 +250,7 @@ public class InsectImpl implements Insect{
     public void split() {
         Insect newInsect = new InsectImpl(getLocation());
         setSplitNum(getSplitNum() + 1);
-        //Insert adding insect to registry
+        //Adding insect to registry
         newInsect.setRemainingMoves(0);
     }
 
@@ -312,6 +312,8 @@ public class InsectImpl implements Insect{
         if(getState() == InsectState.STUN){
             getLocation().removeOccupant(this);
             setLocation(null);
+            MushroomBody newMB = new MushroomBodyImpl(getLocation());
+            //Adding newMB to registry
         }
     }
 
