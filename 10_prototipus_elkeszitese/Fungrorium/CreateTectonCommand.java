@@ -1,0 +1,29 @@
+/**
+ * CREATE_TECTON parancs implementációja.
+ */
+public class CreateTectonCommand extends CommandImpl {
+    /**
+     * A megadott bemenetből és végrehajtó játékosból csinál egy parancsot.
+     *
+     * @param inputCommand A bemenet amiből a parancs készül.
+     * @param actor        A parancsot végrehajtó játékos.
+     */
+    public CreateTectonCommand(InputCommand inputCommand, Player actor) {
+        super(inputCommand, actor);
+    }
+
+    /**
+     * A parancs végrehajtása.
+     *
+     * @param handler A parancsot végrehajtó kezelő.
+     */
+    @Override
+    public void execute(CommandHandler handler) {
+        try {
+            MapCreationController mapCreationController = (MapCreationController)handler;
+            mapCreationController.createTecton(input.params()[0], input.params()[1]);
+        } catch (Exception e) {
+            System.out.println("Command syntax error: Invalid Parameters");
+        }
+    }
+}

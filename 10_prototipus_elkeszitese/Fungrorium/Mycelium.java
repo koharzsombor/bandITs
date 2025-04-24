@@ -1,2 +1,2 @@
-public interface Mycelium {
+public interface Mycelium extends TurnBeginSubscriber {
 }
