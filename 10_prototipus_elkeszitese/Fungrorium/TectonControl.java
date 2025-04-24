@@ -79,5 +79,5 @@ public interface TectonControl {
 
     void eatSpore(Insect insect);
 
-    void moveInsect(Insect insect, Tecton insectLocation);
+    void moveInsect(Insect insect);
 }
