@@ -50,4 +50,13 @@ public class ObjectRegistry {
     public static Object getObject(String name) {
         return registeredObjects.get(name);
     }
+
+    /**
+     * Visszafelé keres, azaz megkeresi mi az objektum neve.
+     * @param object A keresett objektum.
+     * @return A keresett objektum neve.
+     */
+    public static String lookupName(Object object) {
+        return registeredObjects.entrySet().stream().filter(o -> o.getValue().equals(object)).map(Map.Entry::getKey).findFirst().orElse("Not in collection");
+    }
 }
