@@ -378,6 +378,7 @@ public abstract class TectonImpl implements Tecton {
     @Override
     public List<TectonView> getNeighboursViews() {
         return new ArrayList<>(neighbours);
+
     }
 
     /**

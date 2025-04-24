@@ -1,3 +1,3 @@
-public interface Mycelium {
-    void delete();
+
+public interface Mycelium extends TurnBeginSubscriber {
 }

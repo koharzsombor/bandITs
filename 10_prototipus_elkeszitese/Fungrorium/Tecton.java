@@ -3,7 +3,7 @@ import java.util.List;
 /**
  * A modellben használ Tecton interfész.
  */
-public interface Tecton extends TectonControl, TectonView {
+public interface Tecton extends TectonControl, TectonView, RoundBeginSubscriber {
     /**
      * Meghatározza a távolságot a jelen tekton és a megadott tekton között.
      * @param tecton A megadott tekton, amitől a távolságot számoljuk.

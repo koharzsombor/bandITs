@@ -17,6 +17,7 @@ public interface TectonView {
      */
     List<TectonView> getNeighboursViews();
 
+
     /**
      * Visszadja a gombafonál kapacítását.
      * @return A tekton gombafonál kapacítása.
