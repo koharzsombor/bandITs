@@ -4,8 +4,7 @@ import java.util.*;
  * Ha a gombafonalak eltűnnek alóla, egy véletlenszerűen meghatározott tektonra elmenekül.
  * Az osztály többek között nyilvántartja, hogy a rovar milyen spóraeffektus alatt áll.
  */
-public class InsectImpl implements Insect{
-    //TurnBeginSubscriber
+public class InsectImpl implements Insect, TurnBeginSubscriber{
     /**
      * A rovar jelenlegi tartózkodási helye.
      */
@@ -170,6 +169,7 @@ public class InsectImpl implements Insect{
     public InsectImpl(Tecton location) {
         setLocation(location);
         location.addOccupant(this);
+        setRemainingMoves(getMaxMoves());
     }
 
     /**
@@ -177,7 +177,10 @@ public class InsectImpl implements Insect{
      */
     @Override
     public void cutMycelium() {
-        getLocation().cutMycelium();
+        if(getRemainingMoves() > 0) {
+            getLocation().cutMycelium();
+            setRemainingMoves(0);
+        }
     }
 
     /**
@@ -197,7 +200,7 @@ public class InsectImpl implements Insect{
     @Override
     public void move(Tecton target) {
         if(getRemainingMoves() > 0) {
-            target.moveInsect(this, getLocation());
+            target.moveInsect(this);
         }
     }
 
@@ -244,6 +247,7 @@ public class InsectImpl implements Insect{
         Insect newInsect = new InsectImpl(getLocation());
         setSplitNum(getSplitNum() + 1);
         //Insert adding insect to registry
+        newInsect.setRemainingMoves(0);
     }
 
     /**
@@ -271,9 +275,8 @@ public class InsectImpl implements Insect{
             }
 
             for (Tecton neighbour : getLocation().getNeighbours()) {
-                Tecton tneighbour = (Tecton) neighbour;
-                if (visited.add(tneighbour)) {
-                    queue.add(tneighbour);
+                if (visited.add(neighbour)) {
+                    queue.add(neighbour);
                 }
             }
         }
@@ -312,7 +315,7 @@ public class InsectImpl implements Insect{
      * A körök kezdetén a jelenlegi állapot visszaszámlálóját csökkenti és ha eléri a 0-át visszatér normál állapotba.
      * Ezenfelül visszaállítja a maradék lépéseket a maximumra.
      */
-    //@Override
+    @Override
     public void onTurnBegin() {
         if(getEffectTimer() > 0){
             setEffectTimer(getEffectTimer() - 1);
@@ -321,6 +324,7 @@ public class InsectImpl implements Insect{
                 setMaxMoves(2);
             }
         }
+
         setRemainingMoves(getMaxMoves());
     }
 }
