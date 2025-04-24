@@ -88,11 +88,12 @@ public class MushroomBodyImpl implements MushroomBody {
     public void onTurnBegin() {
         int random = new Random().nextInt(5) + 1;
         Spore newSpore = switch (random) {
-            case 1 -> new SpitSpore();
+            case 1 -> new SplitSpore();
             case 2 -> new StunSpore();
             case 3 -> new PreventCutSpore();
             case 4 -> new SpeedSpore();
             case 5 -> new SlownessSpore();
+            default -> throw new IllegalStateException("Hiba következett be a spóra legenerálása közben: " + random);
         };
         addSpore(newSpore);
     }
