@@ -1,7 +1,7 @@
 /**
  * A kontrollerben használt Rovar interfész.
  */
-public interface InsectControl {
+public interface InsectControl extends TurnBeginSubscriber {
     /**
      * A rovar jelenlegi tartózkodási helyének setterje.
      * @param location A rovar új tartózkodási helye.

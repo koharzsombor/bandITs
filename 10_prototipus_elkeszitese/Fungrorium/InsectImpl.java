@@ -4,7 +4,7 @@ import java.util.*;
  * Ha a gombafonalak eltűnnek alóla, egy véletlenszerűen meghatározott tektonra elmenekül.
  * Az osztály többek között nyilvántartja, hogy a rovar milyen spóraeffektus alatt áll.
  */
-public class InsectImpl implements Insect, TurnBeginSubscriber{
+public class InsectImpl implements Insect{
     /**
      * A rovar jelenlegi tartózkodási helye.
      */
