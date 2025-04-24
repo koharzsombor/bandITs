@@ -17,10 +17,6 @@ public interface TectonView {
      */
     List<Tecton> getNeighbours();
 
-    List<Mycelium> getMycelia();
-
-    boolean hasMycelium();
-
     /**
      * Visszadja a gombafonál kapacítását.
      * @return A tekton gombafonál kapacítása.
