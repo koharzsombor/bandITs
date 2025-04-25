@@ -214,6 +214,7 @@ public class InsectImpl implements Insect{
     @Override
     public void beSlow() {
         setState(InsectState.SLOW);
+        setEffectTimer(2);
         setMaxMoves(1);
     }
 
@@ -223,6 +224,7 @@ public class InsectImpl implements Insect{
     @Override
     public void beFast() {
         setState(InsectState.FAST);
+        setEffectTimer(2);
         setMaxMoves(3);
     }
 
@@ -232,6 +234,7 @@ public class InsectImpl implements Insect{
     @Override
     public void preventCut() {
         setState(InsectState.CANNOT_CUT);
+        setEffectTimer(2);
     }
 
     /**
@@ -240,6 +243,7 @@ public class InsectImpl implements Insect{
     @Override
     public void beStunned() {
         setState(InsectState.STUN);
+        setEffectTimer(2);
         setMaxMoves(0);
     }
 
@@ -249,9 +253,11 @@ public class InsectImpl implements Insect{
     @Override
     public void split() {
         Insect newInsect = new InsectImpl(getLocation());
-        setSplitNum(getSplitNum() + 1);
-        //Adding insect to registry
         newInsect.setRemainingMoves(0);
+
+        setSplitNum(getSplitNum() + 1);
+        String newInsectName = ObjectRegistry.lookupName(this) + "-" + getSplitNum();
+        ObjectRegistry.registerObject(newInsectName, newInsect);
     }
 
     /**
@@ -313,7 +319,8 @@ public class InsectImpl implements Insect{
             getLocation().removeOccupant(this);
             setLocation(null);
             MushroomBody newMB = new MushroomBodyImpl(getLocation());
-            //Adding newMB to registry
+            String newMBName = ObjectRegistry.lookupName(this) + "-MB";
+            ObjectRegistry.registerObject(newMBName, newMB);
         }
     }
 
@@ -332,5 +339,21 @@ public class InsectImpl implements Insect{
         }
 
         setRemainingMoves(getMaxMoves());
+    }
+
+    /**
+     * To string, a kiiráshoz
+     * @return az insect tulajdonságainak formázott stringje
+     */
+    @Override
+    public String toString() {
+        String output = ObjectRegistry.lookupName(this) + ": Insect\n";
+        output += "    location = " + getLocation() + "\n";
+        output += "    maxMoves = " + getMaxMoves() + "\n";
+        output += "    remainingMoves = " + getRemainingMoves() + "\n";
+        output += "    sporesEaten = " + getSporesEaten() + "\n";
+        output += "    effectTIMER = " + getEffectTimer() + "\n";
+        output += "    state = " + getState().toString() + "\n";
+        return output;
     }
 }
