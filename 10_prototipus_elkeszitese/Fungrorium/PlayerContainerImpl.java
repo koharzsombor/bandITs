@@ -23,12 +23,20 @@ public class PlayerContainerImpl implements PlayerContainer {
     /**
      * Az objektum ami értesíti a feliratkozóit, ha a játékosok köre körbeért.
      */
-    private RoundObserver roundObserver;
+    private final RoundObserver roundObserver;
 
     /**
      * A jelenlegi játékos indexe, a játékosok listájában.
      */
     private int currentIndex = 0;
+
+    /**
+     * A létrehozáshoz szükséges a körök végén értesítő objektum.
+     * @param roundObserver Az értesítő objektum
+     */
+    public PlayerContainerImpl(RoundObserver roundObserver) {
+        this.roundObserver = roundObserver;
+    }
 
     /**
      * Hozzáad egy játékost a tárolóhoz.
