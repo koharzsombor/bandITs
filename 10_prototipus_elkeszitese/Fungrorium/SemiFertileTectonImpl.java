@@ -1,9 +1,16 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class SemiFertileTectonImpl extends TectonImpl {
 
     SemiFertileTectonImpl() {
         setMyceliaCapacity(1);
+
+        Random rand = new Random();
+
+        int MINNUMB = 2;
+        int MAXNUMB = 150;
+        setBreakTimer(rand.nextInt(MAXNUMB - MINNUMB + 1) + MINNUMB);
     }
 
     @Override
@@ -39,13 +46,50 @@ public class SemiFertileTectonImpl extends TectonImpl {
                 insect.runAway();
             }
 
+            this.breakCounter++;
+
             FertileTectonImpl newFertileTecton = new FertileTectonImpl();
             newFertileTecton.addNeighbour(this);
             this.addNeighbour(newFertileTecton);
+            String newFTname = ObjectRegistry.lookupName(this) + "-" + this.breakCounter;
+            ObjectRegistry.registerObject(newFTname, newFertileTecton);
         }
     }
 
     public boolean sustaining(){
         return false;
+    }
+
+    /**
+     * To string, a kiiráshoz
+     * @return az tecton tulajdonságainak formázott stringje
+     */
+    @Override
+    public String toString() {
+        String output = ObjectRegistry.lookupName(this) + ": SemiFertileTecon\n";
+        output += "\tbreakTimer int = " + getBreakTimer() + "\n";
+        output += "\tneighbours List<Tecton> = {" + "\n";
+        for(Tecton tecton : getNeighbours()) {
+            output += "\t\t" + ObjectRegistry.lookupName(tecton) + "\n";
+        }
+        output += "}\n";
+        output +="\tmyceliumCapacity int = " + getMyceliaCapacity() + "\n";
+        output += "\tspores Queue<Spore> = {" + "\n";
+        for(Spore spore : getSpores()) {
+            output += "\t\t" + ObjectRegistry.lookupName(spore) + "\n";
+        }
+        output += "}\n";
+        output += "\tmushroomBody MushroomBody = " + ObjectRegistry.lookupName(getMushroomBody()) + "\n";
+        output += "\tmycelia Queue<Mycelium> = {" + "\n";
+        for(Mycelium mycelium : getMycelia()) {
+            output += "\t\t" + ObjectRegistry.lookupName(mycelium) + "\n";
+        }
+        output += "}\n";
+        output += "\toccupants List<Insect> = {" + "\n";
+        for(Insect insect : getOccupants()) {
+            output += "\t\t" + ObjectRegistry.lookupName(insect) + "\n";
+        }
+        output += "}\n";
+        return output;
     }
 }
