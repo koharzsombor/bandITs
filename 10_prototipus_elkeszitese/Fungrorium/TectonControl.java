@@ -4,7 +4,7 @@ import java.util.Queue;
 /**
  * A kontrollerben használt tekton interfész.
  */
-public interface TectonControl {
+public interface TectonControl extends RoundBeginSubscriber{
     /**
      * Beállítja a tekton törésvisszaszámlálóját.
      * @param breakTimer A törésvviszaszámláló új értéke.
