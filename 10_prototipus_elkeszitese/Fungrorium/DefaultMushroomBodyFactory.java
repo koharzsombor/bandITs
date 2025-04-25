@@ -11,6 +11,18 @@ public class DefaultMushroomBodyFactory implements MushroomBodyFactory {
      */
     @Override
     public MushroomBody create(String name, Tecton location) {
-        throw new UnsupportedOperationException("Not implemented");
+        MushroomBody mushroomBody;
+
+        if (location instanceof SemiFertileTectonImpl semiFertileTecton) {
+            mushroomBody = new MushroomBodyImpl(semiFertileTecton);
+        }
+        else if (location instanceof FertileTectonImpl fertileTecton) {
+            mushroomBody = new MushroomBodyImpl(fertileTecton);
+        }
+        else {
+            throw new IllegalArgumentException("NOOOOO ;(");
+        }
+
+        return mushroomBody;
     }
 }

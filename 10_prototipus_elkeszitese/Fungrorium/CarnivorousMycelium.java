@@ -5,6 +5,17 @@
 import java.util.*;
 
 public class CarnivorousMycelium extends MyceliumImpl{
+    public CarnivorousMycelium() {
+        super();
+    }
+
+    public CarnivorousMycelium(FertileTectonImpl location) {
+        super(location);
+    }
+
+    public CarnivorousMycelium(SemiFertileTectonImpl location) {
+        super(location);
+    }
 
     /**
      * Amikor kör kezdődik, a növekedési idő csökken, és ha az időzítő lejárt, akkor befejezi a növekedést.

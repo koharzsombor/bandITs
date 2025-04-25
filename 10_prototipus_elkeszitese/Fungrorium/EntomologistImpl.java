@@ -58,6 +58,6 @@ public class EntomologistImpl extends PlayerImpl implements Entomologist {
      */
     @Override
     public int calculateScore() {
-        throw new UnsupportedOperationException("Not implemented");
+        return insects.stream().mapToInt(Insect::getSporesEaten).sum();
     }
 }

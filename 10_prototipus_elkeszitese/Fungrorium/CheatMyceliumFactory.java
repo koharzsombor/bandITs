@@ -12,6 +12,14 @@ public class CheatMyceliumFactory implements MyceliumFactory {
      */
     @Override
     public Mycelium create(String type, String name, Tecton location) {
-        throw new UnsupportedOperationException("Not implemented.");
+        Mycelium mycelium;
+        switch (type.toLowerCase()) {
+            case "carnivorous" -> mycelium = new CarnivorousMycelium();
+            case "default" -> mycelium = new MyceliumImpl();
+            default -> throw new IllegalArgumentException("Mycelium type not supported");
+        }
+        ObjectRegistry.registerObject(name, mycelium);
+        location.addMycelium(mycelium);
+        return mycelium;
     }
 }

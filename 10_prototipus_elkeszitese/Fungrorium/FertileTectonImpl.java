@@ -3,7 +3,7 @@ import java.util.Random;
 
 public class FertileTectonImpl extends TectonImpl {
 
-    FertileTectonImpl() {
+    public FertileTectonImpl() {
         setMyceliaCapacity(1);
         Random rand = new Random();
 
