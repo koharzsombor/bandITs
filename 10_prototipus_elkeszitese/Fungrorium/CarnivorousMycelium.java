@@ -31,11 +31,11 @@ public class CarnivorousMycelium extends MyceliumImpl{
     @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
-        sb.append(); sb.append(": CarnivorousMycelium\n");
-        sb.append("\t"); sb.append("growing boolean = "); sb.append(growing); sb.append("\n");
-        sb.append("\t"); sb.append("location Tecton = "); sb.append(location); sb.append("\n");
-        sb.append("\t"); sb.append("growTimer int = "); sb.append(growTimer);
-        sb.append("\t"); sb.append("deathTimer int = "); sb.append(deathTimer);
+        sb.append(ObjectRegistry.lookupName(this)); sb.append(": CarnivorousMycelium\n");
+        sb.append("\tgrowing boolean = "); sb.append(growing); sb.append("\n");
+        sb.append("\tlocation Tecton = "); sb.append(location); sb.append("\n");
+        sb.append("\tgrowTimer int = "); sb.append(growTimer); sb.append("\n");
+        sb.append("\tdeathTimer int = "); sb.append(deathTimer); sb.append("\n");
         return sb.toString();
     }
 }

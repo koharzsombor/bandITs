@@ -25,7 +25,7 @@ public class MyceliumGrowthEvaluator implements TectonVisitor {
      * @param tecton A felkért tekton.
      */
     @Override
-    public void visit(FertileTecton tecton) {
+    public void visit(FertileTectonImpl tecton) {
         tecton.accept(this, getCreator());
     }
 
@@ -34,7 +34,7 @@ public class MyceliumGrowthEvaluator implements TectonVisitor {
      * @param tecton A felkért tekton.
      */
     @Override
-    public void visit(AridTecton tecton) {
+    public void visit(AridTectonImpl tecton) {
         tecton.accept(this, getCreator());
     }
 
@@ -43,7 +43,7 @@ public class MyceliumGrowthEvaluator implements TectonVisitor {
      * @param tecton A felkért tekton.
      */
     @Override
-    public void visit(SustainingTecton tecton) {
+    public void visit(SustainingTectonImpl tecton) {
         tecton.accept(this, getCreator());
     }
 
@@ -52,7 +52,7 @@ public class MyceliumGrowthEvaluator implements TectonVisitor {
      * @param tecton A felkért tekton.
      */
     @Override
-    public void visit(MultiLayeredTecton tecton) {
+    public void visit(MultiLayeredTectonImpl tecton) {
         tecton.accept(this, getCreator());
     }
 
@@ -61,7 +61,7 @@ public class MyceliumGrowthEvaluator implements TectonVisitor {
      * @param tecton A felkért tekton.
      */
     @Override
-    public void visit(SemiFertileTecton tecton) {
+    public void visit(SemiFertileTectonImpl tecton) {
         tecton.accept(this, getCreator());
     }
 }
