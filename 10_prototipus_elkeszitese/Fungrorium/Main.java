@@ -14,6 +14,8 @@ public class Main {
     private static GrowthController growthController;
 
     private static void initialiseComponents() {
+        ObjectRegistry.clearRegistry();
+
         roundObserver = new RoundObserverImpl();
         playerContainer = new PlayerContainerImpl(roundObserver);
 
