@@ -318,9 +318,12 @@ public class InsectImpl implements Insect{
         if(getState() == InsectState.STUN){
             getLocation().removeOccupant(this);
             setLocation(null);
-            MushroomBody newMB = new MushroomBodyImpl(getLocation());
-            String newMBName = ObjectRegistry.lookupName(this) + "-MB";
-            ObjectRegistry.registerObject(newMBName, newMB);
+
+            if(getLocation().getMushroomBody()!=null) {
+                MushroomBody newMB = new MushroomBodyImpl(getLocation());
+                String newMBName = "mb-" + ObjectRegistry.lookupName(getLocation());
+                ObjectRegistry.registerObject(newMBName, newMB);
+            }
         }
     }
 
