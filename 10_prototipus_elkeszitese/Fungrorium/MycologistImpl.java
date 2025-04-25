@@ -16,6 +16,11 @@ public class MycologistImpl extends PlayerImpl implements Mycologist {
     private final List<MushroomBody> mushroomBodies = new ArrayList<>();
 
     /**
+     * A köben lévő maradék gombafonál növesztések száma.
+     */
+    private int remainingGrows = 1;
+
+    /**
      * A játékos létrehozásához szükséges megadni a nevét.
      *
      * @param name A játékos neve.
@@ -87,12 +92,31 @@ public class MycologistImpl extends PlayerImpl implements Mycologist {
     }
 
     /**
+     * Visszadja a maradék növesztések számát.
+     *
+     * @return A maradék növesztések száma.
+     */
+    @Override
+    public int getRemainingGrows() {
+        return remainingGrows;
+    }
+
+    /**
+     * Felhasznál 1 növesztési lehetőséget.
+     */
+    @Override
+    public void useGrow() {
+        remainingGrows--;
+    }
+
+    /**
      * Kiszámolja a játékos pontszámát.
      *
      * @return A játékos pontszáma.
      */
     @Override
     public int calculateScore() {
-        throw new UnsupportedOperationException("Not implemented");
+        long mushroomCount = mushroomBodies.stream().filter(m -> m.getLocation() != null).count();
+        return Math.toIntExact(mushroomCount);
     }
 }

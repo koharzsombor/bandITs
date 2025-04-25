@@ -39,4 +39,15 @@ public interface Mycologist extends Player {
      * @return A játékosé-e a gombatest.
      */
     boolean ownsMushroomBody(MushroomBody mushroomBody);
+
+    /**
+     * Visszadja a maradék növesztések számát.
+     * @return A maradék növesztések száma.
+     */
+    int getRemainingGrows();
+
+    /**
+     * Felhasznál 1 növesztési lehetőséget.
+     */
+    void useGrow();
 }
