@@ -21,7 +21,7 @@ public class TectonControllerImpl implements TectonController {
      */
     @Override
     public void breakTecton(Tecton tecton) {
-        throw new UnsupportedOperationException("Kéne egy Tecton break metódus.");
+        throw new UnsupportedOperationException("ooof.");
     }
 
     /**

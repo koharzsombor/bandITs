@@ -77,7 +77,7 @@ public class MapCreationControllerImpl implements MapCreationController {
      */
     @Override
     public void createInsect(Tecton tecton, String name, Entomologist owner) {
-        Insect newInsect = insectFactory.create(name);
+        Insect newInsect = insectFactory.create(name, tecton);
         if (owner != null) {
             owner.addInsect(newInsect);
             owner.subscribe(newInsect);

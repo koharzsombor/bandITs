@@ -9,7 +9,7 @@ public class InsectControllerImpl implements InsectController {
      */
     @Override
     public void cut(Insect insect) {
-        throw new UnsupportedOperationException("Not implemented!");
+        insect.cutMycelium();
     }
 
     /**
@@ -19,7 +19,7 @@ public class InsectControllerImpl implements InsectController {
      */
     @Override
     public void eat(Insect insect) {
-        throw new UnsupportedOperationException("Not implemented!");
+        insect.eatSpore();
     }
 
     /**
@@ -30,6 +30,6 @@ public class InsectControllerImpl implements InsectController {
      */
     @Override
     public void move(Insect insect, Tecton destination) {
-        throw new UnsupportedOperationException("Not implemented!");
+        insect.move(destination);
     }
 }

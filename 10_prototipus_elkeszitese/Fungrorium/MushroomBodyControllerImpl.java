@@ -23,7 +23,7 @@ public class MushroomBodyControllerImpl implements MushroomBodyController {
      */
     @Override
     public void eject(MushroomBody mushroomBody, Tecton target) {
-        throw new UnsupportedOperationException("Not implemented!");
+        mushroomBody.ejectSpores(target);
     }
 
     /**
@@ -33,7 +33,7 @@ public class MushroomBodyControllerImpl implements MushroomBodyController {
      */
     @Override
     public void deactivate(MushroomBody mushroomBody) {
-        throw new UnsupportedOperationException("Not implemented!");
+        mushroomBody.setRemainingEjects(0);
     }
 
     /**
@@ -44,7 +44,7 @@ public class MushroomBodyControllerImpl implements MushroomBodyController {
      */
     @Override
     public void setRemainingEjects(MushroomBody mushroomBody, int amount) {
-        throw new UnsupportedOperationException("Not implemented!");
+        mushroomBody.setRemainingEjects(amount);
     }
 
     /**
@@ -56,6 +56,6 @@ public class MushroomBodyControllerImpl implements MushroomBodyController {
      */
     @Override
     public void addSpores(String sporeType, String sporeName, MushroomBody mushroomBody) {
-        throw new UnsupportedOperationException("Not implemented!");
+        mushroomBody.addSpore(sporeFactory.create(sporeName, sporeType));
     }
 }

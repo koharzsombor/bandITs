@@ -7,5 +7,5 @@ public interface InsectFactory {
      * @param name A rovar neve.
      * @return Az új rovar.
      */
-    Insect create(String name);
+    Insect create(String name, Tecton tecton);
 }
