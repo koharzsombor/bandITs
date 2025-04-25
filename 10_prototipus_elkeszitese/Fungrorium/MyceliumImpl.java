@@ -129,6 +129,9 @@ public class MyceliumImpl implements Mycelium{
      */
     @Override
     public void cutWithDelay(){
+        if(deathTimer!=-1){
+            return;
+        }
         deathTimer=2;
     }
 
