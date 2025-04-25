@@ -1,9 +1,16 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class MultiLayeredTectonImpl extends FertileTectonImpl {
 
     MultiLayeredTectonImpl() {
         setMyceliaCapacity(3);
+
+        Random rand = new Random();
+
+        int MINNUMB = 2;
+        int MAXNUMB = 150;
+        setBreakTimer(rand.nextInt(MAXNUMB - MINNUMB + 1) + MINNUMB);
     }
 
     @Override

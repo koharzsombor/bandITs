@@ -1,3 +1,4 @@
+import javax.naming.NamingEnumeration;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -5,7 +6,6 @@ public class SustainingTectonImpl extends FertileTectonImpl {
 
     SustainingTectonImpl() {
         setMyceliaCapacity(1);
-
         Random rand = new Random();
 
         int MINNUMB = 2;

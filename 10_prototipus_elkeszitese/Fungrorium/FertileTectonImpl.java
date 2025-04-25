@@ -1,10 +1,15 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class FertileTectonImpl extends TectonImpl {
 
     FertileTectonImpl() {
         setMyceliaCapacity(1);
-        //setBreakTimer(); itt randommal range: 2 es 150 kozott
+        Random rand = new Random();
+
+        int MINNUMB = 2;
+        int MAXNUMB = 150;
+        setBreakTimer(rand.nextInt(MAXNUMB - MINNUMB + 1) + MINNUMB);
     }
 
     @Override

@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class AridTectonImpl extends FertileTectonImpl {
 
@@ -6,6 +7,12 @@ public class AridTectonImpl extends FertileTectonImpl {
 
     AridTectonImpl() {
         setMyceliaCapacity(1);
+
+        Random rand = new Random();
+
+        int MINNUMB = 2;
+        int MAXNUMB = 150;
+        setBreakTimer(rand.nextInt(MAXNUMB - MINNUMB + 1) + MINNUMB);
     }
 
     @Override

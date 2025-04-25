@@ -1,9 +1,16 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class SemiFertileTectonImpl extends TectonImpl {
 
     SemiFertileTectonImpl() {
         setMyceliaCapacity(1);
+
+        Random rand = new Random();
+
+        int MINNUMB = 2;
+        int MAXNUMB = 150;
+        setBreakTimer(rand.nextInt(MAXNUMB - MINNUMB + 1) + MINNUMB);
     }
 
     @Override
