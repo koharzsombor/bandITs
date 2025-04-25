@@ -4,7 +4,7 @@ import java.util.*;
  * Ha a gombafonalak eltűnnek alóla, egy véletlenszerűen meghatározott tektonra elmenekül.
  * Az osztály többek között nyilvántartja, hogy a rovar milyen spóraeffektus alatt áll.
  */
-public class InsectImpl implements Insect, TurnBeginSubscriber{
+public class InsectImpl implements Insect{
     /**
      * A rovar jelenlegi tartózkodási helye.
      */
@@ -166,6 +166,10 @@ public class InsectImpl implements Insect, TurnBeginSubscriber{
         return splitNum;
     }
 
+    /**
+     * Konstruktor
+     * @param location Az a tecton, amelyiken az újonnan létrejött Insect van
+     */
     public InsectImpl(Tecton location) {
         setLocation(location);
         location.addOccupant(this);
@@ -210,6 +214,7 @@ public class InsectImpl implements Insect, TurnBeginSubscriber{
     @Override
     public void beSlow() {
         setState(InsectState.SLOW);
+        setEffectTimer(2);
         setMaxMoves(1);
     }
 
@@ -219,6 +224,7 @@ public class InsectImpl implements Insect, TurnBeginSubscriber{
     @Override
     public void beFast() {
         setState(InsectState.FAST);
+        setEffectTimer(2);
         setMaxMoves(3);
     }
 
@@ -228,6 +234,7 @@ public class InsectImpl implements Insect, TurnBeginSubscriber{
     @Override
     public void preventCut() {
         setState(InsectState.CANNOT_CUT);
+        setEffectTimer(2);
     }
 
     /**
@@ -236,6 +243,7 @@ public class InsectImpl implements Insect, TurnBeginSubscriber{
     @Override
     public void beStunned() {
         setState(InsectState.STUN);
+        setEffectTimer(2);
         setMaxMoves(0);
     }
 
@@ -245,9 +253,11 @@ public class InsectImpl implements Insect, TurnBeginSubscriber{
     @Override
     public void split() {
         Insect newInsect = new InsectImpl(getLocation());
-        setSplitNum(getSplitNum() + 1);
-        //Insert adding insect to registry
         newInsect.setRemainingMoves(0);
+
+        setSplitNum(getSplitNum() + 1);
+        String newInsectName = ObjectRegistry.lookupName(this) + "-" + getSplitNum();
+        ObjectRegistry.registerObject(newInsectName, newInsect);
     }
 
     /**
@@ -308,6 +318,12 @@ public class InsectImpl implements Insect, TurnBeginSubscriber{
         if(getState() == InsectState.STUN){
             getLocation().removeOccupant(this);
             setLocation(null);
+
+            if(getLocation().getMushroomBody()!=null) {
+                MushroomBody newMB = new MushroomBodyImpl(getLocation());
+                String newMBName = "mb-" + ObjectRegistry.lookupName(getLocation());
+                ObjectRegistry.registerObject(newMBName, newMB);
+            }
         }
     }
 
@@ -326,5 +342,21 @@ public class InsectImpl implements Insect, TurnBeginSubscriber{
         }
 
         setRemainingMoves(getMaxMoves());
+    }
+
+    /**
+     * To string, a kiiráshoz
+     * @return az insect tulajdonságainak formázott stringje
+     */
+    @Override
+    public String toString() {
+        String output = ObjectRegistry.lookupName(this) + ": Insect\n";
+        output += "    location = " + getLocation() + "\n";
+        output += "    maxMoves = " + getMaxMoves() + "\n";
+        output += "    remainingMoves = " + getRemainingMoves() + "\n";
+        output += "    sporesEaten = " + getSporesEaten() + "\n";
+        output += "    effectTIMER = " + getEffectTimer() + "\n";
+        output += "    state = " + getState().toString() + "\n";
+        return output;
     }
 }

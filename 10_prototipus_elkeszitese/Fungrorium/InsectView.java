@@ -43,4 +43,10 @@ public interface InsectView {
      * @return A rovar szakadásainak száma.
      */
     public int getSplitNum();
+
+    /**
+     * To string, a kiiráshoz
+     * @return az insect tulajdonságainak formázott stringje
+     */
+    public String toString();
 }

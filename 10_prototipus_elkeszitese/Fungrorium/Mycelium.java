@@ -1,3 +1,4 @@
+
 public interface Mycelium extends MyceliumControl, MyceliumView, Mushroom{
     /**
      * A gombafonál elvágódik, ezzel szól a többi gombafonálnak, hogy nézzék meg, hogy hozzá vannak-e csatlakoztatva
@@ -9,6 +10,4 @@ public interface Mycelium extends MyceliumControl, MyceliumView, Mushroom{
      * Beállítja a deathTimer-t 2-re
      */
     public void cutWithDelay();
-
-
 }

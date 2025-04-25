@@ -1,7 +1,7 @@
 /**
  * A kontrollerben használt Rovar interfész.
  */
-public interface InsectControl {
+public interface InsectControl extends TurnBeginSubscriber {
     /**
      * A rovar jelenlegi tartózkodási helyének setterje.
      * @param location A rovar új tartózkodási helye.
@@ -59,39 +59,4 @@ public interface InsectControl {
      * @param target A cél tekton.
      */
     public void move(Tecton target);
-
-    /**
-     * A rovar lassú állapotba kerül.
-     */
-    public void beSlow();
-
-    /**
-     * A rovar gyors állapotba kerül.
-     */
-    public void beFast();
-
-    /**
-     * A rovar olyan állapotba kerül, amitől nem tudja elvágni a gombafonalakat.
-     */
-    public void preventCut();
-
-    /**
-     * A rovar bénult állapotba kerül.
-     */
-    public void beStunned();
-
-    /**
-     * A rovar kettészakad
-     */
-    public void split();
-
-    /**
-     * A rovar elfut egy véletlenszerű tektonra, ahol van gombafonál.
-     */
-    public void runAway();
-
-    /**
-     * Ha STUN állapotban van a rovar, meghal (azan eltünik a pályáról, de mint objektum megmarad, pontszámoláshoz)
-     */
-    public void die();
 }
