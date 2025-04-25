@@ -31,6 +31,7 @@ public class GrowthControllerImpl implements GrowthController {
         String defaultType = "default";
         Mycelium mycelium = myceliumFactory.create(defaultType, name, location);
         mycologist.addMycelium(mycelium);
+        mycologist.subscribe(mycelium);
     }
 
     /**
@@ -43,5 +44,6 @@ public class GrowthControllerImpl implements GrowthController {
     public void growMushroomBody(String name, Tecton location, Mycologist mycologist) {
         MushroomBody mushroomBody = mushroomBodyFactory.create(name, location);
         mycologist.addMushroomBody(mushroomBody);
+        mycologist.subscribe(mushroomBody);
     }
 }
