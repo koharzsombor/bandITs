@@ -41,14 +41,14 @@ public class MyceliumImpl implements Mycelium{
      * @param location A tekton, ahová a gombafonál nőni szeretne.
      * @param name A konzolra kiírt objektum név. Csak a szkeleton programban szükséges.
      */
-    public MyceliumImpl(FertileTecton location, String name) {
+    public MyceliumImpl(FertileTectonImpl location, String name) {
         this.location = location;
 
         MyceliumGrowthEvaluator myceliumGrowthEvaluator = new MyceliumGrowthEvaluator(this);
         myceliumGrowthEvaluator.visit(location);
     }
 
-    public MyceliumImpl(SemiFertileTecton location, String name) {
+    public MyceliumImpl(SemiFertileTectonImpl location, String name) {
         this.location = location;
 
         MyceliumGrowthEvaluator myceliumGrowthEvaluator = new MyceliumGrowthEvaluator(this);
@@ -115,7 +115,7 @@ public class MyceliumImpl implements Mycelium{
      */
     @Override
     public void cutImmediate(){
-        location.checkNeighborMyceliaSustain();
+        location.checkNeighbourMyceliaSustain();
         if(location.getMycelia().isEmpty()){
             for(Insect i: location.getOccupants()){
                 i.runAway();
@@ -159,11 +159,12 @@ public class MyceliumImpl implements Mycelium{
     @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
-        sb.append(); sb.append(": Mycelium\n");
-        sb.append("\t"); sb.append("growing boolean = "); sb.append(growing); sb.append("\n");
-        sb.append("\t"); sb.append("location Tecton = "); sb.append(location); sb.append("\n");
-        sb.append("\t"); sb.append("growTimer int = "); sb.append(growTimer);
-        sb.append("\t"); sb.append("deathTimer int = "); sb.append(deathTimer);
+
+        sb.append(ObjectRegistry.lookupName(this)); sb.append(": Mycelium\n");
+        sb.append("\tgrowing boolean = "); sb.append(growing); sb.append("\n");
+        sb.append("\tlocation Tecton = "); sb.append(location); sb.append("\n");
+        sb.append("\tgrowTimer int = "); sb.append(growTimer); sb.append("\n");
+        sb.append("\tdeathTimer int = "); sb.append(deathTimer); sb.append("\n");
         return sb.toString();
     }
 }
