@@ -8,6 +8,7 @@ public class MyceliumGrowthEvaluator implements TectonVisitor {
      * Visszaadja a létrehozó gombafonalat.
      * @return A létrehozó gombafonál.
      */
+    @Override
     public Mycelium getCreator() {
         return creator;
     }
