@@ -319,11 +319,10 @@ public class InsectImpl implements Insect{
             getLocation().removeOccupant(this);
             setLocation(null);
 
-            if(getLocation().getMushroomBody()!=null) {
+            if(getLocation().getMushroomBody()==null) {
                 MushroomBody newMB = new MushroomBodyImpl();
-
-                if (getLocation().getMushroomBody() == null)
-                    getLocation().setMushroomBody(newMB);
+                getLocation().setMushroomBody(newMB);
+                newMB.setLocation(getLocation());
 
                 String newMBName = "mb-" + ObjectRegistry.lookupName(getLocation());
                 ObjectRegistry.registerObject(newMBName, newMB);
