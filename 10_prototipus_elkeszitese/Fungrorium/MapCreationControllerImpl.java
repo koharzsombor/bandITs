@@ -30,7 +30,8 @@ public class MapCreationControllerImpl implements MapCreationController {
     /**
      * A konstruktor automatikusan létrehozza a szükséges objektumokat.
      */
-    public MapCreationControllerImpl() {
+    public MapCreationControllerImpl(RoundObserver roundObserver) {
+        this.roundObserver = roundObserver;
         mushroomBodyFactory = new CheatMushroomBodyFactory();
         myceliumFactory = new CheatMyceliumFactory();
         insectFactory = new InsectFactoryImpl();
@@ -64,6 +65,7 @@ public class MapCreationControllerImpl implements MapCreationController {
         MushroomBody mushroomBody = mushroomBodyFactory.create(name, tecton);
         if (owner != null) {
             owner.addMushroomBody(mushroomBody);
+            owner.subscribe(mushroomBody);
         }
     }
 

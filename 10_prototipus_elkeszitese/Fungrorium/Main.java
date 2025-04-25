@@ -24,7 +24,7 @@ public class Main {
         insectController = new InsectControllerImpl();
         playerController = new PlayerControllerImpl(playerContainer);
         mushroomBodyController = new MushroomBodyControllerImpl();
-        mapCreationController = new MapCreationControllerImpl();
+        mapCreationController = new MapCreationControllerImpl(roundObserver);
         growthController = new GrowthControllerImpl();
 
         commandRouter = new CommandRouterImpl(turnController);
@@ -59,6 +59,6 @@ public class Main {
     }
 
     public static void main(String... args) {
-        
+        initialiseComponents();
     }
 }
