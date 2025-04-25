@@ -24,6 +24,10 @@ public class GrowMyceliumCommand extends CommandImpl {
             Tecton location = (Tecton)ObjectRegistry.getObject(input.params()[2]);
             Mycologist mycologist = (Mycologist)actingPlayer;
 
+            if (mycologist.getRemainingGrows() <= 0)
+                return;
+
+            mycologist.useGrow();
             controller.growMycelium(input.params()[0], input.params()[1], location, mycologist);
         } catch (Exception e) {
             System.out.println(commandErrorMessage);
