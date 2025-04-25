@@ -46,7 +46,7 @@ public class MushroomBodyImpl implements MushroomBody {
     public MushroomBodyImpl(FertileTectonImpl location) {
         this.location = location;
         MushroomBodyGrowthEvaluator evaluator = new MushroomBodyGrowthEvaluator(this);
-        evaluator.visit(location, this);
+        evaluator.visit(location);
     }
 
     /**
@@ -58,7 +58,7 @@ public class MushroomBodyImpl implements MushroomBody {
     public MushroomBodyImpl(SemiFertileTectonImpl location) {
         this.location = location;
         MushroomBodyGrowthEvaluator evaluator = new MushroomBodyGrowthEvaluator(this);
-        evaluator.visit(location, this);
+        evaluator.visit(location);
     }
 
     /**
