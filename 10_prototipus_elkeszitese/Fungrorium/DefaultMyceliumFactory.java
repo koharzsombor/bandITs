@@ -16,15 +16,15 @@ public class DefaultMyceliumFactory implements MyceliumFactory {
 
         if (location instanceof SemiFertileTectonImpl semiFertileTecton) {
             switch (type.toLowerCase()) {
-                case "carnivorous" -> mycelium = new CarnivorousMycelium(semiFertileTecton);
-                case "default" -> mycelium = new MyceliumImpl(semiFertileTecton);
+                case "carnivorousmycelium" -> mycelium = new CarnivorousMycelium(semiFertileTecton);
+                case "mycelium" -> mycelium = new MyceliumImpl(semiFertileTecton);
                 default -> throw new IllegalArgumentException("Mycelium type not supported");
             }
         }
         else if (location instanceof FertileTectonImpl fertileTecton) {
             switch (type.toLowerCase()) {
-                case "carnivorous" -> mycelium = new CarnivorousMycelium(fertileTecton);
-                case "default" -> mycelium = new MyceliumImpl(fertileTecton);
+                case "carnivorousmycelium" -> mycelium = new CarnivorousMycelium(fertileTecton);
+                case "mycelium" -> mycelium = new MyceliumImpl(fertileTecton);
                 default -> throw new IllegalArgumentException("Mycelium type not supported");
             }
         }

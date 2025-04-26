@@ -11,6 +11,8 @@ public class InsectFactoryImpl implements InsectFactory {
      */
     @Override
     public Insect create(String name, Tecton tecton) {
-        return new InsectImpl(tecton);
+        Insect insect = new InsectImpl(tecton);
+        ObjectRegistry.registerObject(name, insect);
+        return insect;
     }
 }

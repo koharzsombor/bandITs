@@ -65,7 +65,7 @@ public class TestBJ {
     //Teszt1: Rovar létrehozása és letevése
     private static final String test1_Path = "Fungrorium/TestInputs/BJTests/test1.txt";
     private static final String test1_ft1 = "ft1: FertileTecton\n" +
-            "\tbreakTimer int = 5\n" +
+            "\tbreakTimer int = 3\n" +
             "\tneighbours List<Tecton> = {\n" +
             "\t}\n" +
             "\tmyceliumCapacity int = 1\n" +
@@ -96,9 +96,9 @@ public class TestBJ {
         commandReader.readAllBufferedCommands();
 
         List<String> output = traceablePrinter.readHistroy();
-        Assertions.assertTrue(output.get(0).equals(test1_ft1));
-        Assertions.assertTrue(output.get(1).equals(test1_m1));
-        Assertions.assertTrue(output.get(2).equals(test1_i1));
+        Assertions.assertEquals(test1_ft1, output.get(0)); //🤓
+        Assertions.assertEquals(test1_m1, output.get(1));
+        Assertions.assertEquals(test1_i1, output.get(2));
     }
 
     //Teszt2: Rovar mozgatása
@@ -222,7 +222,7 @@ public class TestBJ {
     }
 
     //Teszt4: Rovar sikertelen mozgatása olyan tektonra, amelyen nincs gombafonál
-    private static final String test4_Path = "Fungrorium/BJTests/test4.txt";
+    private static final String test4_Path = "Fungrorium/TestInputs/BJTests/test4.txt";
     private static final String test4_ft1 = "ft1: FertileTecton\n" +
             "\tbreakTimer int = 5\n" +
             "\tneighbours List<Tecton> = {\n" +

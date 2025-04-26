@@ -22,7 +22,7 @@ public class DefaultMushroomBodyFactory implements MushroomBodyFactory {
         else {
             throw new IllegalArgumentException("NOOOOO ;(");
         }
-
+        ObjectRegistry.registerObject(name, mushroomBody);
         return mushroomBody;
     }
 }
