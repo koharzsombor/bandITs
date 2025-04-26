@@ -253,4 +253,8 @@ public class TestBJ {
         Assertions.assertTrue(output.get(0).equals(test3_mb1));
         Assertions.assertTrue(output.get(0).equals(test3_m1));
     }
+
+    //Teszt4: Gombafonál sikertelen növesztése gombatestből, olyan FertileTectonra , ami a növést kezdeményező gombatest tektonjával nem közvetlenül szomszédos.
+    private static final String test4_Path = "Fungrorium/TestInputs/GGTests/test4.txt";
+
 }
