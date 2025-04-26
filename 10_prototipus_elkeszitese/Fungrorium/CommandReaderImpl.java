@@ -68,4 +68,14 @@ public class CommandReaderImpl implements CommandReader {
             }
         }
     }
+
+    /**
+     * Kiolvassa az összes pufferban lévő parancsot.
+     */
+    @Override
+    public void readAllBufferedCommands() {
+        while (!inputBuffer.isEmpty()) {
+            readNextCommand();
+        }
+    }
 }
