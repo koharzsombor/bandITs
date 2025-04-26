@@ -256,5 +256,77 @@ public class TestBJ {
 
     //Teszt4: Gombafonál sikertelen növesztése gombatestből, olyan FertileTectonra , ami a növést kezdeményező gombatest tektonjával nem közvetlenül szomszédos.
     private static final String test4_Path = "Fungrorium/TestInputs/GGTests/test4.txt";
+    private static final String test4_ft1 = "ft1: FertileTecon\n" +
+            "\tbreakTimer int = 3\n" +
+            "\tneighbours List<Tecton>  = {\n" +
+            "\t}\n" +
+            "\tmyceliumCapacity int = 1\n" +
+            "\tspores Queue<Spore> = {\n" +
+            "\t}\n" +
+            "\tmushroomBody MushroomBody = mb1\n" +
+            "\tmycelia Queue<Mycelium> = {\n" +
+            "\t}\n" +
+            "\toccupants List<Insect> = {\n" +
+            "\t}\n";
+    private static final String test4_ft2 = "ft2: FertileTecon\n" +
+            "\tbreakTimer int = 3\n" +
+            "\tneighbours List<Tecton>  = {\n" +
+            "\t}\n" +
+            "\tmyceliumCapacity int = 1\n" +
+            "\tspores Queue<Spore> = {\n" +
+            "\t}\n" +
+            "\tmushroomBody MushroomBody = null\n" +
+            "\tmycelia Queue<Mycelium> = {\n" +
+            "\t}\n" +
+            "\toccupants List<Insect> = {\n" +
+            "\t}\n";
+    private static final String test4_mb1 = "mb1: MushroomBody\n" +
+            "\treamainingEjects int = 3\n" +
+            "\tlocation Tecton = ft1\n" +
+            "\tmushroomSpores List<Spore> = {\n" +
+            "\t\tmb1-speeds1\n" +
+            "\t\tmb1-speeds2\n" +
+            "\t}\n";
 
+    @Test
+    public void test4() {
+        commandReader.bufferFile(test4_Path);
+        commandReader.readAllBufferedCommands();
+
+        List<String> output = traceablePrinter.readHistroy();
+        Assertions.assertTrue(output.get(0).equals(test4_ft1));
+        Assertions.assertTrue(output.get(1).equals(test4_ft2));
+        Assertions.assertTrue(output.get(0).equals(test4_mb1));
+    }
+
+    //Teszt5: Húsevő fonál általi rovarevés és gombatest növesztés
+    private static final String test5_Path = "Fungrorium/TestInputs/GGTests/test5.txt";
+    private static final String test5_ft1 = "ft1: FertileTecon\n" +
+            "\tbreakTimer int = 4\n" +
+            "\tneighbours List<Tecton>  = {\n" +
+            "\t}\n" +
+            "\tmyceliumCapacity int = 1\n" +
+            "\tspores Queue<Spore> = {\n" +
+            "\t}\n" +
+            "\tmushroomBody MushroomBody = mb-ft1\n" +
+            "\tmycelia Queue<Mycelium> = {\n" +
+            "\t\tcm1\n" +
+            "\t}\n" +
+            "\toccupants List<Insect> = {\n" +
+            "\t}\n";
+    private static final String test5_mb_ft1 = "mb-ft1: MushroomBody\n" +
+            "\treamainingEjects int = 3\n" +
+            "\tlocation Tecton = ft1\n" +
+            "\tmushroomSpores List<Spore> = {\n" +
+            "\t}\n";
+
+    @Test
+    public void test5() {
+        commandReader.bufferFile(test5_Path);
+        commandReader.readAllBufferedCommands();
+
+        List<String> output = traceablePrinter.readHistroy();
+        Assertions.assertTrue(output.get(0).equals(test5_ft1));
+        Assertions.assertTrue(output.get(0).equals(test5_mb_ft1));
+    }
 }
