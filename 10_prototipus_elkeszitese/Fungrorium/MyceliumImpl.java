@@ -119,8 +119,9 @@ public class MyceliumImpl implements Mycelium{
         this.delete();
         tmpLocation.checkNeighbourMyceliaSustain();
         if(tmpLocation.getMycelia().isEmpty()){
-            for(Insect i: tmpLocation.getOccupants()){
-                i.runAway();
+            ArrayList<Insect> temp =new ArrayList<Insect>(tmpLocation.getOccupants());
+            for (Insect insect : temp) {
+                insect.runAway();
             }
         }
     }
