@@ -1,22 +1,23 @@
 import java.util.List;
+import org.junit.jupiter.api.*;
 
 public class Tests_TSz {
-    private static CommandReader commandReader;
-    private static CommandRouter commandRouter;
-    private static PlayerContainer playerContainer;
-    private static RoundObserver roundObserver;
-    private static TurnController turnController;
-    private static TectonController tectonController;
-    private static InsectController insectController;
-    private static PlayerController playerController;
-    private static GameEndManager gameEndManager;
-    private static TraceablePrinter traceablePrinter;
-    private static MushroomBodyController mushroomBodyController;
-    private static MapCreationController mapCreationController;
-    private static GrowthController growthController;
+    private CommandReader commandReader;
+    private CommandRouter commandRouter;
+    private PlayerContainer playerContainer;
+    private RoundObserver roundObserver;
+    private TurnController turnController;
+    private TectonController tectonController;
+    private InsectController insectController;
+    private PlayerController playerController;
+    private GameEndManager gameEndManager;
+    private TraceablePrinter traceablePrinter;
+    private MushroomBodyController mushroomBodyController;
+    private MapCreationController mapCreationController;
+    private GrowthController growthController;
 
     @BeforeEach
-    private static void initialiseComponents() {
+    public void initialiseComponents() {
         ObjectRegistry.clearRegistry();
 
         roundObserver = new RoundObserverImpl();
@@ -50,7 +51,7 @@ public class Tests_TSz {
         commandRouter.addCommand("GROW_MUSHROOMBODY", growthController);
         commandRouter.addCommand("SET_BREAKTIMER", tectonController);
         commandRouter.addCommand("ADD_NEIGHBOUR", tectonController);
-        commandRouter.addCommand("ADD_MYCELIUM", tectonController);
+        commandRouter.addCommand("ADD_MYCELIUM_TO_TECTON", tectonController);
         commandRouter.addCommand("PUT_SPORE", tectonController);
         commandRouter.addCommand("EJECT_SPORES", mushroomBodyController);
         commandRouter.addCommand("DEACTIVATE", mushroomBodyController);
@@ -67,7 +68,7 @@ public class Tests_TSz {
 
     private static final String test1_ft1 = """
     ft1: FertileTecton
-    \tbreakTimer int = 4
+    \tbreakTimer int = 3
     \tneighbours List<Tecton> = {
     \t}
     \tmyceliumCapacity int = 1
@@ -104,11 +105,12 @@ public class Tests_TSz {
     @Test
     void test1() {
         commandReader.bufferFile(test1_Path);
+        commandReader.readAllBufferedCommands();
 
         List<String> output = traceablePrinter.readHistroy();
-        Assertions.assertTrue(output.get(0).equals(test1_ft1));
-        Assertions.assertTrue(output.get(1).equals(test1_m1));
-        Assertions.assertTrue(output.get(2).equals(test1_mb1));
+        Assertions.assertEquals(test1_ft1,output.get(0));
+        Assertions.assertEquals(test1_m1,output.get(1));
+        Assertions.assertEquals(test1_mb1,output.get(2));
     }
 
 
@@ -118,7 +120,7 @@ public class Tests_TSz {
 
     private static final String test2_ft1 = """
     ft1: FertileTecton
-    \tbreakTimer int = 4
+    \tbreakTimer int = 3
     \tneighbours List<Tecton> = {
     \t}
     \tmyceliumCapacity int = 1
@@ -145,10 +147,11 @@ public class Tests_TSz {
     @Test
     void test2() {
         commandReader.bufferFile(test2_Path);
+        commandReader.readAllBufferedCommands();
 
         List<String> output = traceablePrinter.readHistroy();
-        Assertions.assertTrue(output.get(0).equals(test2_ft1));
-        Assertions.assertTrue(output.get(1).equals(test2_m1));
+        Assertions.assertEquals(test2_ft1,output.get(0));
+        Assertions.assertEquals(test2_m1,output.get(1));
     }
 
 
@@ -158,7 +161,7 @@ public class Tests_TSz {
 
     private static final String test3_ft1 = """
     ft1: FertileTecton
-    \tbreakTimer int = 4
+    \tbreakTimer int = 3
     \tneighbours List<Tecton> = {
     \t}
     \tmyceliumCapacity int = 1
@@ -196,11 +199,12 @@ public class Tests_TSz {
     @Test
     void test3() {
         commandReader.bufferFile(test3_Path);
+        commandReader.readAllBufferedCommands();
 
         List<String> output = traceablePrinter.readHistroy();
-        Assertions.assertTrue(output.get(0).equals(test3_ft1));
-        Assertions.assertTrue(output.get(1).equals(test3_m1));
-        Assertions.assertTrue(output.get(2).equals(test3_mb1));
+        Assertions.assertEquals(test3_ft1,output.get(0));
+        Assertions.assertEquals(test3_m1,output.get(1));
+        Assertions.assertEquals(test3_mb1,output.get(2));
     }
 
     //Teszt4: Gombatest sikertelen növesztése gombafonál által SemiFertileTectonra
@@ -208,7 +212,7 @@ public class Tests_TSz {
 
     private static final String test4_sft1 = """
     sft1: SemiFertileTecton
-    \tbreakTimer int = 4
+    \tbreakTimer int = 3
     \tneighbours List<Tecton> = {
     \t}
     \tmyceliumCapacity int = 1
@@ -236,10 +240,11 @@ public class Tests_TSz {
     @Test
     void test4() {
         commandReader.bufferFile(test4_Path);
+        commandReader.readAllBufferedCommands();
 
         List<String> output = traceablePrinter.readHistroy();
-        Assertions.assertTrue(output.get(0).equals(test4_sft1));
-        Assertions.assertTrue(output.get(1).equals(test4_m1));
+        Assertions.assertEquals(test4_sft1,output.get(0));
+        Assertions.assertEquals(test4_m1,output.get(1));
     }
 
 
@@ -249,7 +254,7 @@ public class Tests_TSz {
 
     private static final String test5_ft1 = """
     ft1: FertileTecton
-    \tbreakTimer int = 4
+    \tbreakTimer int = 3
     \tneighbours List<Tecton> = {
     \t\tft2
     \t}
@@ -265,10 +270,9 @@ public class Tests_TSz {
 
     private static final String test5_ft2 = """
     ft2: FertileTecton
-    \tbreakTimer int = 4
+    \tbreakTimer int = 3
     \tneighbours List<Tecton> = {
     \t\tft1
-    \t\tft3
     \t}
     \tmyceliumCapacity int = 1
     \tspores Queue<Spore> = {
@@ -296,11 +300,12 @@ public class Tests_TSz {
     @Test
     void test5() {
         commandReader.bufferFile(test5_Path);
+        commandReader.readAllBufferedCommands();
 
         List<String> output = traceablePrinter.readHistroy();
-        Assertions.assertTrue(output.get(0).equals(test5_ft1));
-        Assertions.assertTrue(output.get(1).equals(test5_ft2));
-        Assertions.assertTrue(output.get(2).equals(test5_mb1));
+        Assertions.assertEquals(test5_ft1,output.get(0));
+        Assertions.assertEquals(test5_ft2,output.get(1));
+        Assertions.assertEquals(test5_mb1,output.get(2));
     }
 
 
@@ -310,7 +315,7 @@ public class Tests_TSz {
 
     private static final String test6_ft1 = """
     ft1: FertileTecton
-    \tbreakTimer int = 4
+    \tbreakTimer int = 3
     \tneighbours List<Tecton> = {
     \t\tft2
     \t}
@@ -326,7 +331,7 @@ public class Tests_TSz {
 
     private static final String test6_ft2 = """
     ft2: FertileTecton
-    \tbreakTimer int = 4
+    \tbreakTimer int = 3
     \tneighbours List<Tecton> = {
     \t\tft1
     \t\tft3
@@ -343,7 +348,7 @@ public class Tests_TSz {
 
     private static final String test6_ft3 = """
     ft3: FertileTecton
-    \tbreakTimer int = 4
+    \tbreakTimer int = 3
     \tneighbours List<Tecton> = {
     \t\tft2
     \t}
@@ -373,12 +378,13 @@ public class Tests_TSz {
     @Test
     void test6() {
         commandReader.bufferFile(test6_Path);
+        commandReader.readAllBufferedCommands();
 
         List<String> output = traceablePrinter.readHistroy();
-        Assertions.assertTrue(output.get(0).equals(test6_ft1));
-        Assertions.assertTrue(output.get(1).equals(test6_ft2));
-        Assertions.assertTrue(output.get(2).equals(test6_ft3));
-        Assertions.assertTrue(output.get(3).equals(test6_mb1));
+        Assertions.assertEquals(test6_ft1,output.get(0));
+        Assertions.assertEquals(test6_ft2,output.get(1));
+        Assertions.assertEquals(test6_ft3,output.get(2));
+        Assertions.assertEquals(test6_mb1,output.get(3));
     }
 
     //Teszt7: Gombatest spórahiány miatti sikertelen spórakilövése a gombatest elhelyezkedése szerinti tektonnal
@@ -386,8 +392,8 @@ public class Tests_TSz {
     private static final String test7_Path = "Fungrorium/TestInputs/TSZTests/test7.txt";
 
     private static final String test7_ft1 = """
-    ft1: FertileTecon
-    \tbreakTimer int = 4
+    ft1: FertileTecton
+    \tbreakTimer int = 3
     \tneighbours List<Tecton> = {
     \t\tft2
     \t\tft3
@@ -404,7 +410,7 @@ public class Tests_TSz {
 
     private static final String test7_ft2 = """
     ft2: FertileTecton
-    \tbreakTimer int = 4
+    \tbreakTimer int = 3
     \tneighbours List<Tecton> = {
     \t\tft1
     \t}
@@ -421,7 +427,7 @@ public class Tests_TSz {
 
     private static final String test7_ft3 = """
     ft3: FertileTecton
-    \tbreakTimer int = 4
+    \tbreakTimer int = 3
     \tneighbours List<Tecton> = {
     \t\tft1
     \t}
@@ -447,12 +453,13 @@ public class Tests_TSz {
     @Test
     void test7() {
         commandReader.bufferFile(test7_Path);
+        commandReader.readAllBufferedCommands();
 
         List<String> output = traceablePrinter.readHistroy();
-        Assertions.assertTrue(output.get(0).equals(test7_ft1));
-        Assertions.assertTrue(output.get(1).equals(test7_ft2));
-        Assertions.assertTrue(output.get(2).equals(test7_ft3));
-        Assertions.assertTrue(output.get(3).equals(test7_mb1));
+        Assertions.assertEquals(test7_ft1,output.get(0));
+        Assertions.assertEquals(test7_ft2,output.get(1));
+        Assertions.assertEquals(test7_ft3,output.get(2));
+        Assertions.assertEquals(test7_mb1,output.get(3));
     }
 
 
@@ -462,7 +469,7 @@ public class Tests_TSz {
 
     private static final String test8_ft1 = """
     ft1: FertileTecton
-    \tbreakTimer int = 4
+    \tbreakTimer int = 3
     \tneighbours List<Tecton> = {
     \t\tft2
     \t}
@@ -478,7 +485,7 @@ public class Tests_TSz {
 
     private static final String test8_ft2 = """
     ft2: FertileTecton
-    \tbreakTimer int = 4
+    \tbreakTimer int = 3
     \tneighbours List<Tecton> = {
     \t\tft1
     \t\tft3
@@ -495,7 +502,7 @@ public class Tests_TSz {
 
     private static final String test8_ft3 = """
     ft3: FertileTecton
-    \tbreakTimer int = 4
+    \tbreakTimer int = 3
     \tneighbours List<Tecton> = {
     \t\tft2
     \t}
@@ -525,6 +532,7 @@ public class Tests_TSz {
     @Test
     void test8() {
         commandReader.bufferFile(test8_Path);
+        commandReader.readAllBufferedCommands();
 
         List<String> output = traceablePrinter.readHistroy();
         Assertions.assertTrue(output.get(0).equals(test8_ft1));
@@ -540,7 +548,7 @@ public class Tests_TSz {
 
     private static final String test9_ft1 = """
     ft1: FertileTecton
-    \tbreakTimer int = 4
+    \tbreakTimer int = 3
     \tneighbours List<Tecton> = {
     \t\tft2
     \t}
@@ -556,7 +564,7 @@ public class Tests_TSz {
 
     private static final String test9_ft2 = """
     ft2: FertileTecton
-    \tbreakTimer int = 4
+    \tbreakTimer int = 3
     \tneighbours List<Tecton> = {
     \t\tft1
     \t\tft3
@@ -573,7 +581,7 @@ public class Tests_TSz {
 
     private static final String test9_ft3 = """
     ft3: FertileTecton
-    \tbreakTimer int = 4
+    \tbreakTimer int = 3
     \tneighbours List<Tecton> = {
     \t\tft2
     \t\tft4
@@ -590,7 +598,7 @@ public class Tests_TSz {
 
     private static final String test9_ft4 = """
     ft4: FertileTecton
-    \tbreakTimer int = 4
+    \tbreakTimer int = 3
     \tneighbours List<Tecton> = {
     \t\tft3
     \t}
@@ -620,6 +628,7 @@ public class Tests_TSz {
     @Test
     void test9() {
         commandReader.bufferFile(test9_Path);
+        commandReader.readAllBufferedCommands();
 
         List<String> output = traceablePrinter.readHistroy();
         Assertions.assertTrue(output.get(0).equals(test9_ft1));
@@ -636,7 +645,7 @@ public class Tests_TSz {
 
     private static final String test10_ft1 = """
     ft1: FertileTecton
-    \tbreakTimer int = 4
+    \tbreakTimer int = 3
     \tneighbours List<Tecton> = {
     \t\tft2
     \t}
@@ -652,7 +661,7 @@ public class Tests_TSz {
 
     private static final String test10_ft2 = """
     ft2: FertileTecton
-    \tbreakTimer int = 4
+    \tbreakTimer int = 3
     \tneighbours List<Tecton> = {
     \t\tft1
     \t}
@@ -677,6 +686,7 @@ public class Tests_TSz {
     @Test
     void test10() {
         commandReader.bufferFile(test10_Path);
+        commandReader.readAllBufferedCommands();
 
         List<String> output = traceablePrinter.readHistroy();
         Assertions.assertTrue(output.get(0).equals(test10_ft1));
@@ -707,6 +717,7 @@ public class Tests_TSz {
     @Test
     void test11() {
         commandReader.bufferFile(test11_Path);
+        commandReader.readAllBufferedCommands();
 
         List<String> output = traceablePrinter.readHistroy();
         Assertions.assertTrue(output.get(0).equals(test11_ft1));
@@ -848,6 +859,7 @@ public class Tests_TSz {
     @Test
     void test12() {
         commandReader.bufferFile(test12_Path);
+        commandReader.readAllBufferedCommands();
 
         List<String> output = traceablePrinter.readHistroy();
         Assertions.assertTrue(output.get(0).equals(test12_ft1));
@@ -1024,6 +1036,7 @@ public class Tests_TSz {
     @Test
     void test13() {
         commandReader.bufferFile(test13_Path);
+        commandReader.readAllBufferedCommands();
 
         List<String> output = traceablePrinter.readHistroy();
         Assertions.assertTrue(output.get(0).equals(test13_ft1));

@@ -66,7 +66,7 @@ public class SemiFertileTectonImpl extends TectonImpl {
      */
     @Override
     public String toString() {
-        String output = ObjectRegistry.lookupName(this) + ": SemiFertileTecon\n";
+        String output = ObjectRegistry.lookupName(this) + ": SemiFertileTecton\n";
         output += "\tbreakTimer int = " + getBreakTimer() + "\n";
         output += "\tneighbours List<Tecton> = {" + "\n";
         for(Tecton tecton : getNeighbours()) {
