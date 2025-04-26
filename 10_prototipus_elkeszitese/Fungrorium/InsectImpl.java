@@ -203,7 +203,7 @@ public class InsectImpl implements Insect{
      */
     @Override
     public void move(Tecton target) {
-        if(getRemainingMoves() > 0) {
+        if(getState() != InsectState.CANNOT_CUT && getRemainingMoves() > 0) {
             target.moveInsect(this);
         }
     }
@@ -354,12 +354,12 @@ public class InsectImpl implements Insect{
     @Override
     public String toString() {
         String output = ObjectRegistry.lookupName(this) + ": Insect\n";
-        output += "    location = " + getLocation() + "\n";
-        output += "    maxMoves = " + getMaxMoves() + "\n";
-        output += "    remainingMoves = " + getRemainingMoves() + "\n";
-        output += "    sporesEaten = " + getSporesEaten() + "\n";
-        output += "    effectTIMER = " + getEffectTimer() + "\n";
-        output += "    state = " + getState().toString() + "\n";
+        output += "\tlocation = " + getLocation() + "\n";
+        output += "\tmaxMoves = " + getMaxMoves() + "\n";
+        output += "\tremainingMoves = " + getRemainingMoves() + "{";
+        output += "\tsporesEaten = " + getSporesEaten() + "\n";
+        output += "\teffectTIMER = " + getEffectTimer() + "\n";
+        output += "\tstate = " + getState().toString() + "\n";
         return output;
     }
 }

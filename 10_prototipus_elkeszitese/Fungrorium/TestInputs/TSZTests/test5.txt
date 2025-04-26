@@ -1,0 +1,16 @@
+CREATE_TECTON FertileTecton ft1
+SET_BREAKTIMER ft1 5
+CREATE_TECTON FertileTecton ft2
+SET_BREAKTIMER ft2 5
+ADD_NEIGHBOUR f1 f2
+ADD_PLAYER Mycologist mycologist1
+CREATE_MUSHROOMBODY mb1 ft1
+ADD_SPORE SpeedSpore speeds1 mb1
+ADD_SPORE SpeedSpore speeds2 mb1
+ADD_SPORE SpeedSpore speeds3 mb1
+START_GAME
+EJECT_SPORES mb1 ft2
+ENDTURN 
+STATE ft1
+STATE ft2
+STATE mb1
