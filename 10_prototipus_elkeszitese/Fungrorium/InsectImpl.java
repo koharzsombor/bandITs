@@ -181,7 +181,7 @@ public class InsectImpl implements Insect{
      */
     @Override
     public void cutMycelium() {
-        if(getRemainingMoves() > 0) {
+        if(getState() != InsectState.CANNOT_CUT && getRemainingMoves() > 0) {
             getLocation().cutMycelium();
             setRemainingMoves(0);
         }
@@ -203,7 +203,7 @@ public class InsectImpl implements Insect{
      */
     @Override
     public void move(Tecton target) {
-        if(getState() != InsectState.CANNOT_CUT && getRemainingMoves() > 0) {
+        if(getRemainingMoves() > 0) {
             target.moveInsect(this);
         }
     }
@@ -257,6 +257,7 @@ public class InsectImpl implements Insect{
 
         setSplitNum(getSplitNum() + 1);
         String newInsectName = ObjectRegistry.lookupName(this) + "-" + getSplitNum();
+        //System.out.println(newInsectName + "\n");
         ObjectRegistry.registerObject(newInsectName, newInsect);
     }
 
@@ -277,10 +278,7 @@ public class InsectImpl implements Insect{
         while (!queue.isEmpty()) {
             Tecton current = queue.poll();
 
-            boolean hasMycelium;
-
-            hasMycelium = current.hasMycelium();
-            if (hasMycelium) {
+            if (current.hasMycelium()) {
                 available.add(current);
             }
 
@@ -291,8 +289,9 @@ public class InsectImpl implements Insect{
             }
         }
 
-        if (available.isEmpty())
+        if (available.isEmpty()) {
             return;
+        }
 
         Tecton selectedTecton = null;
 
@@ -304,6 +303,7 @@ public class InsectImpl implements Insect{
             i++;
         }
         if (selectedTecton != null) {
+            getLocation().removeOccupant(this);
             setLocation(selectedTecton);
 
             selectedTecton.addOccupant(this);
