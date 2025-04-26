@@ -148,13 +148,11 @@ public class MyceliumImpl implements Mycelium{
             return;
         }
 
-        if(deathTimer==0){
-            this.cutImmediate();
-            return;
-        }
-
         if(deathTimer>0){
             deathTimer--;
+            if(deathTimer<=0){
+                this.cutImmediate();
+            }
         }
     }
 
