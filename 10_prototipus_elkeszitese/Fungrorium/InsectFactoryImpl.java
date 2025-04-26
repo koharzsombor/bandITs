@@ -10,7 +10,7 @@ public class InsectFactoryImpl implements InsectFactory {
      * @return Az új rovar.
      */
     @Override
-    public Insect create(String name) {
-        throw new UnsupportedOperationException("Not implemented!");
+    public Insect create(String name, Tecton tecton) {
+        return new InsectImpl(tecton);
     }
 }

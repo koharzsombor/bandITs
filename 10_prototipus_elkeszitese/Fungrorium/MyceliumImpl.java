@@ -39,16 +39,15 @@ public class MyceliumImpl implements Mycelium{
      * Azért, hogy a visitor egyértelműen el tudja, dönteni, hogy milyen tekton-t kell meglátogatnia,
      * mindegyik tekton típusra kell egy külön konstruktor.
      * @param location A tekton, ahová a gombafonál nőni szeretne.
-     * @param name A konzolra kiírt objektum név. Csak a szkeleton programban szükséges.
      */
-    public MyceliumImpl(FertileTectonImpl location, String name) {
+    public MyceliumImpl(FertileTectonImpl location) {
         this.location = location;
 
         MyceliumGrowthEvaluator myceliumGrowthEvaluator = new MyceliumGrowthEvaluator(this);
         myceliumGrowthEvaluator.visit(location);
     }
 
-    public MyceliumImpl(SemiFertileTectonImpl location, String name) {
+    public MyceliumImpl(SemiFertileTectonImpl location) {
         this.location = location;
 
         MyceliumGrowthEvaluator myceliumGrowthEvaluator = new MyceliumGrowthEvaluator(this);
@@ -60,6 +59,7 @@ public class MyceliumImpl implements Mycelium{
      */
     @Override
     public void delete() {
+        location.getMycelia().remove(this);
         location=null;
     }
 
@@ -115,13 +115,15 @@ public class MyceliumImpl implements Mycelium{
      */
     @Override
     public void cutImmediate(){
-        location.checkNeighbourMyceliaSustain();
-        if(location.getMycelia().isEmpty()){
-            for(Insect i: location.getOccupants()){
-                i.runAway();
+        Tecton tmpLocation = location;
+        this.delete();
+        tmpLocation.checkNeighbourMyceliaSustain();
+        if(tmpLocation.getMycelia().isEmpty()){
+            ArrayList<Insect> temp =new ArrayList<Insect>(tmpLocation.getOccupants());
+            for (Insect insect : temp) {
+                insect.runAway();
             }
         }
-        this.delete();
     }
 
     /**

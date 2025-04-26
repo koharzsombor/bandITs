@@ -10,8 +10,22 @@ public class TectonFactoryImpl implements TectonFactory {
     @Override
     public Tecton create(String type, String name) {
         switch (type.toLowerCase()) {
-            default:
-                throw new UnsupportedOperationException("Not implemented!");
+            case "fertiletecton" -> {
+                return new FertileTectonImpl();
+            }
+            case "semifertiletecton" -> {
+                return new SemiFertileTectonImpl();
+            }
+            case "multilayeredtecton" -> {
+                return new MultiLayeredTectonImpl();
+            }
+            case "aridtecton"-> {
+                return new AridTectonImpl();
+            }
+            case "sustainingtecton" -> {
+                return new SustainingTectonImpl();
+            }
+            default -> throw new UnsupportedOperationException("Not implemented!");
         }
     }
 }

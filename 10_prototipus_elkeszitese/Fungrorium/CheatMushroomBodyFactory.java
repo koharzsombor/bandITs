@@ -11,6 +11,9 @@ public class CheatMushroomBodyFactory implements MushroomBodyFactory {
      */
     @Override
     public MushroomBody create(String name, Tecton location) {
-        throw new UnsupportedOperationException("Not implemented");
+        MushroomBody mushroomBody = new MushroomBodyImpl();
+        location.setMushroomBody(mushroomBody);
+        ObjectRegistry.registerObject(name, mushroomBody);
+        return mushroomBody;
     }
 }

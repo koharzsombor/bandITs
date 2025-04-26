@@ -12,6 +12,26 @@ public class DefaultMyceliumFactory implements MyceliumFactory {
      */
     @Override
     public Mycelium create(String type, String name, Tecton location) {
-        throw new UnsupportedOperationException("Not implemented");
+        Mycelium mycelium;
+
+        if (location instanceof SemiFertileTectonImpl semiFertileTecton) {
+            switch (type.toLowerCase()) {
+                case "carnivorous" -> mycelium = new CarnivorousMycelium(semiFertileTecton);
+                case "default" -> mycelium = new MyceliumImpl(semiFertileTecton);
+                default -> throw new IllegalArgumentException("Mycelium type not supported");
+            }
+        }
+        else if (location instanceof FertileTectonImpl fertileTecton) {
+            switch (type.toLowerCase()) {
+                case "carnivorous" -> mycelium = new CarnivorousMycelium(fertileTecton);
+                case "default" -> mycelium = new MyceliumImpl(fertileTecton);
+                default -> throw new IllegalArgumentException("Mycelium type not supported");
+            }
+        }
+        else {
+            throw new IllegalArgumentException("NOOOOO ;(");
+        }
+
+        return mycelium;
     }
 }
