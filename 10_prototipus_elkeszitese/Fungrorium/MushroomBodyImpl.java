@@ -28,16 +28,25 @@ public class MushroomBodyImpl implements MushroomBody {
     private List<Spore> mushroomSpores = new ArrayList<>();
 
     /**
+     * A gombatest körét megelőzően ez alapján generálódnak a spórák egyedi nevei.
+     * Az elnevezési konvenció a következő:
+     * [gombatest neve]-[a spóra típusára utaló elnevezés, azaz StunSpore esetén stuns; PreventCutSpore esetén prevents;
+     * SlownessSpore esetén slows; SpeedSpore esetén speeds; SplitSpore esetén splits]
+     * [1-től kezdődő, folytatólagos számozás – minden spóratípus esetén külön-külön].
+     */
+    private final Map<String, Integer> sporeTypeCounters = new HashMap<>();
+
+    /**
      * Konstruktor, amely beállítja a tektont (céltekton), amelyen a gombatest elhelyezésre kerül.
      * Ez a konstruktor használandó FertileTecton, továbbá a FertileTecton valamennyi leszármazottja,
      * azaz AridTecton, MultiLayeredTecton és SustainingTecton esetén.
      *
      * @param location A céltekton, amelyen a gombatest elhelyezésre kerül.
      */
-    public MushroomBodyImpl(FertileTecton location) {
+    public MushroomBodyImpl(FertileTectonImpl location) {
         this.location = location;
         MushroomBodyGrowthEvaluator evaluator = new MushroomBodyGrowthEvaluator(this);
-        evaluator.visit(location, this);
+        evaluator.visit(location);
     }
 
     /**
@@ -46,10 +55,10 @@ public class MushroomBodyImpl implements MushroomBody {
      *
      * @param location A céltekton, amelyen a gombatest elhelyezésre kerül.
      */
-    public MushroomBodyImpl(SemiFertileTecton location) {
+    public MushroomBodyImpl(SemiFertileTectonImpl location) {
         this.location = location;
         MushroomBodyGrowthEvaluator evaluator = new MushroomBodyGrowthEvaluator(this);
-        evaluator.visit(location, this);
+        evaluator.visit(location);
     }
 
     /**
@@ -83,6 +92,8 @@ public class MushroomBodyImpl implements MushroomBody {
     /**
      * A gombatest minden új körének kezdetekor – beleértve a játék első körét is – a gombatestben
      * egy új spóra termelődik. A spóra típusa véletlenszerűen kerül kiválasztásra.
+     * A metódus elvégzi a keletkezett spóra regisztrációját a {@code sporeTypeCounters} térképnél részletezett
+     * elnevezési konvenció alapján.
      */
     @Override
     public void onTurnBegin() {
@@ -93,9 +104,20 @@ public class MushroomBodyImpl implements MushroomBody {
             case 3 -> new PreventCutSpore();
             case 4 -> new SpeedSpore();
             case 5 -> new SlownessSpore();
-            default -> throw new IllegalStateException("Hiba következett be a spóra legenerálása közben: " + random);
+            default -> throw new IllegalStateException("Error occurred when generating a new Spore" +
+                    "for the MushroomBody named " + ObjectRegistry.lookupName(this) +
+                    " before its turn!");
         };
         addSpore(newSpore);
+
+        String sporeType = getSporeTypeName(newSpore);
+        int count = sporeTypeCounters.getOrDefault(sporeType, 0) + 1;
+        sporeTypeCounters.put(sporeType, count);
+
+        String mushroomBodyName = ObjectRegistry.lookupName(this);
+        String sporeName = mushroomBodyName + "-" + sporeType + count;
+
+        ObjectRegistry.registerObject(sporeName, newSpore);
     }
 
     /**
@@ -209,5 +231,56 @@ public class MushroomBodyImpl implements MushroomBody {
      */
     public void setLocation(Tecton location) {
         this.location = location;
+    }
+
+    /**
+     * Segédfüggvény a gombatest által termelt spórák elnevezéséhez.
+     * A visszatérési érték a spóra típusának megfelelő rövid kifejezés,
+     * amelyet a {@code sporeTypeCounters} térkép is használ névgeneráláshoz (az elnevezési konvenciót lásd ott).
+     *
+     * @param spore A spóra, amelynek a típusához tartozó rövid elnevezésre szükség van.
+     * @return A spórafajtához tartozó rövid típusnév.
+     */
+    private String getSporeTypeName(Spore spore) {
+        if (spore instanceof StunSpore)
+        {
+            return "stuns";
+        }
+        if (spore instanceof PreventCutSpore)
+        {
+            return "prevents";
+        }
+        if (spore instanceof SlownessSpore)
+        {
+            return "slows";
+        }
+        if (spore instanceof SpeedSpore)
+        {
+            return "speeds";
+        }
+        if (spore instanceof SplitSpore)
+        {
+            return "splits";
+        }
+        return "unknown";
+    }
+
+    /**
+     * Metódus a gombatest tulajdonságainak kiírásához.
+     *
+     * @return A gombatest tulajdonságainak formázott stringje.
+     */
+    @Override
+    public String toString() {
+        StringBuilder output = new StringBuilder();
+        output.append(ObjectRegistry.lookupName(this)).append(": MushroomBody\n");
+        output.append("\tremainingEjects int = ").append(getRemainingEjects()).append("\n");
+        output.append("\tlocation Tecton = ").append(getLocation()).append("\n");
+        output.append("\tmushroomSpores List<Spore> = {\n");
+        for (Spore spore : mushroomSpores) {
+            output.append("\t\t").append(ObjectRegistry.lookupName(spore)).append("\n");
+        }
+        output.append("\t}\n");
+        return output.toString();
     }
 }

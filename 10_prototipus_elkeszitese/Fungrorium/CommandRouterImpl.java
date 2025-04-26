@@ -23,13 +23,12 @@ public class CommandRouterImpl implements CommandRouter {
     private TurnController turnController;
 
     /**
-     * A létrehozáshoz szükséges a kör kontroller és egy parancs gyár.
-     * @param factory Parancsokat létrehozó gyár.
+     * A létrehozáshoz szükséges a kör kontroller.
      * @param turnController A kör kontroller, hogy biztosra lehessen tudni, hogy melyik
      *                       játékos körében lett a parancs kiadva.
      */
-    public CommandRouterImpl(CommandFactory factory, TurnController turnController) {
-        this.factory = factory;
+    public CommandRouterImpl(TurnController turnController) {
+        factory = new CommandFactoryImpl();
         this.turnController = turnController;
     }
 
