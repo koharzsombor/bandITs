@@ -91,13 +91,14 @@ public class MushroomBodyImpl implements MushroomBody {
 
     /**
      * A gombatest minden új körének kezdetekor – beleértve a játék első körét is – a gombatestben
-     * egy új spóra termelődik. A spóra típusa véletlenszerűen kerül kiválasztásra.
+     * egy új spóra termelődik. A spóra típusa - elvileg - véletlenszerűen kerül kiválasztásra.
      * A metódus elvégzi a keletkezett spóra regisztrációját a {@code sporeTypeCounters} térképnél részletezett
      * elnevezési konvenció alapján.
      */
     @Override
     public void onTurnBegin() {
-        int random = new Random().nextInt(5) + 1;
+        int random = 4;
+        //int random = new Random().nextInt(5) + 1;
         Spore newSpore = switch (random) {
             case 1 -> new SplitSpore();
             case 2 -> new StunSpore();
