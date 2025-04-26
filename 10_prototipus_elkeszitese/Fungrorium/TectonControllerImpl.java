@@ -56,6 +56,7 @@ public class TectonControllerImpl implements TectonController {
     @Override
     public void addMycelium(Mycelium mycelium, Tecton tecton) {
         tecton.addMycelium(mycelium);
+        mycelium.setLocation(tecton);
     }
 
     /**

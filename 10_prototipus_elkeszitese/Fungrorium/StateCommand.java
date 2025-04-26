@@ -22,7 +22,7 @@ public class StateCommand extends CommandImpl {
         try {
             TraceablePrinter printer = (TraceablePrinter)handler;
             Object queriedObject = ObjectRegistry.getObject(input.params()[0]);
-            printer.print(queriedObject.toString());
+            printer.printLine(queriedObject.toString());
         } catch (Exception e) {
             System.out.println(commandErrorMessage);
         }

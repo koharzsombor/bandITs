@@ -162,7 +162,7 @@ public class MyceliumImpl implements Mycelium{
 
         sb.append(ObjectRegistry.lookupName(this)); sb.append(": Mycelium\n");
         sb.append("\tgrowing boolean = "); sb.append(growing); sb.append("\n");
-        sb.append("\tlocation Tecton = "); sb.append(location); sb.append("\n");
+        sb.append("\tlocation Tecton = "); sb.append(ObjectRegistry.lookupName(location)); sb.append("\n");
         sb.append("\tgrowTimer int = "); sb.append(growTimer); sb.append("\n");
         sb.append("\tdeathTimer int = "); sb.append(deathTimer); sb.append("\n");
         return sb.toString();

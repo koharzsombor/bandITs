@@ -223,7 +223,8 @@ public abstract class TectonImpl implements Tecton {
             insectLocation.removeOccupant(insect);
             this.addOccupant(insect);
             insect.setLocation(this);
-            insect.setRemainingMoves(insect.getRemainingMoves()-1);
+            int newRemainingMoves = insect.getRemainingMoves()-1;
+            insect.setRemainingMoves(newRemainingMoves);
         }
     }
 
