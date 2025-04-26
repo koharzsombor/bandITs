@@ -59,6 +59,7 @@ public class MyceliumImpl implements Mycelium{
      */
     @Override
     public void delete() {
+        location.getMycelia().remove(this);
         location=null;
     }
 
@@ -114,13 +115,15 @@ public class MyceliumImpl implements Mycelium{
      */
     @Override
     public void cutImmediate(){
-        location.checkNeighbourMyceliaSustain();
-        if(location.getMycelia().isEmpty()){
-            for(Insect i: location.getOccupants()){
-                i.runAway();
+        Tecton tmpLocation = location;
+        this.delete();
+        tmpLocation.checkNeighbourMyceliaSustain();
+        if(tmpLocation.getMycelia().isEmpty()){
+            ArrayList<Insect> temp =new ArrayList<Insect>(tmpLocation.getOccupants());
+            for (Insect insect : temp) {
+                insect.runAway();
             }
         }
-        this.delete();
     }
 
     /**
