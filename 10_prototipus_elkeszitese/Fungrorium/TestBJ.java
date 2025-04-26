@@ -401,7 +401,6 @@ public class TestBJ {
         Assertions.assertTrue(output.get(2).equals(test8_i1));
     }
 
-
     //Teszt9: Rovar általi spóraevés következtében Stunned állapotba kerülés
     private static final String test9_Path = "Fungrorium/TestInputs/BJTests/test9.txt";
     private static final String test9_ft1 = "ft1: FertileTecton\n" +
