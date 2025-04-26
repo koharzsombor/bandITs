@@ -1,6 +1,6 @@
 import java.util.List;
 
-public class TestBJ {
+public class Tests_TSz {
     private static CommandReader commandReader;
     private static CommandRouter commandRouter;
     private static PlayerContainer playerContainer;
@@ -42,7 +42,7 @@ public class TestBJ {
         commandRouter.addCommand("CREATE_MYCELIUM", mapCreationController);
         commandRouter.addCommand("CREATE_MUSHROOMBODY", mapCreationController);
         commandRouter.addCommand("CREATE_INSECT", mapCreationController);
-        commandRouter.addCommand("END_TURN", turnController);
+        commandRouter.addCommand("ENDTURN", turnController);
         commandRouter.addCommand("START_GAME", turnController);
         commandRouter.addCommand("SET_ENDGAMETIMER", gameEndManager);
         commandRouter.addCommand("END_GAME", gameEndManager);
@@ -82,7 +82,6 @@ public class TestBJ {
     \t}
     \toccupants List<Insect> = {
     \t}
-        
     """;
 
     private static final String test1_m1 = """
@@ -91,7 +90,6 @@ public class TestBJ {
     \tlocation Tecton = ft1
     \tgrowTimer int = 0
     \tdeathTimer int = -1
-    
     """;
 
     private static final String test1_mb1 = """
@@ -101,7 +99,6 @@ public class TestBJ {
     \tmushroomSpores List<Spore> = {
     \t\tmb1-speeds1
     \t}
-        
     """;
 
     @Test
@@ -135,7 +132,6 @@ public class TestBJ {
     \t}
     \toccupants List<Insect> = {
     \t}
-        
     """;
 
     private static final String test2_m1 = """
@@ -144,7 +140,6 @@ public class TestBJ {
     \tlocation Tecton = ft1
     \tgrowTimer int = 0
     \tdeathTimer int = -1
-    
     """;
 
     @Test
@@ -178,7 +173,6 @@ public class TestBJ {
     \t}
     \toccupants List<Insect> = {
     \t}
-    
     """;
 
     private static final String test3_m1 = """
@@ -187,7 +181,6 @@ public class TestBJ {
     \tlocation Tecton = ft1
     \tgrowTimer int = 0
     \tdeathTimer int = -1
-    
     """;
 
     private static final String test3_mb1 = """
@@ -198,7 +191,6 @@ public class TestBJ {
     \t\tmb1-speeds1
     \t\tmb1-speeds2
     \t}
-    
     """;
 
     @Test
@@ -231,7 +223,6 @@ public class TestBJ {
     \t}
     \toccupants List<Insect> = {
     \t}
-    
     """;
 
     private static final String test4_m1 = """
@@ -240,7 +231,6 @@ public class TestBJ {
     \tlocation Tecton = sft1
     \tgrowTimer int = 0
     \tdeathTimer int = -1
-            
     """;
 
     @Test
@@ -271,7 +261,6 @@ public class TestBJ {
     \t}
     \toccupants List<Insect> = {
     \t}
-    
     """;
 
     private static final String test5_ft2 = """
@@ -293,7 +282,6 @@ public class TestBJ {
     \t}
     \toccupants List<Insect> = {
     \t}
-    
     """;
 
     private static final String test5_mb1 = """
@@ -303,7 +291,6 @@ public class TestBJ {
     \tmushroomSpores List<Spore> = {
     \t\tmb1-speeds2
     \t}
-    
     """;
 
     @Test
@@ -335,7 +322,6 @@ public class TestBJ {
     \t}
     \toccupants List<Insect> = {
     \t}
-    
     """;
 
     private static final String test6_ft2 = """
@@ -353,7 +339,6 @@ public class TestBJ {
     \t}
     \toccupants List<Insect> = {
     \t}
-    
     """;
 
     private static final String test6_ft3 = """
@@ -374,7 +359,6 @@ public class TestBJ {
     \t}
     \toccupants List<Insect> = {
     \t}
-    
     """;
 
     private static final String test6_mb1 = """
@@ -384,7 +368,6 @@ public class TestBJ {
     \tmushroomSpores List<Spore> = {
     \t\tmb1-speeds2
     \t}
-    
     """;
 
     @Test
@@ -417,7 +400,6 @@ public class TestBJ {
     \t}
     \toccupants List<Insect> = {
     \t}
-    
     """;
 
     private static final String test7_ft2 = """
@@ -435,7 +417,6 @@ public class TestBJ {
     \t}
     \toccupants List<Insect> = {
     \t}
-    
     """;
 
     private static final String test7_ft3 = """
@@ -452,7 +433,6 @@ public class TestBJ {
     \t}
     \toccupants List<Insect> = {
     \t}
-    
     """;
         
     private static final String test7_mb1 = """
@@ -462,7 +442,6 @@ public class TestBJ {
     \tmushroomSpores List<Spore> = {
     \t\tmb1-speeds2
     \t}
-    
     """;
 
     @Test
@@ -495,7 +474,6 @@ public class TestBJ {
     \t}
     \toccupants List<Insect> = {
     \t}
-    
     """;
 
     private static final String test8_ft2 = """
@@ -513,7 +491,6 @@ public class TestBJ {
     \t}
     \toccupants List<Insect> = {
     \t}
-    
     """;
 
     private static final String test8_ft3 = """
@@ -530,7 +507,6 @@ public class TestBJ {
     \t}
     \toccupants List<Insect> = {
     \t}
-    
     """;
 
     private static final String test8_mb1 = """
@@ -544,7 +520,6 @@ public class TestBJ {
     \t\tmb1-speeds1
     \t\tmb1-speeds2
     \t}
-    
     """;
 
     @Test
@@ -577,7 +552,6 @@ public class TestBJ {
     \t}
     \toccupants List<Insect> = {
     \t}
-    
     """;
 
     private static final String test9_ft2 = """
@@ -595,7 +569,6 @@ public class TestBJ {
     \t}
     \toccupants List<Insect> = {
     \t}
-    
     """;
 
     private static final String test9_ft3 = """
@@ -613,7 +586,6 @@ public class TestBJ {
     \t}
     \toccupants List<Insect> = {
     \t}
-    
     """;
 
     private static final String test9_ft4 = """
@@ -630,7 +602,6 @@ public class TestBJ {
     \t}
     \toccupants List<Insect> = {
     \t}
-    
     """;
 
     private static final String test9_mb1 = """
@@ -644,7 +615,6 @@ public class TestBJ {
     \t\tmb1-speeds1
     \t\tmb1-speeds2
     \t}
-    
     """;
 
     @Test
@@ -678,7 +648,6 @@ public class TestBJ {
     \t}
     \toccupants List<Insect> = {
     \t}
-    
     """;
 
     private static final String test10_ft2 = """
@@ -695,7 +664,6 @@ public class TestBJ {
     \t}
     \toccupants List<Insect> = {
     \t}
-    
     """;
 
     private static final String test10_mb1 = """
@@ -704,7 +672,6 @@ public class TestBJ {
     \tlocation Tecton = ft1
     \tmushroomSpores List<Spore> = {
     \t}
-    
     """;
 
     @Test
@@ -735,7 +702,6 @@ public class TestBJ {
     \t}
     \toccupants List<Insect> = {
     \t}
-    
     """;
 
     @Test
@@ -767,7 +733,6 @@ public class TestBJ {
     \t}
     \toccupants List<Insect> = {
     \t}
-    
     """;
 
     private static final String test12_ft2 = """
@@ -787,7 +752,6 @@ public class TestBJ {
     \t}
     \toccupants List<Insect> = {
     \t}
-    
     """;
 
     private static final String test12_ft3 = """
@@ -808,7 +772,6 @@ public class TestBJ {
     \t}
     \toccupants List<Insect> = {
     \t}
-    
     """;
 
     private static final String test12_ft4 = """
@@ -829,7 +792,6 @@ public class TestBJ {
     \toccupants List<Insect> = {
     \t\ti1
     \t}
-    
     """;
 
     private static final String test12_mb1 = """
@@ -839,7 +801,6 @@ public class TestBJ {
     \tmushroomSpores List<Spore> = {
     \t\tmb1-speeds3
     \t}
-    
     """;
 
     private static final String test12_m1 = """
@@ -848,7 +809,6 @@ public class TestBJ {
     \tlocation Tecton = ft1
     \tgrowTimer int = 0
     \tdeathTimer int = -1
-            
     """;
 
     private static final String test12_m2 =  """
@@ -857,7 +817,6 @@ public class TestBJ {
     \tlocation Tecton = ft2
     \tgrowTimer int = 0
     \tdeathTimer int = -1
-            
     """;
 
     private static final String test12_m3 = """
@@ -866,7 +825,6 @@ public class TestBJ {
     \tlocation Tecton = ft3
     \tgrowTimer int = 0
     \tdeathTimer int = -1
-    
     """;
 
     private static final String test12_m4 = """
@@ -875,18 +833,16 @@ public class TestBJ {
     \tlocation Tecton = ft4
     \tgrowTimer int = 0
     \tdeathTimer int = -1
-            
     """;
 
     private static final String test12_i1 = """
     i1: Insect
-    \tlocation = ft4
-    \tmaxMoves = 2
-    \tremainingMoves = 2
-    \tsporesEaten = 0
-    \teffectTimer = 0
-    \tstate = Normal
-    
+    \tlocation Tecton = ft4
+    \tmaxMoves int = 2
+    \tremainingMoves int = 2
+    \tsporesEaten int = 0
+    \teffectTimer int = 0
+    \tstate InsectState = NORMAL
     """;
 
     @Test
@@ -927,7 +883,6 @@ public class TestBJ {
     \t}
     \toccupants List<Insect> = {
     \t}
-    
     """;
 
     private static final String test13_ft2 = """
@@ -950,7 +905,6 @@ public class TestBJ {
     \t}
     \toccupants List<Insect> = {
     \t}
-    
     """;
 
     private static final String test13_ft3 = """
@@ -969,7 +923,6 @@ public class TestBJ {
     \t}
     \toccupants List<Insect> = {
     \t}
-    
     """;
 
     private static final String test13_ft4 = """
@@ -987,7 +940,6 @@ public class TestBJ {
     \t}
     \toccupants List<Insect> = {
     \t}
-    
     """;
 
     private static final String test13_ft5 = """
@@ -1004,7 +956,6 @@ public class TestBJ {
     \t}
     \toccupants List<Insect> = {
     \t}
-    
     """;
 
     private static final String test13_ft6 = """
@@ -1024,7 +975,6 @@ public class TestBJ {
     \toccupants List<Insect> = {
     \t\ti1
     \t}
-    
     """;
 
     private static final String test13_mb1 = """
@@ -1035,7 +985,6 @@ public class TestBJ {
     \t\tmb1-speeds4
     \t\tmb1-speeds5
     \t}
-    
     """;
 
     private static final String test13_m1 = """
@@ -1044,7 +993,6 @@ public class TestBJ {
     \tlocation Tecton = ft1
     \tgrowTimer int = 0
     \tdeathTimer int = -1
-            
     """;
 
     private static final String test13_m2 = """
@@ -1053,7 +1001,6 @@ public class TestBJ {
     \tlocation Tecton = ft2
     \tgrowTimer int = 0
     \tdeathTimer int = -1
-            
     """;
 
     private static final String test13_m5 = """
@@ -1062,18 +1009,16 @@ public class TestBJ {
     \tlocation Tecton = ft6
     \tgrowTimer int = 0
     \tdeathTimer int = -1
-            
     """;
 
     private static final String test13_i1 = """
     i1: Insect
-    \tlocation = ft6
-    \tmaxMoves = 2
-    \tremainingMoves = 2
-    \tsporesEaten = 1
-    \teffectTimer = 0
-    \tstate = Normal
-    
+    \tlocation Tecton = ft6
+    \tmaxMoves int = 2
+    \tremainingMoves int = 2
+    \tsporesEaten int = 1
+    \teffectTimer int = 0
+    \tstate InsectState = NORMAL
     """;
 
     @Test
