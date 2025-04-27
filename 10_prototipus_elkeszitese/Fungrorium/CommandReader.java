@@ -19,4 +19,9 @@ public interface CommandReader extends CommandHandler {
      * @param path A fájl elérési útja.
      */
     void bufferFile(String path);
+
+    /**
+     * Kiolvassa az összes pufferban lévő parancsot.
+     */
+    void readAllBufferedCommands();
 }

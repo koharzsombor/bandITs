@@ -57,6 +57,9 @@ public class ObjectRegistry {
      * @return A keresett objektum neve.
      */
     public static String lookupName(Object object) {
+        if (object == null)
+            return "null";
+
         return registeredObjects.entrySet().stream().filter(o -> o.getValue().equals(object)).map(Map.Entry::getKey).findFirst().orElse("Not in collection");
     }
 }

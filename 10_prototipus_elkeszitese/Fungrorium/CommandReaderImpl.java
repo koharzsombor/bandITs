@@ -1,3 +1,5 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.*;
 
 /**
@@ -62,10 +64,24 @@ public class CommandReaderImpl implements CommandReader {
      */
     @Override
     public void bufferFile(String path) {
-        try (Scanner scanner = new Scanner("path")) {
+        File filePath = new File(path);
+        try (Scanner scanner = new Scanner(filePath)) {
             while (scanner.hasNextLine()) {
                 inputBuffer.offer(scanner.nextLine());
             }
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Kiolvassa az összes pufferban lévő parancsot.
+     */
+    @Override
+    public void readAllBufferedCommands() {
+        while (!inputBuffer.isEmpty()) {
+            readNextCommand();
         }
     }
 }

@@ -9,7 +9,32 @@ public class SporeFactoryImpl implements SporeFactory {
     @Override
     public Spore create(String name, String type) {
         switch (type.toLowerCase()) {
-            default -> throw new UnsupportedOperationException("Not implemented");
+            case "speedspore" -> {
+                SpeedSpore spore = new SpeedSpore();
+                ObjectRegistry.registerObject(name, spore);
+                return spore;
+            }
+            case "stunspore" -> {
+                StunSpore spore = new StunSpore();
+                ObjectRegistry.registerObject(name, spore);
+                return spore;
+            }
+            case "splitspore" -> {
+                SplitSpore spore = new SplitSpore();
+                ObjectRegistry.registerObject(name, spore);
+                return spore;
+            }
+            case "preventcutspore" -> {
+                PreventCutSpore spore = new PreventCutSpore();
+                ObjectRegistry.registerObject(name, spore);
+                return spore;
+            }
+            case "slownessspore" -> {
+                SlownessSpore spore = new SlownessSpore();
+                ObjectRegistry.registerObject(name, spore);
+                return spore;
+            }
+            default -> throw new UnsupportedOperationException("Spore type not implemented");
         }
     }
 }

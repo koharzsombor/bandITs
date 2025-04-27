@@ -90,24 +90,24 @@ public class AridTectonImpl extends FertileTectonImpl {
                 for(Tecton tecton : getNeighbours()) {
                     output += "\t" + ObjectRegistry.lookupName(tecton) + "\n";
                 }
-                output += "}\n";
+                output += "\t}\n";
         output +="\tmyceliumCapacity int = " + getMyceliaCapacity() + "\n";
         output += "\tspores Queue<Spore> = {" + "\n";
                 for(Spore spore : getSpores()) {
                     output += "\t" + ObjectRegistry.lookupName(spore) + "\n";
                 }
-                output += "}\n";
+                output += "\t}\n";
         output += "\tmushroomBody MushroomBody = " + ObjectRegistry.lookupName(getMushroomBody()) + "\n";
         output += "\tmycelia Queue<Mycelium> = {" + "\n";
                 for(Mycelium mycelium : getMycelia()) {
                     output += "\t" + ObjectRegistry.lookupName(mycelium) + "\n";
                 }
-                output += "}\n";
+                output += "\t}\n";
         output += "\toccupants List<Insect> = {" + "\n";
                 for(Insect insect : getOccupants()) {
                     output += "\t" + ObjectRegistry.lookupName(insect) + "\n";
                 }
-                output += "}\n";
+                output += "\t}\n";
         return output;
     }
 }

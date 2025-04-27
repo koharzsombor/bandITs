@@ -1,22 +1,23 @@
 import java.util.List;
+import org.junit.jupiter.api.*;
 
 public class TestBJ {
-    private static CommandReader commandReader;
-    private static CommandRouter commandRouter;
-    private static PlayerContainer playerContainer;
-    private static RoundObserver roundObserver;
-    private static TurnController turnController;
-    private static TectonController tectonController;
-    private static InsectController insectController;
-    private static PlayerController playerController;
-    private static GameEndManager gameEndManager;
-    private static TraceablePrinter traceablePrinter;
-    private static MushroomBodyController mushroomBodyController;
-    private static MapCreationController mapCreationController;
-    private static GrowthController growthController;
+    private CommandReader commandReader;
+    private CommandRouter commandRouter;
+    private PlayerContainer playerContainer;
+    private RoundObserver roundObserver;
+    private TurnController turnController;
+    private TectonController tectonController;
+    private InsectController insectController;
+    private PlayerController playerController;
+    private GameEndManager gameEndManager;
+    private TraceablePrinter traceablePrinter;
+    private MushroomBodyController mushroomBodyController;
+    private MapCreationController mapCreationController;
+    private GrowthController growthController;
 
     @BeforeEach
-    private static void initialiseComponents() {
+    public void initialiseComponents() {
         ObjectRegistry.clearRegistry();
 
         roundObserver = new RoundObserverImpl();
@@ -42,7 +43,7 @@ public class TestBJ {
         commandRouter.addCommand("CREATE_MYCELIUM", mapCreationController);
         commandRouter.addCommand("CREATE_MUSHROOMBODY", mapCreationController);
         commandRouter.addCommand("CREATE_INSECT", mapCreationController);
-        commandRouter.addCommand("END_TURN", turnController);
+        commandRouter.addCommand("ENDTURN", turnController);
         commandRouter.addCommand("START_GAME", turnController);
         commandRouter.addCommand("SET_ENDGAMETIMER", gameEndManager);
         commandRouter.addCommand("END_GAME", gameEndManager);
@@ -50,7 +51,7 @@ public class TestBJ {
         commandRouter.addCommand("GROW_MUSHROOMBODY", growthController);
         commandRouter.addCommand("SET_BREAKTIMER", tectonController);
         commandRouter.addCommand("ADD_NEIGHBOUR", tectonController);
-        commandRouter.addCommand("ADD_MYCELIUM", tectonController);
+        commandRouter.addCommand("ADD_MYCELIUM_TO_TECTON", tectonController);
         commandRouter.addCommand("PUT_SPORE", tectonController);
         commandRouter.addCommand("EJECT_SPORES", mushroomBodyController);
         commandRouter.addCommand("DEACTIVATE", mushroomBodyController);
@@ -64,7 +65,7 @@ public class TestBJ {
     //Teszt1: Rovar létrehozása és letevése
     private static final String test1_Path = "Fungrorium/TestInputs/BJTests/test1.txt";
     private static final String test1_ft1 = "ft1: FertileTecton\n" +
-            "\tbreakTimer int = 5\n" +
+            "\tbreakTimer int = 3\n" +
             "\tneighbours List<Tecton> = {\n" +
             "\t}\n" +
             "\tmyceliumCapacity int = 1\n" +
@@ -76,24 +77,28 @@ public class TestBJ {
             "\t}\n" +
             "\toccupants List<Insect> = {\n" +
             "\t\ti1\n" +
-            "\t}\n\n";
+            "\t}\n";
     private static final String test1_m1 = "m1: Mycelium\n" +
-            "\tlocation = ft1\n\n";
+            "\tgrowing boolean = false\n" +
+            "\tlocation Tecton = ft1\n" +
+            "\tgrowTimer int = 0\n" +
+            "\tdeathTimer int = -1\n";
     private static final String test1_i1 = "i1: Insect\n" +
             "\tlocation = ft1\n" +
             "\tmaxMoves = 2\n" +
             "\tremainingMoves = 2\n" +
             "\tsporesEaten = 0\n" +
             "\teffectTimer = 0\n" +
-            "\tstate = NORMAL\n\n";
+            "\tstate = NORMAL\n";
     @Test
-    void test1() {
+    public void test1() {
         commandReader.bufferFile(test1_Path);
+        commandReader.readAllBufferedCommands();
 
         List<String> output = traceablePrinter.readHistroy();
-        Assertions.assertTrue(output.get(0).equals(test1_ft1));
-        Assertions.assertTrue(output.get(1).equals(test1_m1));
-        Assertions.assertTrue(output.get(2).equals(test1_i1));
+        Assertions.assertEquals(test1_ft1, output.get(0)); //🤓
+        Assertions.assertEquals(test1_m1, output.get(1));
+        Assertions.assertEquals(test1_i1, output.get(2));
     }
 
     //Teszt2: Rovar mozgatása
@@ -111,7 +116,7 @@ public class TestBJ {
             "\t\tm1\n" +
             "\t}\n" +
             "\toccupants List<Insect> = {\n" +
-            "\t}\n\n";
+            "\t}\n";
     private static final String test2_ft2 = "ft2: FertileTecton\n" +
             "\tbreakTimer int = 5\n" +
             "\tneighbours List<Tecton> = {\n" +
@@ -126,28 +131,35 @@ public class TestBJ {
             "\t}\n" +
             "\toccupants List<Insect> = {\n" +
             "\t\ti1\n" +
-            "\t}\n\n";
+            "\t}\n";
     private static final String test2_m1 = "m1: Mycelium\n" +
-            "\tlocation = ft1\n\n";
+            "\tgrowing boolean = false\n" +
+            "\tlocation Tecton = ft1\n" +
+            "\tgrowTimer int = 0\n" +
+            "\tdeathTimer int = -1\n";
     private static final String test2_m2 = "m2: Mycelium\n" +
-            "\tlocation = ft2\n\n";
+            "\tgrowing boolean = false\n" +
+            "\tlocation Tecton = ft2\n" +
+            "\tgrowTimer int = 0\n" +
+            "\tdeathTimer int = -1\n";
     private static final String test2_i1 = "i1: Insect\n" +
             "\tlocation = ft2\n" +
             "\tmaxMoves = 2\n" +
             "\tremainingMoves = 1\n" +
             "\tsporesEaten = 0\n" +
             "\teffectTimer = 0\n" +
-            "\tstate = NORMAL\n\n";
+            "\tstate = NORMAL\n";
     @Test
-    void test2() {
+    public void test2() {
         commandReader.bufferFile(test2_Path);
+        commandReader.readAllBufferedCommands();
 
         List<String> output = traceablePrinter.readHistroy();
-        Assertions.assertTrue(output.get(0).equals(test2_ft1));
-        Assertions.assertTrue(output.get(1).equals(test2_ft2));
-        Assertions.assertTrue(output.get(2).equals(test2_m1));
-        Assertions.assertTrue(output.get(3).equals(test2_m2));
-        Assertions.assertTrue(output.get(4).equals(test2_i1));
+        Assertions.assertEquals(test2_ft1,output.get(0));
+        Assertions.assertEquals(test2_ft2,output.get(1));
+        Assertions.assertEquals(test2_m1,output.get(2));
+        Assertions.assertEquals(test2_m2,output.get(3));
+        Assertions.assertEquals(test2_i1,output.get(4));
     }
 
     //Teszt3: Rovar sikertelen mozgatása nem-szomszédos tektonra
@@ -155,6 +167,7 @@ public class TestBJ {
     private static final String test3_ft1 = "ft1: FertileTecton\n" +
             "\tbreakTimer int = 5\n" +
             "\tneighbours List<Tecton> = {\n" +
+            "\t\tft2\n" +
             "\t}\n" +
             "\tmyceliumCapacity int = 1\n" +
             "\tspores Queue<Spore> = {\n" +
@@ -164,10 +177,12 @@ public class TestBJ {
             "\t\tm1\n" +
             "\t}\n" +
             "\toccupants List<Insect> = {\n" +
-            "\t}\n\n";
+            "\t\ti1\n" +
+            "\t}\n";
     private static final String test3_ft2 = "ft2: FertileTecton\n" +
             "\tbreakTimer int = 5\n" +
             "\tneighbours List<Tecton> = {\n" +
+            "\t\tft1\n" +
             "\t}\n" +
             "\tmyceliumCapacity int = 1\n" +
             "\tspores Queue<Spore> = {\n" +
@@ -177,29 +192,35 @@ public class TestBJ {
             "\t\tm2\n" +
             "\t}\n" +
             "\toccupants List<Insect> = {\n" +
-            "\t\ti1\n" +
-            "\t}\n\n";
+            "\t}\n";
     private static final String test3_m1 = "m1: Mycelium\n" +
-            "\tlocation = ft1\n\n";
+            "\tgrowing boolean = false\n" +
+            "\tlocation Tecton = ft1\n" +
+            "\tgrowTimer int = 0\n" +
+            "\tdeathTimer int = -1\n";
     private static final String test3_m2 = "m2: Mycelium\n" +
-            "\tlocation = ft2\n\n";
+            "\tgrowing boolean = false\n" +
+            "\tlocation Tecton = ft2\n" +
+            "\tgrowTimer int = 0\n" +
+            "\tdeathTimer int = -1\n";
     private static final String test3_i1 = "i1: Insect\n" +
             "\tlocation = ft1\n" +
             "\tmaxMoves = 2\n" +
             "\tremainingMoves = 2\n" +
             "\tsporesEaten = 0\n" +
             "\teffectTimer = 0\n" +
-            "\tstate = NORMAL\n\n";
+            "\tstate = NORMAL\n";
     @Test
-    void test3() {
+    public void test3() {
         commandReader.bufferFile(test3_Path);
+        commandReader.readAllBufferedCommands();
 
         List<String> output = traceablePrinter.readHistroy();
-        Assertions.assertTrue(output.get(0).equals(test3_ft1));
-        Assertions.assertTrue(output.get(1).equals(test3_ft2));
-        Assertions.assertTrue(output.get(2).equals(test3_m1));
-        Assertions.assertTrue(output.get(3).equals(test3_m2));
-        Assertions.assertTrue(output.get(4).equals(test3_i1));
+        Assertions.assertEquals(test3_ft1,output.get(0));
+        Assertions.assertEquals(test3_ft2,output.get(1));
+        Assertions.assertEquals(test3_m1,output.get(2));
+        Assertions.assertEquals(test3_m2,output.get(3));
+        Assertions.assertEquals(test3_i1,output.get(4));
     }
 
     //Teszt4: Rovar sikertelen mozgatása olyan tektonra, amelyen nincs gombafonál
@@ -218,7 +239,7 @@ public class TestBJ {
             "\t}\n" +
             "\toccupants List<Insect> = {\n" +
             "\t\ti1\n" +
-            "\t}\n\n";
+            "\t}\n";
     private static final String test4_ft2 = "ft2: FertileTecton\n" +
             "\tbreakTimer int = 5\n" +
             "\tneighbours List<Tecton> = {\n" +
@@ -231,25 +252,29 @@ public class TestBJ {
             "\tmycelia Queue<Mycelium> = {\n" +
             "\t}\n" +
             "\toccupants List<Insect> = {\n" +
-            "\t}\n\n";
+            "\t}\n";
     private static final String test4_m1 = "m1: Mycelium\n" +
-            "\tlocation = ft1\n\n";
+            "\tgrowing boolean = false\n" +
+            "\tlocation Tecton = ft1\n" +
+            "\tgrowTimer int = 0\n" +
+            "\tdeathTimer int = -1\n";
     private static final String test4_i1 = "i1: Insect\n" +
             "\tlocation = ft1\n" +
             "\tmaxMoves = 2\n" +
             "\tremainingMoves = 2\n" +
             "\tsporesEaten = 0\n" +
             "\teffectTimer = 0\n" +
-            "\tstate = NORMAL\n\n";
+            "\tstate = NORMAL\n";
     @Test
-    void test4() {
+    public void test4() {
         commandReader.bufferFile(test4_Path);
+        commandReader.readAllBufferedCommands();
 
         List<String> output = traceablePrinter.readHistroy();
-        Assertions.assertTrue(output.get(0).equals(test4_ft1));
-        Assertions.assertTrue(output.get(1).equals(test4_ft2));
-        Assertions.assertTrue(output.get(2).equals(test4_m1));
-        Assertions.assertTrue(output.get(3).equals(test4_i1));
+        Assertions.assertEquals(test4_ft1,output.get(0));
+        Assertions.assertEquals(test4_ft2,output.get(1));
+        Assertions.assertEquals(test4_m1,output.get(2));
+        Assertions.assertEquals(test4_i1,output.get(3));
     }
 
     //Teszt5: Rovar általi spóraevés következtében kettészakadás
@@ -268,32 +293,36 @@ public class TestBJ {
             "\toccupants List<Insect> = {\n" +
             "\t\ti1\n" +
             "\t\ti1-1\n" +
-            "\t}\n\n";
+            "\t}\n";
     private static final String test5_m1 = "m1: Mycelium\n" +
-            "\tlocation = ft1\n\n";
+            "\tgrowing boolean = false\n" +
+            "\tlocation Tecton = ft1\n" +
+            "\tgrowTimer int = 0\n" +
+            "\tdeathTimer int = -1\n";
     private static final String test5_i1 = "i1: Insect\n" +
             "\tlocation = ft1\n" +
             "\tmaxMoves = 2\n" +
             "\tremainingMoves = 0\n" +
             "\tsporesEaten = 1\n" +
             "\teffectTimer = 0\n" +
-            "\tstate = NORMAL\n\n";
+            "\tstate = NORMAL\n";
     private static final String test5_i1_1 = "i1-1: Insect\n" +
             "\tlocation = ft1\n" +
             "\tmaxMoves = 2\n" +
             "\tremainingMoves = 0\n" +
             "\tsporesEaten = 0\n" +
             "\teffectTimer = 0\n" +
-            "\tstate = NORMAL\n\n";
+            "\tstate = NORMAL\n";
     @Test
-    void test5() {
+    public void test5() {
         commandReader.bufferFile(test5_Path);
+        commandReader.readAllBufferedCommands();
 
         List<String> output = traceablePrinter.readHistroy();
-        Assertions.assertTrue(output.get(0).equals(test5_ft1));
-        Assertions.assertTrue(output.get(1).equals(test5_m1));
-        Assertions.assertTrue(output.get(2).equals(test5_i1));
-        Assertions.assertTrue(output.get(3).equals(test5_i1_1));
+        Assertions.assertEquals(test5_ft1,output.get(0));
+        Assertions.assertEquals(test5_m1,output.get(1));
+        Assertions.assertEquals(test5_i1,output.get(2));
+        Assertions.assertEquals(test5_i1_1,output.get(3));
     }
 
     //Teszt6: Rovar általi spóraevés következtében Slow állapotba kerülés
@@ -311,24 +340,28 @@ public class TestBJ {
             "\t}\n" +
             "\toccupants List<Insect> = {\n" +
             "\t\ti1\n" +
-            "\t}\n\n";
+            "\t}\n";
     private static final String test6_m1 = "m1: Mycelium\n" +
-            "\tlocation = ft1\n\n";
+            "\tgrowing boolean = false\n" +
+            "\tlocation Tecton = ft1\n" +
+            "\tgrowTimer int = 0\n" +
+            "\tdeathTimer int = -1\n";
     private static final String test6_i1 = "i1: Insect\n" +
             "\tlocation = ft1\n" +
             "\tmaxMoves = 1\n" +
             "\tremainingMoves = 0\n" +
             "\tsporesEaten = 1\n" +
             "\teffectTimer = 0\n" +
-            "\tstate = SLOW\n\n";
+            "\tstate = SLOW\n";
     @Test
-    void test6() {
+    public void test6() {
         commandReader.bufferFile(test6_Path);
+        commandReader.readAllBufferedCommands();
 
         List<String> output = traceablePrinter.readHistroy();
-        Assertions.assertTrue(output.get(0).equals(test6_ft1));
-        Assertions.assertTrue(output.get(1).equals(test6_m1));
-        Assertions.assertTrue(output.get(2).equals(test6_i1));
+        Assertions.assertEquals(test6_ft1,output.get(0));
+        Assertions.assertEquals(test6_m1,output.get(1));
+        Assertions.assertEquals(test6_i1,output.get(2));
     }
 
     //Teszt7: Rovar általi spóraevés következtében Fast állapotba kerülés
@@ -346,24 +379,28 @@ public class TestBJ {
             "\t}\n" +
             "\toccupants List<Insect> = {\n" +
             "\t\ti1\n" +
-            "\t}\n\n";
+            "\t}\n";
     private static final String test7_m1 = "m1: Mycelium\n" +
-            "\tlocation = ft1\n\n";
+            "\tgrowing boolean = false\n" +
+            "\tlocation Tecton = ft1\n" +
+            "\tgrowTimer int = 0\n" +
+            "\tdeathTimer int = -1\n";
     private static final String test7_i1 = "i1: Insect\n" +
             "\tlocation = ft1\n" +
             "\tmaxMoves = 3\n" +
             "\tremainingMoves = 0\n" +
             "\tsporesEaten = 1\n" +
             "\teffectTimer = 0\n" +
-            "\tstate = FAST\n\n";
+            "\tstate = FAST\n";
     @Test
-    void test7() {
+    public void test7() {
         commandReader.bufferFile(test7_Path);
+        commandReader.readAllBufferedCommands();
 
         List<String> output = traceablePrinter.readHistroy();
-        Assertions.assertTrue(output.get(0).equals(test7_ft1));
-        Assertions.assertTrue(output.get(1).equals(test7_m1));
-        Assertions.assertTrue(output.get(2).equals(test7_i1));
+        Assertions.assertEquals(test7_ft1,output.get(0));
+        Assertions.assertEquals(test7_m1,output.get(1));
+        Assertions.assertEquals(test7_i1,output.get(2));
     }
 
     //Teszt8: Rovar általi spóraevés következtében PreventCut állapotba kerülés
@@ -381,24 +418,28 @@ public class TestBJ {
             "\t}\n" +
             "\toccupants List<Insect> = {\n" +
             "\t\ti1\n" +
-            "\t}\n\n";
+            "\t}\n";
     private static final String test8_m1 = "m1: Mycelium\n" +
-            "\tlocation = ft1\n\n";
+            "\tgrowing boolean = false\n" +
+            "\tlocation Tecton = ft1\n" +
+            "\tgrowTimer int = 0\n" +
+            "\tdeathTimer int = -1\n";
     private static final String test8_i1 = "i1: Insect\n" +
             "\tlocation = ft1\n" +
             "\tmaxMoves = 2\n" +
             "\tremainingMoves = 0\n" +
             "\tsporesEaten = 1\n" +
             "\teffectTimer = 0\n" +
-            "\tstate = CANNOT_CUT\n\n";
+            "\tstate = CANNOT_CUT\n";
     @Test
-    void test8() {
+    public void test8() {
         commandReader.bufferFile(test8_Path);
+        commandReader.readAllBufferedCommands();
 
         List<String> output = traceablePrinter.readHistroy();
-        Assertions.assertTrue(output.get(0).equals(test8_ft1));
-        Assertions.assertTrue(output.get(1).equals(test8_m1));
-        Assertions.assertTrue(output.get(2).equals(test8_i1));
+        Assertions.assertEquals(test8_ft1,output.get(0));
+        Assertions.assertEquals(test8_m1,output.get(1));
+        Assertions.assertEquals(test8_i1,output.get(2));
     }
 
     //Teszt9: Rovar általi spóraevés következtében Stunned állapotba kerülés
@@ -416,24 +457,28 @@ public class TestBJ {
             "\t}\n" +
             "\toccupants List<Insect> = {\n" +
             "\t\ti1\n" +
-            "\t}\n\n";
+            "\t}\n";
     private static final String test9_m1 = "m1: Mycelium\n" +
-            "\tlocation = ft1\n\n";
+            "\tgrowing boolean = false\n" +
+            "\tlocation Tecton = ft1\n" +
+            "\tgrowTimer int = 0\n" +
+            "\tdeathTimer int = -1\n";
     private static final String test9_i1 = "i1: Insect\n" +
             "\tlocation = ft1\n" +
             "\tmaxMoves = 0\n" +
             "\tremainingMoves = 0\n" +
             "\tsporesEaten = 1\n" +
             "\teffectTimer = 0\n" +
-            "\tstate = STUNNED\n\n";
+            "\tstate = STUNNED\n";
     @Test
-    void test9() {
+    public void test9() {
         commandReader.bufferFile(test9_Path);
+        commandReader.readAllBufferedCommands();
 
         List<String> output = traceablePrinter.readHistroy();
-        Assertions.assertTrue(output.get(0).equals(test9_ft1));
-        Assertions.assertTrue(output.get(1).equals(test9_m1));
-        Assertions.assertTrue(output.get(2).equals(test9_i1));
+        Assertions.assertEquals(test9_ft1,output.get(0));
+        Assertions.assertEquals(test9_m1,output.get(1));
+        Assertions.assertEquals(test9_i1,output.get(2));
     }
 
     //Teszt10: Rovar általi sikertelen spóraevés
@@ -451,44 +496,47 @@ public class TestBJ {
             "\t}\n" +
             "\toccupants List<Insect> = {\n" +
             "\t\ti1\n" +
-            "\t}\n\n";
+            "\t}\n";
     private static final String test10_m1 = "m1: Mycelium\n" +
-            "\tlocation = ft1\n\n";
+            "\tgrowing boolean = false\n" +
+            "\tlocation Tecton = ft1\n" +
+            "\tgrowTimer int = 0\n" +
+            "\tdeathTimer int = -1\n";
     private static final String test10_i1 = "i1: Insect\n" +
             "\tlocation = ft1\n" +
             "\tmaxMoves = 2\n" +
             "\tremainingMoves = 2\n" +
             "\tsporesEaten = 0\n" +
             "\teffectTimer = 0\n" +
-            "\tstate = NORMAL\n\n";
+            "\tstate = NORMAL\n";
     @Test
-    void test10() {
+    public void test10() {
         commandReader.bufferFile(test10_Path);
+        commandReader.readAllBufferedCommands();
 
         List<String> output = traceablePrinter.readHistroy();
-        Assertions.assertTrue(output.get(0).equals(test10_ft1));
-        Assertions.assertTrue(output.get(1).equals(test10_m1));
-        Assertions.assertTrue(output.get(2).equals(test10_i1));
+        Assertions.assertEquals(test10_ft1,output.get(0));
+        Assertions.assertEquals(test10_m1,output.get(1));
+        Assertions.assertEquals(test10_i1,output.get(2));
     }
 
     //Teszt11: Rovar általi gombafonál elvágás
     private static final String test11_Path = "Fungrorium/TestInputs/BJTests/test11.txt";
     private static final String test11_ft1 = "ft1: FertileTecton\n" +
-            "\tbreakTimer int = 5\n" +
+            "\tbreakTimer int = 3\n" +
             "\tneighbours List<Tecton> = {\n" +
             "\t\tft2\n" +
             "\t}\n" +
             "\tmyceliumCapacity int = 1\n" +
             "\tspores Queue<Spore> = {\n" +
             "\t}\n" +
-            "\tmushroomBody MushroomBody = mb1\n" +
+            "\tmushroomBody MushroomBody = null\n" +
             "\tmycelia Queue<Mycelium> = {\n" +
             "\t}\n" +
             "\toccupants List<Insect> = {\n" +
-            "\t\ti1\n" +
-            "\t}\n\n";
+            "\t}\n";
     private static final String test11_ft2 = "ft2: FertileTecton\n" +
-            "\tbreakTimer int = 5\n" +
+            "\tbreakTimer int = 3\n" +
             "\tneighbours List<Tecton> = {\n" +
             "\t\tft1\n" +
             "\t}\n" +
@@ -497,32 +545,38 @@ public class TestBJ {
             "\t}\n" +
             "\tmushroomBody MushroomBody = mb1\n" +
             "\tmycelia Queue<Mycelium> = {\n" +
+            "\t\tm2\n" +
             "\t}\n" +
             "\toccupants List<Insect> = {\n" +
             "\t\ti1\n" +
-            "\t}\n\n";
+            "\t}\n";
     private static final String test11_mb1 = "mb1: MushroomBody\n" +
-            "\tlocation = ft2\n" +
-            "\tremainingEjects = 3\n\n";
+            "\tremainingEjects int = 3" +
+            "\tlocation Tecton = ft2\n" +
+            "\tmushroomSpores List<Spore> = {\n" +
+            "\t}\n";
     private static final String test11_m1 = "m1: Mycelium\n" +
-            "\tlocation = ft1\n" +
-            "\tdeathTimer = 2\n\n";
+            "\tgrowing boolean = false\n" +
+            "\tlocation Tecton = null\n" +
+            "\tgrowTimer int = 0\n" +
+            "\tdeathTimer int = 0\n";
     private static final String test11_i1 = "i1: Insect\n" +
             "\tlocation = ft2\n" +
             "\tmaxMoves = 2\n" +
             "\tremainingMoves = 2\n" +
             "\tsporesEaten = 0\n" +
             "\teffectTimer = 0\n" +
-            "\tstate = NORMAL\n\n";
+            "\tstate = NORMAL\n";
     @Test
-    void test11() {
+    public void test11() {
         commandReader.bufferFile(test11_Path);
+        commandReader.readAllBufferedCommands();
 
         List<String> output = traceablePrinter.readHistroy();
-        Assertions.assertTrue(output.get(0).equals(test11_ft1));
-        Assertions.assertTrue(output.get(1).equals(test11_ft2));
-        Assertions.assertTrue(output.get(2).equals(test11_mb1));
-        Assertions.assertTrue(output.get(3).equals(test11_m1));
-        Assertions.assertTrue(output.get(4).equals(test11_i1));
+        Assertions.assertEquals(test11_ft1,output.get(0));
+        Assertions.assertEquals(test11_ft2,output.get(1));
+        Assertions.assertEquals(test11_mb1,output.get(2));
+        Assertions.assertEquals(test11_m1,output.get(3));
+        Assertions.assertEquals(test11_i1,output.get(4));
     }
 }

@@ -20,7 +20,7 @@ public class CreateInsectCommand extends CommandImpl {
             MapCreationController controller = (MapCreationController)handler;
             Tecton tecton = (Tecton)ObjectRegistry.getObject(input.params()[0]);
             Entomologist currentPlayer = (Entomologist)actingPlayer;
-            controller.createInsect(tecton, input.params()[0], currentPlayer);
+            controller.createInsect(tecton, input.params()[1], currentPlayer);
         } catch (Exception e) {
             System.out.println("Command Syntax Error: Invalid Parameters");
         }

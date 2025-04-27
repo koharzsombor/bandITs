@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -8,7 +9,7 @@ public class TrablePrinterImpl implements TraceablePrinter {
     /**
      * A legutóbb kiírt szövegek listája.
      */
-    private List<String> printHistory;
+    private List<String> printHistory = new ArrayList<>();
 
     /**
      * Kitörli a nyomtatónak a nyomtatási történetét.
@@ -25,7 +26,7 @@ public class TrablePrinterImpl implements TraceablePrinter {
      */
     @Override
     public List<String> readHistroy() {
-        return Collections.unmodifiableList(printHistory);
+        return printHistory;
     }
 
     /**

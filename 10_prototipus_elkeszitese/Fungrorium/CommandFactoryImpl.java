@@ -17,7 +17,7 @@ public class CommandFactoryImpl implements CommandFactory {
             case "CREATE_MYCELIUM" -> new CreateMyceliumCommand(command, actor);
             case "CREATE_MUSHROOMBODY" -> new CreateMushroomBodyCommand(command, actor);
             case "CREATE_INSECT" -> new CreateInsectCommand(command, actor);
-            case "END_TURN" -> new EndTurnCommand(command, null);
+            case "ENDTURN" -> new EndTurnCommand(command, null);
             case "START_GAME" -> new BeginGameCommand(command, null);
             case "SET_ENDGAMETIMER" -> new SetEndgameTimerCommand(command, null);
             case "END_GAME" -> new EndGameCommand(command, null);
@@ -25,7 +25,7 @@ public class CommandFactoryImpl implements CommandFactory {
             case "GROW_MUSHROOMBODY" -> new GrowMushroomBodyCommand(command, actor);
             case "SET_BREAKTIMER" -> new SetBreakTimerCommand(command, null);
             case "ADD_NEIGHBOUR" -> new AddNeighbourCommand(command, null);
-            case "ADD_MYCELIUM" -> new AddMyceliumCommand(command, null);
+            case "ADD_MYCELIUM_TO_TECTON" -> new AddMyceliumCommand(command, null);
             case "PUT_SPORE" -> new PutSporeCommand(command, null);
             case "EJECT_SPORES" -> new EjectSporesCommand(command, actor);
             case "DEACTIVATE" -> new DeactivateCommand(command, null);
@@ -34,7 +34,7 @@ public class CommandFactoryImpl implements CommandFactory {
             case "CUT" -> new CutCommand(command, actor);
             case "EAT" -> new EatCommand(command, actor);
             case "MOVE" -> new MoveCommand(command, actor);
-            default -> throw new UnsupportedOperationException("Command is not implemented in factory");
+            default -> throw new UnsupportedOperationException(command.commandName() + " Command is not implemented in factory");
         };
     }
 }
