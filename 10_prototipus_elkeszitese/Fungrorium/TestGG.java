@@ -352,9 +352,9 @@ public class TestGG {
     //Teszt7: Rovarász megpróbál a rovarral műveletet (evés, vágás, mozgás) végrehajtani, amikor már nincs több művelete
     private static final String test7_Path = "Fungrorium/TestInputs/GGTests/test7.txt";
     private static final String test7_ft3 = "ft3: FertileTecton\n" +
-            "\tbreakTimer int = 3\n" +
+            "\tbreakTimer int = 4\n" +
             "\tneighbours List<Tecton> = {\n" +
-            "\t\tf2\n" +
+            "\t\tft2\n" +
             "\t}\n" +
             "\tmyceliumCapacity int = 1\n" +
             "\tspores Queue<Spore> = {\n" +
@@ -369,16 +369,16 @@ public class TestGG {
             "\t}\n";
     private static final String test7_m3 = "m3: Mycelium\n" +
             "\tgrowing boolean = false\n" +
-            "\tlocation Tecton = f3\n" +
+            "\tlocation Tecton = ft3\n" +
             "\tgrowTimer int = 0\n" +
             "\tdeathTimer int = -1\n";
     private static final String test7_i1 = "i1: Insect\n" +
-            "\tlocation Tecton = ft3 \n" +
+            "\tlocation Tecton = ft3\n" +
             "\tmaxMoves int = 2\n" +
             "\tremainingMoves int = 0\n" +
             "\tsporesEaten int = 0\n" +
             "\teffectTimer int = 0\n" +
-            "\tstate Insect= NORMAL\n";
+            "\tstate InsectState = NORMAL\n";
 
     @Test
     public void test7() {
@@ -396,8 +396,8 @@ public class TestGG {
     private static final String test8_ft1 = "ft1: FertileTecton\n" +
             "\tbreakTimer int = 2\n" +
             "\tneighbours List<Tecton> = {\n" +
-            "\t\tf3\n" +
-            "\t\tf4\n" +
+            "\t\tft3\n" +
+            "\t\tmlt1\n" +
             "\t}\n" +
             "\tmyceliumCapacity int = 1\n" +
             "\tspores Queue<Spore> = {\n" +
@@ -410,8 +410,8 @@ public class TestGG {
     private static final String test8_ft2 = "ft2: FertileTecton\n" +
             "\tbreakTimer int = 2\n" +
             "\tneighbours List<Tecton> = {\n" +
-            "\t\tf3\n" +
-            "\t\tf4\n" +
+            "\t\tft3\n" +
+            "\t\tmlt1\n" +
             "\t}\n" +
             "\tmyceliumCapacity int = 1\n" +
             "\tspores Queue<Spore> = {\n" +
@@ -424,14 +424,14 @@ public class TestGG {
     private static final String test8_ft3 = "ft3: FertileTecton\n" +
             "\tbreakTimer int = 2\n" +
             "\tneighbours List<Tecton> = {\n" +
-            "\t\tf1\n" +
-            "\t\tf2\n" +
+            "\t\tft1\n" +
+            "\t\tft2\n" +
             "\t}\n" +
             "\tmyceliumCapacity int = 1\n" +
             "\tspores Queue<Spore> = {\n" +
             "\t\tspeeds1\n" +
-            "\t\tspeeds5\n" +
-            "\t\tspeeds6\n" +
+            "\t\tmb1-speeds1\n" +
+            "\t\tmb2-speeds1\n" +
             "\t}\n" +
             "\tmushroomBody MushroomBody = mb3\n" +
             "\tmycelia Queue<Mycelium> = {\n" +
@@ -442,8 +442,8 @@ public class TestGG {
     private static final String test8_mlt1 = "mlt1: MultiLayeredTecton\n" +
             "\tbreakTimer int = 2\n" +
             "\tneighbours List<Tecton> = {\n" +
-            "\t\tf1\n" +
-            "\t\tf2\n" +
+            "\t\tft1\n" +
+            "\t\tft2\n" +
             "\t}\n" +
             "\tmyceliumCapacity int = 3\n" +
             "\tspores Queue<Spore> = {\n" +
@@ -557,4 +557,19 @@ public class TestGG {
             "\tsporesEaten int = 1\n" +
             "\teffectTimer int = 3\n" +
             "\tstate InsectState = FAST\n";
+
+    @Test
+    public void test9() {
+        commandReader.bufferFile(test9_Path);
+        commandReader.readAllBufferedCommands();
+
+        List<String> output = traceablePrinter.readHistroy();
+        Assertions.assertEquals(test9_ft1, output.get(0));
+        Assertions.assertEquals(test9_ft2, output.get(1));
+        Assertions.assertEquals(test9_ft3, output.get(2));
+        Assertions.assertEquals(test9_mlt1, output.get(3));
+        Assertions.assertEquals(test9_ft1_1, output.get(4));
+        Assertions.assertEquals(test9_mb1, output.get(5));
+        Assertions.assertEquals(test9_i1, output.get(6));
+    }
 }
