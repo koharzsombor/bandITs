@@ -346,7 +346,7 @@ public class TestGG {
         commandReader.readAllBufferedCommands();
 
         List<String> output = traceablePrinter.readHistroy();
-        Assertions.assertEquals(test6_at1, output.getFirst());
+        Assertions.assertEquals(test6_at1, output.get(0));
     }
 
     //Teszt7: Rovarász megpróbál a rovarral műveletet (evés, vágás, mozgás) végrehajtani, amikor már nincs több művelete
