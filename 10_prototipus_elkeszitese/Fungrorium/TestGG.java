@@ -473,7 +473,7 @@ public class TestGG {
     //Teszt9: Összetett teszteset, amiben rovarász és gombász és is van és a játék a valósághoz hasonlóan megy.
     private static final String test9_Path = "Fungrorium/TestInputs/GGTests/test9.txt";
     private static final String test9_ft1 = "ft1: FertileTecton\n" +
-            "\tbreakTimer int = 0\n" +
+            "\tbreakTimer int = 2\n" +      //A tekton törés utáni reset miatt
             "\tneighbours List<Tecton> = {\n" +
             "\t\tmlt1\n" +
             "\t\tft1-1\n" +
