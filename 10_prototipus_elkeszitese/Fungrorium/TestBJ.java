@@ -84,12 +84,12 @@ public class TestBJ {
             "\tgrowTimer int = 0\n" +
             "\tdeathTimer int = -1\n";
     private static final String test1_i1 = "i1: Insect\n" +
-            "\tlocation = ft1\n" +
-            "\tmaxMoves = 2\n" +
-            "\tremainingMoves = 2\n" +
-            "\tsporesEaten = 0\n" +
-            "\teffectTimer = 0\n" +
-            "\tstate = NORMAL\n";
+            "\tlocation Tecton = ft1\n" +
+            "\tmaxMoves int = 2\n" +
+            "\tremainingMoves int = 2\n" +
+            "\tsporesEaten int = 0\n" +
+            "\teffectTimer int = 0\n" +
+            "\tstate InsectState = NORMAL\n";
     @Test
     public void test1() {
         commandReader.bufferFile(test1_Path);
@@ -143,12 +143,12 @@ public class TestBJ {
             "\tgrowTimer int = 0\n" +
             "\tdeathTimer int = -1\n";
     private static final String test2_i1 = "i1: Insect\n" +
-            "\tlocation = ft2\n" +
-            "\tmaxMoves = 2\n" +
-            "\tremainingMoves = 1\n" +
-            "\tsporesEaten = 0\n" +
-            "\teffectTimer = 0\n" +
-            "\tstate = NORMAL\n";
+            "\tlocation Tecton = ft2\n" +
+            "\tmaxMoves int = 2\n" +
+            "\tremainingMoves int = 1\n" +
+            "\tsporesEaten int = 0\n" +
+            "\teffectTimer int = 0\n" +
+            "\tstate InsectState = NORMAL\n";
     @Test
     public void test2() {
         commandReader.bufferFile(test2_Path);
@@ -202,12 +202,12 @@ public class TestBJ {
             "\tgrowTimer int = 0\n" +
             "\tdeathTimer int = -1\n";
     private static final String test3_i1 = "i1: Insect\n" +
-            "\tlocation = ft1\n" +
-            "\tmaxMoves = 2\n" +
-            "\tremainingMoves = 2\n" +
-            "\tsporesEaten = 0\n" +
-            "\teffectTimer = 0\n" +
-            "\tstate = NORMAL\n";
+            "\tlocation Tecton = ft1\n" +
+            "\tmaxMoves int = 2\n" +
+            "\tremainingMoves int = 2\n" +
+            "\tsporesEaten int = 0\n" +
+            "\teffectTimer int = 0\n" +
+            "\tstate InsectState = NORMAL\n";
     @Test
     public void test3() {
         commandReader.bufferFile(test3_Path);
@@ -257,12 +257,12 @@ public class TestBJ {
             "\tgrowTimer int = 0\n" +
             "\tdeathTimer int = -1\n";
     private static final String test4_i1 = "i1: Insect\n" +
-            "\tlocation = ft1\n" +
-            "\tmaxMoves = 2\n" +
-            "\tremainingMoves = 2\n" +
-            "\tsporesEaten = 0\n" +
-            "\teffectTimer = 0\n" +
-            "\tstate = NORMAL\n";
+            "\tlocation Tecton = ft1\n" +
+            "\tmaxMoves int = 2\n" +
+            "\tremainingMoves int = 2\n" +
+            "\tsporesEaten int = 0\n" +
+            "\teffectTimer int = 0\n" +
+            "\tstate InsectState = NORMAL\n";
     @Test
     public void test4() {
         commandReader.bufferFile(test4_Path);
@@ -298,19 +298,19 @@ public class TestBJ {
             "\tgrowTimer int = 0\n" +
             "\tdeathTimer int = -1\n";
     private static final String test5_i1 = "i1: Insect\n" +
-            "\tlocation = ft1\n" +
-            "\tmaxMoves = 2\n" +
-            "\tremainingMoves = 0\n" +
-            "\tsporesEaten = 1\n" +
-            "\teffectTimer = 0\n" +
-            "\tstate = NORMAL\n";
+            "\tlocation Tecton = ft1\n" +
+            "\tmaxMoves int = 2\n" +
+            "\tremainingMoves int = 0\n" +
+            "\tsporesEaten int = 1\n" +
+            "\teffectTimer int = 0\n" +
+            "\tstate InsectState = NORMAL\n";
     private static final String test5_i1_1 = "i1-1: Insect\n" +
-            "\tlocation = ft1\n" +
-            "\tmaxMoves = 2\n" +
-            "\tremainingMoves = 0\n" +
-            "\tsporesEaten = 0\n" +
-            "\teffectTimer = 0\n" +
-            "\tstate = NORMAL\n";
+            "\tlocation Tecton = ft1\n" +
+            "\tmaxMoves int = 2\n" +
+            "\tremainingMoves int = 0\n" +
+            "\tsporesEaten int = 0\n" +
+            "\teffectTimer int = 0\n" +
+            "\tstate InsectState = NORMAL\n";
     @Test
     public void test5() {
         commandReader.bufferFile(test5_Path);
@@ -345,12 +345,12 @@ public class TestBJ {
             "\tgrowTimer int = 0\n" +
             "\tdeathTimer int = -1\n";
     private static final String test6_i1 = "i1: Insect\n" +
-            "\tlocation = ft1\n" +
-            "\tmaxMoves = 1\n" +
-            "\tremainingMoves = 0\n" +
-            "\tsporesEaten = 1\n" +
-            "\teffectTimer = 2\n" +
-            "\tstate = SLOW\n";
+            "\tlocation Tecton = ft1\n" +
+            "\tmaxMoves int = 1\n" +
+            "\tremainingMoves int = 0\n" +
+            "\tsporesEaten int = 1\n" +
+            "\teffectTimer int = 2\n" +
+            "\tstate InsectState = SLOW\n";
     @Test
     public void test6() {
         commandReader.bufferFile(test6_Path);
@@ -384,12 +384,12 @@ public class TestBJ {
             "\tgrowTimer int = 0\n" +
             "\tdeathTimer int = -1\n";
     private static final String test7_i1 = "i1: Insect\n" +
-            "\tlocation = ft1\n" +
-            "\tmaxMoves = 3\n" +
-            "\tremainingMoves = 0\n" +
-            "\tsporesEaten = 1\n" +
-            "\teffectTimer = 2\n" +
-            "\tstate = FAST\n";
+            "\tlocation Tecton = ft1\n" +
+            "\tmaxMoves int = 3\n"+
+            "\tremainingMoves int = 0\n" +
+            "\tsporesEaten int = 1\n" +
+            "\teffectTimer int = 2\n" +
+            "\tstate InsectState = FAST\n";
     @Test
     public void test7() {
         commandReader.bufferFile(test7_Path);
@@ -423,12 +423,12 @@ public class TestBJ {
             "\tgrowTimer int = 0\n" +
             "\tdeathTimer int = -1\n";
     private static final String test8_i1 = "i1: Insect\n" +
-            "\tlocation = ft1\n" +
-            "\tmaxMoves = 2\n" +
-            "\tremainingMoves = 0\n" +
-            "\tsporesEaten = 1\n" +
-            "\teffectTimer = 2\n" +
-            "\tstate = CANNOT_CUT\n";
+            "\tlocation Tecton = ft1\n" +
+            "\tmaxMoves int = 2\n" +
+            "\tremainingMoves int = 0\n" +
+            "\tsporesEaten int = 1\n" +
+            "\teffectTimer int = 2\n" +
+            "\tstate InsectState = CANNOT_CUT\n";
     @Test
     public void test8() {
         commandReader.bufferFile(test8_Path);
@@ -462,12 +462,12 @@ public class TestBJ {
             "\tgrowTimer int = 0\n" +
             "\tdeathTimer int = -1\n";
     private static final String test9_i1 = "i1: Insect\n" +
-            "\tlocation = ft1\n" +
-            "\tmaxMoves = 0\n" +
-            "\tremainingMoves = 0\n" +
-            "\tsporesEaten = 1\n" +
-            "\teffectTimer = 2\n" +
-            "\tstate = STUN\n";
+            "\tlocation Tecton = ft1\n" +
+            "\tmaxMoves int = 0\n" +
+            "\tremainingMoves int = 0\n" +
+            "\tsporesEaten int = 1\n" +
+            "\teffectTimer int = 2\n" +
+            "\tstate InsectState = STUN\n";
     @Test
     public void test9() {
         commandReader.bufferFile(test9_Path);
@@ -501,12 +501,12 @@ public class TestBJ {
             "\tgrowTimer int = 0\n" +
             "\tdeathTimer int = -1\n";
     private static final String test10_i1 = "i1: Insect\n" +
-            "\tlocation = ft1\n" +
-            "\tmaxMoves = 2\n" +
-            "\tremainingMoves = 2\n" +
-            "\tsporesEaten = 0\n" +
-            "\teffectTimer = 0\n" +
-            "\tstate = NORMAL\n";
+            "\tlocation Tecton = ft1\n" +
+            "\tmaxMoves int = 2\n" +
+            "\tremainingMoves int = 2\n" +
+            "\tsporesEaten int = 0\n" +
+            "\teffectTimer int = 0\n" +
+            "\tstate InsectState = NORMAL\n";
     @Test
     public void test10() {
         commandReader.bufferFile(test10_Path);
@@ -562,12 +562,12 @@ public class TestBJ {
             "\tgrowTimer int = 0\n" +
             "\tdeathTimer int = 0\n";
     private static final String test11_i1 = "i1: Insect\n" +
-            "\tlocation = ft2\n" +
-            "\tmaxMoves = 2\n" +
-            "\tremainingMoves = 2\n" +
-            "\tsporesEaten = 0\n" +
-            "\teffectTimer = 0\n" +
-            "\tstate = NORMAL\n";
+            "\tlocation Tecton = ft2\n" +
+            "\tmaxMoves int = 2\n" +
+            "\tremainingMoves int = 2\n" +
+            "\tsporesEaten int = 0\n" +
+            "\teffectTimer int = 0\n" +
+            "\tstate InsectState = NORMAL\n";
     @Test
     public void test11() {
         commandReader.bufferFile(test11_Path);
