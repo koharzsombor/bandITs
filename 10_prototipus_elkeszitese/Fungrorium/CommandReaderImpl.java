@@ -25,6 +25,8 @@ public class CommandReaderImpl implements CommandReader {
         this.commandRouter = commandRouter;
     }
 
+    private final Scanner inputScanner = new Scanner(System.in);
+
     /**
      * Értelmezi a következő parancsot a pufferből, ha a puffer üres, akkor a játékostól kér új
      * parancsot.
@@ -33,9 +35,8 @@ public class CommandReaderImpl implements CommandReader {
     public void readNextCommand() {
         String nextLine;
         if (inputBuffer.isEmpty()) {
-            try(Scanner inputScanner = new Scanner(System.in)) {
-                nextLine = inputScanner.nextLine();
-            }
+            System.out.print(">> ");
+            nextLine = inputScanner.nextLine();
         }
         else {
             nextLine = inputBuffer.poll();

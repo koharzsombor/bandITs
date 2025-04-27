@@ -13,9 +13,13 @@ public class PlayerFactoryImpl implements PlayerFactory {
     public Player create(String type, String name) {
         switch (type.toLowerCase()) {
             case "entomologist":
-                return new EntomologistImpl(name);
+                Entomologist entomologist = new EntomologistImpl(name);
+                ObjectRegistry.registerObject(name, entomologist);
+                return entomologist;
             case "mycologist":
-                return new MycologistImpl(name);
+                Mycologist mycologist = new MycologistImpl(name);
+                ObjectRegistry.registerObject(name, mycologist);
+                return mycologist;
             default:
                 throw new UnsupportedOperationException("Player type is invalid");
         }

@@ -41,7 +41,16 @@ public class CommandRouterImpl implements CommandRouter {
     public void routeCommand(InputCommand command) {
         CommandHandler handler = commandRepository.get(command.commandName());
         Command execuatbleCommand = factory.createCommand(command, turnController.getCurrentPlayer());
-        handler.handleCommand(execuatbleCommand);
+
+        if (execuatbleCommand == null) {
+            System.out.println("Parancs neve nem ismerhető fel!");
+            return;
+        }
+
+        if (handler == null)
+            execuatbleCommand.execute(null);
+        else
+            handler.handleCommand(execuatbleCommand);
     }
 
     /**

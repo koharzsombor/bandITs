@@ -87,9 +87,11 @@ public abstract class TectonImpl implements Tecton {
      */
     @Override
     public void checkNeighbourMyceliaSustain() {
+        if (!mycelia.isEmpty())
+            return;
+
         notSustained.clear();
         neighboursWithMycelia().forEach(Tecton::myceliaCheckSustain);
-
 
         for (Tecton tecton : notSustained) {
             for (Mycelium m : tecton.getMycelia()) {
@@ -183,7 +185,9 @@ public abstract class TectonImpl implements Tecton {
      */
     @Override
     public void killOccupants() {
-        for (Insect insect : occupants) {
+        List<Insect> originalOccupants = new LinkedList<>(occupants);
+
+        for (Insect insect : originalOccupants) {
             insect.die();
         }
     }
