@@ -183,7 +183,9 @@ public abstract class TectonImpl implements Tecton {
      */
     @Override
     public void killOccupants() {
-        for (Insect insect : occupants) {
+        List<Insect> originalOccupants = new LinkedList<>(occupants);
+
+        for (Insect insect : originalOccupants) {
             insect.die();
         }
     }
