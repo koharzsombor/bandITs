@@ -74,12 +74,13 @@ public class TestGG {
             "\t}\n" +
             "\tmushroomBody MushroomBody = null\n" +
             "\tmycelia Queue<Mycelium> = {\n" +
+            "\t\tm1\n" +
             "\t}\n" +
             "\toccupants List<Insect> = {\n" +
             "\t}\n";
     private static String test1_m1 = "m1: Mycelium\n" +
             "\tgrowing boolean = true\n" +
-            "\tlocation Tecton = f2 \n" +
+            "\tlocation Tecton = ft2\n" +
             "\tgrowTimer int = 1\n" +
             "\tdeathTimer int = -1\n";
     private static final String test1_ft1 = "ft1: FertileTecton\n" +
@@ -110,15 +111,16 @@ public class TestGG {
             "\toccupants List<Insect> = {\n" +
             "\t}\n";
     private static final String test1_mb1 = "mb1: MushroomBody\n" +
-            "\treamainingEjects int = 3\n" +
+            "\tremainingEjects int = 3\n" +
             "\tlocation Tecton = ft1\n" +
             "\tmushroomSpores List<Spore> = {\n" +
             "\t\tmb1-speeds1\n" +
             "\t\tmb1-speeds2\n" +
+            "\t\tmb1-speeds3\n" +
             "\t}\n";
     private static final String test1_m1_2 = "m1: Mycelium\n" +
             "\tgrowing boolean = false\n" +
-            "\tlocation Tecton = f2\n" +
+            "\tlocation Tecton = ft2\n" +
             "\tgrowTimer int = 0\n" +
             "\tdeathTimer int = -1\n";
 

@@ -28,8 +28,8 @@ public class GrowthControllerImpl implements GrowthController {
      */
     @Override
     public void growMycelium(String type, String name, Tecton location, Mycologist mycologist) {
-        String defaultType = "default";
-        Mycelium mycelium = myceliumFactory.create(defaultType, name, location);
+        //String defaultType = "default";
+        Mycelium mycelium = myceliumFactory.create(type, name, location);
         mycologist.addMycelium(mycelium);
         mycologist.subscribe(mycelium);
     }

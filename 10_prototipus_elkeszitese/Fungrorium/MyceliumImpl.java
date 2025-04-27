@@ -151,9 +151,10 @@ public class MyceliumImpl implements Mycelium{
         if (growing) {
             growTimer--;
             growing = growTimer > 0;
+            /*
             if(!growing){
                 location.addMycelium(this);
-            }
+            }*/
             return;
         }
 
