@@ -64,7 +64,7 @@ public class TestGG {
 
     //Teszt1: Gombafonál sikeres (lassú) növesztése
     private static final String test1_Path = "Fungrorium/TestInputs/GGTests/test1.txt";
-    private static final String test1_ft2 = "ft2: FertileTecon\n" +
+    private static final String test1_ft2 = "ft2: FertileTecton\n" +
             "\tbreakTimer int = 4\n" +
             "\tneighbours List<Tecton>  = {\n" +
             "\t\tft1\n" +
@@ -83,7 +83,7 @@ public class TestGG {
             "\tlocation Tecton = f2 \n" +
             "\tgrowTimer int = 1\n" +
             "\tdeathTimer int = -1\n";
-    private static final String test1_ft1 = "ft1: FertileTecon\n" +
+    private static final String test1_ft1 = "ft1: FertileTecton\n" +
             "\tbreakTimer int = 3\n" +
             "\tneighbours List<Tecton>  = {\n" +
             "\t\tft2\n" +
@@ -96,7 +96,7 @@ public class TestGG {
             "\t}\n" +
             "\toccupants List<Insect> = {\n" +
             "\t}\n";
-    private static final String test1_ft2_2 = "ft2: FertileTecon\n" +
+    private static final String test1_ft2_2 = "ft2: FertileTecton\n" +
             "\tbreakTimer int = 3\n" +
             "\tneighbours List<Tecton>  = {\n" +
             "\t\tft1\n" +
@@ -139,7 +139,7 @@ public class TestGG {
 
     //Teszt2: Gombafonál sikeres gyors növesztése gombatestből FertileTectonra
     private static final String test2_Path = "Fungrorium/TestInputs/GGTests/test2.txt";
-    private static final String test2_ft1 = "ft1: FertileTecon\n" +
+    private static final String test2_ft1 = "ft1: FertileTecton\n" +
             "\tbreakTimer int = 4\n" +
             "\tneighbours List<Tecton>  = {\n" +
             "\t\tft2\n" +
@@ -152,7 +152,7 @@ public class TestGG {
             "\t}\n" +
             "\toccupants List<Insect> = {\n" +
             "\t}\n";
-    private static final String test2_ft2 = "ft2: FertileTecon\n" +
+    private static final String test2_ft2 = "ft2: FertileTecton\n" +
             "\tbreakTimer int = 4\n" +
             "\tneighbours List<Tecton>  = {\n" +
             "\t\tft1\n" +
@@ -193,7 +193,7 @@ public class TestGG {
 
     //Teszt3: Gombafonál sikertelen növesztése gombatestből, olyan FertileTectonra, ahol már van gombafonál
     private static final String test3_Path = "Fungrorium/TestInputs/GGTests/test3.txt";
-    private static final String test3_ft1 = "ft1: FertileTecon\n" +
+    private static final String test3_ft1 = "ft1: FertileTecton\n" +
             "\tbreakTimer int = 3\n" +
             "\tneighbours List<Tecton>  = {\n" +
             "\t\tft2\n" +
@@ -206,7 +206,7 @@ public class TestGG {
             "\t}\n" +
             "\toccupants List<Insect> = {\n" +
             "\t}\n";
-    private static final String test3_ft2 = "ft2: FertileTecon\n" +
+    private static final String test3_ft2 = "ft2: FertileTecton\n" +
             "\tbreakTimer int = 3\n" +
             "\tneighbours List<Tecton>  = {\n" +
             "\t\tft1\n" +
@@ -247,7 +247,7 @@ public class TestGG {
 
     //Teszt4: Gombafonál sikertelen növesztése gombatestből, olyan FertileTectonra , ami a növést kezdeményező gombatest tektonjával nem közvetlenül szomszédos.
     private static final String test4_Path = "Fungrorium/TestInputs/GGTests/test4.txt";
-    private static final String test4_ft1 = "ft1: FertileTecon\n" +
+    private static final String test4_ft1 = "ft1: FertileTecton\n" +
             "\tbreakTimer int = 3\n" +
             "\tneighbours List<Tecton>  = {\n" +
             "\t}\n" +
@@ -259,7 +259,7 @@ public class TestGG {
             "\t}\n" +
             "\toccupants List<Insect> = {\n" +
             "\t}\n";
-    private static final String test4_ft2 = "ft2: FertileTecon\n" +
+    private static final String test4_ft2 = "ft2: FertileTecton\n" +
             "\tbreakTimer int = 3\n" +
             "\tneighbours List<Tecton>  = {\n" +
             "\t}\n" +
@@ -292,7 +292,7 @@ public class TestGG {
 
     //Teszt5: Húsevő fonál általi rovarevés és gombatest növesztés
     private static final String test5_Path = "Fungrorium/TestInputs/GGTests/test5.txt";
-    private static final String test5_ft1 = "ft1: FertileTecon\n" +
+    private static final String test5_ft1 = "ft1: FertileTecton\n" +
             "\tbreakTimer int = 4\n" +
             "\tneighbours List<Tecton>  = {\n" +
             "\t}\n" +
@@ -323,7 +323,7 @@ public class TestGG {
 
     //Teszt6: Gombafonál elhalása AridTectonon
     private static final String test6_Path = "Fungrorium/TestInputs/GGTests/test6.txt";
-    private static final String test6_at1 = "at1: FertileTecon\n" +
+    private static final String test6_at1 = "at1: FertileTecton\n" +
             "\tbreakTimer int = 1\n" +
             "\tneighbours List<Tecton>  = {\n" +
             "\t}\n" +
@@ -342,12 +342,12 @@ public class TestGG {
         commandReader.readAllBufferedCommands();
 
         List<String> output = traceablePrinter.readHistroy();
-        Assertions.assertEquals(test6_at1, output.get(0));
+        Assertions.assertEquals(test6_at1, output.getFirst());
     }
 
     //Teszt7: Rovarász megpróbál a rovarral műveletet (evés, vágás, mozgás) végrehajtani, amikor már nincs több művelete
     private static final String test7_Path = "Fungrorium/TestInputs/GGTests/test7.txt";
-    private static final String test7_ft3 = "ft3: FertileTecon\n" +
+    private static final String test7_ft3 = "ft3: FertileTecton\n" +
             "\tbreakTimer int = 4\n" +
             "\tneighbours List<Tecton>  = {\n" +
             "\t\tf2\n" +
@@ -368,13 +368,13 @@ public class TestGG {
             "\tlocation Tecton = f3\n" +
             "\tgrowTimer int = 0\n" +
             "\tdeathTimer int = -1\n";
-    private static final String test7_i1 = "i1: Insect\n" +         //Típusok!!!
-            "\tlocation = ft3\n" +
-            "\tmaxMoves = 2\n" +
-            "\tremainingMoves = 0\n" +
-            "\tsporesEaten = 0\n" +
-            "\teffectTimer = 0\n" +
-            "\tstate = NORMAL\n";
+    private static final String test7_i1 = "i1: Insect\n" +
+            "\tlocation Tecton = ft3 \n" +
+            "\tmaxMoves int = 2\n" +
+            "\tremainingMoves int = 0\n" +
+            "\tsporesEaten int = 0\n" +
+            "\teffectTimer int = 0\n" +
+            "\tstate Insect= NORMAL\n";
 
     @Test
     public void test7() {
@@ -389,7 +389,7 @@ public class TestGG {
 
     //Teszt8: Gombász megpróbál a körében olyan műveletet végezni, amire már nincs lehetősége
     private static final String test8_Path = "Fungrorium/TestInputs/GGTests/test8.txt";
-    private static final String test8_ft1 = "ft1: FertileTecon\n" +
+    private static final String test8_ft1 = "ft1: FertileTecton\n" +
             "\tbreakTimer int = 3\n" +
             "\tneighbours List<Tecton>  = {\n" +
             "\t\tf3\n" +
@@ -403,7 +403,7 @@ public class TestGG {
             "\t}\n" +
             "\toccupants List<Insect> = {\n" +
             "\t}\n";
-    private static final String test8_ft2 = "ft2: FertileTecon\n" +
+    private static final String test8_ft2 = "ft2: FertileTecton\n" +
             "\tbreakTimer int = 3\n" +
             "\tneighbours List<Tecton>  = {\n" +
             "\t\tf3\n" +
@@ -417,7 +417,7 @@ public class TestGG {
             "\t}\n" +
             "\toccupants List<Insect> = {\n" +
             "\t}\n";
-    private static final String test8_ft3 = "ft3: FertileTecon\n" +
+    private static final String test8_ft3 = "ft3: FertileTecton\n" +
             "\tbreakTimer int = 3\n" +
             "\tneighbours List<Tecton>  = {\n" +
             "\t\tf1\n" +
@@ -435,7 +435,7 @@ public class TestGG {
             "\t}\n" +
             "\toccupants List<Insect> = {\n" +
             "\t}\n";
-    private static final String test8_mlt1 = "mlt1: MultiLayeredTecon\n" +
+    private static final String test8_mlt1 = "mlt1: MultiLayeredTecton\n" +
             "\tbreakTimer int = 3\n" +
             "\tneighbours List<Tecton>  = {\n" +
             "\t\tf1\n" +
@@ -465,4 +465,92 @@ public class TestGG {
         Assertions.assertEquals(test8_ft3, output.get(2));
         Assertions.assertEquals(test8_mlt1, output.get(3));
     }
+
+    //Teszt9: Összetett teszteset, amiben rovarász és gombász és is van és a játék a valósághoz hasonlóan megy.
+    private static final String test9_Path = "Fungrorium/TestInputs/GGTests/test9.txt";
+    private static final String test9_ft1 = "ft1: FertileTecon\n" +
+            "\tbreakTimer int = 0\n" +
+            "\tneighbours List<Tecton>  = {\n" +
+            "\t\tmlt1\n" +
+            "\t\tf1-1\n" +
+            "\t}\n" +
+            "\tmyceliumCapacity int = 1\n" +
+            "\tspores Queue<Spore> = {\n" +
+            "\t}\n" +
+            "\tmushroomBody MushroomBody = mb1\n" +
+            "\tmycelia Queue<Mycelium> = {\n" +
+            "\t}\n" +
+            "\toccupants List<Insect> = {\n" +
+            "\t}\n";
+    private static final String test9_ft2 = "ft2: FertileTecon\n" +
+            "\tbreakTimer int = 3\n" +
+            "\tneighbours List<Tecton>  = {\n" +
+            "\t\tmlt1\n" +
+            "\t}\n" +
+            "\tmyceliumCapacity int = 1\n" +
+            "\tspores Queue<Spore> = {\n" +
+            "\t}\n" +
+            "\tmushroomBody MushroomBody = null\n" +
+            "\tmycelia Queue<Mycelium> = {\n" +
+            "\t\tm4\n" +
+            "\t}\n" +
+            "\toccupants List<Insect> = {\n" +
+            "\t}\n";
+    private static final String test9_ft3 = "ft3: FertileTecon\n" +
+            "\tbreakTimer int = 3\n" +
+            "\tneighbours List<Tecton>  = {\n" +
+            "\t\tmlt1\n" +
+            "\t}\n" +
+            "\tmyceliumCapacity int = 1\n" +
+            "\tspores Queue<Spore> = {\n" +
+            "\t}\n" +
+            "\tmushroomBody MushroomBody = null\n" +
+            "\tmycelia Queue<Mycelium> = {\n" +
+            "\t}\n" +
+            "\toccupants List<Insect> = {\n" +
+            "\t}\n";
+    private static final String test9_mlt1 = "mlt1: MultiLayeredTecton\n" +
+            "\tbreakTimer int = 3\n" +
+            "\tneighbours List<Tecton>  = {\n" +
+            "\t\tft1\n" +
+            "\t\tft2\n" +
+            "\t\tft3\n" +
+            "\t}\n" +
+            "\tmyceliumCapacity int = 3\n" +
+            "\tspores Queue<Spore> = {\n" +
+            "\t}\n" +
+            "\tmushroomBody MushroomBody = null\n" +
+            "\tmycelia Queue<Mycelium> = {\n" +
+            "\t\tm3\n" +
+            "\t}\n" +
+            "\toccupants List<Insect> = {\n" +
+            "\t\ti1\n" +
+            "\t}\n";
+    private static final String test9_ft1_1 = "ft1-1: FertileTecon\n" +
+            "\tbreakTimer int = 0\n" +
+            "\tneighbours List<Tecton>  = {\n" +
+            "\t\tft1\n" +
+            "\t}\n" +
+            "\tmyceliumCapacity int = 1\n" +
+            "\tspores Queue<Spore> = {\n" +
+            "\t}\n" +
+            "\tmushroomBody MushroomBody = null\n" +
+            "\tmycelia Queue<Mycelium> = {\n" +
+            "\t}\n" +
+            "\toccupants List<Insect> = {\n" +
+            "\t}\n";
+    private static final String test9_mb1 = "mb1: MushroomBody\n" +
+            "\treamainingEjects int = 2\n" +
+            "\tlocation Tecton = ft1\n" +
+            "\tmushroomSpores List<Spore> = {\n" +
+            "\t\tft1- speeds1\n" +
+            "\t\tft1-speeds2\n" +
+            "\t}\n";
+    private static final String test9_i1 = "i1: Insect\n" +
+            "\tlocation Tecton = mlt1\n" +
+            "\tmaxMoves int = 3\n" +
+            "\tremainingMoves int = 0\n" +
+            "\tsporesEaten int = 1\n" +
+            "\teffectTimer int = 3\n" +
+            "\tstate InsectState = FAST\n";
 }
