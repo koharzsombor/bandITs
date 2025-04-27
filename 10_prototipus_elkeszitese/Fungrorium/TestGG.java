@@ -169,16 +169,17 @@ public class TestGG {
             "\toccupants List<Insect> = {\n" +
             "\t}\n";
     private static final String test2_mb1 = "mb1: MushroomBody\n" +
-            "\treamainingEjects int = 3\n" +
+            "\tremainingEjects int = 3\n" +
             "\tlocation Tecton = ft1\n" +
             "\tmushroomSpores List<Spore> = {\n" +
             "\t\tmb1-speeds1\n" +
+            "\t\tmb1-speeds2\n" +
             "\t}\n";
     private static final String test2_m1 = "m1: Mycelium\n" +
             "\tgrowing boolean = false\n" +
-            "\tlocation Tecton = f2\n" +
+            "\tlocation Tecton = ft2\n" +
             "\tgrowTimer int = 0\n" +
-            "\tdeathTimer int = 0\n";
+            "\tdeathTimer int = -1\n";
 
     @Test
     public void test2() {
@@ -222,15 +223,16 @@ public class TestGG {
             "\toccupants List<Insect> = {\n" +
             "\t}\n";
     private static final String test3_mb1 = "mb1: MushroomBody\n" +
-            "\treamainingEjects int = 3\n" +
+            "\tremainingEjects int = 3\n" +
             "\tlocation Tecton = ft1\n" +
             "\tmushroomSpores List<Spore> = {\n" +
             "\t\tmb1-speeds1\n" +
             "\t\tmb1-speeds2\n" +
+            "\t\tmb1-speeds3\n" +
             "\t}\n";
     private static final String test3_m1 = "m1: Mycelium\n" +
             "\tgrowing boolean = false\n" +
-            "\tlocation Tecton = f2\n" +
+            "\tlocation Tecton = ft2\n" +
             "\tgrowTimer int = 0\n" +
             "\tdeathTimer int = -1\n";
 
@@ -273,11 +275,12 @@ public class TestGG {
             "\toccupants List<Insect> = {\n" +
             "\t}\n";
     private static final String test4_mb1 = "mb1: MushroomBody\n" +
-            "\treamainingEjects int = 3\n" +
+            "\tremainingEjects int = 3\n" +
             "\tlocation Tecton = ft1\n" +
             "\tmushroomSpores List<Spore> = {\n" +
             "\t\tmb1-speeds1\n" +
             "\t\tmb1-speeds2\n" +
+            "\t\tmb1-speeds3\n" +
             "\t}\n";
 
     @Test
@@ -307,7 +310,7 @@ public class TestGG {
             "\toccupants List<Insect> = {\n" +
             "\t}\n";
     private static final String test5_mb_ft1 = "mb-ft1: MushroomBody\n" +
-            "\treamainingEjects int = 3\n" +
+            "\tremainingEjects int = 3\n" +
             "\tlocation Tecton = ft1\n" +
             "\tmushroomSpores List<Spore> = {\n" +
             "\t}\n";
@@ -324,7 +327,7 @@ public class TestGG {
 
     //Teszt6: Gombafonál elhalása AridTectonon
     private static final String test6_Path = "Fungrorium/TestInputs/GGTests/test6.txt";
-    private static final String test6_at1 = "at1: FertileTecton\n" +
+    private static final String test6_at1 = "at1: AridTecton\n" +
             "\tbreakTimer int = 1\n" +
             "\tneighbours List<Tecton> = {\n" +
             "\t}\n" +
@@ -541,7 +544,7 @@ public class TestGG {
             "\toccupants List<Insect> = {\n" +
             "\t}\n";
     private static final String test9_mb1 = "mb1: MushroomBody\n" +
-            "\treamainingEjects int = 2\n" +
+            "\tremainingEjects int = 2\n" +
             "\tlocation Tecton = ft1\n" +
             "\tmushroomSpores List<Spore> = {\n" +
             "\t\tft1- speeds1\n" +
