@@ -138,7 +138,7 @@ public abstract class TectonImpl implements Tecton {
     * Azok a szomszédok összessége, amelyen van gombafonál vagy gombatest.
     * @return A szomszédos tektonok, amin van gombafonál vagy gombatest.
      */
-    private List<Tecton> neighboursWithMycelia() {
+    protected List<Tecton> neighboursWithMycelia() {
         return neighbours.stream().filter(t -> (t.hasMycelium()) || (t.getMushroomBody() != null)).toList();
     }
 

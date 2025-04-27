@@ -5,7 +5,7 @@ ADD_PLAYER Mycologist mycologist1
 CREATE_MYCELIUM CarnivorousMycelium cm1
 ADD_MYCELIUM_TO_TECTON cm1 ft1
 ADD_PLAYER Entomologist entomologist1
-CREATE_INSECT i1 ft1
+CREATE_INSECT ft1 i1
 START_GAME
 ENDTURN
 EAT i1

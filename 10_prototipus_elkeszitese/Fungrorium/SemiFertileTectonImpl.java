@@ -17,7 +17,7 @@ public class SemiFertileTectonImpl extends TectonImpl {
 
     @Override
     public void accept(MyceliumGrowthEvaluator myceliumGrowthEvaluator, Mycelium mycelium) {
-        if (getMycelia().size() >= getMyceliaCapacity()) {
+        if (getMycelia().size() >= getMyceliaCapacity() || neighboursWithMycelia().isEmpty()) {
             mycelium.delete();
             return;
         }

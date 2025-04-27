@@ -16,7 +16,7 @@ public class FertileTectonImpl extends TectonImpl {
 
     @Override
     public void accept(MyceliumGrowthEvaluator myceliumGrowthEvaluator, Mycelium mycelium) {
-        if (getMycelia().size() >= getMyceliaCapacity()) {
+        if (getMycelia().size() >= getMyceliaCapacity() || neighboursWithMycelia().isEmpty()) {
             mycelium.delete();
             return;
         }
@@ -48,7 +48,7 @@ public class FertileTectonImpl extends TectonImpl {
                 mycelium.cutImmediate();
             }
 
-            ArrayList<Insect> temp =new ArrayList<Insect>(getOccupants());
+            ArrayList<Insect> temp =new ArrayList<>(getOccupants());
             for (Insect insect : temp) {
                 insect.runAway();
             }

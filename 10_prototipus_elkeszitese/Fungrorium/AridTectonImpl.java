@@ -115,4 +115,10 @@ public class AridTectonImpl extends FertileTectonImpl {
                 output += "\t}\n";
         return output;
     }
+
+    @Override
+    public void addMycelium(Mycelium mycelium){
+        super.addMycelium(mycelium);
+        abosrbCountdown = 5;
+    }
 }
