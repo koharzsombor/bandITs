@@ -1,7 +1,7 @@
 import java.util.List;
 import org.junit.jupiter.api.*;
 
-public class TestBJ {
+public class TestGG {
     private CommandReader commandReader;
     private CommandRouter commandRouter;
     private PlayerContainer playerContainer;
@@ -73,16 +73,16 @@ public class TestBJ {
             "\tspores Queue<Spore> = {\n" +
             "\t}\n" +
             "\tmushroomBody MushroomBody = null\n" +
-            "\tmycelia Queue<Mycelium> = {\n" +     //Kérdéses!!
+            "\tmycelia Queue<Mycelium> = {\n" +
+            "\t\tm1\n" +
             "\t}\n" +
             "\toccupants List<Insect> = {\n" +
             "\t}\n";
     private static String test1_m1 = "m1: Mycelium\n" +
             "\tgrowing boolean = true\n" +
-            "\tlocation Tecton = f2 \n" +       //Kérdéses!!
+            "\tlocation Tecton = f2 \n" +
             "\tgrowTimer int = 1\n" +
             "\tdeathTimer int = -1\n";
-
     private static final String test1_ft1 = "ft1: FertileTecon\n" +
             "\tbreakTimer int = 3\n" +
             "\tneighbours List<Tecton>  = {\n" +
@@ -96,7 +96,6 @@ public class TestBJ {
             "\t}\n" +
             "\toccupants List<Insect> = {\n" +
             "\t}\n";
-
     private static final String test1_ft2_2 = "ft2: FertileTecon\n" +
             "\tbreakTimer int = 3\n" +
             "\tneighbours List<Tecton>  = {\n" +
@@ -111,7 +110,6 @@ public class TestBJ {
             "\t}\n" +
             "\toccupants List<Insect> = {\n" +
             "\t}\n";
-
     private static final String test1_mb1 = "mb1: MushroomBody\n" +
             "\treamainingEjects int = 3\n" +
             "\tlocation Tecton = ft1\n" +
@@ -119,7 +117,6 @@ public class TestBJ {
             "\t\tmb1-speeds1\n" +
             "\t\tmb1-speeds2\n" +
             "\t}\n";
-
     private static final String test1_m1_2 = "m1: Mycelium\n" +
             "\tgrowing boolean = false\n" +
             "\tlocation Tecton = f2\n" +
@@ -132,12 +129,12 @@ public class TestBJ {
         commandReader.readAllBufferedCommands();
 
         List<String> output = traceablePrinter.readHistroy();       //Troy!!
-        Assertions.assertTrue(output.get(0).equals(test1_ft2));
-        Assertions.assertTrue(output.get(1).equals(test1_m1));
-        Assertions.assertTrue(output.get(2).equals(test1_ft1));
-        Assertions.assertTrue(output.get(3).equals(test1_ft2_2));
-        Assertions.assertTrue(output.get(4).equals(test1_mb1));
-        Assertions.assertTrue(output.get(5).equals(test1_m1_2));
+        Assertions.assertEquals(test1_ft2, output.get(0));
+        Assertions.assertEquals(test1_m1, output.get(1));
+        Assertions.assertEquals(test1_ft1, output.get(2));
+        Assertions.assertEquals(test1_ft2_2, output.get(3));
+        Assertions.assertEquals(test1_mb1, output.get(4));
+        Assertions.assertEquals(test1_m1_2, output.get(5));
     }
 
     //Teszt2: Gombafonál sikeres gyors növesztése gombatestből FertileTectonra
@@ -155,7 +152,6 @@ public class TestBJ {
             "\t}\n" +
             "\toccupants List<Insect> = {\n" +
             "\t}\n";
-
     private static final String test2_ft2 = "ft2: FertileTecon\n" +
             "\tbreakTimer int = 4\n" +
             "\tneighbours List<Tecton>  = {\n" +
@@ -171,14 +167,12 @@ public class TestBJ {
             "\t}\n" +
             "\toccupants List<Insect> = {\n" +
             "\t}\n";
-
     private static final String test2_mb1 = "mb1: MushroomBody\n" +
             "\treamainingEjects int = 3\n" +
             "\tlocation Tecton = ft1\n" +
             "\tmushroomSpores List<Spore> = {\n" +
             "\t\tmb1-speeds1\n" +
             "\t}\n";
-
     private static final String test2_m1 = "m1: Mycelium\n" +
             "\tgrowing boolean = false\n" +
             "\tlocation Tecton = f2\n" +
@@ -191,10 +185,10 @@ public class TestBJ {
         commandReader.readAllBufferedCommands();
 
         List<String> output = traceablePrinter.readHistroy();
-        Assertions.assertTrue(output.get(0).equals(test2_ft1));
-        Assertions.assertTrue(output.get(1).equals(test2_ft2));
-        Assertions.assertTrue(output.get(2).equals(test2_mb1));
-        Assertions.assertTrue(output.get(3).equals(test2_m1));
+        Assertions.assertEquals(test2_ft1, output.get(0));
+        Assertions.assertEquals(test2_ft2, output.get(1));
+        Assertions.assertEquals(test2_mb1, output.get(2));
+        Assertions.assertEquals(test2_m1, output.get(3));
     }
 
     //Teszt3: Gombafonál sikertelen növesztése gombatestből, olyan FertileTectonra, ahol már van gombafonál
@@ -212,7 +206,6 @@ public class TestBJ {
             "\t}\n" +
             "\toccupants List<Insect> = {\n" +
             "\t}\n";
-
     private static final String test3_ft2 = "ft2: FertileTecon\n" +
             "\tbreakTimer int = 3\n" +
             "\tneighbours List<Tecton>  = {\n" +
@@ -227,7 +220,6 @@ public class TestBJ {
             "\t}\n" +
             "\toccupants List<Insect> = {\n" +
             "\t}\n";
-
     private static final String test3_mb1 = "mb1: MushroomBody\n" +
             "\treamainingEjects int = 3\n" +
             "\tlocation Tecton = ft1\n" +
@@ -235,7 +227,6 @@ public class TestBJ {
             "\t\tmb1-speeds1\n" +
             "\t\tmb1-speeds2\n" +
             "\t}\n";
-
     private static final String test3_m1 = "m1: Mycelium\n" +
             "\tgrowing boolean = false\n" +
             "\tlocation Tecton = f2\n" +
@@ -248,10 +239,10 @@ public class TestBJ {
         commandReader.readAllBufferedCommands();
 
         List<String> output = traceablePrinter.readHistroy();
-        Assertions.assertTrue(output.get(0).equals(test3_ft1));
-        Assertions.assertTrue(output.get(1).equals(test3_ft2));
-        Assertions.assertTrue(output.get(2).equals(test3_mb1));
-        Assertions.assertTrue(output.get(3).equals(test3_m1));
+        Assertions.assertEquals(test3_ft1, output.get(0));
+        Assertions.assertEquals(test3_ft2, output.get(1));
+        Assertions.assertEquals(test3_mb1, output.get(2));
+        Assertions.assertEquals(test3_m1, output.get(3));
     }
 
     //Teszt4: Gombafonál sikertelen növesztése gombatestből, olyan FertileTectonra , ami a növést kezdeményező gombatest tektonjával nem közvetlenül szomszédos.
@@ -294,9 +285,9 @@ public class TestBJ {
         commandReader.readAllBufferedCommands();
 
         List<String> output = traceablePrinter.readHistroy();
-        Assertions.assertTrue(output.get(0).equals(test4_ft1));
-        Assertions.assertTrue(output.get(1).equals(test4_ft2));
-        Assertions.assertTrue(output.get(2).equals(test4_mb1));
+        Assertions.assertEquals(test4_ft1, output.get(0));
+        Assertions.assertEquals(test4_ft2, output.get(1));
+        Assertions.assertEquals(test4_mb1, output.get(2));
     }
 
     //Teszt5: Húsevő fonál általi rovarevés és gombatest növesztés
@@ -326,8 +317,8 @@ public class TestBJ {
         commandReader.readAllBufferedCommands();
 
         List<String> output = traceablePrinter.readHistroy();
-        Assertions.assertTrue(output.get(0).equals(test5_ft1));
-        Assertions.assertTrue(output.get(1).equals(test5_mb_ft1));
+        Assertions.assertEquals(test5_ft1, output.get(0));
+        Assertions.assertEquals(test5_mb_ft1, output.get(1));
     }
 
     //Teszt6: Gombafonál elhalása AridTectonon
@@ -351,7 +342,7 @@ public class TestBJ {
         commandReader.readAllBufferedCommands();
 
         List<String> output = traceablePrinter.readHistroy();
-        Assertions.assertTrue(output.get(0).equals(test6_at1));
+        Assertions.assertEquals(test6_at1, output.get(0));
     }
 
     //Teszt7: Rovarász megpróbál a rovarral műveletet (evés, vágás, mozgás) végrehajtani, amikor már nincs több művelete
@@ -377,7 +368,7 @@ public class TestBJ {
             "\tlocation Tecton = f3\n" +
             "\tgrowTimer int = 0\n" +
             "\tdeathTimer int = -1\n";
-    private static final String test7_i1 = "i1: Insect\n" +
+    private static final String test7_i1 = "i1: Insect\n" +         //Típusok!!!
             "\tlocation = ft3\n" +
             "\tmaxMoves = 2\n" +
             "\tremainingMoves = 0\n" +
@@ -391,9 +382,9 @@ public class TestBJ {
         commandReader.readAllBufferedCommands();
 
         List<String> output = traceablePrinter.readHistroy();
-        Assertions.assertTrue(output.get(0).equals(test7_ft3));
-        Assertions.assertTrue(output.get(1).equals(test7_m3));
-        Assertions.assertTrue(output.get(2).equals(test7_i1));
+        Assertions.assertEquals(test7_ft3, output.get(0));
+        Assertions.assertEquals(test7_m3, output.get(1));
+        Assertions.assertEquals(test7_i1, output.get(2));
     }
 
     //Teszt8: Gombász megpróbál a körében olyan műveletet végezni, amire már nincs lehetősége
@@ -462,4 +453,16 @@ public class TestBJ {
             "\t}\n" +
             "\toccupants List<Insect> = {\n" +
             "\t}\n";
+
+    @Test
+    public void test8() {
+        commandReader.bufferFile(test8_Path);
+        commandReader.readAllBufferedCommands();
+
+        List<String> output = traceablePrinter.readHistroy();
+        Assertions.assertEquals(test8_ft1, output.get(0));
+        Assertions.assertEquals(test8_ft2, output.get(1));
+        Assertions.assertEquals(test8_ft3, output.get(2));
+        Assertions.assertEquals(test8_mlt1, output.get(3));
+    }
 }
