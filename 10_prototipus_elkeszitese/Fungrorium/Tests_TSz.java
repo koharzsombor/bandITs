@@ -809,7 +809,6 @@ public class Tests_TSz {
     \tremainingEjects int = 0
     \tlocation Tecton = ft1
     \tmushroomSpores List<Spore> = {
-    \t\tmb1-speeds3
     \t}
     """;
 
@@ -849,7 +848,7 @@ public class Tests_TSz {
     i1: Insect
     \tlocation Tecton = ft4
     \tmaxMoves int = 2
-    \tremainingMoves int = 2
+    \tremainingMoves int = 1
     \tsporesEaten int = 0
     \teffectTimer int = 0
     \tstate InsectState = NORMAL
