@@ -56,9 +56,30 @@ public class Main {
         commandRouter.addCommand("CUT", insectController);
         commandRouter.addCommand("EAT", insectController);
         commandRouter.addCommand("MOVE", insectController);
+
+        roundObserver.subscribe(gameEndManager);
     }
+
+    private static String title = """
+    ====================================
+        ╭━━━╮        ╭━━━╮
+        ┃╭━━╯        ┃╭━╮┃
+        ┃╰━━┳╮╭┳━╮╭━━┫╰━╯┣━━┳━┳┳╮╭┳╮╭╮
+        ┃╭━━┫┃┃┃╭╮┫╭╮┃╭╮╭┫╭╮┃╭╋┫┃┃┃╰╯┃
+        ┃┃  ┃╰╯┃┃┃┃╰╯┃┃┃╰┫╰╯┃┃┃┃╰╯┃┃┃┃
+        ╰╯  ╰━━┻╯╰┻━╮┣╯╰━┻━━┻╯╰┻━━┻┻┻╯
+                  ╭━╯┃
+                  ╰━━╯
+    ====================================
+    """;
 
     public static void main(String... args) {
         initialiseComponents();
+        System.out.println(title);
+        System.out.println("A parancsok listája és magyarázatuk eléréséhez add ki a ? parancsot!");
+
+        while (true) {
+            commandReader.readNextCommand();
+        }
     }
 }
