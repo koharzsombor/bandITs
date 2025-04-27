@@ -1,0 +1,30 @@
+/**
+ * ADD_PLAYER parancs implementációja
+ */
+public class AddPlayerCommand extends CommandImpl {
+
+    /**
+     * A megadott bemenetből és végrehajtó játékosból csinál egy parancsot.
+     *
+     * @param inputCommand A bemenet amiből a parancs készül.
+     * @param actor        A parancsot  játékos.
+     */
+    public AddPlayerCommand(InputCommand inputCommand, Player actor) {
+        super(inputCommand, actor);
+    }
+
+    /**
+     * A parancs végrehajtása.
+     *
+     * @param handler A parancsot végrehajtó kezelő.
+     */
+    @Override
+    public void execute(CommandHandler handler) {
+        try {
+            PlayerController controller = (PlayerController)handler;
+            controller.createPlayer(input.params()[0], input.params()[1]);
+        } catch (Exception e) {
+            System.out.println(commandErrorMessage);
+        }
+    }
+}
