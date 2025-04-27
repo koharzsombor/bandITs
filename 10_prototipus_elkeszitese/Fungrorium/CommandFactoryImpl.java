@@ -34,7 +34,8 @@ public class CommandFactoryImpl implements CommandFactory {
             case "CUT" -> new CutCommand(command, actor);
             case "EAT" -> new EatCommand(command, actor);
             case "MOVE" -> new MoveCommand(command, actor);
-            default -> throw new UnsupportedOperationException(command.commandName() + " Command is not implemented in factory");
+            case "LIST_ALL" -> new ListAllCommand(command, null);
+            default -> null;
         };
     }
 }

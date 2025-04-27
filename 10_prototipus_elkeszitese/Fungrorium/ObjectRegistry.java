@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * A parancssorból hivatkozható objektumok tára.
@@ -61,5 +62,9 @@ public class ObjectRegistry {
             return "null";
 
         return registeredObjects.entrySet().stream().filter(o -> o.getValue().equals(object)).map(Map.Entry::getKey).findFirst().orElse("Not in collection");
+    }
+
+    public static Set<String> getAllNames() {
+        return registeredObjects.keySet();
     }
 }

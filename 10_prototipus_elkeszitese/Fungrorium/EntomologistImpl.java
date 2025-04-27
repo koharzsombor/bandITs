@@ -60,4 +60,22 @@ public class EntomologistImpl extends PlayerImpl implements Entomologist {
     public int calculateScore() {
         return insects.stream().mapToInt(Insect::getSporesEaten).sum();
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("Entomologist: \n" +
+                "Name: " +
+                name + "\n" +
+                "Score: " +
+                calculateScore() + "\n" +
+                "Insects: {\n");
+
+        for (Insect insect : insects) {
+            sb.append(ObjectRegistry.lookupName(insect)).append("\n");
+        }
+
+        sb.append("}\n");
+
+        return sb.toString();
+    }
 }
