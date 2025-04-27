@@ -1,4 +1,3 @@
-import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -69,7 +68,7 @@ public class TestRG {
     }
 
     //Teszt1: Uj Tecton sikeres legyartasa
-    private static final String test1_Path = "Fungrorium/TestInputs/RGTests/test1.txt";
+    private static final String test1_Path = "TestInputs/RGTests/test1.txt";
     private static final String test1_ft1 = "ft1: FertileTecton\n" +
             "\tbreakTimer int = 5\n" +
             "\tneighbours List<Tecton> = {\n" +
@@ -124,7 +123,7 @@ public class TestRG {
     }
 
     //Teszt2: Tectontores
-    private static final String test2_Path = "Fungrorium/TestInputs/RGTests/test2.txt";
+    private static final String test2_Path = "TestInputs/RGTests/test2.txt";
     private static final String test2_ft1 = "ft1: FertileTecton\n" +
             "\tbreakTimer int = 2\n" +
             "\tneighbours List<Tecton> = {\n" +
@@ -163,7 +162,7 @@ public class TestRG {
     }
 
     //Teszt3: Jatek vegenek kezelese
-    private static final String test3_Path = "Fungrorium/TestInputs/RGTests/test3.txt";
+    private static final String test3_Path = "TestInputs/RGTests/test3.txt";
     @Test
     public void test3() {
         roundObserver.subscribe(gameEndManager);

@@ -64,7 +64,7 @@ public class Tests_TSz {
 
     //Teszt1: Gombatest sikeres növesztése FertileTectonra (nem SustainingTecton, nem MultiLayeredTecton
             // és nem AridTecton) gombafonál által
-    private static final String test1_Path = "Fungrorium/TestInputs/TSZTests/test1.txt";
+    private static final String test1_Path = "TestInputs/TSZTests/test1.txt";
 
     private static final String test1_ft1 = """
     ft1: FertileTecton
@@ -116,7 +116,7 @@ public class Tests_TSz {
 
     //Teszt2: Gombatest spórahiány miatti sikertelen növesztése FertileTectonra (nem SustainingTecton,
             // nem MultiLayeredTecton és nem AridTecton) gombafonál által
-    private static final String test2_Path = "Fungrorium/TestInputs/TSZTests/test2.txt";
+    private static final String test2_Path = "TestInputs/TSZTests/test2.txt";
 
     private static final String test2_ft1 = """
     ft1: FertileTecton
@@ -157,7 +157,7 @@ public class Tests_TSz {
 
     //Teszt3: Gombatest sikertelen növesztése gombafonál által olyan FertileTectonra (nem SustainingTecton,
             // nem MultiLayeredTecton és nem AridTecton), amelyen már van gombatest
-    private static final String test3_Path = "Fungrorium/TestInputs/TSZTests/test3.txt";
+    private static final String test3_Path = "TestInputs/TSZTests/test3.txt";
 
     private static final String test3_ft1 = """
     ft1: FertileTecton
@@ -208,7 +208,7 @@ public class Tests_TSz {
     }
 
     //Teszt4: Gombatest sikertelen növesztése gombafonál által SemiFertileTectonra
-    private static final String test4_Path = "Fungrorium/TestInputs/TSZTests/test4.txt";
+    private static final String test4_Path = "TestInputs/TSZTests/test4.txt";
 
     private static final String test4_sft1 = """
     sft1: SemiFertileTecton
@@ -250,7 +250,7 @@ public class Tests_TSz {
 
     //Teszt5: Gombatest sikeres spórakilövése a gombatest elhelyezkedése szerinti tektonnal szomszédos FertileTectonra
             // (nem SustainingTecton, nem MultiLayeredTecton és nem AridTecton)
-    private static final String test5_Path = "Fungrorium/TestInputs/TSZTests/test5.txt";
+    private static final String test5_Path = "TestInputs/TSZTests/test5.txt";
 
     private static final String test5_ft1 = """
     ft1: FertileTecton
@@ -311,7 +311,7 @@ public class Tests_TSz {
 
     //Teszt6: Gombatest sikeres spórakilövése olyan FertileTectonra (nem SustainingTecton, nem MultiLayeredTecton
             // és nem AridTecton), amely a gombatest elhelyezkedése szerinti tektonnal szomszédos tekton szomszédja
-    private static final String test6_Path = "Fungrorium/TestInputs/TSZTests/test6.txt";
+    private static final String test6_Path = "TestInputs/TSZTests/test6.txt";
 
     private static final String test6_ft1 = """
     ft1: FertileTecton
@@ -388,7 +388,7 @@ public class Tests_TSz {
 
     //Teszt7: Gombatest spórahiány miatti sikertelen spórakilövése a gombatest elhelyezkedése szerinti tektonnal
             // szomszédos FertileTectonra (nem SustainingTecton, nem MultiLayeredTecton és nem AridTecton)
-    private static final String test7_Path = "Fungrorium/TestInputs/TSZTests/test7.txt";
+    private static final String test7_Path = "TestInputs/TSZTests/test7.txt";
 
     private static final String test7_ft1 = """
     ft1: FertileTecton
@@ -464,7 +464,7 @@ public class Tests_TSz {
 
     //Teszt8: Gombatest sikertelen spórakilövése olyan FertileTectonra (nem SustainingTecton, nem MultiLayeredTecton
             // és nem AridTecton), amely a gombatest elhelyezkedése szerinti tektonnal szomszédos tekton szomszédja
-    private static final String test8_Path = "Fungrorium/TestInputs/TSZTests/test8.txt";
+    private static final String test8_Path = "TestInputs/TSZTests/test8.txt";
 
     private static final String test8_ft1 = """
     ft1: FertileTecton
@@ -543,7 +543,7 @@ public class Tests_TSz {
 
     //Teszt9: Gombatest sikertelen spórakilövése olyan FertileTectonra (nem SustainingTecton, nem MultiLayeredTecton
             // és nem AridTecton), amely a gombatest elhelyezkedése szerinti tekton harmadik szomszédja
-    private static final String test9_Path = "Fungrorium/TestInputs/TSZTests/test9.txt";
+    private static final String test9_Path = "TestInputs/TSZTests/test9.txt";
 
     private static final String test9_ft1 = """
     ft1: FertileTecton
@@ -640,7 +640,7 @@ public class Tests_TSz {
 
     //Teszt10: Inaktív gombatest sikertelen spórakilövése a gombatest elhelyezkedése szerinti tektonnal szomszédos
             // FertileTectonra (nem SustainingTecton, nem MultiLayeredTecton és nem AridTecton)
-    private static final String test10_Path = "Fungrorium/TestInputs/TSZTests/test10.txt";
+    private static final String test10_Path = "TestInputs/TSZTests/test10.txt";
 
     private static final String test10_ft1 = """
     ft1: FertileTecton
@@ -695,7 +695,7 @@ public class Tests_TSz {
 
 
     //Teszt11: StunSpore sikeres elhelyezése FertileTectonon (nem SustainingTecton, nem MultiLayeredTecton és nem AridTecton)
-    private static final String test11_Path = "Fungrorium/TestInputs/TSZTests/test11.txt";
+    private static final String test11_Path = "TestInputs/TSZTests/test11.txt";
 
     private static final String test11_ft1 = """
     ft1: FertileTecton
@@ -724,7 +724,7 @@ public class Tests_TSz {
 
 
     //Teszt12: Gombatest inaktívvá válása a harmadik spórakilövését követően
-    private static final String test12_Path = "Fungrorium/TestInputs/TSZTests/test12.txt";
+    private static final String test12_Path = "TestInputs/TSZTests/test12.txt";
 
     private static final String test12_ft1 = """
     ft1: FertileTecton
@@ -874,7 +874,7 @@ public class Tests_TSz {
 
 
     //Teszt13: Rovar által elvágott gombafonál elsorvadása és az elfogyasztott spóra rovarra gyakorolt hatása
-    private static final String test13_Path = "Fungrorium/TestInputs/TSZTests/test13.txt";
+    private static final String test13_Path = "TestInputs/TSZTests/test13.txt";
 
     private static final String test13_ft1 = """
     ft1: FertileTecton

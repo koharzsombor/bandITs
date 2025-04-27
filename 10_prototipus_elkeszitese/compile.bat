@@ -1,4 +1,5 @@
-@echo off
+cd Fungrorium
 rmdir /s /q out
 mkdir out
-javac -d out -cp junit-platform-console-standalone-1.12.2.jar Fungorium\*.java
+javac -cp .;junit-jupiter-api-5.8.1.jar;junit-jupiter-engine-5.8.1.jar -d out *.java
+pause

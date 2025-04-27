@@ -63,7 +63,7 @@ public class TestBJ {
     }
 
     //Teszt1: Rovar létrehozása és letevése
-    private static final String test1_Path = "Fungrorium/TestInputs/BJTests/test1.txt";
+    private static final String test1_Path = "TestInputs/BJTests/test1.txt";
     private static final String test1_ft1 = "ft1: FertileTecton\n" +
             "\tbreakTimer int = 5\n" +
             "\tneighbours List<Tecton> = {\n" +
@@ -102,7 +102,7 @@ public class TestBJ {
     }
 
     //Teszt2: Rovar mozgatása
-    private static final String test2_Path = "Fungrorium/TestInputs/BJTests/test2.txt";
+    private static final String test2_Path = "TestInputs/BJTests/test2.txt";
     private static final String test2_ft1 = "ft1: FertileTecton\n" +
             "\tbreakTimer int = 5\n" +
             "\tneighbours List<Tecton> = {\n" +
@@ -163,7 +163,7 @@ public class TestBJ {
     }
 
     //Teszt3: Rovar sikertelen mozgatása nem-szomszédos tektonra
-    private static final String test3_Path = "Fungrorium/TestInputs/BJTests/test3.txt";
+    private static final String test3_Path = "TestInputs/BJTests/test3.txt";
     private static final String test3_ft1 = "ft1: FertileTecton\n" +
             "\tbreakTimer int = 5\n" +
             "\tneighbours List<Tecton> = {\n" +
@@ -222,7 +222,7 @@ public class TestBJ {
     }
 
     //Teszt4: Rovar sikertelen mozgatása olyan tektonra, amelyen nincs gombafonál
-    private static final String test4_Path = "Fungrorium/TestInputs/BJTests/test4.txt";
+    private static final String test4_Path = "TestInputs/BJTests/test4.txt";
     private static final String test4_ft1 = "ft1: FertileTecton\n" +
             "\tbreakTimer int = 5\n" +
             "\tneighbours List<Tecton> = {\n" +
@@ -276,7 +276,7 @@ public class TestBJ {
     }
 
     //Teszt5: Rovar általi spóraevés következtében kettészakadás
-    private static final String test5_Path = "Fungrorium/TestInputs/BJTests/test5.txt";
+    private static final String test5_Path = "TestInputs/BJTests/test5.txt";
     private static final String test5_ft1 = "ft1: FertileTecton\n" +
             "\tbreakTimer int = 5\n" +
             "\tneighbours List<Tecton> = {\n" +
@@ -324,7 +324,7 @@ public class TestBJ {
     }
 
     //Teszt6: Rovar általi spóraevés következtében SLOW állapotba kerülés
-    private static final String test6_Path = "Fungrorium/TestInputs/BJTests/test6.txt";
+    private static final String test6_Path = "TestInputs/BJTests/test6.txt";
     private static final String test6_ft1 = "ft1: FertileTecton\n" +
             "\tbreakTimer int = 5\n" +
             "\tneighbours List<Tecton> = {\n" +
@@ -363,7 +363,7 @@ public class TestBJ {
     }
 
     //Teszt7: Rovar általi spóraevés következtében FAST állapotba kerülés
-    private static final String test7_Path = "Fungrorium/TestInputs/BJTests/test7.txt";
+    private static final String test7_Path = "TestInputs/BJTests/test7.txt";
     private static final String test7_ft1 = "ft1: FertileTecton\n" +
             "\tbreakTimer int = 5\n" +
             "\tneighbours List<Tecton> = {\n" +
@@ -402,7 +402,7 @@ public class TestBJ {
     }
 
     //Teszt8: Rovar általi spóraevés következtében CANNOT_CUT állapotba kerülés
-    private static final String test8_Path = "Fungrorium/TestInputs/BJTests/test8.txt";
+    private static final String test8_Path = "TestInputs/BJTests/test8.txt";
     private static final String test8_ft1 = "ft1: FertileTecton\n" +
             "\tbreakTimer int = 5\n" +
             "\tneighbours List<Tecton> = {\n" +
@@ -441,7 +441,7 @@ public class TestBJ {
     }
 
     //Teszt9: Rovar általi spóraevés következtében STUN állapotba kerülés
-    private static final String test9_Path = "Fungrorium/TestInputs/BJTests/test9.txt";
+    private static final String test9_Path = "TestInputs/BJTests/test9.txt";
     private static final String test9_ft1 = "ft1: FertileTecton\n" +
             "\tbreakTimer int = 5\n" +
             "\tneighbours List<Tecton> = {\n" +
@@ -480,7 +480,7 @@ public class TestBJ {
     }
 
     //Teszt10: Rovar általi sikertelen spóraevés
-    private static final String test10_Path = "Fungrorium/TestInputs/BJTests/test10.txt";
+    private static final String test10_Path = "TestInputs/BJTests/test10.txt";
     private static final String test10_ft1 = "ft1: FertileTecton\n" +
             "\tbreakTimer int = 5\n" +
             "\tneighbours List<Tecton> = {\n" +
@@ -519,7 +519,7 @@ public class TestBJ {
     }
 
     //Teszt11: Rovar általi gombafonál elvágás
-    private static final String test11_Path = "Fungrorium/TestInputs/BJTests/test11.txt";
+    private static final String test11_Path = "TestInputs/BJTests/test11.txt";
     private static final String test11_ft1 = "ft1: FertileTecton\n" +
             "\tbreakTimer int = 3\n" +
             "\tneighbours List<Tecton> = {\n" +

@@ -63,7 +63,7 @@ public class TestGG {
     }
 
     //Teszt1: Gombafonál sikeres (lassú) növesztése
-    private static final String test1_Path = "Fungrorium/TestInputs/GGTests/test1.txt";
+    private static final String test1_Path = "TestInputs/GGTests/test1.txt";
     private static final String test1_ft2 = "ft2: FertileTecton\n" +
             "\tbreakTimer int = 3\n" +
             "\tneighbours List<Tecton> = {\n" +
@@ -139,7 +139,7 @@ public class TestGG {
     }
 
     //Teszt2: Gombafonál sikeres gyors növesztése gombatestből FertileTectonra
-    private static final String test2_Path = "Fungrorium/TestInputs/GGTests/test2.txt";
+    private static final String test2_Path = "TestInputs/GGTests/test2.txt";
     private static final String test2_ft1 = "ft1: FertileTecton\n" +
             "\tbreakTimer int = 3\n" +
             "\tneighbours List<Tecton> = {\n" +
@@ -194,7 +194,7 @@ public class TestGG {
     }
 
     //Teszt3: Gombafonál sikertelen növesztése gombatestből, olyan FertileTectonra, ahol már van gombafonál
-    private static final String test3_Path = "Fungrorium/TestInputs/GGTests/test3.txt";
+    private static final String test3_Path = "TestInputs/GGTests/test3.txt";
     private static final String test3_ft1 = "ft1: FertileTecton\n" +
             "\tbreakTimer int = 2\n" +
             "\tneighbours List<Tecton> = {\n" +
@@ -249,7 +249,7 @@ public class TestGG {
     }
 
     //Teszt4: Gombafonál sikertelen növesztése gombatestből, olyan FertileTectonra , ami a növést kezdeményező gombatest tektonjával nem közvetlenül szomszédos.
-    private static final String test4_Path = "Fungrorium/TestInputs/GGTests/test4.txt";
+    private static final String test4_Path = "TestInputs/GGTests/test4.txt";
     private static final String test4_ft1 = "ft1: FertileTecton\n" +
             "\tbreakTimer int = 2\n" +
             "\tneighbours List<Tecton> = {\n" +
@@ -295,7 +295,7 @@ public class TestGG {
     }
 
     //Teszt5: Húsevő fonál általi rovarevés és gombatest növesztés
-    private static final String test5_Path = "Fungrorium/TestInputs/GGTests/test5.txt";
+    private static final String test5_Path = "TestInputs/GGTests/test5.txt";
     private static final String test5_ft1 = "ft1: FertileTecton\n" +
             "\tbreakTimer int = 3\n" +
             "\tneighbours List<Tecton> = {\n" +
@@ -326,7 +326,7 @@ public class TestGG {
     }
 
     //Teszt6: Gombafonál elhalása AridTectonon
-    private static final String test6_Path = "Fungrorium/TestInputs/GGTests/test6.txt";
+    private static final String test6_Path = "TestInputs/GGTests/test6.txt";
     private static final String test6_at1 = "at1: AridTecton\n" +
             "\tbreakTimer int = 1\n" +
             "\tneighbours List<Tecton> = {\n" +
@@ -350,7 +350,7 @@ public class TestGG {
     }
 
     //Teszt7: Rovarász megpróbál a rovarral műveletet (evés, vágás, mozgás) végrehajtani, amikor már nincs több művelete
-    private static final String test7_Path = "Fungrorium/TestInputs/GGTests/test7.txt";
+    private static final String test7_Path = "TestInputs/GGTests/test7.txt";
     private static final String test7_ft3 = "ft3: FertileTecton\n" +
             "\tbreakTimer int = 4\n" +
             "\tneighbours List<Tecton> = {\n" +
@@ -392,7 +392,7 @@ public class TestGG {
     }
 
     //Teszt8: Gombász megpróbál a körében olyan műveletet végezni, amire már nincs lehetősége
-    private static final String test8_Path = "Fungrorium/TestInputs/GGTests/test8.txt";
+    private static final String test8_Path = "TestInputs/GGTests/test8.txt";
     private static final String test8_ft1 = "ft1: FertileTecton\n" +
             "\tbreakTimer int = 2\n" +
             "\tneighbours List<Tecton> = {\n" +
@@ -471,7 +471,7 @@ public class TestGG {
     }
 
     //Teszt9: Összetett teszteset, amiben rovarász és gombász és is van és a játék a valósághoz hasonlóan megy.
-    private static final String test9_Path = "Fungrorium/TestInputs/GGTests/test9.txt";
+    private static final String test9_Path = "TestInputs/GGTests/test9.txt";
     private static final String test9_ft1 = "ft1: FertileTecton\n" +
             "\tbreakTimer int = 2\n" +      //A tekton törés utáni reset miatt
             "\tneighbours List<Tecton> = {\n" +
