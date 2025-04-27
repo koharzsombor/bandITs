@@ -882,7 +882,7 @@ public class Tests_TSz {
     \tneighbours List<Tecton> = {
     \t\tft2
     \t\tft3
-    \t\tft6
+    \t\tft5
     \t}
     \tmyceliumCapacity int = 1
     \tspores Queue<Spore> = {
@@ -901,7 +901,7 @@ public class Tests_TSz {
     \tneighbours List<Tecton> = {
     \t\tft1
     \t\tft3
-    \t\tft6
+    \t\tft5
     \t}
     \tmyceliumCapacity int = 1
     \tspores Queue<Spore> = {
@@ -940,7 +940,6 @@ public class Tests_TSz {
     \tbreakTimer int = 1
     \tneighbours List<Tecton> = {
     \t\tft3
-    \t\tft5
     \t}
     \tmyceliumCapacity int = 1
     \tspores Queue<Spore> = {
@@ -956,22 +955,6 @@ public class Tests_TSz {
     ft5: FertileTecton
     \tbreakTimer int = 1
     \tneighbours List<Tecton> = {
-    \t\tft4
-    \t}
-    \tmyceliumCapacity int = 1
-    \tspores Queue<Spore> = {
-    \t}
-    \tmushroomBody MushroomBody = null
-    \tmycelia Queue<Mycelium> = {
-    \t}
-    \toccupants List<Insect> = {
-    \t}
-    """;
-
-    private static final String test13_ft6 = """
-    ft6: FertileTecton
-    \tbreakTimer int = 1
-    \tneighbours List<Tecton> = {
     \t\tft1
     \t\tft2
     \t}
@@ -980,7 +963,7 @@ public class Tests_TSz {
     \t}
     \tmushroomBody MushroomBody = null
     \tmycelia Queue<Mycelium> = {
-    \t\tm5
+    \t\tm4
     \t}
     \toccupants List<Insect> = {
     \t\ti1
@@ -989,7 +972,7 @@ public class Tests_TSz {
 
     private static final String test13_mb1 = """
     mb1: MushroomBody
-    \tremainingEjects int = 1
+    \tremainingEjects int = 2
     \tlocation Tecton = ft1
     \tmushroomSpores List<Spore> = {
     \t\tmb1-speeds4
@@ -1013,17 +996,17 @@ public class Tests_TSz {
     \tdeathTimer int = -1
     """;
 
-    private static final String test13_m5 = """
-    m5: Mycelium
+    private static final String test13_m4 = """
+    m4: Mycelium
     \tgrowing boolean = false
-    \tlocation Tecton = ft6
+    \tlocation Tecton = ft5
     \tgrowTimer int = 0
     \tdeathTimer int = -1
     """;
 
     private static final String test13_i1 = """
     i1: Insect
-    \tlocation Tecton = ft6
+    \tlocation Tecton = ft5
     \tmaxMoves int = 2
     \tremainingMoves int = 2
     \tsporesEaten int = 1
@@ -1042,11 +1025,10 @@ public class Tests_TSz {
         Assertions.assertEquals(test13_ft3, output.get(2));
         Assertions.assertEquals(test13_ft4, output.get(3));
         Assertions.assertEquals(test13_ft5, output.get(4));
-        Assertions.assertEquals(test13_ft6, output.get(5));
-        Assertions.assertEquals(test13_mb1, output.get(6));
-        Assertions.assertEquals(test13_m1, output.get(7));
-        Assertions.assertEquals(test13_m2, output.get(8));
-        Assertions.assertEquals(test13_m5, output.get(9));
-        Assertions.assertEquals(test13_i1, output.get(10));
+        Assertions.assertEquals(test13_mb1, output.get(5));
+        Assertions.assertEquals(test13_m1, output.get(6));
+        Assertions.assertEquals(test13_m2, output.get(7));
+        Assertions.assertEquals(test13_m4, output.get(8));
+        Assertions.assertEquals(test13_i1, output.get(9));
     }
 }
