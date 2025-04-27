@@ -371,7 +371,6 @@ public class Tests_TSz {
     \tremainingEjects int = 0
     \tlocation Tecton = ft1
     \tmushroomSpores List<Spore> = {
-    \t\tmb1-speeds2
     \t}
     """;
 
@@ -535,10 +534,10 @@ public class Tests_TSz {
         commandReader.readAllBufferedCommands();
 
         List<String> output = traceablePrinter.readHistroy();
-        Assertions.assertTrue(output.get(0).equals(test8_ft1));
-        Assertions.assertTrue(output.get(1).equals(test8_ft2));
-        Assertions.assertTrue(output.get(2).equals(test8_ft3));
-        Assertions.assertTrue(output.get(3).equals(test8_mb1));
+        Assertions.assertEquals(test8_ft1, output.get(0));
+        Assertions.assertEquals(test8_ft2, output.get(1));
+        Assertions.assertEquals(test8_ft3, output.get(2));
+        Assertions.assertEquals(test8_mb1, output.get(3));
     }
 
 
@@ -614,7 +613,7 @@ public class Tests_TSz {
 
     private static final String test9_mb1 = """
     mb1: MushroomBody
-    \tremainingEjects int = 0
+    \tremainingEjects int = 1
     \tlocation Tecton = ft1
     \tmushroomSpores List<Spore> = {
     \t\tspeeds1
@@ -631,11 +630,11 @@ public class Tests_TSz {
         commandReader.readAllBufferedCommands();
 
         List<String> output = traceablePrinter.readHistroy();
-        Assertions.assertTrue(output.get(0).equals(test9_ft1));
-        Assertions.assertTrue(output.get(1).equals(test9_ft2));
-        Assertions.assertTrue(output.get(2).equals(test9_ft3));
-        Assertions.assertTrue(output.get(3).equals(test9_ft4));
-        Assertions.assertTrue(output.get(4).equals(test9_mb1));
+        Assertions.assertEquals(test9_ft1, output.get(0));
+        Assertions.assertEquals(test9_ft2, output.get(1));
+        Assertions.assertEquals(test9_ft3, output.get(2));
+        Assertions.assertEquals(test9_ft4, output.get(3));
+        Assertions.assertEquals(test9_mb1, output.get(4));
     }
 
 
@@ -689,9 +688,9 @@ public class Tests_TSz {
         commandReader.readAllBufferedCommands();
 
         List<String> output = traceablePrinter.readHistroy();
-        Assertions.assertTrue(output.get(0).equals(test10_ft1));
-        Assertions.assertTrue(output.get(1).equals(test10_ft2));
-        Assertions.assertTrue(output.get(2).equals(test10_mb1));
+        Assertions.assertEquals(test10_ft1, output.get(0));
+        Assertions.assertEquals(test10_ft2, output.get(1));
+        Assertions.assertEquals(test10_mb1, output.get(2));
     }
 
 
@@ -720,7 +719,7 @@ public class Tests_TSz {
         commandReader.readAllBufferedCommands();
 
         List<String> output = traceablePrinter.readHistroy();
-        Assertions.assertTrue(output.get(0).equals(test11_ft1));
+        Assertions.assertEquals(test11_ft1, output.get(0));
     }
 
 
@@ -862,16 +861,16 @@ public class Tests_TSz {
         commandReader.readAllBufferedCommands();
 
         List<String> output = traceablePrinter.readHistroy();
-        Assertions.assertTrue(output.get(0).equals(test12_ft1));
-        Assertions.assertTrue(output.get(1).equals(test12_ft2));
-        Assertions.assertTrue(output.get(2).equals(test12_ft3));
-        Assertions.assertTrue(output.get(3).equals(test12_ft4));
-        Assertions.assertTrue(output.get(4).equals(test12_mb1));
-        Assertions.assertTrue(output.get(5).equals(test12_m1));
-        Assertions.assertTrue(output.get(6).equals(test12_m2));
-        Assertions.assertTrue(output.get(7).equals(test12_m3));
-        Assertions.assertTrue(output.get(8).equals(test12_m4));
-        Assertions.assertTrue(output.get(9).equals(test12_i1));
+        Assertions.assertEquals(test12_ft1, output.get(0));
+        Assertions.assertEquals(test12_ft2, output.get(1));
+        Assertions.assertEquals(test12_ft3, output.get(2));
+        Assertions.assertEquals(test12_ft4, output.get(3));
+        Assertions.assertEquals(test12_mb1, output.get(4));
+        Assertions.assertEquals(test12_m1, output.get(5));
+        Assertions.assertEquals(test12_m2, output.get(6));
+        Assertions.assertEquals(test12_m3, output.get(7));
+        Assertions.assertEquals(test12_m4, output.get(8));
+        Assertions.assertEquals(test12_i1, output.get(9));
     }
 
 
@@ -1039,16 +1038,16 @@ public class Tests_TSz {
         commandReader.readAllBufferedCommands();
 
         List<String> output = traceablePrinter.readHistroy();
-        Assertions.assertTrue(output.get(0).equals(test13_ft1));
-        Assertions.assertTrue(output.get(1).equals(test13_ft2));
-        Assertions.assertTrue(output.get(2).equals(test13_ft3));
-        Assertions.assertTrue(output.get(3).equals(test13_ft4));
-        Assertions.assertTrue(output.get(4).equals(test13_ft5));
-        Assertions.assertTrue(output.get(5).equals(test13_ft6));
-        Assertions.assertTrue(output.get(6).equals(test13_mb1));
-        Assertions.assertTrue(output.get(7).equals(test13_m1));
-        Assertions.assertTrue(output.get(8).equals(test13_m2));
-        Assertions.assertTrue(output.get(9).equals(test13_m5));
-        Assertions.assertTrue(output.get(10).equals(test13_i1));
+        Assertions.assertEquals(test13_ft1, output.get(0));
+        Assertions.assertEquals(test13_ft2, output.get(1));
+        Assertions.assertEquals(test13_ft3, output.get(2));
+        Assertions.assertEquals(test13_ft4, output.get(3));
+        Assertions.assertEquals(test13_ft5, output.get(4));
+        Assertions.assertEquals(test13_ft6, output.get(5));
+        Assertions.assertEquals(test13_mb1, output.get(6));
+        Assertions.assertEquals(test13_m1, output.get(7));
+        Assertions.assertEquals(test13_m2, output.get(8));
+        Assertions.assertEquals(test13_m5, output.get(9));
+        Assertions.assertEquals(test13_i1, output.get(10));
     }
 }

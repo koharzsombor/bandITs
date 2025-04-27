@@ -36,7 +36,9 @@ public class CarnivorousMycelium extends MyceliumImpl{
         if(deathTimer>0){
             deathTimer--;
         }
-        location.killOccupants();
+
+        if (location != null)
+            location.killOccupants();
     }
 
     @Override
