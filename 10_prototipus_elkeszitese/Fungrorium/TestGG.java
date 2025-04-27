@@ -472,11 +472,11 @@ public class TestGG {
 
     //Teszt9: Összetett teszteset, amiben rovarász és gombász és is van és a játék a valósághoz hasonlóan megy.
     private static final String test9_Path = "Fungrorium/TestInputs/GGTests/test9.txt";
-    private static final String test9_ft1 = "ft1: FertileTecon\n" +
+    private static final String test9_ft1 = "ft1: FertileTecton\n" +
             "\tbreakTimer int = 0\n" +
             "\tneighbours List<Tecton> = {\n" +
             "\t\tmlt1\n" +
-            "\t\tf1-1\n" +
+            "\t\tft1-1\n" +
             "\t}\n" +
             "\tmyceliumCapacity int = 1\n" +
             "\tspores Queue<Spore> = {\n" +
@@ -486,7 +486,7 @@ public class TestGG {
             "\t}\n" +
             "\toccupants List<Insect> = {\n" +
             "\t}\n";
-    private static final String test9_ft2 = "ft2: FertileTecon\n" +
+    private static final String test9_ft2 = "ft2: FertileTecton\n" +
             "\tbreakTimer int = 2\n" +
             "\tneighbours List<Tecton> = {\n" +
             "\t\tmlt1\n" +
@@ -500,7 +500,7 @@ public class TestGG {
             "\t}\n" +
             "\toccupants List<Insect> = {\n" +
             "\t}\n";
-    private static final String test9_ft3 = "ft3: FertileTecon\n" +
+    private static final String test9_ft3 = "ft3: FertileTecton\n" +
             "\tbreakTimer int = 2\n" +
             "\tneighbours List<Tecton> = {\n" +
             "\t\tmlt1\n" +
@@ -530,8 +530,8 @@ public class TestGG {
             "\toccupants List<Insect> = {\n" +
             "\t\ti1\n" +
             "\t}\n";
-    private static final String test9_ft1_1 = "ft1-1: FertileTecon\n" +
-            "\tbreakTimer int = 0\n" +
+    private static final String test9_ft1_1 = "ft1-1: FertileTecton\n" +
+            "\tbreakTimer int = 5\n" +
             "\tneighbours List<Tecton> = {\n" +
             "\t\tft1\n" +
             "\t}\n" +
@@ -547,15 +547,14 @@ public class TestGG {
             "\tremainingEjects int = 2\n" +
             "\tlocation Tecton = ft1\n" +
             "\tmushroomSpores List<Spore> = {\n" +
-            "\t\tft1- speeds1\n" +
-            "\t\tft1-speeds2\n" +
+            "\t\tmb1-speeds2\n" +
             "\t}\n";
     private static final String test9_i1 = "i1: Insect\n" +
             "\tlocation Tecton = mlt1\n" +
             "\tmaxMoves int = 3\n" +
-            "\tremainingMoves int = 0\n" +
+            "\tremainingMoves int = 3\n" +
             "\tsporesEaten int = 1\n" +
-            "\teffectTimer int = 3\n" +
+            "\teffectTimer int = 1\n" +
             "\tstate InsectState = FAST\n";
 
     @Test
