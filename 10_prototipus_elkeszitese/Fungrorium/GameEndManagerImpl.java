@@ -6,7 +6,7 @@ public class GameEndManagerImpl implements GameEndManager {
     /**
      * A játék maradék körei.
      */
-    private int gameLength;
+    private int gameLength = -1;
 
     /**
      * A játékosok pontszámát kiszámoló objektum.
@@ -73,10 +73,21 @@ public class GameEndManagerImpl implements GameEndManager {
 
     @Override
     public void onRoundBegin() {
+        if (gameLength == -1)
+            return;
+
         gameLength--;
 
         if (gameLength <= 0) {
             showWinners();
         }
+    }
+
+    @Override
+    public String toString() {
+        if (gameLength == -1) {
+            return "Még a játék nem kezdődött el";
+        }
+        return "Még " + gameLength + " kör van hátra";
     }
 }

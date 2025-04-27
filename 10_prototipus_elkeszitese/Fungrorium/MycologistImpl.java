@@ -119,4 +119,27 @@ public class MycologistImpl extends PlayerImpl implements Mycologist {
         long mushroomCount = mushroomBodies.stream().filter(m -> m.getLocation() != null).count();
         return Math.toIntExact(mushroomCount);
     }
+
+        @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("MycologistImpl: \n" +
+                "Name: " +
+                name + "\n" +
+                "Score: " +
+                calculateScore() + "\n" +
+                "Mycelia: {\n");
+
+        for (Mycelium mycelium : mycelia) {
+            sb.append('\t').append(ObjectRegistry.lookupName(mycelium)).append("\n");
+        }
+        sb.append("}\n");
+
+        sb.append("MushroomBodies: {\n");
+        for (MushroomBody mushroomBody : mushroomBodies) {
+            sb.append('\t').append(ObjectRegistry.lookupName(mushroomBody)).append("\n");
+        }
+        sb.append("}\n");
+
+        return sb.toString();
+    }
 }

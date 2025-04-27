@@ -12,61 +12,73 @@ public class HelpCommand extends CommandImpl {
         super(inputCommand, actor);
     }
 
-    private static final String HELP_TEXT =
-            "\n=== Segítség: Parancsok listája ===\n" +
-                    "\n-- Általános játékmenet --\n" +
-                    "START_GAME\n" +
-                    "    Játék indítása\n" +
-                    "END_GAME\n" +
-                    "    Játék végének kezelése\n" +
-                    "END_TURN\n" +
-                    "    End turn küldése\n" +
-                    "ADD_PLAYER player_type player_name\n" +
-                    "    Játékos hozzáadása (név, típus: Gombász vagy Rovarász)\n" +
-                    "SET_ENDGAMETIMER number\n" +
-                    "    EndgameTimer beállítása (round-ok száma)\n" +
-
-                    "\n-- Tekton parancsok --\n" +
-                    "CREATE_TECTON Tecton_Type Tecton_Name\n" +
-                    "    Új Tecton létrehozása (típussal és névvel)\n" +
-                    "ADD_NEIGHBOUR tecton_name tecton_name\n" +
-                    "    Két tekton szomszédságba helyezése\n" +
-                    "SET_BREAKTIMER tecton number\n" +
-                    "    Tecton BreakTimerjének beállítása\n" +
-
-                    "\n-- Gombatest és Spóra parancsok --\n" +
-                    "CREATE_MUSHROOMBODY MushroomBody_Name Tecton_Name\n" +
-                    "    Gombatest létrehozása egy tektonon\n" +
-                    "GROW_MUSHROOMBODY MushroomBody_Name Tecton_Name\n" +
-                    "    Gombatest rákerül egy tektonra\n" +
-                    "PUT_SPORE Spore_Type Spore_Name Tecton_Name\n" +
-                    "    Spóra rákerül egy tektonra\n" +
-                    "EJECT_SPORES MushroomBody_Name Tecton_Name\n" +
-                    "    Gombatest összes spórája rákerül egy tektonra\n" +
-                    "DEACTIVATE MushroomBody_Name\n" +
-                    "    Gombatest inaktiválása\n" +
-                    "ADD_SPORE Spore_Type Spore_Name MushroomBody_Name\n" +
-                    "    Spóra hozzáadása gombatesthez\n" +
-                    "SET_REMAININGEJECTS MushroomBody_Name RemainingEjects_Count\n" +
-                    "    Gombatesthez hátralévő spórakilövés beállítása\n" +
-
-                    "\n-- Gombafonál parancsok --\n" +
-                    "CREATE_MYCELIUM Mycelium_Type Mycelium_Name\n" +
-                    "    Gombafonál létrehozása\n" +
-                    "ADD_MYCELIUM_TO_TECTON Mycelium_Name Tecton_Name\n" +
-                    "    Gombafonál hozzáadása tektonhoz\n" +
-                    "GROW_MYCELIUM Mycelium_Type Mycelium_Name Tecton_Name\n" +
-                    "    Gombafonál ránő egy tektonra\n" +
-
-                    "\n-- Rovar parancsok --\n" +
-                    "CREATE_INSECT tecton_name insect_name\n" +
-                    "    Rovar létrehozása tektonon\n" +
-                    "MOVE insect_name tecton_name\n" +
-                    "    Rovar mozgatása tektonra\n" +
-                    "EAT insect_name\n" +
-                    "    Rovar megeszi az első spórát a tektonján\n" +
-                    "CUT insect_name\n" +
-                    "    Rovar elvágja az első gombafonalt a tektonján\n";
+    private static final String HELP_TEXT = """
+                    === Segítség: Parancsok listája ===
+                                
+                    -- Általános játékmenet --
+                    STATE object
+                        Egy objektum állapotának lekérdezése, a parancsokban megadott neve alapján.
+                        Hasznos, nem parancs alapján megadott objketumok nevei: TURN, GAME_END
+                    LIST_ALL
+                        Lekérdezi az összes hivatkozható objektum nevet.
+                    RUN file
+                         Az adott file tartalmát kiadja mint parancs.
+                    START_GAME
+                        Játék indítása
+                    END_GAME
+                        Játék végének kezelése
+                    END_TURN
+                        End turn küldése
+                    ADD_PLAYER player_type player_name
+                        Játékos hozzáadása (név, típus: Mycologist vagy Entomologist)
+                    SET_ENDGAMETIMER number
+                        EndgameTimer beállítása (round-ok száma)         
+                    -- Tekton parancsok --
+                    CREATE_TECTON Tecton_Type Tecton_Name
+                        Új Tecton létrehozása (típussal és névvel)
+                        Típusok: FertileTecton, MultiLayeredTecton, SustainingTecton, AridTecton, SemiFertileTecton
+                    ADD_NEIGHBOUR tecton_name tecton_name
+                        Két tekton szomszédságba helyezése
+                    SET_BREAKTIMER tecton number
+                        Tecton BreakTimerjének beállítása
+                                
+                    -- Gombatest és Spóra parancsok --
+                    CREATE_MUSHROOMBODY MushroomBody_Name Tecton_Name
+                        Gombatest létrehozása egy tektonon
+                    GROW_MUSHROOMBODY MushroomBody_Name Tecton_Name
+                        Gombatest rákerül egy tektonra
+                    PUT_SPORE Spore_Type Spore_Name Tecton_Name
+                        Spóra rákerül egy tektonra
+                        Típusok: SpeedSpore, StunSpore, PreventCutSpore, SplitSpore, SlownessSpore
+                    EJECT_SPORES MushroomBody_Name Tecton_Name
+                        Gombatest összes spórája rákerül egy tektonra
+                    DEACTIVATE MushroomBody_Name
+                        Gombatest inaktiválása
+                    ADD_SPORE Spore_Type Spore_Name MushroomBody_Name
+                        Spóra hozzáadása gombatesthez
+                        Típusok: SpeedSpore, StunSpore, PreventCutSpore, SplitSpore, SlownessSpore
+                    SET_REMAININGEJECTS MushroomBody_Name RemainingEjects_Count
+                        Gombatesthez hátralévő spórakilövés beállítása
+                                
+                    -- Gombafonál parancsok --
+                    CREATE_MYCELIUM Mycelium_Type Mycelium_Name
+                        Gombafonál létrehozása
+                        Típusok: Mycelium, CarnivorousMycelium
+                    ADD_MYCELIUM_TO_TECTON Mycelium_Name Tecton_Name
+                        Gombafonál hozzáadása tektonhoz
+                    GROW_MYCELIUM Mycelium_Type Mycelium_Name Tecton_Name
+                        Gombafonál ránő egy tektonra
+                        Típusok: Mycelium, CarnivorousMycelium
+                                
+                    -- Rovar parancsok --
+                    CREATE_INSECT tecton_name insect_name
+                        Rovar létrehozása tektonon
+                    MOVE insect_name tecton_name
+                        Rovar mozgatása tektonra
+                    EAT insect_name
+                        Rovar megeszi az első spórát a tektonján
+                    CUT insect_name
+                        Rovar elvágja az első gombafonalt a tektonján""";
 
     /**
      * A parancs végrehajtása.

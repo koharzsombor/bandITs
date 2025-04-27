@@ -5,7 +5,7 @@ public class TurnControllerImpl implements TurnController {
     /**
      * A játékosok tárolója.
      */
-    private PlayerContainer playerContainer;
+    private final PlayerContainer playerContainer;
 
     /**
      * A létrehozáshoz szükséges megadni egy játékos tárolót.
@@ -41,5 +41,13 @@ public class TurnControllerImpl implements TurnController {
     public void beginFirstTurn() {
         playerContainer.resetCurrentPlayer();
         playerContainer.getCurrentPlayer().notifySubscribers();
+    }
+
+    @Override
+    public String toString() {
+        if (getCurrentPlayer() == null)
+            return "A játékhoz nincs hozzádva játékos!";
+
+        return ObjectRegistry.lookupName(getCurrentPlayer()) + "köre van.";
     }
 }

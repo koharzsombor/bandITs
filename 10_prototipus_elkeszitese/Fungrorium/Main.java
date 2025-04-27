@@ -57,6 +57,9 @@ public class Main {
         commandRouter.addCommand("EAT", insectController);
         commandRouter.addCommand("MOVE", insectController);
 
+        ObjectRegistry.registerObject("TURN", turnController);
+        ObjectRegistry.registerObject("GAME_END", gameEndManager);
+
         roundObserver.subscribe(gameEndManager);
     }
 
