@@ -243,7 +243,7 @@ public class InsectImpl implements Insect{
     @Override
     public void beStunned() {
         setState(InsectState.STUN);
-        setEffectTimer(2);
+        setEffectTimer(1);
         setMaxMoves(0);
     }
 

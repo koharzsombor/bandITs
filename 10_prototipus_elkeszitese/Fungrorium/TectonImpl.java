@@ -43,7 +43,7 @@ public abstract class TectonImpl implements Tecton {
     /**
      * Olyan tektonon listája, aminek a gombafonala nincs táplálva.
      */
-    private final Set<Tecton> notSustained = new HashSet<>();
+    private static final Set<Tecton> notSustained = new HashSet<>();
 
     /**
      * Meghatározza a távolságot a jelen tekton és a megadott tekton között.
@@ -88,8 +88,7 @@ public abstract class TectonImpl implements Tecton {
     @Override
     public void checkNeighbourMyceliaSustain() {
         notSustained.clear();
-
-        neighbours.forEach(Tecton::myceliaCheckSustain);
+        neighboursWithMycelia().forEach(Tecton::myceliaCheckSustain);
 
 
         for (Tecton tecton : notSustained) {
@@ -430,7 +429,12 @@ public abstract class TectonImpl implements Tecton {
      */
     @Override
     public boolean hasMycelium() {
-        return !mycelia.isEmpty();
+        for (Mycelium mycelium : mycelia) {
+            if (!mycelium.isGrowing())
+                return true;
+        }
+
+        return false;
     }
 
     @Override
