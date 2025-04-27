@@ -316,8 +316,7 @@ public class InsectImpl implements Insect{
     @Override
     public void die() {
         if(getState() == InsectState.STUN){
-            getLocation().removeOccupant(this);
-            setLocation(null);
+
 
             if(getLocation().getMushroomBody()==null) {
                 MushroomBody newMB = new MushroomBodyImpl();
@@ -327,6 +326,8 @@ public class InsectImpl implements Insect{
                 String newMBName = "mb-" + ObjectRegistry.lookupName(getLocation());
                 ObjectRegistry.registerObject(newMBName, newMB);
             }
+            getLocation().removeOccupant(this);
+            setLocation(null);
         }
     }
 
