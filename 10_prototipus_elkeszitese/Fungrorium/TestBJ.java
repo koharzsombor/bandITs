@@ -466,7 +466,7 @@ public class TestBJ {
             "\tmaxMoves int = 0\n" +
             "\tremainingMoves int = 0\n" +
             "\tsporesEaten int = 1\n" +
-            "\teffectTimer int = 2\n" +
+            "\teffectTimer int = 1\n" +
             "\tstate InsectState = STUN\n";
     @Test
     public void test9() {
