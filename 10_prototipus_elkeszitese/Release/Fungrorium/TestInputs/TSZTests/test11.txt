@@ -1,0 +1,4 @@
+CREATE_TECTON FertileTecton ft1
+SET_BREAKTIMER ft1 5
+PUT_SPORE StunSpore stuns1 ft1
+STATE ft1
