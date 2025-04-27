@@ -125,7 +125,7 @@ public class MyceliumImpl implements Mycelium{
         this.delete();
         tmpLocation.checkNeighbourMyceliaSustain();
         if(tmpLocation.getMycelia().isEmpty()){
-            ArrayList<Insect> temp =new ArrayList<Insect>(tmpLocation.getOccupants());
+            ArrayList<Insect> temp = new ArrayList<>(tmpLocation.getOccupants());
             for (Insect insect : temp) {
                 insect.runAway();
             }
@@ -151,10 +151,6 @@ public class MyceliumImpl implements Mycelium{
         if (growing) {
             growTimer--;
             growing = growTimer > 0;
-            /*
-            if(!growing){
-                location.addMycelium(this);
-            }*/
             return;
         }
 
