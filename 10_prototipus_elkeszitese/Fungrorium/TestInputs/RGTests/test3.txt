@@ -1,4 +1,4 @@
-SET_ENDGAMETIMER 4
+SET_ENDGAMETIMER 5
 CREATE_TECTON FertileTecton ft1
 SET_BREAKTIMER ft1 5
 CREATE_TECTON FertileTecton ft2
@@ -35,7 +35,7 @@ CREATE_MYCELIUM CarnivorousMycelium cm1
 ADD_MYCELIUM_TO_TECTON cm1 ft3
 ADD_PLAYER Mycologist mycologist2
 ADD_PLAYER Entomologist entomologist1
-CREATE_INSECT i1 ft5 
+CREATE_INSECT ft5 i1
 ADD_PLAYER Entomologist entomogolist2
 START_GAME
 ENDTURN
