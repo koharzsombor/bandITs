@@ -65,7 +65,7 @@ public class TestBJ {
     //Teszt1: Rovar létrehozása és letevése
     private static final String test1_Path = "Fungrorium/TestInputs/BJTests/test1.txt";
     private static final String test1_ft1 = "ft1: FertileTecton\n" +
-            "\tbreakTimer int = 3\n" +
+            "\tbreakTimer int = 5\n" +
             "\tneighbours List<Tecton> = {\n" +
             "\t}\n" +
             "\tmyceliumCapacity int = 1\n" +
@@ -84,12 +84,12 @@ public class TestBJ {
             "\tgrowTimer int = 0\n" +
             "\tdeathTimer int = -1\n";
     private static final String test1_i1 = "i1: Insect\n" +
-            "\tlocation = ft1\n" +
-            "\tmaxMoves = 2\n" +
-            "\tremainingMoves = 2\n" +
-            "\tsporesEaten = 0\n" +
-            "\teffectTimer = 0\n" +
-            "\tstate = NORMAL\n";
+            "\tlocation Tecton = ft1\n" +
+            "\tmaxMoves int = 2\n" +
+            "\tremainingMoves int = 2\n" +
+            "\tsporesEaten int = 0\n" +
+            "\teffectTimer int = 0\n" +
+            "\tstate InsectState = NORMAL\n";
     @Test
     public void test1() {
         commandReader.bufferFile(test1_Path);
@@ -143,12 +143,12 @@ public class TestBJ {
             "\tgrowTimer int = 0\n" +
             "\tdeathTimer int = -1\n";
     private static final String test2_i1 = "i1: Insect\n" +
-            "\tlocation = ft2\n" +
-            "\tmaxMoves = 2\n" +
-            "\tremainingMoves = 1\n" +
-            "\tsporesEaten = 0\n" +
-            "\teffectTimer = 0\n" +
-            "\tstate = NORMAL\n";
+            "\tlocation Tecton = ft2\n" +
+            "\tmaxMoves int = 2\n" +
+            "\tremainingMoves int = 1\n" +
+            "\tsporesEaten int = 0\n" +
+            "\teffectTimer int = 0\n" +
+            "\tstate InsectState = NORMAL\n";
     @Test
     public void test2() {
         commandReader.bufferFile(test2_Path);
@@ -167,7 +167,6 @@ public class TestBJ {
     private static final String test3_ft1 = "ft1: FertileTecton\n" +
             "\tbreakTimer int = 5\n" +
             "\tneighbours List<Tecton> = {\n" +
-            "\t\tft2\n" +
             "\t}\n" +
             "\tmyceliumCapacity int = 1\n" +
             "\tspores Queue<Spore> = {\n" +
@@ -182,7 +181,6 @@ public class TestBJ {
     private static final String test3_ft2 = "ft2: FertileTecton\n" +
             "\tbreakTimer int = 5\n" +
             "\tneighbours List<Tecton> = {\n" +
-            "\t\tft1\n" +
             "\t}\n" +
             "\tmyceliumCapacity int = 1\n" +
             "\tspores Queue<Spore> = {\n" +
@@ -204,12 +202,12 @@ public class TestBJ {
             "\tgrowTimer int = 0\n" +
             "\tdeathTimer int = -1\n";
     private static final String test3_i1 = "i1: Insect\n" +
-            "\tlocation = ft1\n" +
-            "\tmaxMoves = 2\n" +
-            "\tremainingMoves = 2\n" +
-            "\tsporesEaten = 0\n" +
-            "\teffectTimer = 0\n" +
-            "\tstate = NORMAL\n";
+            "\tlocation Tecton = ft1\n" +
+            "\tmaxMoves int = 2\n" +
+            "\tremainingMoves int = 2\n" +
+            "\tsporesEaten int = 0\n" +
+            "\teffectTimer int = 0\n" +
+            "\tstate InsectState = NORMAL\n";
     @Test
     public void test3() {
         commandReader.bufferFile(test3_Path);
@@ -259,12 +257,12 @@ public class TestBJ {
             "\tgrowTimer int = 0\n" +
             "\tdeathTimer int = -1\n";
     private static final String test4_i1 = "i1: Insect\n" +
-            "\tlocation = ft1\n" +
-            "\tmaxMoves = 2\n" +
-            "\tremainingMoves = 2\n" +
-            "\tsporesEaten = 0\n" +
-            "\teffectTimer = 0\n" +
-            "\tstate = NORMAL\n";
+            "\tlocation Tecton = ft1\n" +
+            "\tmaxMoves int = 2\n" +
+            "\tremainingMoves int = 2\n" +
+            "\tsporesEaten int = 0\n" +
+            "\teffectTimer int = 0\n" +
+            "\tstate InsectState = NORMAL\n";
     @Test
     public void test4() {
         commandReader.bufferFile(test4_Path);
@@ -300,19 +298,19 @@ public class TestBJ {
             "\tgrowTimer int = 0\n" +
             "\tdeathTimer int = -1\n";
     private static final String test5_i1 = "i1: Insect\n" +
-            "\tlocation = ft1\n" +
-            "\tmaxMoves = 2\n" +
-            "\tremainingMoves = 0\n" +
-            "\tsporesEaten = 1\n" +
-            "\teffectTimer = 0\n" +
-            "\tstate = NORMAL\n";
+            "\tlocation Tecton = ft1\n" +
+            "\tmaxMoves int = 2\n" +
+            "\tremainingMoves int = 0\n" +
+            "\tsporesEaten int = 1\n" +
+            "\teffectTimer int = 0\n" +
+            "\tstate InsectState = NORMAL\n";
     private static final String test5_i1_1 = "i1-1: Insect\n" +
-            "\tlocation = ft1\n" +
-            "\tmaxMoves = 2\n" +
-            "\tremainingMoves = 0\n" +
-            "\tsporesEaten = 0\n" +
-            "\teffectTimer = 0\n" +
-            "\tstate = NORMAL\n";
+            "\tlocation Tecton = ft1\n" +
+            "\tmaxMoves int = 2\n" +
+            "\tremainingMoves int = 0\n" +
+            "\tsporesEaten int = 0\n" +
+            "\teffectTimer int = 0\n" +
+            "\tstate InsectState = NORMAL\n";
     @Test
     public void test5() {
         commandReader.bufferFile(test5_Path);
@@ -325,7 +323,7 @@ public class TestBJ {
         Assertions.assertEquals(test5_i1_1,output.get(3));
     }
 
-    //Teszt6: Rovar általi spóraevés következtében Slow állapotba kerülés
+    //Teszt6: Rovar általi spóraevés következtében SLOW állapotba kerülés
     private static final String test6_Path = "Fungrorium/TestInputs/BJTests/test6.txt";
     private static final String test6_ft1 = "ft1: FertileTecton\n" +
             "\tbreakTimer int = 5\n" +
@@ -347,12 +345,12 @@ public class TestBJ {
             "\tgrowTimer int = 0\n" +
             "\tdeathTimer int = -1\n";
     private static final String test6_i1 = "i1: Insect\n" +
-            "\tlocation = ft1\n" +
-            "\tmaxMoves = 1\n" +
-            "\tremainingMoves = 0\n" +
-            "\tsporesEaten = 1\n" +
-            "\teffectTimer = 0\n" +
-            "\tstate = SLOW\n";
+            "\tlocation Tecton = ft1\n" +
+            "\tmaxMoves int = 1\n" +
+            "\tremainingMoves int = 0\n" +
+            "\tsporesEaten int = 1\n" +
+            "\teffectTimer int = 2\n" +
+            "\tstate InsectState = SLOW\n";
     @Test
     public void test6() {
         commandReader.bufferFile(test6_Path);
@@ -364,7 +362,7 @@ public class TestBJ {
         Assertions.assertEquals(test6_i1,output.get(2));
     }
 
-    //Teszt7: Rovar általi spóraevés következtében Fast állapotba kerülés
+    //Teszt7: Rovar általi spóraevés következtében FAST állapotba kerülés
     private static final String test7_Path = "Fungrorium/TestInputs/BJTests/test7.txt";
     private static final String test7_ft1 = "ft1: FertileTecton\n" +
             "\tbreakTimer int = 5\n" +
@@ -386,12 +384,12 @@ public class TestBJ {
             "\tgrowTimer int = 0\n" +
             "\tdeathTimer int = -1\n";
     private static final String test7_i1 = "i1: Insect\n" +
-            "\tlocation = ft1\n" +
-            "\tmaxMoves = 3\n" +
-            "\tremainingMoves = 0\n" +
-            "\tsporesEaten = 1\n" +
-            "\teffectTimer = 0\n" +
-            "\tstate = FAST\n";
+            "\tlocation Tecton = ft1\n" +
+            "\tmaxMoves int = 3\n"+
+            "\tremainingMoves int = 0\n" +
+            "\tsporesEaten int = 1\n" +
+            "\teffectTimer int = 2\n" +
+            "\tstate InsectState = FAST\n";
     @Test
     public void test7() {
         commandReader.bufferFile(test7_Path);
@@ -403,7 +401,7 @@ public class TestBJ {
         Assertions.assertEquals(test7_i1,output.get(2));
     }
 
-    //Teszt8: Rovar általi spóraevés következtében PreventCut állapotba kerülés
+    //Teszt8: Rovar általi spóraevés következtében CANNOT_CUT állapotba kerülés
     private static final String test8_Path = "Fungrorium/TestInputs/BJTests/test8.txt";
     private static final String test8_ft1 = "ft1: FertileTecton\n" +
             "\tbreakTimer int = 5\n" +
@@ -425,12 +423,12 @@ public class TestBJ {
             "\tgrowTimer int = 0\n" +
             "\tdeathTimer int = -1\n";
     private static final String test8_i1 = "i1: Insect\n" +
-            "\tlocation = ft1\n" +
-            "\tmaxMoves = 2\n" +
-            "\tremainingMoves = 0\n" +
-            "\tsporesEaten = 1\n" +
-            "\teffectTimer = 0\n" +
-            "\tstate = CANNOT_CUT\n";
+            "\tlocation Tecton = ft1\n" +
+            "\tmaxMoves int = 2\n" +
+            "\tremainingMoves int = 0\n" +
+            "\tsporesEaten int = 1\n" +
+            "\teffectTimer int = 2\n" +
+            "\tstate InsectState = CANNOT_CUT\n";
     @Test
     public void test8() {
         commandReader.bufferFile(test8_Path);
@@ -442,7 +440,7 @@ public class TestBJ {
         Assertions.assertEquals(test8_i1,output.get(2));
     }
 
-    //Teszt9: Rovar általi spóraevés következtében Stunned állapotba kerülés
+    //Teszt9: Rovar általi spóraevés következtében STUN állapotba kerülés
     private static final String test9_Path = "Fungrorium/TestInputs/BJTests/test9.txt";
     private static final String test9_ft1 = "ft1: FertileTecton\n" +
             "\tbreakTimer int = 5\n" +
@@ -464,12 +462,12 @@ public class TestBJ {
             "\tgrowTimer int = 0\n" +
             "\tdeathTimer int = -1\n";
     private static final String test9_i1 = "i1: Insect\n" +
-            "\tlocation = ft1\n" +
-            "\tmaxMoves = 0\n" +
-            "\tremainingMoves = 0\n" +
-            "\tsporesEaten = 1\n" +
-            "\teffectTimer = 0\n" +
-            "\tstate = STUNNED\n";
+            "\tlocation Tecton = ft1\n" +
+            "\tmaxMoves int = 0\n" +
+            "\tremainingMoves int = 0\n" +
+            "\tsporesEaten int = 1\n" +
+            "\teffectTimer int = 2\n" +
+            "\tstate InsectState = STUN\n";
     @Test
     public void test9() {
         commandReader.bufferFile(test9_Path);
@@ -503,12 +501,12 @@ public class TestBJ {
             "\tgrowTimer int = 0\n" +
             "\tdeathTimer int = -1\n";
     private static final String test10_i1 = "i1: Insect\n" +
-            "\tlocation = ft1\n" +
-            "\tmaxMoves = 2\n" +
-            "\tremainingMoves = 2\n" +
-            "\tsporesEaten = 0\n" +
-            "\teffectTimer = 0\n" +
-            "\tstate = NORMAL\n";
+            "\tlocation Tecton = ft1\n" +
+            "\tmaxMoves int = 2\n" +
+            "\tremainingMoves int = 2\n" +
+            "\tsporesEaten int = 0\n" +
+            "\teffectTimer int = 0\n" +
+            "\tstate InsectState = NORMAL\n";
     @Test
     public void test10() {
         commandReader.bufferFile(test10_Path);
@@ -551,9 +549,12 @@ public class TestBJ {
             "\t\ti1\n" +
             "\t}\n";
     private static final String test11_mb1 = "mb1: MushroomBody\n" +
-            "\tremainingEjects int = 3" +
+            "\tremainingEjects int = 3\n" +
             "\tlocation Tecton = ft2\n" +
             "\tmushroomSpores List<Spore> = {\n" +
+            "\t\tmb1-speeds1\n" +
+            "\t\tmb1-speeds2\n" +
+            "\t\tmb1-speeds3\n" +
             "\t}\n";
     private static final String test11_m1 = "m1: Mycelium\n" +
             "\tgrowing boolean = false\n" +
@@ -561,12 +562,12 @@ public class TestBJ {
             "\tgrowTimer int = 0\n" +
             "\tdeathTimer int = 0\n";
     private static final String test11_i1 = "i1: Insect\n" +
-            "\tlocation = ft2\n" +
-            "\tmaxMoves = 2\n" +
-            "\tremainingMoves = 2\n" +
-            "\tsporesEaten = 0\n" +
-            "\teffectTimer = 0\n" +
-            "\tstate = NORMAL\n";
+            "\tlocation Tecton = ft2\n" +
+            "\tmaxMoves int = 2\n" +
+            "\tremainingMoves int = 2\n" +
+            "\tsporesEaten int = 0\n" +
+            "\teffectTimer int = 0\n" +
+            "\tstate InsectState = NORMAL\n";
     @Test
     public void test11() {
         commandReader.bufferFile(test11_Path);

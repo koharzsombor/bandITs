@@ -7,8 +7,8 @@ PUT_SPORE SpeedSpore speeds1 ft1
 ADD_PLAYER Entomologist player2
 CREATE_INSECT ft1 i1
 START_GAME
-EAT i1
 ENDTURN
+EAT i1
 STATE ft1
 STATE m1
 STATE i1

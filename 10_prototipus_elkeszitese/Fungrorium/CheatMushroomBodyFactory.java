@@ -13,6 +13,7 @@ public class CheatMushroomBodyFactory implements MushroomBodyFactory {
     public MushroomBody create(String name, Tecton location) {
         MushroomBody mushroomBody = new MushroomBodyImpl();
         location.setMushroomBody(mushroomBody);
+        mushroomBody.setLocation(location);
         ObjectRegistry.registerObject(name, mushroomBody);
         return mushroomBody;
     }

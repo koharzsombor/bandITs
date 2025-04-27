@@ -354,12 +354,12 @@ public class InsectImpl implements Insect{
     @Override
     public String toString() {
         String output = ObjectRegistry.lookupName(this) + ": Insect\n";
-        output += "\tlocation = " + ObjectRegistry.lookupName(getLocation()) + "\n";
-        output += "\tmaxMoves = " + getMaxMoves() + "\n";
-        output += "\tremainingMoves = " + getRemainingMoves() + "\n";
-        output += "\tsporesEaten = " + getSporesEaten() + "\n";
-        output += "\teffectTimer = " + getEffectTimer() + "\n";
-        output += "\tstate = " + getState().toString() + "\n";
+        output += "\tlocation Tecton = " + ObjectRegistry.lookupName(getLocation()) + "\n";
+        output += "\tmaxMoves int = " + getMaxMoves() + "\n";
+        output += "\tremainingMoves int = " + getRemainingMoves() + "\n";
+        output += "\tsporesEaten int = " + getSporesEaten() + "\n";
+        output += "\teffectTimer int = " + getEffectTimer() + "\n";
+        output += "\tstate InsectState = " + getState().toString() + "\n";
         return output;
     }
 }

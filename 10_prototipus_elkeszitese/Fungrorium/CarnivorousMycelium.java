@@ -62,9 +62,9 @@ public class CarnivorousMycelium extends MyceliumImpl{
                 this.cutImmediate();
                 return;
             }
-            location.killOccupants();
         }
-
+        if (location != null)
+            location.killOccupants();
     }
 
     /**

@@ -97,6 +97,9 @@ public class MushroomBodyImpl implements MushroomBody {
      */
     @Override
     public void onTurnBegin() {
+        if (remainingEjects <= 0)
+            return;
+
         int random = 4;
         //int random = new Random().nextInt(5) + 1;
         Spore newSpore = switch (random) {
@@ -276,7 +279,7 @@ public class MushroomBodyImpl implements MushroomBody {
         StringBuilder output = new StringBuilder();
         output.append(ObjectRegistry.lookupName(this)).append(": MushroomBody\n");
         output.append("\tremainingEjects int = ").append(getRemainingEjects()).append("\n");
-        output.append("\tlocation Tecton = ").append(getLocation()).append("\n");
+        output.append("\tlocation Tecton = ").append(ObjectRegistry.lookupName(getLocation())).append("\n");
         output.append("\tmushroomSpores List<Spore> = {\n");
         for (Spore spore : mushroomSpores) {
             output.append("\t\t").append(ObjectRegistry.lookupName(spore)).append("\n");

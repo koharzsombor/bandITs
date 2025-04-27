@@ -198,7 +198,9 @@ public abstract class TectonImpl implements Tecton {
     public void eatSpore(Insect insect) {
         if (!spores.isEmpty()) {
             spores.poll().eatSpore(insect);
-            insect.setRemainingMoves(0);}
+            insect.setRemainingMoves(0);
+            insect.setSporesEaten(insect.getSporesEaten() + 1);
+        }
     }
 
     /**
