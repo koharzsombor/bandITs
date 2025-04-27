@@ -56,14 +56,14 @@ public class GameEndManagerImpl implements GameEndManager {
     @Override
     public void showWinners() {
         printer.printLine("WINNERS:");
-        printer.printLine("MYCOLOGIST: ");
+        printer.printLine("MYCOLOGIST:");
 
         Iterable<Player> mycologistWinners = scoreCalculator.determineWinner(container.getMycologists());
         for (Player winner : mycologistWinners) {
             printer.printLine(winner.getName());
         }
 
-        printer.printLine("ENTOMOLOGIST: ");
+        printer.printLine("ENTOMOLOGIST:");
 
         Iterable<Player> entomologistWinners = scoreCalculator.determineWinner(container.getEntomologists());
         for (Player winner : entomologistWinners) {

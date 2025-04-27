@@ -5,13 +5,13 @@ public class AridTectonImpl extends FertileTectonImpl {
 
     private int abosrbCountdown;
 
+    int MINNUMB = 2;
+    int MAXNUMB = 2;
+    Random rand = new Random();
+
     AridTectonImpl() {
         setMyceliaCapacity(1);
 
-        Random rand = new Random();
-
-        int MINNUMB = 2;
-        int MAXNUMB = 150;
         setBreakTimer(rand.nextInt(MAXNUMB - MINNUMB + 1) + MINNUMB);
     }
 
@@ -53,6 +53,7 @@ public class AridTectonImpl extends FertileTectonImpl {
         setBreakTimer(getBreakTimer() - 1);
 
         if (getBreakTimer() <= 0) {
+
             while(!getMycelia().isEmpty()) {
                 Mycelium mycelium = getMycelia().poll();
                 assert mycelium != null;
@@ -66,11 +67,15 @@ public class AridTectonImpl extends FertileTectonImpl {
 
             this.breakCounter++;
 
+            getSpores().clear();
+
             FertileTectonImpl newFertileTecton = new FertileTectonImpl();
             newFertileTecton.addNeighbour(this);
             this.addNeighbour(newFertileTecton);
             String newFTname = ObjectRegistry.lookupName(this) + "-" + this.breakCounter;
             ObjectRegistry.registerObject(newFTname, newFertileTecton);
+
+            setBreakTimer(rand.nextInt(MAXNUMB - MINNUMB + 1) + MINNUMB);
         }
     }
 
