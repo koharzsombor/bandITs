@@ -3,13 +3,15 @@ import java.util.Random;
 
 public class MultiLayeredTectonImpl extends FertileTectonImpl {
 
+
+    Random rand = new Random();
+
+    int MINNUMB = 2;
+    int MAXNUMB = 2;
+
     MultiLayeredTectonImpl() {
         setMyceliaCapacity(3);
 
-        Random rand = new Random();
-
-        int MINNUMB = 2;
-        int MAXNUMB = 150;
         setBreakTimer(rand.nextInt(MAXNUMB - MINNUMB + 1) + MINNUMB);
     }
 
@@ -54,11 +56,15 @@ public class MultiLayeredTectonImpl extends FertileTectonImpl {
 
             this.breakCounter++;
 
+            getSpores().clear();
+
             FertileTectonImpl newFertileTecton = new FertileTectonImpl();
             newFertileTecton.addNeighbour(this);
             this.addNeighbour(newFertileTecton);
             String newFTname = ObjectRegistry.lookupName(this) + "-" + this.breakCounter;
             ObjectRegistry.registerObject(newFTname, newFertileTecton);
+
+            setBreakTimer(rand.nextInt(MAXNUMB - MINNUMB + 1) + MINNUMB);
         }
     }
 

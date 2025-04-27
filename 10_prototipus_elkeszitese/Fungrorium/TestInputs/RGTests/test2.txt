@@ -1,5 +1,5 @@
 CREATE_TECTON FertileTecton ft1
-SET_BREAKTIMER ft1 1
+SET_BREAKTIMER ft1 2
 PUT_SPORE SpeedSpore speeds1 ft1
 ADD_PLAYER Mycologist mycologist1
 CREATE_MUSHROOMBODY mb1 ft1
