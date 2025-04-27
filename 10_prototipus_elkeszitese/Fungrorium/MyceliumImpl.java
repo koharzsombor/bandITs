@@ -47,6 +47,12 @@ public class MyceliumImpl implements Mycelium{
         myceliumGrowthEvaluator.visit(location);
     }
 
+    /**
+     * Létrehoz egy gombafonalat az adott tektonra, ha a tekton befogadja, akkor létrejön a tektonon, ha nem megsemmisül.
+     * Azért, hogy a visitor egyértelműen el tudja, dönteni, hogy milyen tekton-t kell meglátogatnia,
+     * mindegyik tekton típusra kell egy külön konstruktor.
+     * @param location A tekton, ahová a gombafonál nőni szeretne.
+     */
     public MyceliumImpl(SemiFertileTectonImpl location) {
         this.location = location;
 
@@ -127,7 +133,7 @@ public class MyceliumImpl implements Mycelium{
     }
 
     /**
-     * Beállítja a deathTimer-t 2-re. A rovar fonalvágása során lesz ez releváns
+     * Beállítja a deathTimer-t 2-re. A rovar fonalvágáskor ezt használja
      */
     @Override
     public void cutWithDelay(){
@@ -144,7 +150,7 @@ public class MyceliumImpl implements Mycelium{
     public void onTurnBegin() {
         if (growing) {
             growTimer--;
-            growing = growTimer <= 0;
+            growing = growTimer > 0;
             return;
         }
 
@@ -156,6 +162,10 @@ public class MyceliumImpl implements Mycelium{
         }
     }
 
+    /**
+     * To string, a kiiráshoz
+     * @return a Myceliumimpl tulajdonságainak formázott stringje
+     */
     @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
