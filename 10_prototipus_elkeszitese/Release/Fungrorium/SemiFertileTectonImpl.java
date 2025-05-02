@@ -9,12 +9,19 @@ public class SemiFertileTectonImpl extends TectonImpl {
     int MINNUMB = 2;
     int MAXNUMB = 2;
 
+    /**
+     * SemiFertileTecton konstruktora
+     */
     SemiFertileTectonImpl() {
         setMyceliaCapacity(1);
 
         setBreakTimer(rand.nextInt(MAXNUMB - MINNUMB + 1) + MINNUMB);
     }
 
+    /**
+     * @param myceliumGrowthEvaluator A növekedés eldöntésében segítő objektum.
+     * @param mycelium                A gombafonál, amiről eldönti az eljárás, hogy a tektonra nöhet-e.
+     */
     @Override
     public void accept(MyceliumGrowthEvaluator myceliumGrowthEvaluator, Mycelium mycelium) {
         if (getMycelia().size() >= getMyceliaCapacity() || neighboursWithMycelia().isEmpty()) {
@@ -28,11 +35,18 @@ public class SemiFertileTectonImpl extends TectonImpl {
         mycelium.grow(sporeCount);
     }
 
+    /**
+     * @param mushroomBodyGrowthEvaluator A növekedés eldöntésében segítő objektum.
+     * @param mushroomBody                A gombatest, amiről eldönti az eljárás, hogy a tektonra nöhet-e.
+     */
     @Override
     public void accept(MushroomBodyGrowthEvaluator mushroomBodyGrowthEvaluator, MushroomBody mushroomBody) {
         mushroomBody.delete();
     }
 
+    /**
+     * Kezeli a tektontorest
+     */
     public void onRoundBegin() {
         setBreakTimer(getBreakTimer() - 1);
 
@@ -62,6 +76,9 @@ public class SemiFertileTectonImpl extends TectonImpl {
         }
     }
 
+    /**
+     * @return Mindig hamis mivel sosem lehet gombatest rajta
+     */
     public boolean sustaining(){
         return false;
     }

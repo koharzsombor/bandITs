@@ -9,65 +9,26 @@ public class SustainingTectonImpl extends FertileTectonImpl {
     int MINNUMB = 2;
     int MAXNUMB = 2;
 
+    /**
+     * SustainingTecton konstruktor
+     */
     SustainingTectonImpl() {
         setMyceliaCapacity(1);
 
         setBreakTimer(rand.nextInt(MAXNUMB - MINNUMB + 1) + MINNUMB);
     }
 
+    // accept - Mycelium ugyan az mint FertileTecton
+
+    // accept - MushroomBody ugyan az mint FertileTecton
+
+    // onRoundBegin - ugyan az mint FertileTecton
+
+    /**
+     * Mindig igaz mivel a SustainingTecton ugy viselkedik mintha mindig lenne rajta MushroomBody
+     * @return mindig true
+     */
     @Override
-    public void accept(MyceliumGrowthEvaluator myceliumGrowthEvaluator, Mycelium mycelium) {
-        if (getMycelia().size() >= getMyceliaCapacity()) {
-            mycelium.delete();
-            return;
-        }
-
-        getMycelia().offer(mycelium);
-
-        int sporeCount = getSpores().size();
-        mycelium.grow(sporeCount);
-    }
-
-    @Override
-    public void accept(MushroomBodyGrowthEvaluator mushroomBodyGrowthEvaluator, MushroomBody mushroomBody) {
-        if (getSpores().size() < 3 || getMushroomBody() != null || getMycelia().isEmpty()) {
-            mushroomBody.delete();
-            return;
-        }
-
-        setMushroomBody(mushroomBody);
-        mushroomBody.grow(getSpores().size());
-    }
-
-    public void onRoundBegin() {
-        setBreakTimer(getBreakTimer() - 1);
-
-        if (getBreakTimer() <= 0) {
-            while(!getMycelia().isEmpty()) {
-                Mycelium mycelium = getMycelia().poll();
-                assert mycelium != null;
-                mycelium.cutImmediate();
-            }
-
-            ArrayList<Insect> temp =new ArrayList<Insect>(getOccupants());
-            for (Insect insect : temp) {
-                insect.runAway();
-            }
-
-            this.breakCounter++;
-
-            getSpores().clear();
-
-            FertileTectonImpl newFertileTecton = new FertileTectonImpl();
-            newFertileTecton.addNeighbour(this);
-            this.addNeighbour(newFertileTecton);
-            String newFTname = ObjectRegistry.lookupName(this) + "-" + this.breakCounter;
-            ObjectRegistry.registerObject(newFTname, newFertileTecton);
-
-            setBreakTimer(rand.nextInt(MAXNUMB - MINNUMB + 1) + MINNUMB);
-        }
-    }
-
     public boolean sustaining(){
         return true;
     }

@@ -441,6 +441,9 @@ public abstract class TectonImpl implements Tecton {
         return false;
     }
 
+    /**
+     * @return Tectonon levo insecteket adja vissza
+     */
     @Override
     public List<Insect> getOccupants() {
         return occupants;

@@ -8,12 +8,19 @@ public class FertileTectonImpl extends TectonImpl {
     int MINNUMB = 2;
     int MAXNUMB = 2;
 
+    /**
+     * FertileTecton konstruktora
+     */
     public FertileTectonImpl() {
         setMyceliaCapacity(1);
 
         setBreakTimer(rand.nextInt(MAXNUMB - MINNUMB + 1) + MINNUMB);
     }
 
+    /**
+     * @param myceliumGrowthEvaluator A növekedés eldöntésében segítő objektum.
+     * @param mycelium                A gombafonál, amiről eldönti az eljárás, hogy a tektonra nöhet-e.
+     */
     @Override
     public void accept(MyceliumGrowthEvaluator myceliumGrowthEvaluator, Mycelium mycelium) {
         if (getMycelia().size() >= getMyceliaCapacity() || neighboursWithMycelia().isEmpty()) {
@@ -27,6 +34,10 @@ public class FertileTectonImpl extends TectonImpl {
         mycelium.grow(sporeCount);
     }
 
+    /**
+     * @param mushroomBodyGrowthEvaluator A növekedés eldöntésében segítő objektum.
+     * @param mushroomBody                A gombatest, amiről eldönti az eljárás, hogy a tektonra nöhet-e.
+     */
     @Override
     public void accept(MushroomBodyGrowthEvaluator mushroomBodyGrowthEvaluator, MushroomBody mushroomBody) {
         if (getSpores().size() < 3 || getMushroomBody() != null || getMycelia().isEmpty()) {
@@ -38,6 +49,10 @@ public class FertileTectonImpl extends TectonImpl {
         mushroomBody.grow(getSpores().size());
     }
 
+    /**
+     * Tektontorest kezeli
+     */
+    @Override
     public void onRoundBegin() {
         setBreakTimer(getBreakTimer() - 1);
 
@@ -67,6 +82,9 @@ public class FertileTectonImpl extends TectonImpl {
         }
     }
 
+    /**
+     * @return Ha van rajta gombatest true, ha nincs false
+     */
     public boolean sustaining(){
         return getMushroomBody() != null;
     }
