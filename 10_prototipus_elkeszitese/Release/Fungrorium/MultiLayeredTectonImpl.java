@@ -9,68 +9,22 @@ public class MultiLayeredTectonImpl extends FertileTectonImpl {
     int MINNUMB = 2;
     int MAXNUMB = 2;
 
+    /**
+     * MultiLayeredTecton konstruktora
+     */
     MultiLayeredTectonImpl() {
         setMyceliaCapacity(3);
 
         setBreakTimer(rand.nextInt(MAXNUMB - MINNUMB + 1) + MINNUMB);
     }
 
-    @Override
-    public void accept(MyceliumGrowthEvaluator myceliumGrowthEvaluator, Mycelium mycelium) {
-        if (getMycelia().size() >= getMyceliaCapacity()) {
-            mycelium.delete();
-            return;
-        }
+    // accept - Mycelium ugyan az mint FertileTecton
 
-        getMycelia().offer(mycelium);
+    // accept - MushroomBody ugyan az mint FertileTecton
 
-        int sporeCount = getSpores().size();
-        mycelium.grow(sporeCount);
-    }
+    // onRoundBegin - ugyan az mint FertileTecton
 
-    @Override
-    public void accept(MushroomBodyGrowthEvaluator mushroomBodyGrowthEvaluator, MushroomBody mushroomBody) {
-        if (getSpores().size() < 3 || getMushroomBody() != null || getMycelia().isEmpty()) {
-            mushroomBody.delete();
-            return;
-        }
-
-        setMushroomBody(mushroomBody);
-        mushroomBody.grow(getSpores().size());
-    }
-
-    public void onRoundBegin() {
-        setBreakTimer(getBreakTimer() - 1);
-
-        if (getBreakTimer() <= 0) {
-            while(!getMycelia().isEmpty()) {
-                Mycelium mycelium = getMycelia().poll();
-                assert mycelium != null;
-                mycelium.cutImmediate();
-            }
-
-            ArrayList<Insect> temp =new ArrayList<Insect>(getOccupants());
-            for (Insect insect : temp) {
-                insect.runAway();
-            }
-
-            this.breakCounter++;
-
-            getSpores().clear();
-
-            FertileTectonImpl newFertileTecton = new FertileTectonImpl();
-            newFertileTecton.addNeighbour(this);
-            this.addNeighbour(newFertileTecton);
-            String newFTname = ObjectRegistry.lookupName(this) + "-" + this.breakCounter;
-            ObjectRegistry.registerObject(newFTname, newFertileTecton);
-
-            setBreakTimer(rand.nextInt(MAXNUMB - MINNUMB + 1) + MINNUMB);
-        }
-    }
-
-    public boolean sustaining(){
-        return getMushroomBody() != null;
-    }
+    // sustaining - ugyan az mint FertileTecton
 
     /**
      * To string, a kiiráshoz

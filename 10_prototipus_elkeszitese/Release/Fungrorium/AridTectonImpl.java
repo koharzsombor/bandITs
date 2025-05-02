@@ -9,12 +9,19 @@ public class AridTectonImpl extends FertileTectonImpl {
     int MAXNUMB = 2;
     Random rand = new Random();
 
+    /**
+     * AridTecton konstruktora
+     */
     AridTectonImpl() {
         setMyceliaCapacity(1);
 
         setBreakTimer(rand.nextInt(MAXNUMB - MINNUMB + 1) + MINNUMB);
     }
 
+    /**
+     * @param myceliumGrowthEvaluator A növekedés eldöntésében segítő objektum.
+     * @param mycelium                A gombafonál, amiről eldönti az eljárás, hogy a tektonra nöhet-e.
+     */
     @Override
     public void accept(MyceliumGrowthEvaluator myceliumGrowthEvaluator, Mycelium mycelium) {
         if (getMycelia().size() >= getMyceliaCapacity()) {
@@ -29,16 +36,13 @@ public class AridTectonImpl extends FertileTectonImpl {
         abosrbCountdown = 5;
     }
 
-    public void accept(MushroomBodyGrowthEvaluator mushroomBodyGrowthEvaluator, MushroomBody mushroomBody) {
-        if (getSpores().size() < 3 || getMushroomBody() != null || getMycelia().isEmpty()) {
-            mushroomBody.delete();
-            return;
-        }
+    // accept - Mushroombody ugyanaz mint FertileTecton
 
-        setMushroomBody(mushroomBody);
-        mushroomBody.grow(getSpores().size());
-    }
-
+    /**
+     * Ugyan az mint FertileTecton, tektontorest figyel
+     * Plusz munkaja az absorbCountdown csokkentese, es fonalak torlese ha eleri a 0-at
+     */
+    @Override
     public void onRoundBegin() {
         if (abosrbCountdown > 0) {
             abosrbCountdown--;
@@ -79,9 +83,7 @@ public class AridTectonImpl extends FertileTectonImpl {
         }
     }
 
-    public boolean sustaining() {
-        return getMushroomBody() != null;
-    }
+    // sustaining - ugyan az mint FertileTectonban
 
     /**
      * To string, a kiiráshoz
@@ -116,6 +118,9 @@ public class AridTectonImpl extends FertileTectonImpl {
         return output;
     }
 
+    /**
+     * @param mycelium Az új gombafonál hozzaadasa a listahoz es az abosrbCountdown elinditasa
+     */
     @Override
     public void addMycelium(Mycelium mycelium){
         super.addMycelium(mycelium);
