@@ -1,4 +1,8 @@
+import javax.swing.*;
+import java.awt.*;
+
 public class Main {
+    //Controller
     private static CommandReader commandReader;
     private static CommandRouter commandRouter;
     private static PlayerContainer playerContainer;
@@ -12,6 +16,10 @@ public class Main {
     private static MushroomBodyController mushroomBodyController;
     private static MapCreationController mapCreationController;
     private static GrowthController growthController;
+
+    //View
+    private static AppFrame appFrame;
+    //A view többi osztálya ide
 
     private static void initialiseComponents() {
         ObjectRegistry.clearRegistry();
@@ -63,20 +71,14 @@ public class Main {
         roundObserver.subscribe(gameEndManager);
     }
 
-    private static String title = """
-    ====================================
-        ╭━━━╮        ╭━━━╮
-        ┃╭━━╯        ┃╭━╮┃
-        ┃╰━━┳╮╭┳━╮╭━━┫╰━╯┣━━┳━┳┳╮╭┳╮╭╮
-        ┃╭━━┫┃┃┃╭╮┫╭╮┃╭╮╭┫╭╮┃╭╋┫┃┃┃╰╯┃
-        ┃┃  ┃╰╯┃┃┃┃╰╯┃┃┃╰┫╰╯┃┃┃┃╰╯┃┃┃┃
-        ╰╯  ╰━━┻╯╰┻━╮┣╯╰━┻━━┻╯╰┻━━┻┻┻╯
-                  ╭━╯┃
-                  ╰━━╯
-    ====================================
-    """;
-
     public static void main(String... args) {
         initialiseComponents();
+        CardLayout cardLayout = new CardLayout();
+        appFrame = new AppFrame("FungRorium", cardLayout);
+
+        appFrame.setSize(1000, 800);
+        appFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        appFrame.setVisible(true);
     }
 }
