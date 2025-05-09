@@ -20,6 +20,9 @@ public class Main {
     //View
     private static AppFrame appFrame;
     //A view többi osztálya ide
+    private static MenuView menuView;
+    private static PlayerView playerView;
+    private static GameStartView gameStartView;
 
     private static void initialiseComponents() {
         ObjectRegistry.clearRegistry();
@@ -75,9 +78,19 @@ public class Main {
         initialiseComponents();
         CardLayout cardLayout = new CardLayout();
         appFrame = new AppFrame("FungRorium", cardLayout);
+        Container contentPane = appFrame.getContentPane();
+
+        playerView = new PlayerView();
+        gameStartView = new GameStartView(appFrame);
+        menuView = new MenuView(playerView, gameStartView);
 
         appFrame.setSize(1000, 800);
-        appFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        appFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+        cardLayout.addLayoutComponent(menuView, MenuView.cardName);
+        appFrame.add(menuView);
+
+        appFrame.switchToView(MenuView.cardName);
 
         appFrame.setVisible(true);
     }

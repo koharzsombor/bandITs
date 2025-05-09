@@ -7,24 +7,32 @@ import java.awt.*;
  */
 public class MenuView extends JPanel {
     /**
-     *
+     * Az alkalmazás keretben lévő kártya neve, amire hivatkozva át tudunk váltani erre a panelre.
      */
-    private AppFrame frame;
+    public static final String cardName = "menu";
 
     /**
      *
      */
     private PlayerView playerView;
 
-    public MenuView(AppFrame frame, PlayerView playerView) {
-        this.frame = frame;
+    /**
+     *
+     */
+    private GameStartView gameStartView;
+
+    public MenuView(PlayerView playerView, GameStartView gameStartView) {
         this.playerView = playerView;
+        this.gameStartView = gameStartView;
 
         setBorder(new EmptyBorder(5, 5, 5, 5)); //5 px padding
 
-        BorderLayout borderLayout = new BorderLayout();
-        setLayout(borderLayout);
+        setLayout(new BorderLayout());
 
-        add(playerView, BorderLayout.WEST);
+        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, playerView, gameStartView);
+        splitPane.setEnabled(false);
+        splitPane.setResizeWeight(0.5);
+        splitPane.setDividerSize(3);
+        add(splitPane, BorderLayout.CENTER);
     }
 }

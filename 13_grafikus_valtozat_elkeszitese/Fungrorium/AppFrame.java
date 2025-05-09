@@ -17,13 +17,14 @@ public class AppFrame extends JFrame {
      */
     public AppFrame(String name, CardLayout layout) {
         super(name);
-        setLayout(layout);
+        this.layout = layout;
+        getContentPane().setLayout(this.layout);
     }
 
     /**
      * @param viewName
      */
     public void switchToView(String viewName) {
-        layout.show(this, viewName);
+        layout.show(getContentPane(), viewName);
     }
 }
