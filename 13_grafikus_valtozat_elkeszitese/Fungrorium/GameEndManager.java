@@ -17,5 +17,5 @@ public interface GameEndManager extends RoundBeginSubscriber, CommandHandler {
     /**
      * Kiírja a játék győzteseit.
      */
-    void showWinners();
+    String showWinners();
 }

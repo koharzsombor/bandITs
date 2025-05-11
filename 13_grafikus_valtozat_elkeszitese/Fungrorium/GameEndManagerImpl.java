@@ -54,7 +54,10 @@ public class GameEndManagerImpl implements GameEndManager {
      * Kiírja a játék győzteseit.
      */
     @Override
-    public void showWinners() {
+    public String showWinners() {
+        /*
+        StringBuilder stringBuilder = new StringBuilder();
+
         printer.printLine("WINNERS:");
         printer.printLine("MYCOLOGIST:");
 
@@ -69,6 +72,27 @@ public class GameEndManagerImpl implements GameEndManager {
         for (Player winner : entomologistWinners) {
             printer.printLine(winner.getName());
         }
+        */
+
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("<html>");
+        stringBuilder.append("<div style='text-align:center;'>");
+
+        stringBuilder.append("WINNERS:<br><br>");
+        stringBuilder.append("MYCOLOGIST:<br>");
+        Iterable<Player> mycologistWinners = scoreCalculator.determineWinner(container.getMycologists());
+        for (Player winner : mycologistWinners) {
+            stringBuilder.append(winner.getName()).append("<br>");
+        }
+        stringBuilder.append("<br>");
+        stringBuilder.append("ENTOMOLOGIST:<br>");
+        Iterable<Player> entomologistWinners = scoreCalculator.determineWinner(container.getEntomologists());
+        for (Player winner : entomologistWinners) {
+            stringBuilder.append(winner.getName()).append("<br>");
+        }
+        stringBuilder.append("<br>");
+        stringBuilder.append("</html>");
+        return stringBuilder.toString();
     }
 
     @Override
@@ -79,7 +103,8 @@ public class GameEndManagerImpl implements GameEndManager {
         gameLength--;
 
         if (gameLength <= 0) {
-            showWinners();
+            ViewRepository.updateObject(this);
+            //showWinners();
         }
     }
 

@@ -11,6 +11,12 @@ public class MenuView extends JPanel {
      */
     public static final String CARD_NAME = "menu";
 
+    /**
+     * A játék kezdeti menüjét megjelenítő nézet.
+     *
+     * @param playerView A játékosok hozzáadásáért felelős nézet.
+     * @param gameStartView A játék elindításáért felelős nézet.
+     */
     public MenuView(PlayerView playerView, GameStartView gameStartView) {
         setBorder(new EmptyBorder(5, 5, 5, 5)); //5 px padding
 

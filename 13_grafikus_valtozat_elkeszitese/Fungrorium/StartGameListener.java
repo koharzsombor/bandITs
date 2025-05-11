@@ -64,7 +64,7 @@ public class StartGameListener implements ActionListener {
 
         gameEndManager.setGameLength(gameLength);
         mapCreationController.generateMap();
-        appFrame.switchToView(GameView.cardName);
+        appFrame.switchToView(GameView.CARD_NAME);
         turnController.beginFirstTurn();
     }
 }

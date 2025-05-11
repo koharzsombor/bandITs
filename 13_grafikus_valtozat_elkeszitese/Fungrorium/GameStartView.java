@@ -7,10 +7,12 @@ import java.awt.*;
  */
 public class GameStartView extends JPanel {
     /**
-     * @param appFrame
-     * @param mapCreationController
-     * @param gameEndManager
-     * @param turnController
+     * Létrehozza a nézetet, a megadott függőségekkel.
+     *
+     * @param appFrame A játékot megjelenítő ablak.
+     * @param mapCreationController A játéktér létrehozásért felelős controller.
+     * @param gameEndManager A játék befejezésért felelős kontroller.
+     * @param turnController A játék körök kezdetért felelős kontroller.
      */
     public GameStartView(AppFrame appFrame, MapCreationController mapCreationController,
                          GameEndManager gameEndManager, TurnController turnController) {

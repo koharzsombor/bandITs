@@ -5,19 +5,24 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 
 /**
- *
+ * A kör álloptának megjelenítését vezérlő nézet.
  */
 public class TurnView extends JPanel implements Updatable {
     /**
-     *
+     * A köröket irányító controller.
      */
     private final TurnController turnController;
 
     /**
-     *
+     * A kör állapotát kijelző felirat.
      */
     private final JLabel turnLabel;
 
+    /**
+     * Létrehozza a nézetet a megfelelő függőségekkel.
+     *
+     * @param turnController A köröket irányító controller.
+     */
     public TurnView(TurnController turnController) {
         setBorder(new CompoundBorder(new LineBorder(Color.black), new EmptyBorder(5, 5, 5, 5)));
         this.turnController = turnController;
