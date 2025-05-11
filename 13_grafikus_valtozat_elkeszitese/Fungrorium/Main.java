@@ -19,7 +19,6 @@ public class Main {
 
     //View
     private static AppFrame appFrame;
-    //A view többi osztálya ide
     private static MenuView menuView;
     private static PlayerView playerView;
     private static GameStartView gameStartView;
@@ -92,7 +91,7 @@ public class Main {
 
         //Game
         GameFieldView gameFieldView = new GameFieldView();
-        TurnView turnView = new TurnView(turnController);
+        TurnView turnView = new TurnView(turnController, gameEndManager);
         GameView gameView = new GameView(gameFieldView, turnView);
 
         cardLayout.addLayoutComponent(gameView, GameView.CARD_NAME);

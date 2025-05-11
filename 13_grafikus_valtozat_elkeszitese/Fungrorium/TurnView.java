@@ -14,6 +14,11 @@ public class TurnView extends JPanel implements Updatable {
     private final TurnController turnController;
 
     /**
+     * A játék végégig visszaszámláló objektum.
+     */
+    private final GameEndManager gameEndManager;
+
+    /**
      * A kör állapotát kijelző felirat.
      */
     private final JLabel turnLabel;
@@ -22,8 +27,10 @@ public class TurnView extends JPanel implements Updatable {
      * Létrehozza a nézetet a megfelelő függőségekkel.
      *
      * @param turnController A köröket irányító controller.
+     * @param gameEndManager A játék végégig visszaszámláló objektum.
      */
-    public TurnView(TurnController turnController) {
+    public TurnView(TurnController turnController, GameEndManager gameEndManager) {
+        this.gameEndManager = gameEndManager;
         setBorder(new CompoundBorder(new LineBorder(Color.black), new EmptyBorder(5, 5, 5, 5)));
         this.turnController = turnController;
         setLayout(new BorderLayout());
@@ -43,6 +50,6 @@ public class TurnView extends JPanel implements Updatable {
      */
     @Override
     public void update() {
-        turnLabel.setText("It's " + turnController.getCurrentPlayer().getName() + " turn!");
+        turnLabel.setText("It's " + turnController.getCurrentPlayer().getName() + "'s turn! Rounds left: " + gameEndManager.getGameLength());
     }
 }
