@@ -63,6 +63,8 @@ public class EntomologistImpl extends PlayerImpl implements Entomologist {
 
     @Override
     public String toString() {
+        return name + ": Entomologist";
+        /*
         StringBuilder sb = new StringBuilder("Entomologist: \n" +
                 "Name: " +
                 name + "\n" +
@@ -77,5 +79,7 @@ public class EntomologistImpl extends PlayerImpl implements Entomologist {
         sb.append("}\n");
 
         return sb.toString();
+
+         */
     }
 }

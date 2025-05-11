@@ -48,15 +48,17 @@ public class PlayerContainerImpl implements PlayerContainer {
     public void addPlayer(Player player, String type) {
         players.add(player);
 
-        if (type.toLowerCase().equals("mycologist")) {
+        if (type.equalsIgnoreCase("mycologist")) {
             mycologists.add(player);
         }
-        else if (type.toLowerCase().equals("entomologist")) {
+        else if (type.equalsIgnoreCase("entomologist")) {
             entomologists.add(player);
         }
         else {
             throw new IllegalArgumentException("Not a player type");
         }
+
+        ViewRepository.updateObject(this);
     }
 
     /**
@@ -72,6 +74,8 @@ public class PlayerContainerImpl implements PlayerContainer {
             mycologists.remove(player);
         else
             entomologists.remove(player);
+
+        ViewRepository.updateObject(this);
     }
 
     /**

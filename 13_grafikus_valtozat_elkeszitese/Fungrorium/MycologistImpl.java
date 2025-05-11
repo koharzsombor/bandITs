@@ -120,8 +120,10 @@ public class MycologistImpl extends PlayerImpl implements Mycologist {
         return Math.toIntExact(mushroomCount);
     }
 
-        @Override
+    @Override
     public String toString() {
+        return name + ": Mycologist";
+        /*
         StringBuilder sb = new StringBuilder("MycologistImpl: \n" +
                 "Name: " +
                 name + "\n" +
@@ -141,5 +143,6 @@ public class MycologistImpl extends PlayerImpl implements Mycologist {
         sb.append("}\n");
 
         return sb.toString();
+        */
     }
 }

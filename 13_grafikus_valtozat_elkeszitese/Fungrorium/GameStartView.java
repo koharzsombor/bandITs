@@ -6,13 +6,14 @@ import java.awt.*;
  * A játék indításáról gondoskodó menü.
  */
 public class GameStartView extends JPanel {
-
-    private JTextField gameLengthTextBox;
-
-    private AppFrame appFrame;
-
-    public GameStartView(AppFrame appFrame) {
-        this.appFrame = appFrame;
+    /**
+     * @param appFrame
+     * @param mapCreationController
+     * @param gameEndManager
+     * @param turnController
+     */
+    public GameStartView(AppFrame appFrame, MapCreationController mapCreationController,
+                         GameEndManager gameEndManager, TurnController turnController) {
 
         setBorder(new EmptyBorder(5, 5, 5, 5)); //5 px padding
 
@@ -25,7 +26,7 @@ public class GameStartView extends JPanel {
 
         add(Box.createVerticalStrut(10)); // padding alá
 
-        gameLengthTextBox = new JTextField();
+        JTextField gameLengthTextBox = new JTextField();
         gameLengthTextBox.setMaximumSize(new Dimension(50, 40));
         gameLengthTextBox.setPreferredSize(new Dimension(50, 40));
         gameLengthTextBox.setHorizontalAlignment(SwingConstants.CENTER);
@@ -38,6 +39,9 @@ public class GameStartView extends JPanel {
         JButton gameStartButton = new JButton("Start Game");
         gameStartButton.setSize(200, 500);
         gameStartButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        gameStartButton.addActionListener(
+                new StartGameListener(mapCreationController, appFrame, gameLengthTextBox, gameEndManager, turnController));
+
         add(gameStartButton);
     }
 }

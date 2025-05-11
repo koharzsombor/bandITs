@@ -22,6 +22,8 @@ public class TurnControllerImpl implements TurnController {
     public void endTurn() {
         Player nextPlayer = playerContainer.getNextPlayer();
         nextPlayer.notifySubscribers();
+
+        ViewRepository.updateObject(this);
     }
 
     /**
@@ -41,6 +43,8 @@ public class TurnControllerImpl implements TurnController {
     public void beginFirstTurn() {
         playerContainer.resetCurrentPlayer();
         playerContainer.getCurrentPlayer().notifySubscribers();
+
+        ViewRepository.updateObject(this);
     }
 
     @Override

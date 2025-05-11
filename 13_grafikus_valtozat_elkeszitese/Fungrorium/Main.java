@@ -78,20 +78,29 @@ public class Main {
         initialiseComponents();
         CardLayout cardLayout = new CardLayout();
         appFrame = new AppFrame("FungRorium", cardLayout);
-        Container contentPane = appFrame.getContentPane();
 
-        playerView = new PlayerView();
-        gameStartView = new GameStartView(appFrame);
+        //Menu
+        PlayerContainerView playerContainerView = new PlayerContainerView(playerContainer);
+        playerView = new PlayerView(playerContainerView, playerController);
+        gameStartView = new GameStartView(appFrame, mapCreationController, gameEndManager, turnController);
         menuView = new MenuView(playerView, gameStartView);
 
         appFrame.setSize(1000, 800);
         appFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        cardLayout.addLayoutComponent(menuView, MenuView.cardName);
+        cardLayout.addLayoutComponent(menuView, MenuView.CARD_NAME);
         appFrame.add(menuView);
 
-        appFrame.switchToView(MenuView.cardName);
+        //Game
+        GameFieldView gameFieldView = new GameFieldView();
+        TurnView turnView = new TurnView(turnController);
 
+        GameView gameView = new GameView(gameFieldView, turnView);
+        cardLayout.addLayoutComponent(gameView, GameView.cardName);
+        appFrame.add(gameView);
+
+        //Show window
+        appFrame.switchToView(MenuView.CARD_NAME);
         appFrame.setVisible(true);
     }
 }

@@ -6,13 +6,13 @@ import java.awt.*;
  */
 public class AppFrame extends JFrame {
     /**
-     *
+     * 
      */
-    private CardLayout layout;
+    private final CardLayout layout;
 
     /**
      * Az ablakot megnyitódik.
-     * @param name
+     * @param name Az ablak neve.
      * @param layout
      */
     public AppFrame(String name, CardLayout layout) {

@@ -30,4 +30,9 @@ public interface MapCreationController extends CommandHandler {
      * @param name A tekton neve.
      */
     void createTecton(String type, String name);
+
+    /**
+     * Procedurálisan létrehozza a térképet.
+     */
+    void generateMap();
 }

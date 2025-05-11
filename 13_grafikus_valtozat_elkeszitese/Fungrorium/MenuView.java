@@ -9,22 +9,9 @@ public class MenuView extends JPanel {
     /**
      * Az alkalmazás keretben lévő kártya neve, amire hivatkozva át tudunk váltani erre a panelre.
      */
-    public static final String cardName = "menu";
-
-    /**
-     *
-     */
-    private PlayerView playerView;
-
-    /**
-     *
-     */
-    private GameStartView gameStartView;
+    public static final String CARD_NAME = "menu";
 
     public MenuView(PlayerView playerView, GameStartView gameStartView) {
-        this.playerView = playerView;
-        this.gameStartView = gameStartView;
-
         setBorder(new EmptyBorder(5, 5, 5, 5)); //5 px padding
 
         setLayout(new BorderLayout());
