@@ -174,6 +174,7 @@ public class InsectImpl implements Insect{
         setLocation(location);
         location.addOccupant(this);
         setRemainingMoves(getMaxMoves());
+        SwingInsectFactory.onCreateInsect(this);
     }
 
     /**
