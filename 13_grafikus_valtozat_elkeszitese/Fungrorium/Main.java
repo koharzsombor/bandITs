@@ -16,6 +16,7 @@ public class Main {
     private static MushroomBodyController mushroomBodyController;
     private static MapCreationController mapCreationController;
     private static GrowthController growthController;
+    private static ProcedualController procedualController;
 
     //View
     private static AppFrame appFrame;
@@ -36,6 +37,7 @@ public class Main {
         mushroomBodyController = new MushroomBodyControllerImpl();
         mapCreationController = new MapCreationControllerImpl(roundObserver);
         growthController = new GrowthControllerImpl();
+        procedualController = new ProcedualControllerImpl(mapCreationController, playerContainer, tectonController);
 
         commandRouter = new CommandRouterImpl(turnController);
         commandReader = new CommandReaderImpl(commandRouter);
@@ -83,7 +85,7 @@ public class Main {
         //Menu
         PlayerContainerView playerContainerView = new PlayerContainerView(playerContainer);
         playerView = new PlayerView(playerContainerView, playerController);
-        gameStartView = new GameStartView(appFrame, mapCreationController, gameEndManager, turnController);
+        gameStartView = new GameStartView(appFrame, procedualController, gameEndManager, turnController);
         menuView = new MenuView(playerView, gameStartView);
 
         cardLayout.addLayoutComponent(menuView, MenuView.CARD_NAME);
