@@ -1,30 +1,21 @@
-import javax.swing.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 
 /**
- * Insecthez tartozó gérkezelő osztály
+ * Move gombra eseménykezelő osztály
  */
-public class InsectMouseAdapter implements MouseListener {
-    /**
-     * Swing Insect objectum, akihez tartozik
-     */
-    SwingInsect swingInsect;
+public class MoveButtonMouseListener implements MouseListener {
+    MoveButton moveButton;
 
-    /**
-     *Konstruktor
-     * @param si az eltárolni kivánt SwingInsect
-     */
-    InsectMouseAdapter(SwingInsect si) {
-        this.swingInsect = si;
+    MoveButtonMouseListener(MoveButton mb){
+        moveButton = mb;
     }
 
     /**
-     * MouseListener osztály implementációi. Megjeleniti a PopupMenu-t a SwingInsectben
+     * A tényleges működése a gombnak, azak szól az InsectControllernek, hogy az insect elvágna egy myceliumot
      * @param e the event to be processed
      */
     public void mouseReleased(MouseEvent e) {
-        swingInsect.showPopupMenu(e);
+        moveButton.showPopupMenu(e);
     }
 
     /**
@@ -50,5 +41,4 @@ public class InsectMouseAdapter implements MouseListener {
      * @param e the event to be processed
      */
     public void mouseExited(MouseEvent e) {}
-
 }

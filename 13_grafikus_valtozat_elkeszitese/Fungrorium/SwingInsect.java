@@ -38,8 +38,8 @@ public class SwingInsect extends JButton implements Updatable{
         cutButton.addActionListener(new CutButtonListener(i));
         insectPopupMenu.add(cutButton);
 
-        JButton moveButton = new JButton("Move to a tecton");
-        moveButton.addActionListener(new MoveButtonListener(i));
+        MoveButton moveButton = new MoveButton("Move to a tecton", i);
+        moveButton.addMouseListener(new MoveButtonMouseListener(moveButton));
         insectPopupMenu.add(moveButton);
 
         JButton endTurnButton = new JButton("End turn");
