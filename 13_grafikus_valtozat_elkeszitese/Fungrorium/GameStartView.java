@@ -10,12 +10,12 @@ public class GameStartView extends JPanel {
      * Létrehozza a nézetet, a megadott függőségekkel.
      *
      * @param appFrame A játékot megjelenítő ablak.
-     * @param mapCreationController A játéktér létrehozásért felelős controller.
+     * @param procedualController A játéktér létrehozásért felelős controller.
      * @param gameEndManager A játék befejezésért felelős kontroller.
      * @param turnController A játék körök kezdetért felelős kontroller.
      */
-    public GameStartView(AppFrame appFrame, MapCreationController mapCreationController,
-                         GameEndManager gameEndManager, TurnController turnController) {
+    public GameStartView(AppFrame appFrame, ProcedualController procedualController,
+                         GameEndManager gameEndManager, TurnController turnController, GameFieldView gameFieldView) {
 
         setBorder(new EmptyBorder(5, 5, 5, 5)); //5 px padding
 
@@ -42,7 +42,7 @@ public class GameStartView extends JPanel {
         gameStartButton.setSize(200, 500);
         gameStartButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         gameStartButton.addActionListener(
-                new StartGameListener(mapCreationController, appFrame, gameLengthTextBox, gameEndManager, turnController));
+                new StartGameListener(procedualController, appFrame, gameLengthTextBox, gameEndManager, turnController, gameFieldView));
 
         add(gameStartButton);
     }
