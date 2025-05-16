@@ -4,7 +4,7 @@ import java.awt.*;
 /**
  * A Mycelium grafikusan megjeleníthető formája
  */
-public class SwingMycelium extends JComponent implements Updatable{
+public class SwingMycelium extends JPanel implements Updatable{
 
 
     private final int size = 40;
@@ -31,6 +31,7 @@ public class SwingMycelium extends JComponent implements Updatable{
     public void paintComponent(Graphics g) {
         if (mv.getLocation() == null) return;
 
+        super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         g.setColor(fillColor);
 
