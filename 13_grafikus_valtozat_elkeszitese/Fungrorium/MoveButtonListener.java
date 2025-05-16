@@ -9,7 +9,7 @@ public class MoveButtonListener implements ActionListener {
      * Az insect, aki létrehozta a gombot
      */
     Insect insect;
-s
+
     /**
      * Az InsectController osztály, aki felelős az insectek irányitásáért
      */
@@ -29,7 +29,7 @@ s
      * @param e the event to be processed
      */
     public void actionPerformed(ActionEvent e) {
-        //which fucking tecton? how tf do I decide this? xD
+        TectonView tecton;
         insectController.move(insect, tecton);
     }
 }

@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 
 /**
@@ -22,6 +23,10 @@ public class SwingInsect extends JButton implements Updatable{
     SwingInsect(Insect i) {
         this.iv = i;
 
+        setBackground(Color.BLACK);
+        addMouseListener(new InsectMouseAdapter(this));
+        update();
+
         insectPopupMenu = new JPopupMenu();
         insectPopupMenu.add("Insect: " + ObjectRegistry.lookupName(i));
 
@@ -38,12 +43,9 @@ public class SwingInsect extends JButton implements Updatable{
         insectPopupMenu.add(moveButton);
 
         JButton endTurnButton = new JButton("End turn");
-        endTurnButton.addActionListener(new EndTurnButtonListener());
+        TurnController turnController = (TurnController) ObjectRegistry.getObject("TURN");
+        endTurnButton.addActionListener(new TurnEndButtonListener(turnController));
         insectPopupMenu.add(endTurnButton);
-
-        addMouseListener(new InsectMouseAdapter(this));
-
-        update();
     }
 
     /**
