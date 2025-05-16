@@ -14,7 +14,7 @@ public class MushroomBodyMouseAdapter implements MouseListener {
     /**
      * Konstruktor, amely elmenti a hozzárendelt SwingMushroomBody példányt.
      *
-     * @param smb SwingMushroomBody példány
+     * @param smb SwingMushroomBody példány.
      */
     public MushroomBodyMouseAdapter(SwingMushroomBody smb) {
         this.swingMushroomBody = smb;
@@ -24,7 +24,7 @@ public class MushroomBodyMouseAdapter implements MouseListener {
      * Akkor hívódik meg, amikor az egérgombot felengedik.
      * Itt jelenik meg a SwingMushroomBody-hoz tartozó JPopupMenu.
      *
-     * @param e az eseményt leíró MouseEvent objektum
+     * @param e Az eseményt leíró MouseEvent objektum.
      */
     @Override
     public void mouseReleased(MouseEvent e) {
@@ -35,7 +35,7 @@ public class MushroomBodyMouseAdapter implements MouseListener {
      * Az egérgomb lenyomásakor hívódik meg, de itt nem használjuk.
      * A MouseListener megvalósítása miatt van rá szükség.
      *
-     * @param e az eseményt leíró MouseEvent objektum
+     * @param e Az eseményt leíró MouseEvent objektum.
      */
     public void mousePressed(MouseEvent e) {}
 
@@ -43,7 +43,7 @@ public class MushroomBodyMouseAdapter implements MouseListener {
      * Egérkattintás esetén hívódik meg, de itt nem használjuk.
      * A MouseListener megvalósítása miatt van rá szükség.
      *
-     * @param e az eseményt leíró MouseEvent objektum
+     * @param e Az eseményt leíró MouseEvent objektum.
      */
     public void mouseClicked(MouseEvent e) {}
 
@@ -51,7 +51,7 @@ public class MushroomBodyMouseAdapter implements MouseListener {
      * Akkor hívódik meg, amikor a kurzor belép a komponens területére, de itt nem használjuk.
      * A MouseListener megvalósítása miatt van rá szükség.
      *
-     * @param e az eseményt leíró MouseEvent objektum
+     * @param e Az eseményt leíró MouseEvent objektum.
      */
     public void mouseEntered(MouseEvent e) {}
 
@@ -59,7 +59,7 @@ public class MushroomBodyMouseAdapter implements MouseListener {
      * Akkor hívódik meg, amikor az egérkurzor elhagyja a komponens területét, de itt nem használjuk.
      * A MouseListener megvalósítása miatt van rá szükség.
      *
-     * @param e az eseményt leíró MouseEvent objektum
+     * @param e Az eseményt leíró MouseEvent objektum.
      */
     public void mouseExited(MouseEvent e) {}
 }

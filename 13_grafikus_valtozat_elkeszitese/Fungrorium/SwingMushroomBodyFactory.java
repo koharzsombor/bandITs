@@ -13,7 +13,7 @@ public class SwingMushroomBodyFactory implements MushroomBodyAbstractFactory {
      * Akkor hívódik meg, amikor egy MushroomBody példány létrejön.
      * Ekkor automatikusan létrejon egy SwingMushroomBody példány is, amely a ViewRepository-ban regisztrálásra kerül.
      *
-     * @param mb az újonnan létrehozott MushroomBody objektum
+     * @param mb Az újonnan létrehozott MushroomBody objektum.
      */
     public static void onCreateMushroomBody(MushroomBody mb) {
         SwingMushroomBody smb = new SwingMushroomBody(mb);

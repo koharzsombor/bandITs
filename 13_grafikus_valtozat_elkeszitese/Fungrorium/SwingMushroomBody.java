@@ -14,7 +14,7 @@ public class SwingMushroomBody extends JButton implements Updatable {
      * Konstruktor.
      * Beállítja az egérfigyelőt, létrehozza a popup menüt és frissíti a tooltipet.
      *
-     * @param mushroomBody a MushroomBody példány, amelyhez a SwingMushroomBody objektum létrehzoásra kerül
+     * @param mushroomBody A MushroomBody példány, amelyhez a SwingMushroomBody objektum létrehzoásra kerül.
      */
     public SwingMushroomBody(MushroomBody mushroomBody) {
         this.mbv = mushroomBody;
@@ -47,7 +47,7 @@ public class SwingMushroomBody extends JButton implements Updatable {
     /**
      * Megjeleníti a popup menüt.
      *
-     * @param e MouseEvent objektum
+     * @param e MouseEvent objektum.
      */
     public void showPopupMenu(MouseEvent e) {
         mushroomBodyPopupMenu.show(e.getComponent(), e.getX(), e.getY());
@@ -56,7 +56,7 @@ public class SwingMushroomBody extends JButton implements Updatable {
     /**
      * A MushroomBody grafikus megjelenítése: piros háromszög rajzolása.
      *
-     * @param g grafikus objektum
+     * @param g Grafikus objektum.
      */
     @Override
     protected void paintComponent(Graphics g) {

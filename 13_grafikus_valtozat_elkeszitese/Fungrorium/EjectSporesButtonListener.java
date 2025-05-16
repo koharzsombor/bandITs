@@ -22,7 +22,7 @@ public class EjectSporesButtonListener implements ActionListener {
      * Konstruktor, amely eltárolja a kapcsolódó MushroomBody példányt és lekéri
      * a MushroomBodyController példányt az ObjectRegistry-ből.
      *
-     * @param mb a MushroomBody, amelyre a művelet vonatkozik
+     * @param mb A MushroomBody, amelyre a művelet vonatkozik.
      */
     public EjectSporesButtonListener(MushroomBody mb) {
         this.mushroomBody = mb;
@@ -34,7 +34,7 @@ public class EjectSporesButtonListener implements ActionListener {
      * Meghívja a MushroomBodyController eject metódusát, átadva a MushroomBody-t
      * és az annak elhelyezkedése szerinti tektont.
      *
-     * @param e az esemény, amely kiváltotta a műveletet
+     * @param e Az esemény, amely kiváltotta a műveletet.
      */
     @Override
     public void actionPerformed(ActionEvent e) {
