@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 /**
  * Az elkepzeles az, hogy JComponentkent kezelem a node-okat, igy mivel tobb fajta
  * tecton is letezik tudom egyszerre kezelni oket mint node-ok. Ezekre rarajzolni mas objektumokat
@@ -48,6 +49,8 @@ public class GameFieldView extends JPanel {
 
     private final Graph graph;
     private Timer animationTimer;
+    private List<TectonView> tectons;
+
 
     public GameFieldView() {
         setLayout(null);
@@ -88,6 +91,7 @@ public class GameFieldView extends JPanel {
 
         return node;
     }
+
 
 
     /**
@@ -320,3 +324,9 @@ public class GameFieldView extends JPanel {
     }
 
 }
+
+    public void SetTectons(List<TectonView> tectons) {
+        this.tectons = tectons;
+    }
+}
+

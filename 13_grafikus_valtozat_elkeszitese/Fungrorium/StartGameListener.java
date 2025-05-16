@@ -1,16 +1,12 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 /**
  *
  */
 public class StartGameListener implements ActionListener {
-    /**
-     *
-     */
-    private final MapCreationController mapCreationController;
-
     /**
      *
      */
@@ -32,18 +28,26 @@ public class StartGameListener implements ActionListener {
     private final TurnController turnController;
 
     /**
-     * @param mapCreationController
+     *
+     */
+    private final ProcedualController procedualController;
+
+    private final GameFieldView gameFieldView;
+
+    /**
      * @param appFrame
      * @param gameLengthTextField
      * @param gameEndManager
      * @param turnController
      */
-    public StartGameListener(MapCreationController mapCreationController, AppFrame appFrame, JTextField gameLengthTextField, GameEndManager gameEndManager, TurnController turnController) {
-        this.mapCreationController = mapCreationController;
+    public StartGameListener(ProcedualController procedualController, AppFrame appFrame,
+                             JTextField gameLengthTextField, GameEndManager gameEndManager, TurnController turnController, GameFieldView gameFieldView) {
         this.appFrame = appFrame;
         this.gameLengthTextField = gameLengthTextField;
         this.gameEndManager = gameEndManager;
         this.turnController = turnController;
+        this.procedualController = procedualController;
+        this.gameFieldView = gameFieldView;
     }
 
     /**
@@ -63,7 +67,7 @@ public class StartGameListener implements ActionListener {
             return;
 
         gameEndManager.setGameLength(gameLength);
-        mapCreationController.generateMap();
+        gameFieldView.SetTectons(new ArrayList<>(procedualController.generateMap()));
         appFrame.switchToView(GameView.CARD_NAME);
         turnController.beginFirstTurn();
     }

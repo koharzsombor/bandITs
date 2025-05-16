@@ -95,12 +95,4 @@ public class MapCreationControllerImpl implements MapCreationController {
         Tecton tecton = tectonFactory.create(type, name);
         roundObserver.subscribe(tecton);
     }
-
-    /**
-     * Procedurálisan létrehozza a térképet.
-     */
-    @Override
-    public void generateMap() {
-
-    }
 }
