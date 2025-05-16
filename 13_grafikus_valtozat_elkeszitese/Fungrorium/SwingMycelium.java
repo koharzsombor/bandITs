@@ -1,16 +1,21 @@
+import javax.swing.*;
+import java.awt.*;
+
 /**
  * A Mycelium grafikusan megjeleníthető formája
  */
 public class SwingMycelium implements Updatable{
 
+    private final JComponent parent;
+
     /**
      * A modelbeli párja a grafikus objektumnak
      */
-    public MyceliumView mv;
+    private final MyceliumView mv;
 
-    public SwingMycelium(MyceliumView mv){
-        this.mv=mv;
-
+    public SwingMycelium(MyceliumView mv, JComponent parent){
+        this.mv = mv;
+        this.parent = parent;
     }
 
     /**
@@ -18,6 +23,14 @@ public class SwingMycelium implements Updatable{
      */
     @Override
     public void update() {
+        parent.repaint();
+    }
 
+    public void draw(Graphics2D g) {
+        if (mv.getLocation() == null) return;
+
+        Point pos = mv.getLocation();                   //Ide kell valami átváltás vagy egyéb helyről változó
+        g.setColor(new Color(139, 69, 19));
+        g.fillOval(pos.x + 5, pos.y + 5, 40, 40);
     }
 }

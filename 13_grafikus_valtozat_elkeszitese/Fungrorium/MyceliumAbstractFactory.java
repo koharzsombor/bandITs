@@ -9,13 +9,13 @@ public interface MyceliumAbstractFactory {
      * Létrehoz egy grafikus Mycelium-ot és összepárosítja a modellbeli megfelelőjével
      * @param m Amelyik Mycelium meghívta, átadja magát.
      */
-    public void onCreateMycelium(Mycelium m);
+    public static void onCreateMycelium(Mycelium m){}
 
     /**
      * A húsevő myceliumnak a létrejövésekor lefutó parancs.
      * Létrehoz egy grafikus CarnivorousMycelium-ot és összepárosítja a modellbeli megfelelőjével
      * @param m Amelyik Mycelium meghívta, átadja magát.
      */
-    public void onCreateCarnivorousMycelium(Mycelium m);
+    public static void onCreateCarnivorousMycelium(Mycelium m){}
 
 }

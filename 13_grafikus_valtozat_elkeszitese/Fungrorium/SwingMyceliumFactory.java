@@ -3,14 +3,19 @@
  */
 public class SwingMyceliumFactory implements MyceliumAbstractFactory{
 
+    private static GameFieldView gameFieldView;
+
+    public static void setGameFieldView(GameFieldView gameFieldView) {
+        SwingMyceliumFactory.gameFieldView = gameFieldView;
+    }
+
     /**
      * Az alapvető myceliumnak a létrejövésekor lefutó parancs.
      * Létrehoz egy grafikus Mycelium-ot és összepárosítja a modellbeli megfelelőjével
      * @param m Amelyik Mycelium meghívta, átadja magát.
      */
-    @Override
-    public void onCreateMycelium(Mycelium m) {
-        SwingMycelium sm = new SwingMycelium(m);
+    public static void onCreateMycelium(Mycelium m) {
+        SwingMycelium sm = new SwingMycelium(m, gameFieldView);
         ViewRepository.bind(m,sm);
     }
 
@@ -19,9 +24,9 @@ public class SwingMyceliumFactory implements MyceliumAbstractFactory{
      * Létrehoz egy grafikus CarnivorousMycelium-ot és összepárosítja a modellbeli megfelelőjével
      * @param m Amelyik Mycelium meghívta, átadja magát.
      */
-    @Override
-    public void onCreateCarnivorousMycelium(Mycelium m) {
-        SwingCarnivorousMycelium scm = new SwingCarnivorousMycelium(m);
+
+    public static void onCreateCarnivorousMycelium(Mycelium m) {
+        SwingCarnivorousMycelium scm = new SwingCarnivorousMycelium(m, gameFieldView);
         ViewRepository.bind(m,scm);
     }
 }
