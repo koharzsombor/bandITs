@@ -8,6 +8,10 @@ public class SwingMycelium implements Updatable{
 
     private final JComponent parent;
 
+    private final int size = 80;
+    private final int growingSize = size - 20;
+    private final Color fillColor = new Color(195, 78, 26);
+
     /**
      * A modelbeli párja a grafikus objektumnak
      */
@@ -26,11 +30,17 @@ public class SwingMycelium implements Updatable{
         parent.repaint();
     }
 
-    public void draw(Graphics2D g) {
+    public void draw(Graphics g) {
         if (mv.getLocation() == null) return;
 
+        Graphics2D g2 = (Graphics2D) g;
         Point pos = mv.getLocation();                   //Ide kell valami átváltás vagy egyéb helyről változó
-        g.setColor(new Color(139, 69, 19));
-        g.fillOval(pos.x + 5, pos.y + 5, 40, 40);
+        g.setColor(fillColor);
+
+        if(mv.isGrowing()){
+            g.fillOval(pos.x + 5, pos.y + 5, growingSize, growingSize);   //Nem jó
+            return;
+        }
+        g.fillOval(pos.x + 5, pos.y + 5, size, size);   //Nem jó
     }
 }
