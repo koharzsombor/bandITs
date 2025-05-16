@@ -8,7 +8,7 @@ public class SwingMycelium implements Updatable{
 
     private final JComponent parent;
 
-    private final int size = 80;
+    private final int size = 40;
     private final int growingSize = size - 20;
     private final Color fillColor = new Color(166, 80, 42);
 
