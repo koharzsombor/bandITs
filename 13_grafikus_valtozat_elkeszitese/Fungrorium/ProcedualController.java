@@ -1,3 +1,5 @@
+import java.util.List;
+
 /**
  * Proceduális gráf létrehozást valósít meg.
  */
@@ -5,5 +7,5 @@ public interface ProcedualController {
     /**
      * A térképet proceduálisan létrehozza.
      */
-    void generateMap();
+    List<Tecton> generateMap();
 }

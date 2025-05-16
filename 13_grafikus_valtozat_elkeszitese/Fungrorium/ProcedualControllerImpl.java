@@ -58,7 +58,7 @@ public class ProcedualControllerImpl implements ProcedualController {
      * A térképet proceduálisan létrehozza.
      */
     @Override
-    public void generateMap() {
+    public List<Tecton> generateMap() {
         List<Entomologist> entomologists = new ArrayList<>();
         List<Mycologist> mycologists = new ArrayList<>();
 
@@ -138,5 +138,7 @@ public class ProcedualControllerImpl implements ProcedualController {
             mapCreationController.createInsect(insectStartPosition.get(random.nextInt(insectStartPosition.size())),
                     "Insect-" + entomologist.getName(), entomologist);
         }
+
+        return tectons;
     }
 }

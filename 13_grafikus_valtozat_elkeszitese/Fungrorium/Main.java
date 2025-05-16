@@ -82,15 +82,6 @@ public class Main {
         appFrame.setSize(1000, 800);
         appFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        //Menu
-        PlayerContainerView playerContainerView = new PlayerContainerView(playerContainer);
-        playerView = new PlayerView(playerContainerView, playerController);
-        gameStartView = new GameStartView(appFrame, procedualController, gameEndManager, turnController);
-        menuView = new MenuView(playerView, gameStartView);
-
-        cardLayout.addLayoutComponent(menuView, MenuView.CARD_NAME);
-        appFrame.add(menuView);
-
         //Game
         GameFieldView gameFieldView = new GameFieldView();
         TurnView turnView = new TurnView(turnController, gameEndManager);
@@ -98,6 +89,15 @@ public class Main {
 
         cardLayout.addLayoutComponent(gameView, GameView.CARD_NAME);
         appFrame.add(gameView);
+
+        //Menu
+        PlayerContainerView playerContainerView = new PlayerContainerView(playerContainer);
+        playerView = new PlayerView(playerContainerView, playerController);
+        gameStartView = new GameStartView(appFrame, procedualController, gameEndManager, turnController, gameFieldView);
+        menuView = new MenuView(playerView, gameStartView);
+
+        cardLayout.addLayoutComponent(menuView, MenuView.CARD_NAME);
+        appFrame.add(menuView);
 
         //GameEnd
         GameEndView gameEndView = new GameEndView(gameEndManager, appFrame);
