@@ -13,6 +13,9 @@ public class TectonFactoryImpl implements TectonFactory {
             case "fertiletecton" -> {
                 FertileTectonImpl t = new FertileTectonImpl();
                 ObjectRegistry.registerObject(name, t);
+
+                SwingTectonFactory.onCreateTecton(t);
+
                 return t;
             }
             case "semifertiletecton" -> {
