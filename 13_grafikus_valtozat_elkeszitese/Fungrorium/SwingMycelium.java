@@ -4,9 +4,8 @@ import java.awt.*;
 /**
  * A Mycelium grafikusan megjeleníthető formája
  */
-public class SwingMycelium implements Updatable{
+public class SwingMycelium extends JComponent implements Updatable{
 
-    private final JComponent parent;
 
     private final int size = 40;
     private final int growingSize = size - 20;
@@ -17,9 +16,8 @@ public class SwingMycelium implements Updatable{
      */
     private final MyceliumView mv;
 
-    public SwingMycelium(MyceliumView mv, JComponent parent){
+    public SwingMycelium(MyceliumView mv){
         this.mv = mv;
-        this.parent = parent;
     }
 
     /**
@@ -27,20 +25,20 @@ public class SwingMycelium implements Updatable{
      */
     @Override
     public void update() {
-        parent.repaint();
     }
 
-    public void draw(Graphics g) {
+    @Override
+    public void paintComponent(Graphics g) {
         if (mv.getLocation() == null) return;
 
         Graphics2D g2 = (Graphics2D) g;
-        Point pos = mv.getLocation();                   //Ide kell valami átváltás vagy egyéb helyről változó
         g.setColor(fillColor);
 
-        if(mv.isGrowing()){
-            g.fillOval(pos.x + 5, pos.y + 5, growingSize, growingSize);   //Nem jó
+        if(mv.isGrowing()){                                             //Lehetne popup menüvel is
+            g.fillOval(0, 0, growingSize, growingSize);
             return;
         }
-        g.fillOval(pos.x + 5, pos.y + 5, size, size);   //Nem jó
+
+        g.fillOval(0, 0, size, size);
     }
 }
