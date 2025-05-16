@@ -10,7 +10,7 @@ public class SwingMycelium implements Updatable{
 
     private final int size = 80;
     private final int growingSize = size - 20;
-    private final Color fillColor = new Color(195, 78, 26);
+    private final Color fillColor = new Color(166, 80, 42);
 
     /**
      * A modelbeli párja a grafikus objektumnak
