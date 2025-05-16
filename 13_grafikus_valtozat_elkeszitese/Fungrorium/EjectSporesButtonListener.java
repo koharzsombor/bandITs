@@ -3,7 +3,7 @@ import java.awt.event.ActionListener;
 
 /**
  * Eseménykezelő osztály a spórákilövéshez.
- * Ez az osztály akkor aktiválódik, amikor a játékos a MushroomBody-hoz tartozó menüben
+ * Ez az osztály akkor aktiválódik, amikor a játékos a MushroomBodyhoz tartozó menüben
  * a spórakilövés gombot megnyomja. Ekkor meghívja a MushroomBodyController megfelelő metódusát.
  */
 public class EjectSporesButtonListener implements ActionListener {

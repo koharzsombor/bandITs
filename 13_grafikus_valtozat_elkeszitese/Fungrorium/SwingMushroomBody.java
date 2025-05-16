@@ -3,37 +3,26 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 
 /**
- * A MushroomBody-hoz tartozó swinges nézet, amely piros háromszöget rajzol.
+ * A MushroomBodyhoz tartozó swinges nézet, amely az objektumot piros háromszögként jeleníti meg.
  */
-public class SwingMushroomBody extends JButton implements Updatable {
+public class SwingMushroomBody extends JPanel implements Updatable {
 
-    private MushroomBodyView mbv;
+    private final MushroomBodyView mbv;
     private JPopupMenu mushroomBodyPopupMenu;
+    private static final int TRIANGLE_MARGIN = 5;
 
     /**
      * Konstruktor.
-     * Beállítja az egérfigyelőt, létrehozza a popup menüt és frissíti a tooltipet.
      *
-     * @param mushroomBody A MushroomBody példány, amelyhez a SwingMushroomBody objektum létrehzoásra kerül.
+     * @param mushroomBody A MushroomBody példány, amelyhez a SwingMushroomBody objektum létrehozásra kerül.
      */
     public SwingMushroomBody(MushroomBody mushroomBody) {
         this.mbv = mushroomBody;
-        setContentAreaFilled(false);
 
         addMouseListener(new MushroomBodyMouseAdapter(this));
         update();
 
         mushroomBodyPopupMenu = new JPopupMenu();
-        mushroomBodyPopupMenu.add("MushroomBody: " + ObjectRegistry.lookupName(mushroomBody));
-
-        JButton ejectButton = new JButton("Eject spores");
-        ejectButton.addActionListener(new EjectSporesButtonListener(mushroomBody));
-        mushroomBodyPopupMenu.add(ejectButton);
-
-        JButton endTurnButton = new JButton("End turn");
-        TurnController turnController = (TurnController) ObjectRegistry.getObject("TURN");
-        endTurnButton.addActionListener(new TurnEndButtonListener(turnController));
-        mushroomBodyPopupMenu.add(endTurnButton);
     }
 
     /**
@@ -45,31 +34,51 @@ public class SwingMushroomBody extends JButton implements Updatable {
     }
 
     /**
-     * Megjeleníti a popup menüt.
+     *  Megjeleníti a MushroomBodyhoz tartozó popup menüt a gombatest nevével és
+     *  az aktuálisan elérhető tektonokra mutató gombokkal.
+     *  Minden gomb az adott tektonra történő spórakilövést indítja el.
      *
      * @param e MouseEvent objektum.
      */
     public void showPopupMenu(MouseEvent e) {
+        mushroomBodyPopupMenu.removeAll();
+
+        mbv.updateReachableTectons();
+        JLabel label = new JLabel("MushroomBody: " + ObjectRegistry.lookupName(mbv));
+        mushroomBodyPopupMenu.add(label);
+
+        JLabel subLabel = new JLabel("Reachable tectons for ejecting spores to:");
+        mushroomBodyPopupMenu.add(subLabel);
+
+        for (Tecton tecton : mbv.getReachableTectons()) {
+            JButton button = new JButton("→ " + ObjectRegistry.lookupName(tecton));
+            button.addActionListener(evt -> {
+                MushroomBodyController controller =
+                        (MushroomBodyController) ObjectRegistry.getObject("MushroomBodyController");
+                controller.eject((MushroomBody)mbv, tecton);
+            });
+            mushroomBodyPopupMenu.add(button);
+        }
         mushroomBodyPopupMenu.show(e.getComponent(), e.getX(), e.getY());
     }
 
     /**
-     * A MushroomBody grafikus megjelenítése: piros háromszög rajzolása.
+     * A MushroomBody grafikus megjelenítése piros háromszög megrajzolásával.
      *
      * @param g Grafikus objektum.
      */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Graphics2D g2 = (Graphics2D) g;
+        Graphics2D mbTriangle = (Graphics2D) g;
 
         int w = getWidth();
         int h = getHeight();
 
-        int[] xPoints = { w / 2, w - 5, 5 };
-        int[] yPoints = { 5, h - 5, h - 5 };
+        int[] xPoints = { w / 2, w - TRIANGLE_MARGIN, TRIANGLE_MARGIN };
+        int[] yPoints = { TRIANGLE_MARGIN, h - TRIANGLE_MARGIN, h - TRIANGLE_MARGIN };
 
-        g2.setColor(Color.RED);
-        g2.fillPolygon(xPoints, yPoints, 3);
+        mbTriangle.setColor(Color.RED);
+        mbTriangle.fillPolygon(xPoints, yPoints, 3);
     }
 }

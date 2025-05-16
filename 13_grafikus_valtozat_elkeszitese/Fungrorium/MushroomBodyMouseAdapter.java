@@ -22,7 +22,7 @@ public class MushroomBodyMouseAdapter implements MouseListener {
 
     /**
      * Akkor hívódik meg, amikor az egérgombot felengedik.
-     * Itt jelenik meg a SwingMushroomBody-hoz tartozó JPopupMenu.
+     * Itt jelenik meg a SwingMushroomBodyhoz tartozó JPopupMenu.
      *
      * @param e Az eseményt leíró MouseEvent objektum.
      */
