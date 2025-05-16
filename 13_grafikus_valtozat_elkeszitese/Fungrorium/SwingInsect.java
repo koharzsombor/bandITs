@@ -5,7 +5,7 @@ import java.awt.event.MouseEvent;
 /**
  * A Swing objectum az Insecthez
  */
-public class SwingInsect extends JButton implements Updatable{
+public class SwingInsect extends JPanel implements Updatable{
     /**
      * InsectView variable, ami eltárolja a swing (View) objectumhoz tartozó Model objectumot
      */
@@ -23,8 +23,6 @@ public class SwingInsect extends JButton implements Updatable{
     SwingInsect(Insect i) {
         this.iv = i;
 
-        setBackground(Color.BLACK);
-        addMouseListener(new InsectMouseAdapter(this));
         update();
 
         insectPopupMenu = new JPopupMenu();
@@ -42,10 +40,7 @@ public class SwingInsect extends JButton implements Updatable{
         moveButton.addMouseListener(new MoveButtonMouseListener(moveButton));
         insectPopupMenu.add(moveButton);
 
-        JButton endTurnButton = new JButton("End turn");
-        TurnController turnController = (TurnController) ObjectRegistry.getObject("TURN");
-        endTurnButton.addActionListener(new TurnEndButtonListener(turnController));
-        insectPopupMenu.add(endTurnButton);
+        addMouseListener(new InsectMouseAdapter(this));
     }
 
     /**
@@ -55,6 +50,18 @@ public class SwingInsect extends JButton implements Updatable{
     public void update() {
         setToolTipText("Remaining moves for the turn: " + iv.getRemainingMoves() + "\n" +
                 "Actual effect: " + iv.getState().name() + ", rounds left: " + iv.getEffectTimer());
+    }
+
+    /**
+     * Kör kirajzolása
+     * @param g the <code>Graphics</code> object to protect
+     */
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setColor(Color.black);
+        g2d.fillOval(0, 0, getWidth(), getHeight());
     }
 
     /**

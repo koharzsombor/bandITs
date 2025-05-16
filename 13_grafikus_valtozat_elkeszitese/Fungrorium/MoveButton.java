@@ -16,12 +16,16 @@ public class MoveButton extends JButton {
      * @param e a mousevent, ami meghivta
      */
     public void showPopupMenu(MouseEvent e) {
-        Tecton locationTV = insect.getLocation();
-        for(Tecton t : locationTV.getNeighbours()){
+        popup = new JPopupMenu();
+
+        popup.add("Choose a neighbouring tecton to move to");
+        Tecton location = insect.getLocation();
+        for(Tecton t : location.getNeighbours()){
             JButton button = new JButton(ObjectRegistry.lookupName(t));
             button.addActionListener(new TectonChoosingButtonListener(insect, t, popup));
             popup.add(button);
         }
+
         popup.show(e.getComponent(), e.getX(), e.getY());
     }
 }
