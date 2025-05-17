@@ -24,7 +24,7 @@ public class SwingMycelium extends JPanel implements Updatable{
     /**
      * A modelbeli párja a grafikus objektumnak
      */
-    private final MyceliumView mv;
+    protected final MyceliumView mv;
 
     /**
      * Konstruktor amiben inincializáljuk a modellbeli elemet ami alapján tudjuk frissíteni a grafikus felületet
@@ -39,6 +39,12 @@ public class SwingMycelium extends JPanel implements Updatable{
      */
     @Override
     public void update() {
+        if(mv.isGrowing()){
+            setToolTipText("Growing mycelium: "+ ObjectRegistry.lookupName(mv));
+        }
+        else{
+            setToolTipText("Grown mycelium: " + ObjectRegistry.lookupName(mv));
+        }
     }
 
     /**

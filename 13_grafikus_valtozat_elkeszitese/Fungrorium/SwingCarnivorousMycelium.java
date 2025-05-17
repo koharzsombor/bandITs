@@ -15,5 +15,16 @@ public class SwingCarnivorousMycelium extends SwingMycelium{
         fillColor = new Color(250, 88, 170);
     }
 
-
+    /**
+     * Frissíti a nézetetet, a hozzá tartozó modell alapján.
+     */
+    @Override
+    public void update() {
+        if(mv.isGrowing()){
+            setToolTipText("Growing carnivorous mycelium: " + ObjectRegistry.lookupName(mv));
+        }
+        else{
+            setToolTipText("Grown carnivorous mycelium: " + ObjectRegistry.lookupName(mv));
+        }
+    }
 }
