@@ -117,6 +117,9 @@ public class ProcedualControllerImpl implements ProcedualController {
             String myceliumType = random.nextInt(100) > 85 ? "carnivorousmycelium" : "mycelium"; // 85%, hogy nem húsevő
 
             mapCreationController.createMycelium(startingLocation, myceliumType, "Mycelium-" + myceliumID, mycologist);
+            Mycelium mycelium = (Mycelium)ObjectRegistry.getObject("Mycelium-" + myceliumID);
+            tectonController.addMycelium(mycelium, startingLocation);
+
             insectStartPosition.add(startingLocation);
             myceliumID++;
 
@@ -128,6 +131,8 @@ public class ProcedualControllerImpl implements ProcedualController {
                     continue;
 
                 mapCreationController.createMycelium(neighbour, myceliumType, "Mycelium-" + myceliumID, mycologist);
+                Mycelium mycelium2 = (Mycelium)ObjectRegistry.getObject("Mycelium-" + myceliumID);
+                tectonController.addMycelium(mycelium2, startingLocation);
                 insectStartPosition.add(neighbour);
                 myceliumID++;
 
