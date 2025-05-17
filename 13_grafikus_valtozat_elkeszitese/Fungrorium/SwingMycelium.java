@@ -6,9 +6,19 @@ import java.awt.*;
  */
 public class SwingMycelium extends JPanel implements Updatable{
 
-
+    /**
+     * A Myceliumot reprezentáló kör mérete
+     */
     private final int size = 40;
+
+    /**
+     * Kisebb méret a növés során
+     */
     private final int growingSize = size - 20;
+
+    /**
+     * A Myceliumot reprezentáló kör színe
+     */
     protected Color fillColor = new Color(166, 80, 42);
 
     /**

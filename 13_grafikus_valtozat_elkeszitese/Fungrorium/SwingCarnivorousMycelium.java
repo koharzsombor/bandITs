@@ -5,6 +5,11 @@ import java.awt.*;
  */
 public class SwingCarnivorousMycelium extends SwingMycelium{
 
+    /**
+     * Konstruktor amiben inincializáljuk a modellbeli elemet ami alapján tudjuk frissíteni a grafikus felületet.
+     * Felülírjuk a sima Mycelium színét.
+     * @param mv A grafikus elem modellbeli párja
+     */
     public SwingCarnivorousMycelium(MyceliumView mv){
         super(mv);
         fillColor = new Color(250, 88, 170);
