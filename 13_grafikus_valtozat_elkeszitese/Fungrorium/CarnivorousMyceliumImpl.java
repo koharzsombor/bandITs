@@ -2,15 +2,14 @@
  * Az alapvető gombafonál funkciókon kívül speciális feltételek között a rovarak evését és fonál
  * növesztését megvalósító osztály.
  */
-import java.util.*;
 
-public class CarnivorousMycelium extends MyceliumImpl{
+public class CarnivorousMyceliumImpl extends MyceliumImpl{
 
     /**
      * Létrehoz egy üres gombafonalat, ami nincs rajta egy tektonon.
      * Csak a játékmező létrehozására szabad használni.
      */
-    public CarnivorousMycelium() {
+    public CarnivorousMyceliumImpl() {
         super();
     }
 
@@ -20,8 +19,13 @@ public class CarnivorousMycelium extends MyceliumImpl{
      * mindegyik tekton típusra kell egy külön konstruktor.
      * @param location A tekton, ahová a gombafonál nőni szeretne.
      */
-    public CarnivorousMycelium(FertileTectonImpl location) {
-        super(location);
+    public CarnivorousMyceliumImpl(FertileTectonImpl location) {
+        this.location = location;
+
+        MyceliumGrowthEvaluator myceliumGrowthEvaluator = new MyceliumGrowthEvaluator(this);
+        myceliumGrowthEvaluator.visit(location);
+        MyceliumAbstractFactory myceliumAbstractFactory = new SwingMyceliumFactory();
+        myceliumAbstractFactory.onCreateCarnivorousMycelium(this);
     }
 
     /**
@@ -30,8 +34,13 @@ public class CarnivorousMycelium extends MyceliumImpl{
      * mindegyik tekton típusra kell egy külön konstruktor.
      * @param location A tekton, ahová a gombafonál nőni szeretne.
      */
-    public CarnivorousMycelium(SemiFertileTectonImpl location) {
-        super(location);
+    public CarnivorousMyceliumImpl(SemiFertileTectonImpl location) {
+        this.location = location;
+
+        MyceliumGrowthEvaluator myceliumGrowthEvaluator = new MyceliumGrowthEvaluator(this);
+        myceliumGrowthEvaluator.visit(location);
+        MyceliumAbstractFactory myceliumAbstractFactory = new SwingMyceliumFactory();
+        myceliumAbstractFactory.onCreateCarnivorousMycelium(this);
     }
 
     /**

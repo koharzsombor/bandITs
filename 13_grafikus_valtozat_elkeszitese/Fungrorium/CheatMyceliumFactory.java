@@ -14,7 +14,7 @@ public class CheatMyceliumFactory implements MyceliumFactory {
     public Mycelium create(String type, String name, Tecton location) {
         Mycelium mycelium;
         switch (type.toLowerCase()) {
-            case "carnivorousmycelium" -> mycelium = new CarnivorousMycelium();
+            case "carnivorousmycelium" -> mycelium = new CarnivorousMyceliumImpl();
             case "mycelium" -> mycelium = new MyceliumImpl();
             default -> throw new IllegalArgumentException("Mycelium type not supported");
         }

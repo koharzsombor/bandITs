@@ -45,6 +45,8 @@ public class MyceliumImpl implements Mycelium{
 
         MyceliumGrowthEvaluator myceliumGrowthEvaluator = new MyceliumGrowthEvaluator(this);
         myceliumGrowthEvaluator.visit(location);
+        MyceliumAbstractFactory myceliumAbstractFactory = new SwingMyceliumFactory();
+        myceliumAbstractFactory.onCreateMycelium(this);
     }
 
     /**
@@ -58,6 +60,8 @@ public class MyceliumImpl implements Mycelium{
 
         MyceliumGrowthEvaluator myceliumGrowthEvaluator = new MyceliumGrowthEvaluator(this);
         myceliumGrowthEvaluator.visit(location);
+        MyceliumAbstractFactory myceliumAbstractFactory = new SwingMyceliumFactory();
+        myceliumAbstractFactory.onCreateMycelium(this);
     }
 
     /**
