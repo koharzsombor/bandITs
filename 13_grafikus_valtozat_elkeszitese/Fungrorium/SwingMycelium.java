@@ -12,11 +12,6 @@ public class SwingMycelium extends JPanel implements Updatable{
     private final int size = 40;
 
     /**
-     * Kisebb méret a növés során
-     */
-    private final int growingSize = size - 20;
-
-    /**
      * A Myceliumot reprezentáló kör színe
      */
     protected Color fillColor = new Color(166, 80, 42);
@@ -34,17 +29,9 @@ public class SwingMycelium extends JPanel implements Updatable{
         this.mv = mv;
     }
 
-    /**
-     * Frissíti a nézetetet, a hozzá tartozó modell alapján.
-     */
+
     @Override
     public void update() {
-        if(mv.isGrowing()){
-            setToolTipText("Growing mycelium: "+ ObjectRegistry.lookupName(mv));
-        }
-        else{
-            setToolTipText("Grown mycelium: " + ObjectRegistry.lookupName(mv));
-        }
     }
 
     /**
@@ -58,12 +45,6 @@ public class SwingMycelium extends JPanel implements Updatable{
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         g.setColor(fillColor);
-
-        if(mv.isGrowing()){                                             //Lehetne popup menüvel is
-            g.fillOval(0, 0, growingSize, growingSize);
-            return;
-        }
-
         g.fillOval(0, 0, size, size);
     }
 }

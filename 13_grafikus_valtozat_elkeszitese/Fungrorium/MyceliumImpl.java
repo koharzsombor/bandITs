@@ -98,7 +98,6 @@ public class MyceliumImpl implements Mycelium{
     @Override
     public void grow(int sporeCount) {
         growing = true;
-        ViewRepository.updateObject(this);
         growTimer = sporeCount > 0 ? 1 : 2;
     }
 
@@ -156,7 +155,6 @@ public class MyceliumImpl implements Mycelium{
         if (growing) {
             growTimer--;
             growing = growTimer > 0;
-            ViewRepository.updateObject(this);
             return;
         }
 
