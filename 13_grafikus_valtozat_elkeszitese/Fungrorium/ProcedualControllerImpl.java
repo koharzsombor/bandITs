@@ -71,7 +71,7 @@ public class ProcedualControllerImpl implements ProcedualController {
         }
 
         int playerCount = 0;
-        for (Player _ : playerContainer.getPlayers()) {
+        for (Player player : playerContainer.getPlayers()) {
             playerCount++;
         }
 

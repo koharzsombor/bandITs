@@ -59,7 +59,7 @@ public class SwingMultiLayeredTecton extends JPanel implements Updatable, SwingT
         if(!myceliumList.isEmpty()){
             boolean wasntCarnivorous = true;
             for(Mycelium m : myceliumList){
-                if(m instanceof CarnivorousMycelium){
+                if(m instanceof CarnivorousMyceliumImpl){
                     wasntCarnivorous = false;
                     add((SwingCarnivorousMycelium) ViewRepository.getView(m));
                 }

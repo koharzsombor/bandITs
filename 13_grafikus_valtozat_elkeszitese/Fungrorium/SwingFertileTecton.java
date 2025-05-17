@@ -60,7 +60,7 @@ public class SwingFertileTecton extends JPanel implements Updatable, SwingTecton
         if(!myceliumList.isEmpty()){
             boolean wasntCarnivorous = true;
             for(Mycelium m : myceliumList){
-                if(m instanceof CarnivorousMycelium){
+                if(m instanceof CarnivorousMyceliumImpl){
                     wasntCarnivorous = false;
                     add((SwingCarnivorousMycelium) ViewRepository.getView(m));
                 }
