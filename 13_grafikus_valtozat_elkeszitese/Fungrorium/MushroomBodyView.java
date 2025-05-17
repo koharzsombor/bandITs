@@ -3,6 +3,7 @@ import java.util.Set;
 
 /**
  * A View réteg számára elérhető metódusok a gombatest vonatkozásában.
+ * Olvasási műveleteket tartalmaznak, állapotot nem módosítanak.
  */
 public interface MushroomBodyView {
     /**
