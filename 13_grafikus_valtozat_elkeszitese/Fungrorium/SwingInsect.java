@@ -63,8 +63,8 @@ public class SwingInsect extends JPanel implements Updatable{
      */
     @Override
     public void update() {
-        setToolTipText("Insect: " + ObjectRegistry.lookupName(iv) + "\n" +
-                "Remaining moves for the turn: " + iv.getRemainingMoves() + "\n" +
+        setToolTipText("Insect: " + ObjectRegistry.lookupName(iv) + " | " +
+                "Remaining moves for the turn: " + iv.getRemainingMoves() + " | " +
                 "Actual effect: " + iv.getState().name() + ", rounds left: " + iv.getEffectTimer());
     }
 

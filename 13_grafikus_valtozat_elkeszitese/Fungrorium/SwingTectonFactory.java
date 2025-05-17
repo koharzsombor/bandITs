@@ -23,7 +23,6 @@ public class SwingTectonFactory implements  TectonAbstractFactory{
         ViewRepository.bind(tecton, swingSemiFertileTecton);
 
         if (gameFieldView != null) {
-
             gameFieldView.addTecton(tecton);
             gameFieldView.BuildGraph();
         }
@@ -33,7 +32,6 @@ public class SwingTectonFactory implements  TectonAbstractFactory{
         ViewRepository.bind(tecton, swingAridTecton);
 
         if (gameFieldView != null) {
-
             gameFieldView.addTecton(tecton);
             gameFieldView.BuildGraph();
         }
@@ -43,7 +41,6 @@ public class SwingTectonFactory implements  TectonAbstractFactory{
         ViewRepository.bind(tecton, swingMultilayeredTecton);
 
         if (gameFieldView != null) {
-
             gameFieldView.addTecton(tecton);
             gameFieldView.BuildGraph();
         }
@@ -53,7 +50,6 @@ public class SwingTectonFactory implements  TectonAbstractFactory{
         ViewRepository.bind(tecton, swingSustainingTecton);
 
         if (gameFieldView != null) {
-
             gameFieldView.addTecton(tecton);
             gameFieldView.BuildGraph();
         }

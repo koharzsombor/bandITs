@@ -47,15 +47,17 @@ public class SwingFertileTecton extends JPanel implements Updatable, SwingTecton
     @Override
     public void update() {
         removeAll();
-        setToolTipText("FertileTecton: " + ObjectRegistry.lookupName(tectonView) + "\n" +
-                "Spores: " + tectonView.getSpores().size());
+        setToolTipText("FertileTecton: " + ObjectRegistry.lookupName(tectonView) + " | " +
+                "Spores: " + tectonView.getSpores().size() + " | " + "Mycelium: " + tectonView.getMycelia().size());
 
         setLayout(new BorderLayout());
 
-        ArrayList<MyceliumImpl> myceliumList = new ArrayList<>();
-        for(Object o : tectonView.getMycelia().toArray()){
-            myceliumList.add((MyceliumImpl) o);
+        /*
+        ArrayList<Mycelium> myceliumList = new ArrayList<>();
+        for(Mycelium m : tectonView.getMycelia()){
+            myceliumList.add(m);
         }
+        System.out.println(myceliumList.size());
 
         if(!myceliumList.isEmpty()){
             boolean wasntCarnivorous = true;
@@ -63,6 +65,7 @@ public class SwingFertileTecton extends JPanel implements Updatable, SwingTecton
                 if(m instanceof CarnivorousMyceliumImpl){
                     wasntCarnivorous = false;
                     add((SwingCarnivorousMycelium) ViewRepository.getView(m));
+                    break;
                 }
             }
             if(wasntCarnivorous){
@@ -76,7 +79,7 @@ public class SwingFertileTecton extends JPanel implements Updatable, SwingTecton
 
         for(Insect i : tectonView.getOccupants()){
             add((SwingInsect) ViewRepository.getView(i));
-        }
+        }*/
     }
 
     public void showPopupMenu(MouseEvent e) {

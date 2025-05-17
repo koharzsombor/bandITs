@@ -8,7 +8,7 @@ public class SwingMyceliumFactory implements MyceliumAbstractFactory{
      * Létrehoz egy grafikus Mycelium-ot és összepárosítja a modellbeli megfelelőjével
      * @param m Amelyik Mycelium meghívta, átadja magát.
      */
-    public  void onCreateMycelium(Mycelium m) {
+    public  void onCreateMycelium(MyceliumImpl m) {
         SwingMycelium sm = new SwingMycelium(m);
         ViewRepository.bind(m,sm);
     }
@@ -19,7 +19,7 @@ public class SwingMyceliumFactory implements MyceliumAbstractFactory{
      * @param m Amelyik Mycelium meghívta, átadja magát.
      */
 
-    public  void onCreateCarnivorousMycelium(Mycelium m) {
+    public  void onCreateCarnivorousMycelium(CarnivorousMyceliumImpl m) {
         SwingCarnivorousMycelium scm = new SwingCarnivorousMycelium(m);
         ViewRepository.bind(m,scm);
     }

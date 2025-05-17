@@ -46,8 +46,8 @@ public class SwingAridTecton extends JPanel implements Updatable, SwingTecton{
      */
     @Override
     public void update() {
-        setToolTipText("AridTecton: " + ObjectRegistry.lookupName(tectonView) + "\n" +
-                "Any Mycelium grown on this will decay in 5 rounds!" + "\n" +
+        setToolTipText("AridTecton: " + ObjectRegistry.lookupName(tectonView) + " | " +
+                "Any Mycelium grown on this will decay in 5 rounds!" + " | " +
                 "Spores: " + tectonView.getSpores().size());
 
         ArrayList<MyceliumImpl> myceliumList = new ArrayList<>();
