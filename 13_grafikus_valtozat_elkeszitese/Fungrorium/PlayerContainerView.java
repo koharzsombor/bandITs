@@ -1,19 +1,24 @@
 import javax.swing.*;
 
 /**
- *
+ * A játékosok listáját megjelenítő osztály.
  */
 public class PlayerContainerView extends JList<SwingPlayer> implements Updatable {
     /**
-     *
+     * A játékosokat tartalamzó objketum.
      */
     private final PlayerContainer container;
 
     /**
-     *
+     * A lista modell, amiben a megjelenítendő objektumok el vannak tárolva.
      */
     private final DefaultListModel<SwingPlayer> model;
 
+    /**
+     * Létrehozza a megadott függőségek alapján a nézetet.
+     *
+     * @param container A játékosokat tartalamzó objketum.
+     */
     public PlayerContainerView(PlayerContainer container) {
         this.container = container;
         model = new DefaultListModel<>();

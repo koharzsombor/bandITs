@@ -12,6 +12,8 @@ public class FertileTectonImpl extends TectonImpl {
         setMyceliaCapacity(1);
 
         setBreakTimer(rand.nextInt(MAXNUMB - MINNUMB + 1) + MINNUMB);
+
+        SwingTectonFactory.onCreateTecton( this);
     }
 
     @Override
@@ -62,6 +64,8 @@ public class FertileTectonImpl extends TectonImpl {
             this.addNeighbour(newFertileTecton);
             String newFTname = ObjectRegistry.lookupName(this) + "-" + this.breakCounter;
             ObjectRegistry.registerObject(newFTname, newFertileTecton);
+
+            SwingTectonFactory.onCreateTecton(newFertileTecton);
 
             setBreakTimer(rand.nextInt(MAXNUMB - MINNUMB + 1) + MINNUMB);
         }
