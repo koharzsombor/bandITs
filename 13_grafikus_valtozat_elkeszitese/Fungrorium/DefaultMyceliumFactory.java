@@ -17,7 +17,7 @@ public class DefaultMyceliumFactory implements MyceliumFactory {
         if (location instanceof SemiFertileTectonImpl semiFertileTecton) {
             switch (type.toLowerCase()) {
                 case "carnivorousmycelium" -> {
-                    mycelium = new CarnivorousMycelium(semiFertileTecton);
+                    mycelium = new CarnivorousMyceliumImpl(semiFertileTecton);
                     ObjectRegistry.registerObject(name, mycelium);
                 }
                 case "mycelium" ->{
@@ -30,7 +30,7 @@ public class DefaultMyceliumFactory implements MyceliumFactory {
         else if (location instanceof FertileTectonImpl fertileTecton) {
             switch (type.toLowerCase()) {
                 case "carnivorousmycelium" ->{
-                    mycelium = new CarnivorousMycelium(fertileTecton);
+                    mycelium = new CarnivorousMyceliumImpl(fertileTecton);
                     ObjectRegistry.registerObject(name, mycelium);
                 }
                 case "mycelium" ->{
