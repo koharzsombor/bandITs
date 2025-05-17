@@ -5,7 +5,7 @@ import java.awt.event.MouseEvent;
 /**
  * A Swing objectum az Insecthez
  */
-public class SwingInsect extends JButton implements Updatable{
+public class SwingInsect extends JPanel implements Updatable{
     /**
      * InsectView variable, ami eltárolja a swing (View) objectumhoz tartozó Model objectumot
      */
@@ -17,14 +17,27 @@ public class SwingInsect extends JButton implements Updatable{
     private JPopupMenu insectPopupMenu;
 
     /**
+     * Kör szine
+     */
+    private final Color color = Color.black;
+
+    /**
+     * Kör szélessége
+     */
+    private final int width = getWidth(); //10 by default
+
+    /**
+     * Kör magassága
+     */
+    private final int height = getHeight(); //10 by default
+
+    /**
      * Konstructor, ami létrehozza a PopupMenu-t, a gombokat, a listenereket stb
      * @param i a modellben, a swing objectnek megfelelő Insect
      */
     SwingInsect(Insect i) {
         this.iv = i;
 
-        setBackground(Color.BLACK);
-        addMouseListener(new InsectMouseAdapter(this));
         update();
 
         insectPopupMenu = new JPopupMenu();
@@ -42,23 +55,33 @@ public class SwingInsect extends JButton implements Updatable{
         moveButton.addMouseListener(new MoveButtonMouseListener(moveButton));
         insectPopupMenu.add(moveButton);
 
-        JButton endTurnButton = new JButton("End turn");
-        TurnController turnController = (TurnController) ObjectRegistry.getObject("TURN");
-        endTurnButton.addActionListener(new TurnEndButtonListener(turnController));
-        insectPopupMenu.add(endTurnButton);
+        addMouseListener(new InsectMouseAdapter(this));
     }
 
     /**
-     * Updates the tooltip to show Remaining moves, actual effect, and it's timer
+     * Frissiti a toolTip-et
      */
     @Override
     public void update() {
-        setToolTipText("Remaining moves for the turn: " + iv.getRemainingMoves() + "\n" +
+        setToolTipText("Insect: " + ObjectRegistry.lookupName(iv) + "\n" +
+                "Remaining moves for the turn: " + iv.getRemainingMoves() + "\n" +
                 "Actual effect: " + iv.getState().name() + ", rounds left: " + iv.getEffectTimer());
     }
 
     /**
-     * Shows the JPopupMenu
+     * Kör kirajzolása
+     * @param g the <code>Graphics</code> object to protect
+     */
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setColor(color);
+        g2d.fillOval(0, 0, width, height);
+    }
+
+    /**
+     * Megmutatja a PopupMenu-t
      * @param e a mousevent, ami meghivta
      */
     public void showPopupMenu(MouseEvent e) {

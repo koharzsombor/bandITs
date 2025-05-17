@@ -174,7 +174,8 @@ public class InsectImpl implements Insect{
         setLocation(location);
         location.addOccupant(this);
         setRemainingMoves(getMaxMoves());
-        SwingInsectFactory.onCreateInsect(this);
+        InsectAbstractFactory swingInsectFactory = new SwingInsectFactory();
+        swingInsectFactory.onCreateInsect(this);
     }
 
     /**
@@ -186,6 +187,7 @@ public class InsectImpl implements Insect{
             getLocation().cutMycelium();
             setRemainingMoves(0);
         }
+        ViewRepository.updateObject(this);
     }
 
     /**
@@ -196,6 +198,7 @@ public class InsectImpl implements Insect{
         if(getRemainingMoves() > 0) {
             getLocation().eatSpore(this);
         }
+        ViewRepository.updateObject(this);
     }
 
     /**
@@ -207,6 +210,7 @@ public class InsectImpl implements Insect{
         if(getRemainingMoves() > 0) {
             target.moveInsect(this);
         }
+        ViewRepository.updateObject(this);
     }
 
     /**
@@ -258,8 +262,9 @@ public class InsectImpl implements Insect{
 
         setSplitNum(getSplitNum() + 1);
         String newInsectName = ObjectRegistry.lookupName(this) + "-" + getSplitNum();
-        //System.out.println(newInsectName + "\n");
         ObjectRegistry.registerObject(newInsectName, newInsect);
+        InsectAbstractFactory swingInsectFactory = new SwingInsectFactory();
+        swingInsectFactory.onCreateInsect(this);
     }
 
     /**
@@ -317,8 +322,6 @@ public class InsectImpl implements Insect{
     @Override
     public void die() {
         if(getState() == InsectState.STUN){
-
-
             if(getLocation().getMushroomBody()==null) {
                 MushroomBody newMB = new MushroomBodyImpl();
                 getLocation().setMushroomBody(newMB);
@@ -330,6 +333,7 @@ public class InsectImpl implements Insect{
             getLocation().removeOccupant(this);
             setLocation(null);
         }
+        ViewRepository.updateObject(this);
     }
 
     /**
@@ -345,8 +349,8 @@ public class InsectImpl implements Insect{
                 setMaxMoves(2);
             }
         }
-
         setRemainingMoves(getMaxMoves());
+        ViewRepository.updateObject(this);
     }
 
     /**

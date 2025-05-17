@@ -2,11 +2,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Cut gombra eseménykezelő osztály
+ * CutButton gombhoz eseménykezelő osztály
  */
 public class CutButtonListener implements ActionListener {
     /**
-     * Az insect, aki létrehozta a gombot
+     * Az insect, ami tartozik a gombhoz
      */
     Insect insect;
 
@@ -17,7 +17,7 @@ public class CutButtonListener implements ActionListener {
 
     /**
      * Konstruktor, ami elmenti a létrehozó insectet, és lekéri az InsectControllert késöbbi használatra
-     * @param insect
+     * @param insect Insect, ami tartozik a gombhoz
      */
     CutButtonListener(Insect insect) {
         this.insect = insect;
@@ -26,7 +26,7 @@ public class CutButtonListener implements ActionListener {
 
     /**
      * A tényleges működése a gombnak, azak szól az InsectControllernek, hogy az insect elvágna egy myceliumot
-     * @param e the event to be processed
+     * @param e feldolgozandó event
      */
     public void actionPerformed(ActionEvent e) {
         insectController.cut(insect);
