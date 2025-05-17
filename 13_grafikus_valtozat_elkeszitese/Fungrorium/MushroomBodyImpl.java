@@ -72,6 +72,8 @@ public class MushroomBodyImpl implements MushroomBody {
      * Paraméter nélküli konstruktor.
      */
     public MushroomBodyImpl() {
+        MushroomBodyAbstractFactory swingMBFactory = new SwingMushroomBodyFactory();
+        swingMBFactory.onCreateMushroomBody(this);
     }
 
     /**

@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,5 +35,9 @@ public class ViewRepository {
 
     public static Updatable getView(Object model) {
         return objectRepository.get(model);
+    }
+
+    public static JPanel getPanel(Object model){
+        return (JPanel) objectRepository.get(model);
     }
 }

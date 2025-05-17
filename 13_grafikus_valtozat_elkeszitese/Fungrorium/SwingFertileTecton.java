@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.*;
 
 /**
  * Swing-es megjelenitese egy FertileTectonnak
@@ -47,26 +48,31 @@ public class SwingFertileTecton extends JPanel implements Updatable, SwingTecton
     @Override
     public void update() {
         removeAll();
-        setToolTipText("FertileTecton: " + ObjectRegistry.lookupName(tectonView) + "\n" +
-                "Spores: " + tectonView.getSpores().size());
+        boolean hasMB = tectonView.getMushroomBody()!=null;
+        setToolTipText("FertileTecton: " + ObjectRegistry.lookupName(tectonView) + " | " +
+                "Spores: " + tectonView.getSpores().size() + " | " +
+                "Mycelium: " + tectonView.getMycelia().size() +  " | " +
+                "MB: " +  hasMB);
 
         setLayout(new BorderLayout());
 
-        ArrayList<MyceliumImpl> myceliumList = new ArrayList<>();
-        for(Object o : tectonView.getMycelia().toArray()){
-            myceliumList.add((MyceliumImpl) o);
-        }
+        System.out.println(tectonView.getMycelia().size());
 
-        if(!myceliumList.isEmpty()){
+        LinkedList<Mycelium> myceliumList = new LinkedList<>(tectonView.getMycelia());
+
+        System.out.println(myceliumList.size());
+
+        if(myceliumList.size()>0){
             boolean wasntCarnivorous = true;
             for(Mycelium m : myceliumList){
                 if(m instanceof CarnivorousMyceliumImpl){
                     wasntCarnivorous = false;
-                    add((SwingCarnivorousMycelium) ViewRepository.getView(m));
+                    add(ViewRepository.getPanel(m));
+                    break;
                 }
             }
             if(wasntCarnivorous){
-                add((SwingMycelium) ViewRepository.getView(myceliumList.get(0)));
+                add(ViewRepository.getPanel(myceliumList.get(0)));
             }
         }
 
@@ -74,8 +80,10 @@ public class SwingFertileTecton extends JPanel implements Updatable, SwingTecton
             add((SwingMushroomBody) ViewRepository.getView(tectonView.getMushroomBody()));
         }
 
-        for(Insect i : tectonView.getOccupants()){
-            add((SwingInsect) ViewRepository.getView(i));
+        for(int i=0; i<tectonView.getOccupants().size(); i++){
+            SwingInsect si = (SwingInsect) ViewRepository.getView(tectonView.getOccupants().get(i));
+            si.setLocation(new Point(i%5, i/5));
+            add(si);
         }
     }
 

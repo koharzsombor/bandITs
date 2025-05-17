@@ -6,8 +6,8 @@ public class MultiLayeredTectonImpl extends FertileTectonImpl {
 
     Random rand = new Random();
 
-    int MINNUMB = 2;
-    int MAXNUMB = 2;
+    int MINNUMB = 5;
+    int MAXNUMB = 10;
 
     MultiLayeredTectonImpl() {
         setMyceliaCapacity(3);
@@ -76,6 +76,7 @@ public class MultiLayeredTectonImpl extends FertileTectonImpl {
      * To string, a kiiráshoz
      * @return az tecton tulajdonságainak formázott stringje
      */
+    /*
     @Override
     public String toString() {
         String output = ObjectRegistry.lookupName(this) + ": MultiLayeredTecton\n";
@@ -103,5 +104,5 @@ public class MultiLayeredTectonImpl extends FertileTectonImpl {
         }
         output += "\t}\n";
         return output;
-    }
+    }*/
 }

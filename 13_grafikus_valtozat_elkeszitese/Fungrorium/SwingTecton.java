@@ -1,7 +1,8 @@
+import javax.swing.*;
 import java.awt.event.MouseEvent;
 
 public interface SwingTecton {
-    void update();
+    abstract void update();
 
-    void showPopupMenu(MouseEvent e);
+    abstract void showPopupMenu(MouseEvent e);
 }

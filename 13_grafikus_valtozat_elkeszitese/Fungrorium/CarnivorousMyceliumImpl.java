@@ -11,6 +11,8 @@ public class CarnivorousMyceliumImpl extends MyceliumImpl{
      */
     public CarnivorousMyceliumImpl() {
         super();
+        MyceliumAbstractFactory myceliumAbstractFactory = new SwingMyceliumFactory();
+        myceliumAbstractFactory.onCreateCarnivorousMycelium(this);
     }
 
     /**

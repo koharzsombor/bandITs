@@ -48,8 +48,8 @@ public class SwingSustainingTecton extends JPanel implements Updatable, SwingTec
      */
     @Override
     public void update() {
-        setToolTipText("SustainingTecton: " + ObjectRegistry.lookupName(tectonView) + "\n" +
-                "This tecton can sustain any spore connected to it!" + '\n' +
+        setToolTipText("SustainingTecton: " + ObjectRegistry.lookupName(tectonView) + " | " +
+                "This tecton can sustain any spore connected to it!" + " | " +
                 "Spores: " + tectonView.getSpores().size());
 
         ArrayList<MyceliumImpl> myceliumList = new ArrayList<>();

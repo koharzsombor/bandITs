@@ -20,6 +20,11 @@ public class ProcedualControllerImpl implements ProcedualController {
     private static final int NEIGHBOUR_COUNT_RANGE = 2;
 
     /**
+     * Esély arra hogy gombafonál növéskor Carnivorous nő sima helyett
+     */
+    private static final int CHANCE_FOR_CARNIVOROUS_MYCELIUM = 85;
+
+    /**
      * A térkép létrehozásáért felelős osztály.
      */
     private final MapCreationController mapCreationController;
@@ -80,8 +85,10 @@ public class ProcedualControllerImpl implements ProcedualController {
 
         for (int i = 0; i < playerCount * TECTON_PER_PLAYER; i++) {
             String name = "Tecton-" + i;
-            //int type = random.nextInt(5);
-            int type = 0;
+            int type = random.nextInt(5);
+            while (type == 1) {
+                type = random.nextInt(5);
+            }
             String tectonType = "";
             switch (type) {
                 case 0 -> tectonType = "fertiletecton";
@@ -92,6 +99,7 @@ public class ProcedualControllerImpl implements ProcedualController {
                 default -> throw new IllegalArgumentException("It is not a type");
             }
 
+            name += "-" + tectonType;
             mapCreationController.createTecton(tectonType, name);
 
             if (!tectonType.equals("aridtecton"))
@@ -118,7 +126,7 @@ public class ProcedualControllerImpl implements ProcedualController {
 
             mapCreationController.createMycelium(startingLocation, myceliumType, "Mycelium-" + myceliumID, mycologist);
             Mycelium mycelium = (Mycelium)ObjectRegistry.getObject("Mycelium-" + myceliumID);
-            tectonController.addMycelium(mycelium, startingLocation);
+            //tectonController.addMycelium(mycelium, startingLocation);
 
             insectStartPosition.add(startingLocation);
             myceliumID++;
@@ -130,9 +138,10 @@ public class ProcedualControllerImpl implements ProcedualController {
                 if (!startingLocations.contains(neighbour))
                     continue;
 
+                myceliumType = random.nextInt(100) > 85 ? "carnivorousmycelium" : "mycelium"; // 85%, hogy nem húsevő
                 mapCreationController.createMycelium(neighbour, myceliumType, "Mycelium-" + myceliumID, mycologist);
                 Mycelium mycelium2 = (Mycelium)ObjectRegistry.getObject("Mycelium-" + myceliumID);
-                tectonController.addMycelium(mycelium2, startingLocation);
+                //tectonController.addMycelium(mycelium2, neighbour);
                 insectStartPosition.add(neighbour);
                 myceliumID++;
 

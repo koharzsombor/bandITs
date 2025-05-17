@@ -5,8 +5,8 @@ public class AridTectonImpl extends FertileTectonImpl {
 
     private int absorbCountdown;
 
-    int MINNUMB = 2;
-    int MAXNUMB = 2;
+    int MINNUMB = 5;
+    int MAXNUMB = 10;
     Random rand = new Random();
 
     AridTectonImpl() {
@@ -87,6 +87,7 @@ public class AridTectonImpl extends FertileTectonImpl {
      * To string, a kiiráshoz
      * @return az tecton tulajdonságainak formázott stringje
      */
+    /*
     @Override
     public String toString() {
         String output = ObjectRegistry.lookupName(this) + ": AridTecton\n";
@@ -120,5 +121,5 @@ public class AridTectonImpl extends FertileTectonImpl {
     public void addMycelium(Mycelium mycelium){
         super.addMycelium(mycelium);
         absorbCountdown = 5;
-    }
+    }*/
 }
