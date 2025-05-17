@@ -1,3 +1,5 @@
+import org.w3c.dom.css.RGBColor;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -5,7 +7,7 @@ import java.awt.event.MouseEvent;
 /**
  * Swing-es megjelenitese egy FertileTectonnak
  */
-public class SwingFertileTecton extends JPanel implements Updatable, SwingTecton{
+public class SwingSustainingTecton extends JPanel implements Updatable, SwingTecton{
 
     // Hogy tudjon kommunikalni a FertileTectonImpl-vel
     private TectonView tectonView;
@@ -21,11 +23,11 @@ public class SwingFertileTecton extends JPanel implements Updatable, SwingTecton
      * Konstruktor, PopupMenu + gombok + listenerek
      * @param tecton
      */
-    SwingFertileTecton(FertileTectonImpl tecton) {
+    SwingSustainingTecton(FertileTectonImpl tecton) {
         this.tectonView =  tecton;
 
         tectonPopupMenu = new JPopupMenu();
-        tectonPopupMenu.add("FertileTecton: " + ObjectRegistry.lookupName(tecton));
+        tectonPopupMenu.add("SustainingTecton: " + ObjectRegistry.lookupName(tecton));
 
         JButton growMycelium = new JButton("Grow Mycelium on this Tecton");
         growMycelium.addActionListener(new GrowMyceliumToFertileActionListener(tecton));
@@ -46,7 +48,8 @@ public class SwingFertileTecton extends JPanel implements Updatable, SwingTecton
     @Override
     public void update() {
         Tecton location = (FertileTectonImpl) ViewRepository.getView(this);
-        setToolTipText("FertileTecton: " + ObjectRegistry.lookupName(location) + "\n" +
+        setToolTipText("SustainingTecton: " + ObjectRegistry.lookupName(location) + "\n" +
+                "This tecton can sustain any spore connected to it!" + '\n' +
                 "Spores: " + location.getSpores().size());
     }
 

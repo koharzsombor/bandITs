@@ -5,7 +5,7 @@ import java.awt.event.MouseEvent;
 /**
  * Swing-es megjelenitese egy FertileTectonnak
  */
-public class SwingFertileTecton extends JPanel implements Updatable, SwingTecton{
+public class SwingMultiLayeredTecton extends JPanel implements Updatable, SwingTecton{
 
     // Hogy tudjon kommunikalni a FertileTectonImpl-vel
     private TectonView tectonView;
@@ -15,19 +15,19 @@ public class SwingFertileTecton extends JPanel implements Updatable, SwingTecton
 
     private int size = 50;
 
-    protected Color fillColor = Color.GREEN;
+    protected Color fillColor = Color.BLUE;
 
     /**
      * Konstruktor, PopupMenu + gombok + listenerek
      * @param tecton
      */
-    SwingFertileTecton(FertileTectonImpl tecton) {
+    SwingMultiLayeredTecton(FertileTectonImpl tecton) {
         this.tectonView =  tecton;
 
         tectonPopupMenu = new JPopupMenu();
-        tectonPopupMenu.add("FertileTecton: " + ObjectRegistry.lookupName(tecton));
+        tectonPopupMenu.add("MultiLayeredTecton: " + ObjectRegistry.lookupName(tecton));
 
-        JButton growMycelium = new JButton("Grow Mycelium on this Tecton");
+        JButton growMycelium = new JButton("Grow Mycelium on this Tecton - Attention: Up to 3 separate Myceliums can grow on this type of Tecton");
         growMycelium.addActionListener(new GrowMyceliumToFertileActionListener(tecton));
         tectonPopupMenu.add(growMycelium);
 
@@ -47,7 +47,9 @@ public class SwingFertileTecton extends JPanel implements Updatable, SwingTecton
     public void update() {
         Tecton location = (FertileTectonImpl) ViewRepository.getView(this);
         setToolTipText("FertileTecton: " + ObjectRegistry.lookupName(location) + "\n" +
-                "Spores: " + location.getSpores().size());
+                "3 separate Myceliums can grow on this type of tecton!" + "\n" +
+                "Spores: " + location.getSpores().size() + "\n" +
+                "Number of Myceliums: " + location.getMycelia().size());
     }
 
     public void showPopupMenu(MouseEvent e) {

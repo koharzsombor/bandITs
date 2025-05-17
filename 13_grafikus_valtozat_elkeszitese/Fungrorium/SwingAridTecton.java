@@ -5,7 +5,7 @@ import java.awt.event.MouseEvent;
 /**
  * Swing-es megjelenitese egy FertileTectonnak
  */
-public class SwingFertileTecton extends JPanel implements Updatable, SwingTecton{
+public class SwingAridTecton extends JPanel implements Updatable, SwingTecton{
 
     // Hogy tudjon kommunikalni a FertileTectonImpl-vel
     private TectonView tectonView;
@@ -15,19 +15,19 @@ public class SwingFertileTecton extends JPanel implements Updatable, SwingTecton
 
     private int size = 50;
 
-    protected Color fillColor = Color.GREEN;
+    protected Color fillColor = Color.YELLOW;
 
     /**
      * Konstruktor, PopupMenu + gombok + listenerek
      * @param tecton
      */
-    SwingFertileTecton(FertileTectonImpl tecton) {
+    SwingAridTecton(FertileTectonImpl tecton) {
         this.tectonView =  tecton;
 
         tectonPopupMenu = new JPopupMenu();
-        tectonPopupMenu.add("FertileTecton: " + ObjectRegistry.lookupName(tecton));
+        tectonPopupMenu.add("AridTecton: " + ObjectRegistry.lookupName(tecton));
 
-        JButton growMycelium = new JButton("Grow Mycelium on this Tecton");
+        JButton growMycelium = new JButton("Grow Mycelium on this Tecton - Attention: Any Mycelium grown on this type of tecton will decay after 5 rounds");
         growMycelium.addActionListener(new GrowMyceliumToFertileActionListener(tecton));
         tectonPopupMenu.add(growMycelium);
 
@@ -46,7 +46,8 @@ public class SwingFertileTecton extends JPanel implements Updatable, SwingTecton
     @Override
     public void update() {
         Tecton location = (FertileTectonImpl) ViewRepository.getView(this);
-        setToolTipText("FertileTecton: " + ObjectRegistry.lookupName(location) + "\n" +
+        setToolTipText("AridTecton: " + ObjectRegistry.lookupName(location) + "\n" +
+                "Any Mycelium grown on this will decay in 5 rounds!" + "\n" +
                 "Spores: " + location.getSpores().size());
     }
 

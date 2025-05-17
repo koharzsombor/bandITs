@@ -3,7 +3,7 @@ import java.util.Random;
 
 public class AridTectonImpl extends FertileTectonImpl {
 
-    private int abosrbCountdown;
+    private int absorbCountdown;
 
     int MINNUMB = 2;
     int MAXNUMB = 2;
@@ -26,7 +26,7 @@ public class AridTectonImpl extends FertileTectonImpl {
 
         int sporeCount = getSpores().size();
         mycelium.grow(sporeCount);
-        abosrbCountdown = 5;
+        absorbCountdown = 5;
     }
 
     public void accept(MushroomBodyGrowthEvaluator mushroomBodyGrowthEvaluator, MushroomBody mushroomBody) {
@@ -40,9 +40,9 @@ public class AridTectonImpl extends FertileTectonImpl {
     }
 
     public void onRoundBegin() {
-        if (abosrbCountdown > 0) {
-            abosrbCountdown--;
-            if (abosrbCountdown <= 0) {
+        if (absorbCountdown > 0) {
+            absorbCountdown--;
+            if (absorbCountdown <= 0) {
                 Mycelium mycelium = this.getMycelia().poll();
                 if (mycelium != null) {
                     mycelium.delete();
@@ -119,6 +119,6 @@ public class AridTectonImpl extends FertileTectonImpl {
     @Override
     public void addMycelium(Mycelium mycelium){
         super.addMycelium(mycelium);
-        abosrbCountdown = 5;
+        absorbCountdown = 5;
     }
 }

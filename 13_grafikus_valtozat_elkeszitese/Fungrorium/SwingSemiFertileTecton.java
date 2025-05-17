@@ -5,7 +5,7 @@ import java.awt.event.MouseEvent;
 /**
  * Swing-es megjelenitese egy FertileTectonnak
  */
-public class SwingFertileTecton extends JPanel implements Updatable, SwingTecton{
+public class SwingSemiFertileTecton extends JPanel implements Updatable, SwingTecton{
 
     // Hogy tudjon kommunikalni a FertileTectonImpl-vel
     private TectonView tectonView;
@@ -15,24 +15,24 @@ public class SwingFertileTecton extends JPanel implements Updatable, SwingTecton
 
     private int size = 50;
 
-    protected Color fillColor = Color.GREEN;
+    protected Color fillColor = Color.GRAY;
 
     /**
      * Konstruktor, PopupMenu + gombok + listenerek
      * @param tecton
      */
-    SwingFertileTecton(FertileTectonImpl tecton) {
+    SwingSemiFertileTecton(SemiFertileTectonImpl tecton) {
         this.tectonView =  tecton;
 
         tectonPopupMenu = new JPopupMenu();
-        tectonPopupMenu.add("FertileTecton: " + ObjectRegistry.lookupName(tecton));
+        tectonPopupMenu.add("SemiFertileTecton: " + ObjectRegistry.lookupName(tecton));
 
         JButton growMycelium = new JButton("Grow Mycelium on this Tecton");
-        growMycelium.addActionListener(new GrowMyceliumToFertileActionListener(tecton));
+        growMycelium.addActionListener(new GrowMyceliumToSemiFertileActionListener(tecton));
         tectonPopupMenu.add(growMycelium);
 
-        JButton growMushroomBody = new JButton("Grow MushroomBody on this Tecton");
-        growMushroomBody.addActionListener(new GrowMushroomBodyToFertileActionListener(tecton));
+        JButton growMushroomBody = new JButton("Grow MushroomBody on this Tecton - Attention: MushroomBodys can NOT grow on this type of tecton");
+        growMushroomBody.addActionListener(new GrowMushroomBodyToSemiFertileActionListener(tecton));
         tectonPopupMenu.add(growMushroomBody);
 
         addMouseListener(new TectonMouseListener(this));
@@ -46,7 +46,8 @@ public class SwingFertileTecton extends JPanel implements Updatable, SwingTecton
     @Override
     public void update() {
         Tecton location = (FertileTectonImpl) ViewRepository.getView(this);
-        setToolTipText("FertileTecton: " + ObjectRegistry.lookupName(location) + "\n" +
+        setToolTipText("SemiFertileTecton: " + ObjectRegistry.lookupName(location) + "\n" +
+                "Cannot grow MushroomBody on this Tecton!" + "\n" +
                 "Spores: " + location.getSpores().size());
     }
 
