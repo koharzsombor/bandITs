@@ -45,10 +45,9 @@ public class SwingSemiFertileTecton extends JPanel implements Updatable, SwingTe
      */
     @Override
     public void update() {
-        Tecton location = (FertileTectonImpl) ViewRepository.getView(this);
-        setToolTipText("SemiFertileTecton: " + ObjectRegistry.lookupName(location) + "\n" +
+        setToolTipText("SemiFertileTecton: " + ObjectRegistry.lookupName(tectonView) + "\n" +
                 "Cannot grow MushroomBody on this Tecton!" + "\n" +
-                "Spores: " + location.getSpores().size());
+                "Spores: " + tectonView.getSpores().size());
     }
 
     public void showPopupMenu(MouseEvent e) {

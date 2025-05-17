@@ -15,7 +15,7 @@ public class SwingFertileTecton extends JPanel implements Updatable, SwingTecton
 
     private int size = 50;
 
-    protected Color fillColor = Color.GREEN;
+    protected Color fillColor = new Color(56, 93, 56);
 
     /**
      * Konstruktor, PopupMenu + gombok + listenerek
@@ -45,9 +45,8 @@ public class SwingFertileTecton extends JPanel implements Updatable, SwingTecton
      */
     @Override
     public void update() {
-        Tecton location = (FertileTectonImpl) ViewRepository.getView(this);
-        setToolTipText("FertileTecton: " + ObjectRegistry.lookupName(location) + "\n" +
-                "Spores: " + location.getSpores().size());
+        setToolTipText("FertileTecton: " + ObjectRegistry.lookupName(tectonView) + "\n" +
+                "Spores: " + tectonView.getSpores().size());
     }
 
     public void showPopupMenu(MouseEvent e) {

@@ -45,11 +45,10 @@ public class SwingMultiLayeredTecton extends JPanel implements Updatable, SwingT
      */
     @Override
     public void update() {
-        Tecton location = (FertileTectonImpl) ViewRepository.getView(this);
-        setToolTipText("FertileTecton: " + ObjectRegistry.lookupName(location) + "\n" +
+        setToolTipText("FertileTecton: " + ObjectRegistry.lookupName(tectonView) + "\n" +
                 "3 separate Myceliums can grow on this type of tecton!" + "\n" +
-                "Spores: " + location.getSpores().size() + "\n" +
-                "Number of Myceliums: " + location.getMycelia().size());
+                "Spores: " + tectonView.getSpores().size() + "\n" +
+                "Number of Myceliums: " + tectonView.getMycelia().size());
     }
 
     public void showPopupMenu(MouseEvent e) {
