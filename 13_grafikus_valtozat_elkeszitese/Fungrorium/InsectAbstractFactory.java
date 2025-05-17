@@ -6,5 +6,5 @@ public interface InsectAbstractFactory {
      * Amikor létrejön egy Insect, létrejön egy SwingInsect is
      * @param insect a létrejött insect
      */
-    public void onCreateInsect(Insect insect);
+    void onCreateInsect(Insect insect);
 }
