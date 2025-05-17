@@ -10,6 +10,10 @@ public class SwingMushroomBody extends JPanel implements Updatable {
     private final MushroomBodyView mbv;
     private JPopupMenu mushroomBodyPopupMenu;
     private static final int TRIANGLE_MARGIN = 5;
+    int width = getWidth();
+    int height = getHeight();
+    int nPoints = 3;
+    private Color triangleColor = Color.RED;
 
     /**
      * Konstruktor.
@@ -26,11 +30,13 @@ public class SwingMushroomBody extends JPanel implements Updatable {
     }
 
     /**
-     * Tooltip frissítése a megmaradt spórakilövések számával.
+     * Tooltip frissítése a megmaradt spórakilövések számával (a gombatest neve is kiíródik).
      */
     @Override
     public void update() {
-        setToolTipText("Remaining ejects: " + mbv.getRemainingEjects());
+        String name = ObjectRegistry.lookupName(mbv);
+        int ejects = mbv.getRemainingEjects();
+        setToolTipText("MushroomBody: " + name + " | Remaining ejects: " + ejects);
     }
 
     /**
@@ -46,16 +52,11 @@ public class SwingMushroomBody extends JPanel implements Updatable {
         JLabel label = new JLabel("MushroomBody: " + ObjectRegistry.lookupName(mbv));
         mushroomBodyPopupMenu.add(label);
 
-        JLabel subLabel = new JLabel("Reachable tectons for ejecting spores to:");
+        JLabel subLabel = new JLabel("Choose one of the following reachable tectons to eject spores to:");
         mushroomBodyPopupMenu.add(subLabel);
 
         for (Tecton tecton : mbv.getReachableTectons()) {
-            JButton button = new JButton("→ " + ObjectRegistry.lookupName(tecton));
-            /*button.addActionListener(evt -> {
-                MushroomBodyController controller =
-                        (MushroomBodyController) ObjectRegistry.getObject("MushroomBodyController");
-                controller.eject((MushroomBody)mbv, tecton);
-            });*/
+            JButton button = new JButton("-> " + ObjectRegistry.lookupName(tecton));
             button.addActionListener(new EjectSporesButtonListener((MushroomBody)mbv));
             mushroomBodyPopupMenu.add(button);
         }
@@ -72,13 +73,10 @@ public class SwingMushroomBody extends JPanel implements Updatable {
         super.paintComponent(g);
         Graphics2D mbTriangle = (Graphics2D) g;
 
-        int w = getWidth();
-        int h = getHeight();
+        int[] xPoints = { width / 2, width - TRIANGLE_MARGIN, TRIANGLE_MARGIN };
+        int[] yPoints = { TRIANGLE_MARGIN, height - TRIANGLE_MARGIN, height - TRIANGLE_MARGIN };
 
-        int[] xPoints = { w / 2, w - TRIANGLE_MARGIN, TRIANGLE_MARGIN };
-        int[] yPoints = { TRIANGLE_MARGIN, h - TRIANGLE_MARGIN, h - TRIANGLE_MARGIN };
-
-        mbTriangle.setColor(Color.RED);
-        mbTriangle.fillPolygon(xPoints, yPoints, 3);
+        mbTriangle.setColor(triangleColor);
+        mbTriangle.fillPolygon(xPoints, yPoints, nPoints);
     }
 }
