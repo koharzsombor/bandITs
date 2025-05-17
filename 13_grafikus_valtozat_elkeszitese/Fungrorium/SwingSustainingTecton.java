@@ -3,6 +3,7 @@ import org.w3c.dom.css.RGBColor;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 /**
  * Swing-es megjelenitese egy FertileTectonnak
@@ -50,6 +51,32 @@ public class SwingSustainingTecton extends JPanel implements Updatable, SwingTec
         setToolTipText("SustainingTecton: " + ObjectRegistry.lookupName(tectonView) + "\n" +
                 "This tecton can sustain any spore connected to it!" + '\n' +
                 "Spores: " + tectonView.getSpores().size());
+
+        ArrayList<MyceliumImpl> myceliumList = new ArrayList<>();
+        for(Object o : tectonView.getMycelia().toArray()){
+            myceliumList.add((MyceliumImpl) o);
+        }
+
+        if(!myceliumList.isEmpty()){
+            boolean wasntCarnivorous = true;
+            for(Mycelium m : myceliumList){
+                if(m instanceof CarnivorousMycelium){
+                    wasntCarnivorous = false;
+                    add((SwingCarnivorousMycelium) ViewRepository.getView(m));
+                }
+            }
+            if(wasntCarnivorous){
+                add((SwingMycelium) ViewRepository.getView(myceliumList.get(0)));
+            }
+        }
+
+        if(tectonView.getMushroomBody()!=null){
+            add((SwingMushroomBody) ViewRepository.getView(tectonView.getMushroomBody()));
+        }
+
+        for(Insect i : tectonView.getOccupants()){
+            add((SwingInsect) ViewRepository.getView(i));
+        }
     }
 
     public void showPopupMenu(MouseEvent e) {
