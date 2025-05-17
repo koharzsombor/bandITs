@@ -18,9 +18,9 @@ public class SwingInsect extends JPanel implements Updatable{
 
     private final Color color = Color.black;
 
-    private final int width = 10;
+    private final int width = getWidth(); //10 by default
 
-    private final int height = 10;
+    private final int height = getHeight(); //10 by default
 
     /**
      * Konstructor, ami létrehozza a PopupMenu-t, a gombokat, a listenereket stb
@@ -54,7 +54,8 @@ public class SwingInsect extends JPanel implements Updatable{
      */
     @Override
     public void update() {
-        setToolTipText("Remaining moves for the turn: " + iv.getRemainingMoves() + "\n" +
+        setToolTipText("Insect: " + ObjectRegistry.lookupName(iv) + "\n" +
+                "Remaining moves for the turn: " + iv.getRemainingMoves() + "\n" +
                 "Actual effect: " + iv.getState().name() + ", rounds left: " + iv.getEffectTimer());
     }
 
