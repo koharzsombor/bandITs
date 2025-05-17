@@ -37,6 +37,11 @@ public class MushroomBodyImpl implements MushroomBody {
     private final Map<String, Integer> sporeTypeCounters = new HashMap<>();
 
     /**
+     * A spórakilövés során aktuálisan elérhető tektonokat tartalmazza.
+     */
+    private final Set<Tecton> reachableTectons = new HashSet<>();
+
+    /**
      * Konstruktor, amely beállítja a tektont (céltekton), amelyen a gombatest elhelyezésre kerül.
      * Ez a konstruktor használandó FertileTecton, továbbá a FertileTecton valamennyi leszármazottja,
      * azaz AridTecton, MultiLayeredTecton és SustainingTecton esetén.
@@ -59,6 +64,8 @@ public class MushroomBodyImpl implements MushroomBody {
         this.location = location;
         MushroomBodyGrowthEvaluator evaluator = new MushroomBodyGrowthEvaluator(this);
         evaluator.visit(location);
+        MushroomBodyAbstractFactory swingMBFactory = new SwingMushroomBodyFactory();
+        swingMBFactory.onCreateMushroomBody(this);
     }
 
     /**
@@ -267,6 +274,41 @@ public class MushroomBodyImpl implements MushroomBody {
             return "splits";
         }
         return "unknown";
+    }
+
+    /**
+     * Frissíti a reachableTectonst az aktuális remainingEjects és location alapján.
+     * A gombatest utolsó kilövésénél (fejlett állapot; {@code remainingEjects == 1}) céltekton lehet
+     * a gombatest közvetlen szomszédja vagy a szomszéd szomszédja is.
+     * A gombatest utolsó kilövését megelőző kilövések során (fejletlen állapot; {@code remainingEjects > 1})
+     *  céltekton csak a gombatest közvetlen szomszédja lehet.
+     */
+    public void updateReachableTectons() {
+        reachableTectons.clear();
+
+        if (remainingEjects == 0) {
+            return;
+        }
+
+        if (remainingEjects == 1) {
+            for (Tecton neighbour : location.getNeighbours()) {
+                reachableTectons.add(neighbour);
+                reachableTectons.addAll(neighbour.getNeighbours());
+            }
+            reachableTectons.remove(getLocation());
+        } else {
+            reachableTectons.addAll(location.getNeighbours());
+        }
+    }
+
+    /**
+     * Visszaadja azokat a tektonokat, amelyek célpontjai lehetnek a spórakilövésnek.
+     *
+     * @return A spórakilövéssel elérhető elérhető céltektonok  halmaza.
+     */
+    public Set<Tecton> getReachableTectons() {
+        this.updateReachableTectons();
+        return Collections.unmodifiableSet(reachableTectons);
     }
 
     /**
