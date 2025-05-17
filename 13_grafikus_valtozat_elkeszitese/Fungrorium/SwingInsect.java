@@ -16,6 +16,12 @@ public class SwingInsect extends JPanel implements Updatable{
      */
     private JPopupMenu insectPopupMenu;
 
+    private final Color color = Color.black;
+
+    private final int width = 10;
+
+    private final int height = 10;
+
     /**
      * Konstructor, ami létrehozza a PopupMenu-t, a gombokat, a listenereket stb
      * @param i a modellben, a swing objectnek megfelelő Insect
@@ -60,8 +66,8 @@ public class SwingInsect extends JPanel implements Updatable{
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.black);
-        g2d.fillOval(0, 0, getWidth(), getHeight());
+        g2d.setColor(color);
+        g2d.fillOval(0, 0, width, height);
     }
 
     /**
