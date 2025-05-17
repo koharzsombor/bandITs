@@ -22,14 +22,19 @@ public class SwingInsect extends JPanel implements Updatable{
     private final Color color = Color.black;
 
     /**
+     * A kör koordinátái
+     */
+    private Point location = new Point(0, 0);
+
+    /**
      * Kör szélessége
      */
-    private final int width = getWidth(); //10 by default
+    private final int width = 10; //10 by default
 
     /**
      * Kör magassága
      */
-    private final int height = getHeight(); //10 by default
+    private final int height = 10; //10 by default
 
     /**
      * Konstructor, ami létrehozza a PopupMenu-t, a gombokat, a listenereket stb
@@ -77,7 +82,7 @@ public class SwingInsect extends JPanel implements Updatable{
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(color);
-        g2d.fillOval(0, 0, width, height);
+        g2d.fillOval(location.x, location.y, width, height);
     }
 
     /**

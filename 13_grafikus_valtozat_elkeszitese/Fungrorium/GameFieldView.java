@@ -1,5 +1,6 @@
 import javax.swing.*;
 import javax.swing.Timer;
+import javax.swing.text.View;
 import java.awt.*;
 import java.util.*;
 import java.util.List;
@@ -10,7 +11,7 @@ public class GameFieldView extends JPanel {
     public static final int TECTON_SIZE = 50;
 
     // Map to store nodes and their current positions
-    private Map<SwingFertileTecton, Node> tectonNodes = new HashMap<>();
+    private Map<SwingTecton, Node> tectonNodes = new HashMap<>();
 
     // Graph structure
     private List<Edge> edges = new ArrayList<>();
@@ -39,7 +40,7 @@ public class GameFieldView extends JPanel {
 
     public void BuildGraph() {
         // Clear existing nodes and edges
-        for (SwingFertileTecton component : new ArrayList<>(tectonNodes.keySet())) {
+        for (SwingTecton component : new ArrayList<>(tectonNodes.keySet())) {
             removeTecton(component);
         }
         edges.clear();
@@ -54,8 +55,9 @@ public class GameFieldView extends JPanel {
         // Add each tecton to the graph
         Random random = new Random();
         for (TectonView tecton : tectons) {
-            // Get the SwingFertileTecton from ViewRepository
-            SwingFertileTecton tectonComponent = (SwingFertileTecton) ViewRepository.getView(tecton);
+            // Get the SwingTecton from ViewRepository
+            SwingTecton tectonComponent = (SwingTecton) ViewRepository.getView(tecton);
+            tectonComponent.update();
 
             // Add the component to the graph at a random initial position
             double x = random.nextDouble() * (WIDTH - 2 * TECTON_SIZE) + TECTON_SIZE;
@@ -65,14 +67,14 @@ public class GameFieldView extends JPanel {
 
         // Create edges based on tecton relationships
         for (TectonView tecton : tectons) {
-            SwingFertileTecton tectonComponent = (SwingFertileTecton) ViewRepository.getView(tecton);
+            SwingTecton tectonComponent = (SwingTecton) ViewRepository.getView(tecton);
 
             // Get neighbors using the TectonView interface's getNeighboursViews method
             List<TectonView> neighbors = tecton.getNeighboursViews();
 
             for (TectonView neighbor : neighbors) {
-                // Get the SwingFertileTecton for this neighbor
-                SwingFertileTecton neighborComponent = (SwingFertileTecton) ViewRepository.getView(neighbor);
+                // Get the SwingTecton for this neighbor
+                SwingTecton neighborComponent = (SwingTecton) ViewRepository.getView(neighbor);
                 addEdge(tectonComponent, neighborComponent);
             }
         }
@@ -98,14 +100,15 @@ public class GameFieldView extends JPanel {
     /**
      * Add a tecton component to the graph
      */
-    public void addSwingTecton(SwingFertileTecton tectonComponent, double x, double y) {
+    public void addSwingTecton(SwingTecton tectonComponent, double x, double y) {
         // Create a node for this tecton component
         Node node = new Node(x, y);
         tectonNodes.put(tectonComponent, node);
 
         // Add the component to the panel
-        tectonComponent.setBounds((int)x, (int)y, TECTON_SIZE, TECTON_SIZE);
-        add(tectonComponent);
+        JPanel panel = (JPanel)tectonComponent;
+        panel.setBounds((int)x, (int)y, TECTON_SIZE, TECTON_SIZE);
+        add(panel);
 
         repaint();
     }
@@ -118,8 +121,8 @@ public class GameFieldView extends JPanel {
     /**
      * Remove a tecton component from the graph
      */
-    public void removeTecton(SwingFertileTecton tectonComponent) {
-        remove(tectonComponent);
+    public void removeTecton(SwingTecton tectonComponent) {
+        remove((JPanel) tectonComponent);
         tectonNodes.remove(tectonComponent);
 
         // Remove any edges connected to this component
@@ -131,7 +134,7 @@ public class GameFieldView extends JPanel {
     /**
      * Connect two tectons with an edge
      */
-    public void addEdge(SwingFertileTecton tecton1, SwingFertileTecton tecton2) {
+    public void addEdge(SwingTecton tecton1, SwingTecton tecton2) {
         // Only add if both tectons exist in the graph and no edge already exists
         if (tectonNodes.containsKey(tecton1) && tectonNodes.containsKey(tecton2)) {
             if (!edgeExists(tecton1, tecton2)) {
@@ -144,7 +147,7 @@ public class GameFieldView extends JPanel {
     /**
      * Check if an edge already exists between two tecton components
      */
-    private boolean edgeExists(SwingFertileTecton tecton1, SwingFertileTecton tecton2) {
+    private boolean edgeExists(SwingTecton tecton1, SwingTecton tecton2) {
         for (Edge edge : edges) {
             if ((edge.tecton1 == tecton1 && edge.tecton2 == tecton2) ||
                     (edge.tecton1 == tecton2 && edge.tecton2 == tecton1)) {
@@ -191,10 +194,10 @@ public class GameFieldView extends JPanel {
         }
 
         // Apply repulsion forces between all nodes
-        for (Map.Entry<SwingFertileTecton, Node> entry1 : tectonNodes.entrySet()) {
+        for (Map.Entry<SwingTecton, Node> entry1 : tectonNodes.entrySet()) {
             Node node1 = entry1.getValue();
 
-            for (Map.Entry<SwingFertileTecton, Node> entry2 : tectonNodes.entrySet()) {
+            for (Map.Entry<SwingTecton, Node> entry2 : tectonNodes.entrySet()) {
                 if (entry1 == entry2) continue;
 
                 Node node2 = entry2.getValue();
@@ -297,13 +300,14 @@ public class GameFieldView extends JPanel {
         resolveOverlaps();
 
         // Update actual component positions
-        for (Map.Entry<SwingFertileTecton, Node> entry : tectonNodes.entrySet()) {
-            SwingFertileTecton tecton = entry.getKey();
+        for (Map.Entry<SwingTecton, Node> entry : tectonNodes.entrySet()) {
+            SwingTecton tecton = entry.getKey();
             Node node = entry.getValue();
 
             if (tecton != null) {
                 // Position the component so that its center is at the node position
-                tecton.setBounds(
+                JPanel panel = (JPanel)tecton;
+                panel.setBounds(
                         (int)(node.x - TECTON_SIZE/2),
                         (int)(node.y - TECTON_SIZE/2),
                         TECTON_SIZE,
@@ -328,10 +332,10 @@ public class GameFieldView extends JPanel {
             overlapsExist = false;
             iterations++;
 
-            for (Map.Entry<SwingFertileTecton, Node> entry1 : tectonNodes.entrySet()) {
+            for (Map.Entry<SwingTecton, Node> entry1 : tectonNodes.entrySet()) {
                 Node node1 = entry1.getValue();
 
-                for (Map.Entry<SwingFertileTecton, Node> entry2 : tectonNodes.entrySet()) {
+                for (Map.Entry<SwingTecton, Node> entry2 : tectonNodes.entrySet()) {
                     if (entry1 == entry2) continue;
 
                     Node node2 = entry2.getValue();
@@ -396,19 +400,19 @@ public class GameFieldView extends JPanel {
      * Edge class connecting two tectons
      */
     private static class Edge {
-        SwingFertileTecton tecton1;
-        SwingFertileTecton tecton2;
+        SwingTecton tecton1;
+        SwingTecton tecton2;
 
-        Edge(SwingFertileTecton t1, SwingFertileTecton t2) {
+        Edge(SwingTecton t1, SwingTecton t2) {
             this.tecton1 = t1;
             this.tecton2 = t2;
         }
 
-        boolean involves(SwingFertileTecton tecton) {
+        boolean involves(SwingTecton tecton) {
             return tecton1 == tecton || tecton2 == tecton;
         }
 
-        SwingFertileTecton getOther(SwingFertileTecton tecton) {
+        SwingTecton getOther(SwingTecton tecton) {
             return tecton == tecton1 ? tecton2 : tecton1;
         }
     }

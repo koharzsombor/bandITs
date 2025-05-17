@@ -9,9 +9,10 @@ public class SwingMushroomBody extends JPanel implements Updatable {
 
     private final MushroomBodyView mbv;
     private JPopupMenu mushroomBodyPopupMenu;
-    private static final int TRIANGLE_MARGIN = 5;
-    int width = getWidth();
-    int height = getHeight();
+    private static final int TRIANGLE_MARGIN = 1;
+    private static final int TRIANGLE_MARGIN_SIDES = 6;
+    int width = 50;
+    int height = 42;
     int nPoints = 3;
     private Color triangleColor = Color.RED;
 
@@ -73,10 +74,11 @@ public class SwingMushroomBody extends JPanel implements Updatable {
         super.paintComponent(g);
         Graphics2D mbTriangle = (Graphics2D) g;
 
-        int[] xPoints = { width / 2, width - TRIANGLE_MARGIN, TRIANGLE_MARGIN };
+        int[] xPoints = { width / 2, width - TRIANGLE_MARGIN_SIDES, TRIANGLE_MARGIN_SIDES };
         int[] yPoints = { TRIANGLE_MARGIN, height - TRIANGLE_MARGIN, height - TRIANGLE_MARGIN };
 
         mbTriangle.setColor(triangleColor);
         mbTriangle.fillPolygon(xPoints, yPoints, nPoints);
+
     }
 }

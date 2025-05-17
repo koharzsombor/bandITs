@@ -5,8 +5,8 @@ public class FertileTectonImpl extends TectonImpl {
 
     Random rand = new Random();
 
-    int MINNUMB = 2;
-    int MAXNUMB = 2;
+    int MINNUMB = 5;
+    int MAXNUMB = 10;
 
     public FertileTectonImpl() {
         setMyceliaCapacity(1);
@@ -82,6 +82,7 @@ public class FertileTectonImpl extends TectonImpl {
      * To string, a kiiráshoz
      * @return az tecton tulajdonságainak formázott stringje
      */
+    /*
     @Override
     public String toString() {
         String output = ObjectRegistry.lookupName(this) + ": FertileTecton\n";
@@ -109,5 +110,5 @@ public class FertileTectonImpl extends TectonImpl {
         }
         output += "\t}\n";
         return output;
-    }
+    }*/
 }
