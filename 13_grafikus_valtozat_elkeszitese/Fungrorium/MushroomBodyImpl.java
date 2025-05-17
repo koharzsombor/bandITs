@@ -295,6 +295,7 @@ public class MushroomBodyImpl implements MushroomBody {
                 reachableTectons.add(neighbour);
                 reachableTectons.addAll(neighbour.getNeighbours());
             }
+            reachableTectons.remove(getLocation());
         } else {
             reachableTectons.addAll(location.getNeighbours());
         }
