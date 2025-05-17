@@ -7,7 +7,7 @@ public class ProcedualControllerImpl implements ProcedualController {
     /**
      * Egy játékosra jutó tektonok száma.
      */
-    private static final int TECTON_PER_PLAYER = 14;
+    private static final int TECTON_PER_PLAYER = 6;
 
     /**
      * A tektonok medián szomszéd száma elosztva kettővel.
@@ -80,7 +80,8 @@ public class ProcedualControllerImpl implements ProcedualController {
 
         for (int i = 0; i < playerCount * TECTON_PER_PLAYER; i++) {
             String name = "Tecton-" + i;
-            int type = random.nextInt(5);
+            //int type = random.nextInt(5);
+            int type = 0;
             String tectonType = "";
             switch (type) {
                 case 0 -> tectonType = "fertiletecton";

@@ -6,7 +6,7 @@ import java.awt.event.MouseEvent;
 /**
  * Swing-es megjelenitese egy FertileTectonnak
  */
-public class SwingFertileTecton extends  JButton implements Updatable{
+public class SwingFertileTecton extends  JPanel implements Updatable{
 
     // Hogy tudjon kommunikalni a FertileTectonImpl-vel
     private TectonView tectonView;
@@ -14,7 +14,7 @@ public class SwingFertileTecton extends  JButton implements Updatable{
     // Ez fog megjelenni ha rakattintunk a tectonra
     private JPopupMenu tectonPopupMenu;
 
-    private int size = 80;
+    private int size = 50;
 
     private Color fillColor = Color.GREEN;
 
@@ -24,10 +24,6 @@ public class SwingFertileTecton extends  JButton implements Updatable{
      */
     SwingFertileTecton(FertileTectonImpl fertileTecton) {
         this.tectonView =  fertileTecton;
-
-        setContentAreaFilled(false); // Ne hasznalja az alap button default backgroundot
-        setBorderPainted(false); // Ne szinezze a peremet
-        setFocusPainted(false); // Ez nem tudom mi de csunyan nez ki
 
         tectonPopupMenu = new JPopupMenu();
         tectonPopupMenu.add("FertileTecton: " + ObjectRegistry.lookupName(fertileTecton));

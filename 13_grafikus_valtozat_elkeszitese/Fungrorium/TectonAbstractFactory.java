@@ -8,5 +8,5 @@ public interface TectonAbstractFactory {
      * @param fertileTecton
      */
 
-    public static void onCreateTecton(FertileTectonImpl fertileTecton) {}
+    public void onCreateTecton(FertileTectonImpl fertileTecton);
 }

@@ -23,6 +23,7 @@ public class Main {
     private static MenuView menuView;
     private static PlayerView playerView;
     private static GameStartView gameStartView;
+    private static GameFieldView gameFieldView;
 
     private static void initialiseComponents() {
         ObjectRegistry.clearRegistry();
@@ -84,10 +85,8 @@ public class Main {
 
         //Game
         GameFieldView gameFieldView = new GameFieldView();
+        ObjectRegistry.registerObject("GAME_FIELD", gameFieldView);
         // Beallitani a referenciat a factoryban, hogy az uj tectonokat hozza lehessen adni a grafhoz
-        SwingTectonFactory.setGameFieldView(gameFieldView);
-        // TBI: Ide a tobbi factorynak szolni ugyanugy
-        gameFieldView.startAnimation();
 
         TurnView turnView = new TurnView(turnController, gameEndManager);
         GameView gameView = new GameView(gameFieldView, turnView);
