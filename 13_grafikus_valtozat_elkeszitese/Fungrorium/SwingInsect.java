@@ -16,10 +16,19 @@ public class SwingInsect extends JPanel implements Updatable{
      */
     private JPopupMenu insectPopupMenu;
 
+    /**
+     * Kör szine
+     */
     private final Color color = Color.black;
 
+    /**
+     * Kör szélessége
+     */
     private final int width = getWidth(); //10 by default
 
+    /**
+     * Kör magassága
+     */
     private final int height = getHeight(); //10 by default
 
     /**
@@ -50,7 +59,7 @@ public class SwingInsect extends JPanel implements Updatable{
     }
 
     /**
-     * Updates the tooltip to show Remaining moves, actual effect, and it's timer
+     * Frissiti a toolTip-et
      */
     @Override
     public void update() {
@@ -72,7 +81,7 @@ public class SwingInsect extends JPanel implements Updatable{
     }
 
     /**
-     * Shows the JPopupMenu
+     * Megmutatja a PopupMenu-t
      * @param e a mousevent, ami meghivta
      */
     public void showPopupMenu(MouseEvent e) {

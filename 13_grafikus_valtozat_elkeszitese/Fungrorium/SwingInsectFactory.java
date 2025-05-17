@@ -1,3 +1,6 @@
+/**
+ * Swing insecthez tartozó factory
+ */
 public class SwingInsectFactory implements InsectAbstractFactory {
     /**
      * Amikor létrejön egy Insect, létrejön egy SwingInsect is
