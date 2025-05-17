@@ -8,5 +8,5 @@ public interface MushroomBodyAbstractFactory {
      *
      * @param mb Az újonnan létrehozott MushroomBody objektum.
      */
-    static void onCreateMushroomBody(MushroomBody mb) {}
+    void onCreateMushroomBody(MushroomBody mb);
 }

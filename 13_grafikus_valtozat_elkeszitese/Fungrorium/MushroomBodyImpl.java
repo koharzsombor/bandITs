@@ -64,6 +64,8 @@ public class MushroomBodyImpl implements MushroomBody {
         this.location = location;
         MushroomBodyGrowthEvaluator evaluator = new MushroomBodyGrowthEvaluator(this);
         evaluator.visit(location);
+        MushroomBodyAbstractFactory swingMBFactory = new SwingMushroomBodyFactory();
+        swingMBFactory.onCreateMushroomBody(this);
     }
 
     /**
@@ -304,6 +306,7 @@ public class MushroomBodyImpl implements MushroomBody {
      * @return A spórakilövéssel elérhető elérhető céltektonok  halmaza.
      */
     public Set<Tecton> getReachableTectons() {
+        this.updateReachableTectons();
         return Collections.unmodifiableSet(reachableTectons);
     }
 

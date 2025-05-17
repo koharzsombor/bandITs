@@ -5,12 +5,6 @@ import java.util.Set;
  * A View réteg számára elérhető metódusok a gombatest vonatkozásában.
  */
 public interface MushroomBodyView {
-
-    /**
-     * Frissíti a spórakilövés szempontjából aktuálisan elérhető potenciális céltektonok listáját.
-     */
-    void updateReachableTectons();
-
     /**
      * Visszaadja a spórakilövés szempontjából elérhető potenciális céltektonok listáját
      * az utolsó {@code updateReachableTectons()} hívás alapján.

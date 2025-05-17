@@ -43,7 +43,6 @@ public class SwingMushroomBody extends JPanel implements Updatable {
     public void showPopupMenu(MouseEvent e) {
         mushroomBodyPopupMenu.removeAll();
 
-        mbv.updateReachableTectons();
         JLabel label = new JLabel("MushroomBody: " + ObjectRegistry.lookupName(mbv));
         mushroomBodyPopupMenu.add(label);
 
@@ -52,11 +51,12 @@ public class SwingMushroomBody extends JPanel implements Updatable {
 
         for (Tecton tecton : mbv.getReachableTectons()) {
             JButton button = new JButton("→ " + ObjectRegistry.lookupName(tecton));
-            button.addActionListener(evt -> {
+            /*button.addActionListener(evt -> {
                 MushroomBodyController controller =
                         (MushroomBodyController) ObjectRegistry.getObject("MushroomBodyController");
                 controller.eject((MushroomBody)mbv, tecton);
-            });
+            });*/
+            button.addActionListener(new EjectSporesButtonListener((MushroomBody)mbv));
             mushroomBodyPopupMenu.add(button);
         }
         mushroomBodyPopupMenu.show(e.getComponent(), e.getX(), e.getY());
