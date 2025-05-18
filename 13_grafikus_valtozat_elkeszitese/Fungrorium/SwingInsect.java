@@ -1,48 +1,26 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
-
+import java.util.List;
 /**
  * A Swing objectum az Insecthez
  */
-public class SwingInsect extends JButton implements Updatable{
+public class SwingInsect extends JMenu implements Updatable{
     /**
      * InsectView variable, ami eltárolja a swing (View) objectumhoz tartozó Model objectumot
      */
-    private InsectView iv;
-
-    /**
-     * JPopupMenu, ami megjelenik ha rákattintunk a gombra
-     */
-    private JPopupMenu insectPopupMenu;
+    private Insect iv;
 
     /**
      * Konstructor, ami létrehozza a PopupMenu-t, a gombokat, a listenereket stb
      * @param i a modellben, a swing objectnek megfelelő Insect
      */
     SwingInsect(Insect i) {
+        super(ObjectRegistry.lookupName(i));
+
         this.iv = i;
 
         update();
-
-        insectPopupMenu = new JPopupMenu();
-
-        JLabel label = new JLabel("Insect: " + ObjectRegistry.lookupName(iv));
-        insectPopupMenu.add(label);
-
-        JButton eatButton = new JButton("Eat a spore");
-        eatButton.addActionListener(new EatButtonListener(i));
-        insectPopupMenu.add(eatButton);
-
-        JButton cutButton = new JButton("Cut a mycelium");
-        cutButton.addActionListener(new CutButtonListener(i));
-        insectPopupMenu.add(cutButton);
-
-        MoveButton moveButton = new MoveButton("Move to a tecton", i);
-        moveButton.addMouseListener(new MoveButtonMouseListener(moveButton));
-        insectPopupMenu.add(moveButton);
-
-        addMouseListener(new InsectMouseAdapter(this));
     }
 
     /**
@@ -56,16 +34,27 @@ public class SwingInsect extends JButton implements Updatable{
         int effectTimer = iv.getEffectTimer();
         setText(name);
         setToolTipText("Remaining moves for the turn: " + remainingMoves + " | Actual effect: " + state + ", rounds left: " + effectTimer);
+
+        removeAll();
+        revalidate();
+        repaint();
+
+        JLabel label = new JLabel("Insect: " + ObjectRegistry.lookupName(iv));
+        add(label);
+
+        JMenuItem eatButton = new JMenuItem("Eat a spore");
+        eatButton.addActionListener(new EatButtonListener(iv));
+        add(eatButton);
+
+        JMenuItem cutButton = new JMenuItem("Cut a mycelium");
+        cutButton.addActionListener(new CutButtonListener(iv));
+        add(cutButton);
+
+        MoveButton moveButton = new MoveButton("Move to a tecton", iv);
+        moveButton.addMouseListener(new MoveButtonMouseListener(moveButton));
+        add(moveButton);
+
+        addMouseListener(new InsectMouseAdapter(this));
     }
 
-    /**
-     * Megmutatja a PopupMenu-t
-     * @param e a mousevent, ami meghivta
-     */
-    public void showPopupMenu(MouseEvent e) {
-        insectPopupMenu.remove(0);
-        JLabel label = new JLabel("Insect: " + ObjectRegistry.lookupName(iv));
-        insectPopupMenu.add(label, 0);
-        insectPopupMenu.show(e.getComponent(), e.getX(), e.getY());
-    }
 }

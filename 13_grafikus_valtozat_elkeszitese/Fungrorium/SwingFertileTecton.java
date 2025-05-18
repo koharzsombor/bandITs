@@ -40,6 +40,11 @@ public class SwingFertileTecton extends JPanel implements Updatable, SwingTecton
 
         tectonPopupMenu = new JPopupMenu();
 
+        for (Insect i : tectonView.getOccupants()) {
+            SwingInsect insectMenu = new SwingInsect(i);
+            tectonPopupMenu.add(insectMenu);
+        }
+
         addMouseListener(new TectonMouseListener(this));
 
         update();
@@ -70,7 +75,7 @@ public class SwingFertileTecton extends JPanel implements Updatable, SwingTecton
 
         for(Insect i : tectonView.getOccupants()) {
             ViewRepository.getView(i).update();
-            JButton insectPanel = ViewRepository.getButton(i);
+            JMenu insectPanel = (JMenu) ViewRepository.getView(i);
             tectonPopupMenu.add(insectPanel);
         }
 
