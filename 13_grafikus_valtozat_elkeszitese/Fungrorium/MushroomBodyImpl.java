@@ -229,6 +229,7 @@ public class MushroomBodyImpl implements MushroomBody {
         }
         ViewRepository.updateObject(location);
         ViewRepository.updateObject(target);
+        ViewRepository.updateObject(this);
     }
 
     /**
@@ -247,6 +248,7 @@ public class MushroomBodyImpl implements MushroomBody {
      */
     public void setLocation(Tecton location) {
         this.location = location;
+        ViewRepository.updateObject(this);
     }
 
     /**

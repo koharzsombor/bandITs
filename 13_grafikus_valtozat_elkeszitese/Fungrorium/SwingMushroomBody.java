@@ -5,10 +5,10 @@ import java.awt.event.MouseEvent;
 /**
  * A MushroomBodyhoz tartozó swinges nézet, amely az objektumot piros háromszögként jeleníti meg.
  */
-public class SwingMushroomBody extends JButton implements Updatable {
+public class SwingMushroomBody extends JMenu implements Updatable {
 
     private final MushroomBodyView mbv;
-    private JPopupMenu mushroomBodyPopupMenu;
+    //private JPopupMenu mushroomBodyPopupMenu;
 
     /**
      * Konstruktor.
@@ -16,13 +16,14 @@ public class SwingMushroomBody extends JButton implements Updatable {
      * @param mushroomBody A MushroomBody példány, amelyhez a SwingMushroomBody objektum létrehozásra kerül.
      */
     public SwingMushroomBody(MushroomBody mushroomBody) {
+        super("MushroomBody: " + ObjectRegistry.lookupName(mushroomBody));
         this.mbv = mushroomBody;
 
-        update();
+        //update();
 
-        mushroomBodyPopupMenu = new JPopupMenu();
+        //mushroomBodyPopupMenu = new JPopupMenu();
 
-        addMouseListener(new MushroomBodyMouseAdapter(this));
+        //addMouseListener(new MushroomBodyMouseAdapter(this));
     }
 
     /**
@@ -30,11 +31,28 @@ public class SwingMushroomBody extends JButton implements Updatable {
      */
     @Override
     public void update() {
+        removeAll();
+
+        //JLabel label = new JLabel("MushroomBody: " + ObjectRegistry.lookupName(mbv));
+        //add(label);
+
+        JLabel subLabel = new JLabel("Choose one of the following reachable tectons to eject spores to:");
+        add(subLabel);
+
+        for (Tecton tecton : mbv.getReachableTectons()) {
+            JMenuItem button = new JMenuItem("=> " + ObjectRegistry.lookupName(tecton));
+            button.addActionListener(new EjectSporesButtonListener((MushroomBody)mbv, tecton));
+            add(button);
+        }
+
         String name = "MushroomBody: " + ObjectRegistry.lookupName(mbv);
         int ejects = mbv.getRemainingEjects();
         int spores = mbv.getSpores().size();
         setText(name);
         setToolTipText("Remaining ejects: " + ejects + " | Spores available to eject: " + spores);
+
+        repaint();
+        revalidate();
     }
 
     /**
@@ -43,7 +61,6 @@ public class SwingMushroomBody extends JButton implements Updatable {
      *  Minden gomb az adott tektonra történő spórakilövést indítja el.
      *
      * @param e MouseEvent objektum.
-     */
     public void showPopupMenu(MouseEvent e) {
         mushroomBodyPopupMenu.removeAll();
 
@@ -60,4 +77,5 @@ public class SwingMushroomBody extends JButton implements Updatable {
         }
         mushroomBodyPopupMenu.show(e.getComponent(), e.getX(), e.getY());
     }
+    */
 }
