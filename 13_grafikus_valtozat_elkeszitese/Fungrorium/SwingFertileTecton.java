@@ -58,12 +58,14 @@ public class SwingFertileTecton extends JPanel implements Updatable, SwingTecton
         setToolTipText("FertileTecton: " + ObjectRegistry.lookupName(tectonView) + " | " +
                 "Spores: " + tectonView.getSpores().size() + " | " +
                 "Mycelia: " + tectonView.getMycelia().size());
+        /*
         for(Insect i : tectonView.getOccupants()) {
             ViewRepository.getView(i).update();
         }
         if(tectonView.getMushroomBody()!=null) {
             ViewRepository.getView(tectonView.getMushroomBody()).update();
         }
+        */
         repaint();
     }
 
@@ -74,13 +76,13 @@ public class SwingFertileTecton extends JPanel implements Updatable, SwingTecton
         tectonPopupMenu.add(new JLabel(name));
 
         for(Insect i : tectonView.getOccupants()) {
-            ViewRepository.getView(i).update();
+            //ViewRepository.getView(i).update();
             JMenu insectPanel = (JMenu) ViewRepository.getView(i);
             tectonPopupMenu.add(insectPanel);
         }
 
         if(tectonView.getMushroomBody()!=null) {
-            ViewRepository.getView(tectonView.getMushroomBody()).update();
+            //ViewRepository.getView(tectonView.getMushroomBody()).update();
             JButton mushroomBodyPanel = ViewRepository.getButton(tectonView.getMushroomBody());
             tectonPopupMenu.add(mushroomBodyPanel);
         }

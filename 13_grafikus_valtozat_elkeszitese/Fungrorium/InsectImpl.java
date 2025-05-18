@@ -188,6 +188,7 @@ public class InsectImpl implements Insect{
             setRemainingMoves(0);
         }
         ViewRepository.updateObject(location);
+        ViewRepository.updateObject(this);
     }
 
     /**
@@ -199,6 +200,7 @@ public class InsectImpl implements Insect{
             getLocation().eatSpore(this);
         }
         ViewRepository.updateObject(location);
+        ViewRepository.updateObject(this);
     }
 
     /**
@@ -213,6 +215,7 @@ public class InsectImpl implements Insect{
         }
         ViewRepository.updateObject(oldLocation);
         ViewRepository.updateObject(location);
+        ViewRepository.updateObject(this);
     }
 
     /**

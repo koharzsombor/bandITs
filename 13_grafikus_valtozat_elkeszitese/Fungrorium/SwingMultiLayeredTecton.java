@@ -52,12 +52,14 @@ public class SwingMultiLayeredTecton extends JPanel implements Updatable, SwingT
         setToolTipText("MultiLayeredTecton: " + ObjectRegistry.lookupName(tectonView) + " | " +
                 "Spores: " + tectonView.getSpores().size() + " | " +
                 "Mycelia: " + tectonView.getMycelia().size());
+        /*
         for(Insect i : tectonView.getOccupants()) {
             ViewRepository.getView(i).update();
         }
         if(tectonView.getMushroomBody()!=null) {
             ViewRepository.getView(tectonView.getMushroomBody()).update();
         }
+        */
         repaint();
     }
 
@@ -68,13 +70,13 @@ public class SwingMultiLayeredTecton extends JPanel implements Updatable, SwingT
         tectonPopupMenu.add(new JLabel(name));
 
         for(Insect i : tectonView.getOccupants()) {
-            ViewRepository.getView(i).update();
+            //ViewRepository.getView(i).update();
             JButton insectPanel = ViewRepository.getButton(i);
             tectonPopupMenu.add(insectPanel);
         }
 
         if(tectonView.getMushroomBody()!=null) {
-            ViewRepository.getView(tectonView.getMushroomBody()).update();
+            //ViewRepository.getView(tectonView.getMushroomBody()).update();
             JButton mushroomBodyPanel = ViewRepository.getButton(tectonView.getMushroomBody());
             tectonPopupMenu.add(mushroomBodyPanel);
         }
