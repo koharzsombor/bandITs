@@ -23,7 +23,7 @@ public class SwingTectonFactory implements  TectonAbstractFactory{
         ViewRepository.bind(tecton, swingSemiFertileTecton);
 
         if (gameFieldView != null) {
-            //gameFieldView.addTecton(tecton);
+            gameFieldView.addTecton(tecton);
             gameFieldView.BuildGraph();
         }
     }

@@ -37,7 +37,8 @@ public class SwingMushroomBody extends JPanel implements Updatable {
     public void update() {
         String name = ObjectRegistry.lookupName(mbv);
         int ejects = mbv.getRemainingEjects();
-        setToolTipText("MushroomBody: " + name + " | Remaining ejects: " + ejects);
+        int spores = mbv.getSpores().size();
+        setToolTipText("MushroomBody: " + name + " | Remaining ejects: " + ejects + " | Spores available to eject: " + spores);
     }
 
     /**

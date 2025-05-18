@@ -86,9 +86,6 @@ public class ProcedualControllerImpl implements ProcedualController {
         for (int i = 0; i < playerCount * TECTON_PER_PLAYER; i++) {
             String name = "Tecton-" + i;
             int type = random.nextInt(5);
-            while (type == 1) {
-                type = random.nextInt(5);
-            }
             String tectonType = "";
             switch (type) {
                 case 0 -> tectonType = "fertiletecton";
@@ -102,7 +99,7 @@ public class ProcedualControllerImpl implements ProcedualController {
             name += "-" + tectonType;
             mapCreationController.createTecton(tectonType, name);
 
-            if (!tectonType.equals("aridtecton"))
+            if (!tectonType.equals("semifertiletecton"))
                 startingLocations.add((Tecton)ObjectRegistry.getObject(name));
 
             tectons.add((Tecton)ObjectRegistry.getObject(name));

@@ -69,7 +69,6 @@ public class FertileTectonImpl extends TectonImpl {
             TectonAbstractFactory tectonAbstractFactory = new SwingTectonFactory();
             tectonAbstractFactory.onCreateTecton(newFertileTecton);
 
-
             setBreakTimer(rand.nextInt(MAXNUMB - MINNUMB + 1) + MINNUMB);
         }
     }
