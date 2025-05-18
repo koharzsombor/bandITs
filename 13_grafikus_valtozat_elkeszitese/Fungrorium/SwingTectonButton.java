@@ -6,14 +6,17 @@ public class SwingTectonButton extends JButton {
 
     JPopupMenu tectonPopupMenu;
 
-    SwingTectonButton(String text, TectonView tectonView, boolean isFertile) {
-        super(text);
+    SwingTectonButton(String name, TectonView tectonView, boolean isFertile, String text) {
+        super(name);
         this.tectonView = tectonView;
 
         tectonPopupMenu = new JPopupMenu();
 
         JLabel label = new JLabel("Tecton: " + ObjectRegistry.lookupName(tectonView));
         tectonPopupMenu.add(label);
+
+        JLabel subLabel = new JLabel(text);
+        tectonPopupMenu.add(subLabel);
 
         if(isFertile) {
             JButton growMycelium = new JButton("Grow Mycelium on this Tecton");

@@ -80,7 +80,7 @@ public class SwingFertileTecton extends JPanel implements Updatable, SwingTecton
             tectonPopupMenu.add(mushroomBodyPanel);
         }
 
-        SwingTectonButton tectonButton = new SwingTectonButton(name, tectonView, true);
+        SwingTectonButton tectonButton = new SwingTectonButton(name, tectonView, true, null);
         tectonPopupMenu.add(tectonButton);
 
         tectonPopupMenu.show(e.getComponent(), e.getX(), e.getY());

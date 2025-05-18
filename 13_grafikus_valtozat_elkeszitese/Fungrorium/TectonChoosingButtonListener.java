@@ -17,11 +17,6 @@ public class TectonChoosingButtonListener implements ActionListener {
     Tecton t;
 
     /**
-     * PopupMenu, amihez tartozik a gomb
-     */
-    JPopupMenu popup;
-
-    /**
      * Az InsectController osztály, aki felelős az insectek irányitásáért
      */
     InsectController insectController;
@@ -30,12 +25,10 @@ public class TectonChoosingButtonListener implements ActionListener {
      * Konstruktor
      * @param i Insect, ami tartozik a gombhoz
      * @param t Tecton, ami tartozik a gombhoz
-     * @param popup PopupMenu, amihez tartozik a gomb
      */
-    TectonChoosingButtonListener(Insect i, Tecton t, JPopupMenu popup) {
+    TectonChoosingButtonListener(Insect i, Tecton t) {
         this.i = i;
         this.t = t;
-        this.popup = popup;
         this.insectController = (InsectController) ObjectRegistry.getObject("InsectController");
     }
 

@@ -127,6 +127,7 @@ public class ProcedualControllerImpl implements ProcedualController {
             myceliumID++;
 
             mapCreationController.createMushroomBody(startingLocation, "MushroomBody-" + mushroomBodyID, mycologist);
+            mushroomBodyID++;
             startingLocations.remove(startingLocation);
 
             for (Tecton neighbour : startingLocation.getNeighbours()) {

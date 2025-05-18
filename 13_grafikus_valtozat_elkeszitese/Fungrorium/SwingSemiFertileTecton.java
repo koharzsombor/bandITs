@@ -67,9 +67,6 @@ public class SwingSemiFertileTecton extends JPanel implements Updatable, SwingTe
         String name = "SemiFertileTecton: " + ObjectRegistry.lookupName(tectonView);
         tectonPopupMenu.add(new JLabel(name));
 
-        String panel = "Mushroom body cannot grow on this tecton.";
-        tectonPopupMenu.add(new JLabel(panel));
-
         for(Insect i : tectonView.getOccupants()) {
             ViewRepository.getView(i).update();
             JButton insectPanel = ViewRepository.getButton(i);
@@ -82,7 +79,7 @@ public class SwingSemiFertileTecton extends JPanel implements Updatable, SwingTe
             tectonPopupMenu.add(mushroomBodyPanel);
         }
 
-        SwingTectonButton tectonButton = new SwingTectonButton(name, tectonView, false);
+        SwingTectonButton tectonButton = new SwingTectonButton(name, tectonView, false, "No Mushroombody can grow on this tecton.");
         tectonPopupMenu.add(tectonButton);
 
         tectonPopupMenu.show(e.getComponent(), e.getX(), e.getY());

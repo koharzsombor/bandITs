@@ -23,6 +23,7 @@ public class MoveButton extends JButton {
     MoveButton(String text, Insect insect){
         super(text);
         this.insect = insect;
+        popup = new JPopupMenu();
     }
 
     /**
@@ -30,13 +31,13 @@ public class MoveButton extends JButton {
      * @param e a mousevent, ami meghivta
      */
     public void showPopupMenu(MouseEvent e) {
-        popup = new JPopupMenu();
+        popup.removeAll();
 
-        popup.add("Choose a neighbouring tecton to move to");
+        popup.add(new JLabel("Choose a neighbouring tecton to move to"));
         Tecton location = insect.getLocation();
         for(Tecton t : location.getNeighbours()){
             JButton button = new JButton(ObjectRegistry.lookupName(t));
-            button.addActionListener(new TectonChoosingButtonListener(insect, t, popup));
+            button.addActionListener(new TectonChoosingButtonListener(insect, t));
             popup.add(button);
         }
 

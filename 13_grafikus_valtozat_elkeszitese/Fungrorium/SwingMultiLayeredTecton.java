@@ -67,9 +67,6 @@ public class SwingMultiLayeredTecton extends JPanel implements Updatable, SwingT
         String name = "MultiLayeredTecton: " + ObjectRegistry.lookupName(tectonView);
         tectonPopupMenu.add(new JLabel(name));
 
-        String panel = "This tecton supports up to 3 separate mycelia.";
-        tectonPopupMenu.add(new JLabel(panel));
-
         for(Insect i : tectonView.getOccupants()) {
             ViewRepository.getView(i).update();
             JButton insectPanel = ViewRepository.getButton(i);
@@ -82,7 +79,7 @@ public class SwingMultiLayeredTecton extends JPanel implements Updatable, SwingT
             tectonPopupMenu.add(mushroomBodyPanel);
         }
 
-        SwingTectonButton tectonButton = new SwingTectonButton(name, tectonView, true);
+        SwingTectonButton tectonButton = new SwingTectonButton(name, tectonView, true, "This tecton supports up to 3 separate mycelia.");
         tectonPopupMenu.add(tectonButton);
 
         tectonPopupMenu.show(e.getComponent(), e.getX(), e.getY());

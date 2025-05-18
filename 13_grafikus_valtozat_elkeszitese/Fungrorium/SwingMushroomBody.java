@@ -30,7 +30,7 @@ public class SwingMushroomBody extends JButton implements Updatable {
      */
     @Override
     public void update() {
-        String name = ObjectRegistry.lookupName(mbv);
+        String name = "MushroomBody: " + ObjectRegistry.lookupName(mbv);
         int ejects = mbv.getRemainingEjects();
         int spores = mbv.getSpores().size();
         setText(name);
@@ -55,7 +55,7 @@ public class SwingMushroomBody extends JButton implements Updatable {
 
         for (Tecton tecton : mbv.getReachableTectons()) {
             JButton button = new JButton("-> " + ObjectRegistry.lookupName(tecton));
-            button.addActionListener(new EjectSporesButtonListener((MushroomBody)mbv));
+            button.addActionListener(new EjectSporesButtonListener((MushroomBody)mbv, tecton));
             mushroomBodyPopupMenu.add(button);
         }
         mushroomBodyPopupMenu.show(e.getComponent(), e.getX(), e.getY());

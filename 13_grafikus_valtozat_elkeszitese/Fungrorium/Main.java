@@ -86,7 +86,7 @@ public class Main {
         appFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         //Game
-        GameFieldView gameFieldView = new GameFieldView();
+        gameFieldView = new GameFieldView();
         ObjectRegistry.registerObject("GAME_FIELD", gameFieldView);
         // Beallitani a referenciat a factoryban, hogy az uj tectonokat hozza lehessen adni a grafhoz
 

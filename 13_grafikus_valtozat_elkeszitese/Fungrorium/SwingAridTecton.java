@@ -68,9 +68,6 @@ public class SwingAridTecton extends JPanel implements Updatable, SwingTecton{
         String name = "AridTecton: " + ObjectRegistry.lookupName(tectonView);
         tectonPopupMenu.add(new JLabel(name));
 
-        String panel = "Any mycelia on this tecton will decay in 5 rounds.";
-        tectonPopupMenu.add(new JLabel(panel));
-
         for(Insect i : tectonView.getOccupants()) {
             ViewRepository.getView(i).update();
             JButton insectPanel = ViewRepository.getButton(i);
@@ -83,7 +80,7 @@ public class SwingAridTecton extends JPanel implements Updatable, SwingTecton{
             tectonPopupMenu.add(mushroomBodyPanel);
         }
 
-        SwingTectonButton tectonButton = new SwingTectonButton(name, tectonView, true);
+        SwingTectonButton tectonButton = new SwingTectonButton(name, tectonView, true, "Any mycelia on this tecton will decay in 5 rounds.");
         tectonPopupMenu.add(tectonButton);
 
         tectonPopupMenu.show(e.getComponent(), e.getX(), e.getY());
