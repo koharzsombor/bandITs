@@ -10,6 +10,6 @@ public class TectonButtonListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e){
-        button.showPopupMenu();
+        //button.showPopupMenu();
     }
 }
