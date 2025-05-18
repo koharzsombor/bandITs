@@ -37,7 +37,7 @@ public class ViewRepository {
         return objectRepository.get(model);
     }
 
-    public static JPanel getPanel(Object model){
-        return (JPanel) objectRepository.get(model);
+    public static JButton getButton(Object model){
+        return (JButton) objectRepository.get(model);
     }
 }

@@ -57,10 +57,6 @@ public class GameFieldView extends JPanel {
         for (TectonView tecton : tectons) {
             // Get the SwingTecton from ViewRepository
             SwingTecton tectonComponent = (SwingTecton) ViewRepository.getView(tecton);
-            tectonComponent.update();
-            if(tecton.getMushroomBody()!=null){
-                ViewRepository.getView(tecton.getMushroomBody()).update();
-            }
 
             // Add the component to the graph at a random initial position
             double x = random.nextDouble() * (WIDTH - 2 * TECTON_SIZE) + TECTON_SIZE;

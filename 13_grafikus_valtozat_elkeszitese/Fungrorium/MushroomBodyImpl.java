@@ -1,3 +1,4 @@
+import javax.swing.text.View;
 import java.util.*;
 
 /**
@@ -226,6 +227,8 @@ public class MushroomBodyImpl implements MushroomBody {
                 return;
             }
         }
+        ViewRepository.updateObject(location);
+        ViewRepository.updateObject(target);
     }
 
     /**

@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
+import java.util.*;
 
 /**
  * Swing-es megjelenitese egy FertileTectonnak
@@ -16,25 +16,28 @@ public class SwingMultiLayeredTecton extends JPanel implements Updatable, SwingT
 
     private int size = 50;
 
-    protected Color fillColor = Color.BLUE;
+    private Color tectonColor = new Color(0, 0, 255);
+
+    private Color myceliumColor = new Color(166, 80, 42);
+    private Color carnivorousMyceliumColor = new Color(255, 88, 170);
+    private int MB_TRIANGLE_MARGIN = 1;
+    private int MB_TRIANGLE_MARGIN_SIDES = 6;
+    private int MB_width = 50;
+    private int MB_height = 42;
+    private int MB_nPoints = 3;
+    private Color mushroomBodyColor = new Color(255,0,0);
+
+    private int insectSize = 10;
+    private Color insectColor = new Color(0,0,0);
 
     /**
      * Konstruktor, PopupMenu + gombok + listenerek
      * @param tecton
      */
-    SwingMultiLayeredTecton(FertileTectonImpl tecton) {
+    SwingMultiLayeredTecton(MultiLayeredTectonImpl tecton) {
         this.tectonView =  tecton;
 
         tectonPopupMenu = new JPopupMenu();
-        tectonPopupMenu.add("MultiLayeredTecton: " + ObjectRegistry.lookupName(tecton));
-
-        JButton growMycelium = new JButton("Grow Mycelium on this Tecton - Attention: Up to 3 separate Myceliums can grow on this type of Tecton");
-        growMycelium.addActionListener(new GrowMyceliumToFertileActionListener(tecton));
-        tectonPopupMenu.add(growMycelium);
-
-        JButton growMushroomBody = new JButton("Grow MushroomBody on this Tecton");
-        growMushroomBody.addActionListener(new GrowMushroomBodyToFertileActionListener(tecton));
-        tectonPopupMenu.add(growMushroomBody);
 
         addMouseListener(new TectonMouseListener(this));
 
@@ -46,50 +49,95 @@ public class SwingMultiLayeredTecton extends JPanel implements Updatable, SwingT
      */
     @Override
     public void update() {
-        setToolTipText("FertileTecton: " + ObjectRegistry.lookupName(tectonView) + " | " +
-                "3 separate Myceliums can grow on this type of tecton!" + " | " +
+        setToolTipText("MultiLayeredTecton: " + ObjectRegistry.lookupName(tectonView) + " | " +
                 "Spores: " + tectonView.getSpores().size() + " | " +
-                "Number of Myceliums: " + tectonView.getMycelia().size());
-
-        ArrayList<MyceliumImpl> myceliumList = new ArrayList<>();
-        for(Object o : tectonView.getMycelia().toArray()){
-            myceliumList.add((MyceliumImpl) o);
+                "Mycelia: " + tectonView.getMycelia().size());
+        for(Insect i : tectonView.getOccupants()) {
+            ViewRepository.getView(i).update();
         }
-
-        if(!myceliumList.isEmpty()){
-            boolean wasntCarnivorous = true;
-            for(Mycelium m : myceliumList){
-                if(m instanceof CarnivorousMyceliumImpl){
-                    wasntCarnivorous = false;
-                    add((SwingCarnivorousMycelium) ViewRepository.getView(m));
-                }
-            }
-            if(wasntCarnivorous){
-                add((SwingMycelium) ViewRepository.getView(myceliumList.get(0)));
-            }
+        if(tectonView.getMushroomBody()!=null) {
+            ViewRepository.getView(tectonView.getMushroomBody()).update();
         }
-
-        if(tectonView.getMushroomBody()!=null){
-            add((SwingMushroomBody) ViewRepository.getView(tectonView.getMushroomBody()));
-        }
-
-        for(Insect i : tectonView.getOccupants()){
-            add((SwingInsect) ViewRepository.getView(i));
-        }
+        repaint();
     }
 
     public void showPopupMenu(MouseEvent e) {
+        tectonPopupMenu.removeAll();
+
+        String name = "MultiLayeredTecton: " + ObjectRegistry.lookupName(tectonView);
+        tectonPopupMenu.add(new JLabel(name));
+
+        String panel = "This tecton supports up to 3 separate mycelia.";
+        tectonPopupMenu.add(new JLabel(panel));
+
+        for(Insect i : tectonView.getOccupants()) {
+            ViewRepository.getView(i).update();
+            JButton insectPanel = ViewRepository.getButton(i);
+            tectonPopupMenu.add(insectPanel);
+        }
+
+        if(tectonView.getMushroomBody()!=null) {
+            ViewRepository.getView(tectonView.getMushroomBody()).update();
+            JButton mushroomBodyPanel = ViewRepository.getButton(tectonView.getMushroomBody());
+            tectonPopupMenu.add(mushroomBodyPanel);
+        }
+
+        SwingTectonButton tectonButton = new SwingTectonButton(name, tectonView, true);
+        tectonPopupMenu.add(tectonButton);
+
         tectonPopupMenu.show(e.getComponent(), e.getX(), e.getY());
+    }
+
+    private int hasCarnivorousMycelium() {
+        LinkedList<Mycelium> myceliumList = new LinkedList<>(tectonView.getMycelia());
+        if(myceliumList.size()==0) return 0;
+        for (Mycelium m : myceliumList) {
+            if (m instanceof CarnivorousMyceliumImpl) {
+                return 2;
+            }
+        }
+        return 1;
     }
 
     @Override
     protected void paintComponent(Graphics g) {
+        update();
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
         // Maga a kocka
-        g2.setColor(fillColor);
+        g2.setColor(tectonColor);
         g2.fillRect(0, 0, size, size);
+
+        //Mycelium
+        int myceliumType = hasCarnivorousMycelium(); //0-no Mycelium, 1-Mycelium, 2-CarnivorousMycelium
+        if(myceliumType!=0) {
+            if(myceliumType==2) {
+                g.setColor(carnivorousMyceliumColor);
+            }
+            else {
+                g.setColor(myceliumColor);
+            }
+            g.fillOval(0, 0, size, size);
+        }
+
+        //MushroomBody
+        if(tectonView.getMushroomBody()!=null) {
+            g.setColor(mushroomBodyColor);
+            int[] xPoints = {MB_width / 2, MB_width - MB_TRIANGLE_MARGIN_SIDES, MB_TRIANGLE_MARGIN_SIDES};
+            int[] yPoints = {MB_TRIANGLE_MARGIN, MB_height - MB_TRIANGLE_MARGIN, MB_height - MB_TRIANGLE_MARGIN};
+            g2.fillPolygon(xPoints, yPoints, MB_nPoints);
+        }
+
+        //Insect
+        g2.setColor(insectColor);
+        for(int i=0;i<tectonView.getOccupants().size(); i++){
+            int colSize = size/5;
+            int rowSize = size/5;
+            int x = colSize * (i%5);
+            int y = rowSize * (i/5);
+            g2.fillOval(x, y, insectSize, insectSize);
+        }
 
         // Kocka keretje
         g2.setColor(Color.BLACK);

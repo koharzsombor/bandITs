@@ -141,6 +141,7 @@ public class MyceliumImpl implements Mycelium{
                 insect.runAway();
             }
         }
+        ViewRepository.updateObject(tmpLocation);
     }
 
     /**

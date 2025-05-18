@@ -5,7 +5,7 @@ import java.awt.event.MouseEvent;
 /**
  * A Swing objectum az Insecthez
  */
-public class SwingInsect extends JPanel implements Updatable{
+public class SwingInsect extends JButton implements Updatable{
     /**
      * InsectView variable, ami eltárolja a swing (View) objectumhoz tartozó Model objectumot
      */
@@ -17,26 +17,6 @@ public class SwingInsect extends JPanel implements Updatable{
     private JPopupMenu insectPopupMenu;
 
     /**
-     * Kör szine
-     */
-    private final Color color = Color.black;
-
-    /**
-     * A kör koordinátái
-     */
-    private Point location = new Point(0, 0);
-
-    /**
-     * Kör szélessége
-     */
-    private final int width = 10; //10 by default
-
-    /**
-     * Kör magassága
-     */
-    private final int height = 10; //10 by default
-
-    /**
      * Konstructor, ami létrehozza a PopupMenu-t, a gombokat, a listenereket stb
      * @param i a modellben, a swing objectnek megfelelő Insect
      */
@@ -46,7 +26,9 @@ public class SwingInsect extends JPanel implements Updatable{
         update();
 
         insectPopupMenu = new JPopupMenu();
-        insectPopupMenu.add("Insect: " + ObjectRegistry.lookupName(i));
+
+        JLabel label = new JLabel("Insect: " + ObjectRegistry.lookupName(iv));
+        insectPopupMenu.add(label);
 
         JButton eatButton = new JButton("Eat a spore");
         eatButton.addActionListener(new EatButtonListener(i));
@@ -68,21 +50,12 @@ public class SwingInsect extends JPanel implements Updatable{
      */
     @Override
     public void update() {
-        setToolTipText("Insect: " + ObjectRegistry.lookupName(iv) + " | " +
-                "Remaining moves for the turn: " + iv.getRemainingMoves() + " | " +
-                "Actual effect: " + iv.getState().name() + ", rounds left: " + iv.getEffectTimer());
-    }
-
-    /**
-     * Kör kirajzolása
-     * @param g the <code>Graphics</code> object to protect
-     */
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(color);
-        g2d.fillOval(location.x, location.y, width, height);
+        String name = "Insect: " + ObjectRegistry.lookupName(iv);
+        int remainingMoves = iv.getRemainingMoves();
+        String state = iv.getState().name();
+        int effectTimer = iv.getEffectTimer();
+        setText(name);
+        setToolTipText("Remaining moves for the turn: " + remainingMoves + " | Actual effect: " + state + ", rounds left: " + effectTimer);
     }
 
     /**
@@ -90,6 +63,9 @@ public class SwingInsect extends JPanel implements Updatable{
      * @param e a mousevent, ami meghivta
      */
     public void showPopupMenu(MouseEvent e) {
+        insectPopupMenu.remove(0);
+        JLabel label = new JLabel("Insect: " + ObjectRegistry.lookupName(iv));
+        insectPopupMenu.add(label, 0);
         insectPopupMenu.show(e.getComponent(), e.getX(), e.getY());
     }
 }
