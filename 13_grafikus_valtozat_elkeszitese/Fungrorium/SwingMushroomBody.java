@@ -28,6 +28,8 @@ public class SwingMushroomBody extends JPanel implements Updatable {
         update();
 
         mushroomBodyPopupMenu = new JPopupMenu();
+
+        setBackground(new Color(0,0,0,0));
     }
 
     /**

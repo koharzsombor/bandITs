@@ -14,7 +14,7 @@ public class SwingMycelium extends JPanel implements Updatable{
     /**
      * A Myceliumot reprezentáló kör színe
      */
-    protected Color fillColor = new Color(166, 80, 42);
+    protected Color fillColor = new Color(166, 80, 42, 255);
 
     /**
      * A modelbeli párja a grafikus objektumnak
@@ -27,6 +27,7 @@ public class SwingMycelium extends JPanel implements Updatable{
      */
     public SwingMycelium(MyceliumView mv){
         this.mv = mv;
+        //setBackground(new Color(0,0,0,0));
     }
 
     @Override
@@ -41,11 +42,9 @@ public class SwingMycelium extends JPanel implements Updatable{
     public void paintComponent(Graphics g) {
         if (mv.getLocation() == null) return;
 
-        super.paintComponent(g);
+        //super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
-        g.setColor(new Color(0,0,0,0));
-        g.fillRect(0, 0, getWidth(), getHeight());
         g.setColor(fillColor);
         g.fillOval(0, 0, size, size);
     }
