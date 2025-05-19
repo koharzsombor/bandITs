@@ -33,11 +33,11 @@ public class Main {
 
         turnController = new TurnControllerImpl(playerContainer);
         tectonController = new TectonControllerImpl();
-        insectController = new InsectControllerImpl();
+        insectController = new InsectControllerImpl(turnController);
         playerController = new PlayerControllerImpl(playerContainer);
-        mushroomBodyController = new MushroomBodyControllerImpl();
+        mushroomBodyController = new MushroomBodyControllerImpl(turnController);
         mapCreationController = new MapCreationControllerImpl(roundObserver);
-        growthController = new GrowthControllerImpl();
+        growthController = new GrowthControllerImpl(turnController);
         procedualController = new ProcedualControllerImpl(mapCreationController, playerContainer, tectonController);
 
         commandRouter = new CommandRouterImpl(turnController);

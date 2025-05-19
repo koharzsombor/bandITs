@@ -120,6 +120,39 @@ public class MycologistImpl extends PlayerImpl implements Mycologist {
         return Math.toIntExact(mushroomCount);
     }
 
+    /**
+     * Megmondja, hogy a játékos tudja-e irányítani az adott gombatestet.
+     *
+     * @param mushroomBody Az adott gombatest.
+     * @return A játékos tudja-e irányítani az adott gombatestet.
+     */
+    @Override
+    public boolean controlsMushroomBody(MushroomBody mushroomBody) {
+        return mushroomBodies.contains(mushroomBody);
+    }
+
+    /**
+     * Megmondja, hogy a játékos tudja-e irányítani az adott gombafonalat.
+     *
+     * @param mycelium Az adott gombafonál.
+     * @return A játékos tudja-e irányítani az adott gombafonalat.
+     */
+    @Override
+    public boolean controlsMycelium(Mycelium mycelium) {
+        return mycelia.contains(mycelium);
+    }
+
+    /**
+     * Megmondja, hogy a játékos tudja-e irányítani az adott rovart.
+     *
+     * @param insect Az adott rovar.
+     * @return A játékos tudja-e irányítani az adott rovart.
+     */
+    @Override
+    public boolean controlsInsect(Insect insect) {
+        return false;
+    }
+
     @Override
     public String toString() {
         return name + ": Mycologist";

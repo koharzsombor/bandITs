@@ -2,6 +2,13 @@
  * A rovar irányító osztály implementációja
  */
 public class InsectControllerImpl implements InsectController {
+
+    private final TurnController turnController;
+
+    public InsectControllerImpl(TurnController turnController) {
+        this.turnController = turnController;
+    }
+
     /**
      * A rovar elrágja a gombafonalat azon a tektonon ahol van.s
      *
@@ -9,7 +16,8 @@ public class InsectControllerImpl implements InsectController {
      */
     @Override
     public void cut(Insect insect) {
-        insect.cutMycelium();
+        if (turnController.getCurrentPlayer().controlsInsect(insect))
+            insect.cutMycelium();
     }
 
     /**
@@ -19,7 +27,8 @@ public class InsectControllerImpl implements InsectController {
      */
     @Override
     public void eat(Insect insect) {
-        insect.eatSpore();
+        if (turnController.getCurrentPlayer().controlsInsect(insect))
+            insect.eatSpore();
     }
 
     /**
@@ -30,6 +39,7 @@ public class InsectControllerImpl implements InsectController {
      */
     @Override
     public void move(Insect insect, Tecton destination) {
-        insect.move(destination);
+        if (turnController.getCurrentPlayer().controlsInsect(insect))
+            insect.move(destination);
     }
 }

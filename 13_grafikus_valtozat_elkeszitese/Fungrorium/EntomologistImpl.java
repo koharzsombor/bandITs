@@ -61,6 +61,39 @@ public class EntomologistImpl extends PlayerImpl implements Entomologist {
         return insects.stream().mapToInt(Insect::getSporesEaten).sum();
     }
 
+    /**
+     * Megmondja, hogy a játékos tudja-e irányítani az adott gombatestet.
+     *
+     * @param mushroomBody Az adott gombatest.
+     * @return A játékos tudja-e irányítani az adott gombatestet.
+     */
+    @Override
+    public boolean controlsMushroomBody(MushroomBody mushroomBody) {
+        return false;
+    }
+
+    /**
+     * Megmondja, hogy a játékos tudja-e irányítani az adott gombafonalat.
+     *
+     * @param mycelium Az adott gombafonál.
+     * @return A játékos tudja-e irányítani az adott gombafonalat.
+     */
+    @Override
+    public boolean controlsMycelium(Mycelium mycelium) {
+        return false;
+    }
+
+    /**
+     * Megmondja, hogy a játékos tudja-e irányítani az adott rovart.
+     *
+     * @param insect Az adott rovar.
+     * @return A játékos tudja-e irányítani az adott rovart.
+     */
+    @Override
+    public boolean controlsInsect(Insect insect) {
+        return insects.contains(insect);
+    }
+
     @Override
     public String toString() {
         return name + ": Entomologist";

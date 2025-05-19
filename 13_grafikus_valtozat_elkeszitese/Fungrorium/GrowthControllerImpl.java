@@ -12,10 +12,13 @@ public class GrowthControllerImpl implements GrowthController {
      */
     private MushroomBodyFactory mushroomBodyFactory;
 
+    private final TurnController turnController;
+
     /**
      * A konstruktor a függőségeit saját maga példányosítsa.
      */
-    public GrowthControllerImpl() {
+    public GrowthControllerImpl(TurnController turnController) {
+        this.turnController = turnController;
         myceliumFactory = new DefaultMyceliumFactory();
         mushroomBodyFactory = new DefaultMushroomBodyFactory();
     }
@@ -42,6 +45,17 @@ public class GrowthControllerImpl implements GrowthController {
      */
     @Override
     public void growMushroomBody(String name, Tecton location, Mycologist mycologist) {
+        boolean valid = false;
+
+        for (Mycelium mycelium : location.getMycelia()) {
+            if (turnController.getCurrentPlayer().controlsMycelium(mycelium)) {
+                valid = true;
+            }
+        }
+
+        if (!valid)
+            return;
+
         MushroomBody mushroomBody = mushroomBodyFactory.create(name, location);
         mycologist.addMushroomBody(mushroomBody);
         mycologist.subscribe(mushroomBody);
