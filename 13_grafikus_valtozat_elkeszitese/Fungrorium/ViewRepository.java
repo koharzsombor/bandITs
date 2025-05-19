@@ -36,8 +36,4 @@ public class ViewRepository {
     public static Updatable getView(Object model) {
         return objectRepository.get(model);
     }
-
-    public static JButton getButton(Object model){
-        return (JButton) objectRepository.get(model);
-    }
 }

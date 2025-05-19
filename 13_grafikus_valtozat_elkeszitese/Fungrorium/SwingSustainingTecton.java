@@ -72,13 +72,13 @@ public class SwingSustainingTecton extends JPanel implements Updatable, SwingTec
 
         for(Insect i : tectonView.getOccupants()) {
             //ViewRepository.getView(i).update();
-            JButton insectPanel = ViewRepository.getButton(i);
+            JMenuItem insectPanel = (JMenuItem) ViewRepository.getView(i);
             tectonPopupMenu.add(insectPanel);
         }
 
         if(tectonView.getMushroomBody()!=null) {
             //ViewRepository.getView(tectonView.getMushroomBody()).update();
-            JButton mushroomBodyPanel = ViewRepository.getButton(tectonView.getMushroomBody());
+            JMenuItem mushroomBodyPanel = (JMenuItem) ViewRepository.getView(tectonView.getMushroomBody());
             tectonPopupMenu.add(mushroomBodyPanel);
         }
 
