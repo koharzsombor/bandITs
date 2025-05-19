@@ -2,6 +2,8 @@
  * A növekedés vezérlőnek implementációja.
  */
 public class GrowthControllerImpl implements GrowthController {
+    public static GrowthController instance;
+
     /**
      * A gombafonalakat példányosító objektum.
      */
@@ -21,6 +23,8 @@ public class GrowthControllerImpl implements GrowthController {
         this.turnController = turnController;
         myceliumFactory = new DefaultMyceliumFactory();
         mushroomBodyFactory = new DefaultMushroomBodyFactory();
+
+        instance = this;
     }
 
     /**
@@ -32,9 +36,21 @@ public class GrowthControllerImpl implements GrowthController {
     @Override
     public void growMycelium(String type, String name, Tecton location, Mycologist mycologist) {
         //String defaultType = "default";
+        if (mycologist == null) {
+            if (turnController.getCurrentPlayer() instanceof Mycologist mycologist1) {
+                mycologist = mycologist1;
+            }
+            else return;
+        }
+
+        System.out.println(mycologist.getRemainingGrows());
+        if (mycologist.getRemainingGrows() <= 0)
+            return;
+
         Mycelium mycelium = myceliumFactory.create(type, name, location);
         mycologist.addMycelium(mycelium);
         mycologist.subscribe(mycelium);
+        mycologist.useGrow();
     }
 
     /**

@@ -132,6 +132,7 @@ public class MushroomBodyImpl implements MushroomBody {
         String sporeName = mushroomBodyName + "-" + sporeType + count;
 
         ObjectRegistry.registerObject(sporeName, newSpore);
+        ViewRepository.updateObject(this);
     }
 
     /**
