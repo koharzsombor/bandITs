@@ -53,6 +53,8 @@ public class MushroomBodyImpl implements MushroomBody {
         this.location = location;
         MushroomBodyGrowthEvaluator evaluator = new MushroomBodyGrowthEvaluator(this);
         evaluator.visit(location);
+        MushroomBodyAbstractFactory swingMBFactory = new SwingMushroomBodyFactory();
+        swingMBFactory.onCreateMushroomBody(this);
     }
 
     /**
