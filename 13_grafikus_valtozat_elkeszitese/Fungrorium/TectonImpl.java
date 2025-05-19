@@ -211,7 +211,7 @@ public abstract class TectonImpl implements Tecton {
      */
     @Override
     public void cutMycelium() {
-        mycelia.poll().cutWithDelay();
+        mycelia.peek().cutWithDelay();
     }
 
     /**
