@@ -110,8 +110,7 @@ public class MushroomBodyImpl implements MushroomBody {
         if (remainingEjects <= 0)
             return;
 
-        int random = 4;
-        //int random = new Random().nextInt(5) + 1;
+        int random = new Random().nextInt(5) + 1;
         Spore newSpore = switch (random) {
             case 1 -> new SplitSpore();
             case 2 -> new StunSpore();
