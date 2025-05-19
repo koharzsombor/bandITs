@@ -15,6 +15,7 @@ public class AridTectonImpl extends FertileTectonImpl {
         setBreakTimer(rand.nextInt(MAXNUMB - MINNUMB + 1) + MINNUMB);
         TectonAbstractFactory tectonAbstractFactory = new SwingTectonFactory();
         tectonAbstractFactory.onCreateTecton(this);
+        absorbCountdown = 5;
     }
 
     @Override

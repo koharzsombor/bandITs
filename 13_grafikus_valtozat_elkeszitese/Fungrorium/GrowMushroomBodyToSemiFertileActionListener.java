@@ -23,6 +23,7 @@ public class GrowMushroomBodyToSemiFertileActionListener implements ActionListen
      * @param e the event to be processed
      */
     public void actionPerformed(java.awt.event.ActionEvent e) {
-        MushroomBody mushroomBody = new MushroomBodyImpl(tecton);
+        //MushroomBody mushroomBody = new MushroomBodyImpl(tecton);
+        GrowthControllerImpl.instance.growMushroomBody(ObjectRegistry.lookupName(tecton)+"MB", tecton, null);
     }
 }

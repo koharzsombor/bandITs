@@ -86,7 +86,7 @@ public class ProcedualControllerImpl implements ProcedualController {
         for (int i = 0; i < playerCount * TECTON_PER_PLAYER; i++) {
             String name = "Tecton-" + i;
             int type = random.nextInt(5);
-            //int type = 0;
+            //int type = 3;
             String tectonType = "";
             switch (type) {
                 case 0 -> tectonType = "fertiletecton";

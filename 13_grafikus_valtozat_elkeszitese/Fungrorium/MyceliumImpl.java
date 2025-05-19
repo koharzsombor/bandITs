@@ -78,8 +78,10 @@ public class MyceliumImpl implements Mycelium{
      */
     @Override
     public void delete() {
+        Tecton oldLoc = location;
         location.getMycelia().remove(this);
         location=null;
+        ViewRepository.updateObject(oldLoc);
     }
 
     /**

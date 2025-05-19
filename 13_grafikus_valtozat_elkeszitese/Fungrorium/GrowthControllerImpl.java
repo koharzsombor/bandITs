@@ -62,6 +62,13 @@ public class GrowthControllerImpl implements GrowthController {
     public void growMushroomBody(String name, Tecton location, Mycologist mycologist) {
         boolean valid = false;
 
+        if (mycologist == null) {
+            if (turnController.getCurrentPlayer() instanceof Mycologist mycologist1) {
+                mycologist = mycologist1;
+            }
+            else return;
+        }
+
         for (Mycelium mycelium : location.getMycelia()) {
             if (turnController.getCurrentPlayer().controlsMycelium(mycelium)) {
                 valid = true;
