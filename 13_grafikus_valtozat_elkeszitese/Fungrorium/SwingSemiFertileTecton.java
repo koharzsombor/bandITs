@@ -52,8 +52,7 @@ public class SwingSemiFertileTecton extends JPanel implements Updatable, SwingTe
         setToolTipText("SemiFertileTecton: " + ObjectRegistry.lookupName(tectonView) + " | " +
                 "Spores: " + tectonView.getSpores().size() + " | " +
                 "Mycelia: " + tectonView.getMycelia().size());
-
-        System.out.println("Sex");
+        
         /*
         for(Insect i : tectonView.getOccupants()) {
             ViewRepository.getView(i).update();
