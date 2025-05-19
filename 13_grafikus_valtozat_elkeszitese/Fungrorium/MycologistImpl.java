@@ -154,6 +154,12 @@ public class MycologistImpl extends PlayerImpl implements Mycologist {
     }
 
     @Override
+    public void notifySubscribers() {
+        super.notifySubscribers();
+        remainingGrows = 2;
+    }
+
+    @Override
     public String toString() {
         return name + ": Mycologist";
         /*
