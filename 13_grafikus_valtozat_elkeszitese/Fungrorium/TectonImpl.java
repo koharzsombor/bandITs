@@ -315,6 +315,7 @@ public abstract class TectonImpl implements Tecton {
     @Override
     public void addOccupant(Insect insect) {
         this.occupants.add(insect);
+        ViewRepository.updateObject(this);
     }
 
     /**
@@ -325,6 +326,7 @@ public abstract class TectonImpl implements Tecton {
     @Override
     public void removeOccupant(Insect insect) {
         this.occupants.remove(insect);
+        ViewRepository.updateObject(this);
     }
 
     /**
@@ -335,6 +337,7 @@ public abstract class TectonImpl implements Tecton {
     @Override
     public void addMycelium(Mycelium mycelium) {
         this.mycelia.add(mycelium);
+        ViewRepository.updateObject(this);
     }
 
     /**
@@ -345,6 +348,7 @@ public abstract class TectonImpl implements Tecton {
     @Override
     public void addSpore(Spore spore) {
         this.spores.add(spore);
+        ViewRepository.updateObject(this);
     }
 
     /**
