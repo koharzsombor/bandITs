@@ -15,6 +15,7 @@ public class CheatMushroomBodyFactory implements MushroomBodyFactory {
         location.setMushroomBody(mushroomBody);
         mushroomBody.setLocation(location);
         ObjectRegistry.registerObject(name, mushroomBody);
+        ViewRepository.updateObject(mushroomBody);
         return mushroomBody;
     }
 }
