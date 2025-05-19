@@ -127,7 +127,7 @@ public class ProcedualControllerImpl implements ProcedualController {
             insectStartPosition.add(startingLocation);
             myceliumID++;
 
-            mapCreationController.createMushroomBody(startingLocation, "MushroomBody-" + mushroomBodyID, mycologist);
+            mapCreationController.createMushroomBody(startingLocation, "MushroomBody-" + mycologist.getName(), mycologist);
             mushroomBodyID++;
             startingLocations.remove(startingLocation);
 
