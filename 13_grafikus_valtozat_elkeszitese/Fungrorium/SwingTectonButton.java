@@ -1,11 +1,18 @@
 import javax.swing.*;
 
 public class SwingTectonButton extends JMenu {
-    // Hogy tudjon kommunikalni a FertileTectonImpl-vel
+    /**
+     * Tecton, amihez tartozik a JMenu
+     */
     private TectonView tectonView;
 
-    //JPopupMenu tectonPopupMenu;
-
+    /**
+     * Konstruktor
+     * @param name Tecton neve
+     * @param tectonView Tecton
+     * @param isFertile Fertile vagy SemiFertile működés
+     * @param text Sublabel text, ha speciális tekton
+     */
     SwingTectonButton(String name, TectonView tectonView, boolean isFertile, String text) {
         super(name);
         this.tectonView = tectonView;

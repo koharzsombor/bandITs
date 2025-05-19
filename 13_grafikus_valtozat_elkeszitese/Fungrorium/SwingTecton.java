@@ -1,8 +1,10 @@
-import javax.swing.*;
 import java.awt.event.MouseEvent;
 
+/**
+ * Interface a Swing tectonokhoz, GameFieldViewhoz
+ */
 public interface SwingTecton {
-    abstract void update();
+    void update();
 
-    abstract void showPopupMenu(MouseEvent e);
+    void showPopupMenu(MouseEvent e);
 }

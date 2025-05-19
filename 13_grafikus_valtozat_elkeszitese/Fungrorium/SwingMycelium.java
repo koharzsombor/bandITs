@@ -24,6 +24,9 @@ public class SwingMycelium extends JPanel implements Updatable{
         this.mv = mv;
     }
 
+    /**
+     * Ures update, mert nem hasznaljuk lul
+     */
     @Override
     public void update() {}
 }

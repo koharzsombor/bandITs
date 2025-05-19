@@ -4,35 +4,63 @@ import java.awt.event.MouseEvent;
 import java.util.*;
 
 /**
- * Swing-es megjelenitese egy FertileTectonnak
+ * Swing-es megjelenitese egy SemiFertileTectonnak
  */
 public class SwingSemiFertileTecton extends JPanel implements Updatable, SwingTecton{
 
-    // Hogy tudjon kommunikalni a FertileTectonImpl-vel
+    /**
+     * Tecton, amihez tartozik a panel
+     */
     private TectonView tectonView;
 
-    // Ez fog megjelenni ha rakattintunk a tectonra
+    /**
+     * Panelhez tartozó JPopupMenu
+     */
     private JPopupMenu tectonPopupMenu;
 
+    /**
+     * Tecton panel mérete
+     */
     private int size = 50;
 
+    /**
+     * Tecton szine
+     */
     private Color tectonColor = new Color(128, 128, 128);
 
+    /**
+     * Mycelium & CarnivorousMycelium szine
+     */
     private Color myceliumColor = new Color(166, 80, 42);
     private Color carnivorousMyceliumColor = new Color(255, 88, 170);
+
+    /**
+     * MushroomBody méretei
+     */
     private int MB_TRIANGLE_MARGIN = 1;
     private int MB_TRIANGLE_MARGIN_SIDES = 6;
     private int MB_width = 50;
     private int MB_height = 42;
     private int MB_nPoints = 3;
+
+    /**
+     * MushroomBody szine
+     */
     private Color mushroomBodyColor = new Color(255,0,0);
 
+    /**
+     * Insect mérete
+     */
     private int insectSize = 10;
+
+    /**
+     * Insect szine
+     */
     private Color insectColor = new Color(0,0,0);
 
     /**
-     * Konstruktor, PopupMenu + gombok + listenerek
-     * @param tecton
+     * Konstruktor
+     * @param tecton amihez tartozik
      */
     SwingSemiFertileTecton(SemiFertileTectonImpl tecton) {
         this.tectonView =  tecton;
@@ -64,6 +92,10 @@ public class SwingSemiFertileTecton extends JPanel implements Updatable, SwingTe
         repaint();
     }
 
+    /**
+     * Lefrissiti és előhozza a PopupMenu-t
+     * @param e MouseEvent, aminek hatására elöjött - előhozás helyéhez kell
+     */
     public void showPopupMenu(MouseEvent e) {
         tectonPopupMenu.removeAll();
 
@@ -88,6 +120,13 @@ public class SwingSemiFertileTecton extends JPanel implements Updatable, SwingTe
         tectonPopupMenu.show(e.getComponent(), e.getX(), e.getY());
     }
 
+    /**
+     * Megnézi, hogy van-e és hogy milyen Mycelium van a TectonView-on
+     * 0, ha nincs
+     * 1, ha Mycelium
+     * 2, ha Carnivorous
+     * @return int, Mycelium tipusa szerint
+     */
     private int hasCarnivorousMycelium() {
         LinkedList<Mycelium> myceliumList = new LinkedList<>(tectonView.getMycelia());
         if(myceliumList.size()==0) return 0;
@@ -99,6 +138,14 @@ public class SwingSemiFertileTecton extends JPanel implements Updatable, SwingTe
         return 1;
     }
 
+    /**
+     * Kirajzolja a tectont
+     * -> Myceliumot
+     * -> MushroomBody-t
+     * -> Insecteket
+     * -> Keretet ad az egésznek
+     * @param g the <code>Graphics</code> object to protect
+     */
     @Override
     protected void paintComponent(Graphics g) {
         //update();

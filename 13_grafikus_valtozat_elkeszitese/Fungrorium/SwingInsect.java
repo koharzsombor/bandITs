@@ -1,7 +1,5 @@
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.util.List;
+
 /**
  * A Swing objectum az Insecthez
  */
@@ -51,7 +49,7 @@ public class SwingInsect extends JMenu implements Updatable {
         add(cutButton);
 
         MoveButton moveButton = new MoveButton("Move to a tecton", iv);
-        moveButton.addMouseListener(new MoveButtonMouseListener(moveButton));
+        //moveButton.addMouseListener(new MoveButtonMouseListener(moveButton));
         add(moveButton);
 
         addMouseListener(new InsectMouseAdapter(this));
