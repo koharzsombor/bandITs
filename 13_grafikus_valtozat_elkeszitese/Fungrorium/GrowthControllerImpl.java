@@ -43,7 +43,6 @@ public class GrowthControllerImpl implements GrowthController {
             else return;
         }
 
-        System.out.println(mycologist.getRemainingGrows());
         if (mycologist.getRemainingGrows() <= 0)
             return;
 
