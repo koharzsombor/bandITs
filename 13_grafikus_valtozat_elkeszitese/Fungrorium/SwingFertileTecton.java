@@ -95,7 +95,10 @@ public class SwingFertileTecton extends JPanel implements Updatable, SwingTecton
 
     private int hasCarnivorousMycelium() {
         LinkedList<Mycelium> myceliumList = new LinkedList<>(tectonView.getMycelia());
-        if(myceliumList.size()==0) return 0;
+        if(myceliumList.size()==0)
+        {
+            return 0;
+        }
         for (Mycelium m : myceliumList) {
             if (m instanceof CarnivorousMyceliumImpl) {
                 return 2;
@@ -106,7 +109,7 @@ public class SwingFertileTecton extends JPanel implements Updatable, SwingTecton
 
     @Override
     protected void paintComponent(Graphics g) {
-        update();
+        //update();
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 

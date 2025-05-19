@@ -101,7 +101,7 @@ public class SwingSustainingTecton extends JPanel implements Updatable, SwingTec
 
     @Override
     protected void paintComponent(Graphics g) {
-        update();
+        //update();
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 

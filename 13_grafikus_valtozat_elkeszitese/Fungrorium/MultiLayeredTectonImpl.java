@@ -70,6 +70,8 @@ public class MultiLayeredTectonImpl extends FertileTectonImpl {
             tectonAbstractFactory.onCreateTecton(newFertileTecton);
 
             setBreakTimer(rand.nextInt(MAXNUMB - MINNUMB + 1) + MINNUMB);
+
+            ViewRepository.updateObject(this);
         }
     }
 

@@ -102,7 +102,7 @@ public class SwingSemiFertileTecton extends JPanel implements Updatable, SwingTe
 
     @Override
     protected void paintComponent(Graphics g) {
-        update();
+        //update();
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
