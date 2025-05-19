@@ -17,8 +17,8 @@ public class GameFieldView extends JPanel {
     private List<Edge> edges = new ArrayList<>();
 
     // Physics parameters for force-directed layout
-    private double repulsionForce = 800.0;  // Nodes push each other apart
-    private double springLength = 200.0;    // Ideal edge length
+    private double repulsionForce = 1000.0;  // Nodes push each other apart
+    private double springLength = 300.0;    // Ideal edge length
     private double springConstant = 0.03;   // How stiff the edges are
     private double damping = 0.85;           // Damping factor for movement
 
