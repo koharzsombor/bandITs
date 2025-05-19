@@ -28,7 +28,6 @@ public class SwingInsect extends JMenu implements Updatable {
      */
     @Override
     public void update() {
-        System.out.println("Update");
         String name = "Insect: " + ObjectRegistry.lookupName(iv);
         int remainingMoves = iv.getRemainingMoves();
         String state = iv.getState().name();
