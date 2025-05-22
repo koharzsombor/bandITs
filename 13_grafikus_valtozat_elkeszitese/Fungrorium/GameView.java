@@ -19,7 +19,8 @@ public class GameView extends JPanel {
      */
     public GameView(GameFieldView gameFieldView, TurnView turnView) {
         setBorder(new EmptyBorder(5, 5, 5, 5)); // 5px padding
-        JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, gameFieldView, turnView);
+        JScrollPane scrollPane = new JScrollPane(gameFieldView);
+        JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, scrollPane, turnView);
         splitPane.setDividerSize(0);
         splitPane.setResizeWeight(1);
 

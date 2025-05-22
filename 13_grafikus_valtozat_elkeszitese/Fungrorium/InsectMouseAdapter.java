@@ -24,7 +24,7 @@ public class InsectMouseAdapter implements MouseListener {
      * @param e the event to be processed
      */
     public void mouseReleased(MouseEvent e) {
-        swingInsect.showPopupMenu(e);
+        //swingInsect.showPopupMenu(e);
     }
 
     /**

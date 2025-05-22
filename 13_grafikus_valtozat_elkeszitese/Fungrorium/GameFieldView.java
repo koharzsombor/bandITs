@@ -1,332 +1,418 @@
 import javax.swing.*;
-import javax.swing.border.LineBorder;
+import javax.swing.Timer;
+import javax.swing.text.View;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
 
-
-/**
- * Az elkepzeles az, hogy JComponentkent kezelem a node-okat, igy mivel tobb fajta
- * tecton is letezik tudom egyszerre kezelni oket mint node-ok. Ezekre rarajzolni mas objektumokat
- * amik nem node-ok (vagyis nem tectonok) nem tudtam kitalalni eddig
- */
 public class GameFieldView extends JPanel {
+    public static final int WIDTH = 1000;
+    public static final int HEIGHT = 1000;
+    public static final int TECTON_SIZE = 50;
 
-    public static final int TECTON_SIZE = 80; // Ugyan az mint a tectonoknak
-    public static final int WIDTH = 800;
-    public static final int HEIGHT = 600;
+    // Map to store nodes and their current positions
+    private Map<SwingTecton, Node> tectonNodes = new HashMap<>();
 
-    // Force parameters
-    private static final double REPULSION = 8000; // Ennyivel taszitjak egymast
-    private static final double ATTRACTION = 0.05; // Ennyivel vonzak egymast
-    private static final double DAMPING = 0.85; // Hogy ne orokre mozogjanak
-    private static final double MAX_VELOCITY = 5.0; // Mozgasi sebesseg maximum
+    // Graph structure
+    private List<Edge> edges = new ArrayList<>();
 
-    // Node data type
-    static class Node {
-        double x, y;
-        double vx, vy;
-        List<Node> neighbors = new ArrayList<>();
-        JComponent component;
+    // Physics parameters for force-directed layout
+    private double repulsionForce = 1000.0;  // Nodes push each other apart
+    private double springLength = 300.0;    // Ideal edge length
+    private double springConstant = 0.03;   // How stiff the edges are
+    private double damping = 0.85;           // Damping factor for movement
 
-        Node(double x, double y, JComponent component) {
-            this.x = x;
-            this.y = y;
-            this.vx = 0;
-            this.vy = 0;
-            this.component = component;
-        }
-    }
+    private Timer layoutTimer;
 
-    static class Graph {
-        List<Node> nodes = new ArrayList<>();
-        Map<JComponent, Node> componentToNodeMap = new HashMap<>();
-    }
-
-    private final Graph graph;
-    private Timer animationTimer;
-    private List<TectonView> tectons;
-
+    public List<TectonView> tectons = new ArrayList<>();
 
     public GameFieldView() {
-        setLayout(null);
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
-        setBorder(new LineBorder(Color.BLACK));
         setBackground(Color.WHITE);
 
-        graph = new Graph();
+        // Use null layout for absolute positioning
+        setLayout(null);
 
-        // 30 fps
-        animationTimer = new Timer(30, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                applyForces();
-                updatePositions();
-                repaint(); // itt csak a osszekoto vonalak rajzolasara
-            }
-        });
+        // Start layout simulation
+        layoutTimer = new Timer(30, e -> updateLayout());
+        layoutTimer.start();
     }
 
-    public Node addTecton(JComponent tectonComponent, double x, double y) {
-        // Check if it's already in the graph
-        if (graph.componentToNodeMap.containsKey(tectonComponent)) {
-            return graph.componentToNodeMap.get(tectonComponent);
+    public void BuildGraph() {
+        // Clear existing nodes and edges
+        for (SwingTecton component : new ArrayList<>(tectonNodes.keySet())) {
+            removeTecton(component);
         }
-
-        Node node = new Node(x, y, tectonComponent);
-        graph.nodes.add(node);
-        graph.componentToNodeMap.put(tectonComponent, node);
-
-        // Add the component to the panel if not already added
-        if (tectonComponent.getParent() != this) {
-            add(tectonComponent);
-        }
-
-        // Position the component
-        updateTectonPosition(node);
-
-        return node;
-    }
-
-
-
-    /**
-     * Connect two JComponent nodes in the graph. Meg nincs hasznalva mivel nem tudom
-     * mikor fog letezni az osszes swing node amiket tudok majd osszekotni
-     */
-    public void connectTectons(JComponent tectonComponent1, JComponent tectonComponent2) {
-        Node node1 = graph.componentToNodeMap.get(tectonComponent1);
-        Node node2 = graph.componentToNodeMap.get(tectonComponent2);
-
-        if (node1 != null && node2 != null) {
-            // Only add if not already connected
-            if (!node1.neighbors.contains(node2)) {
-                node1.neighbors.add(node2);
-            }
-            if (!node2.neighbors.contains(node1)) {
-                node2.neighbors.add(node1);
-            }
-        }
-    }
-
-
-    /**
-     * Update the position of a JComponent on the panel
-     */
-    public void updateTectonPosition(Node node) {
-        if (node.component != null) {
-            // Get the component's size
-            int componentWidth = node.component.getPreferredSize().width;
-            int componentHeight = node.component.getPreferredSize().height;
-
-            // If the component hasn't set a preferred size, use a default
-            if (componentWidth <= 0 || componentHeight <= 0) {
-                componentWidth = TECTON_SIZE;
-                componentHeight = TECTON_SIZE;
-            }
-
-            // Position the component with its center at (x,y)
-            node.component.setBounds(
-                    (int)(node.x - componentWidth / 2),
-                    (int)(node.y - componentHeight / 2),
-                    componentWidth,
-                    componentHeight
-            );
-        }
-    }
-
-
-    /**
-     * The controllers will call this method once they have created
-     * all the necessary Node objects and set up their relationships.
-     * This method will replace the current graph with the provided nodes.
-     */
-    public void setGraphData(List<Node> newNodes) {
-        // Clear existing components from the panel
+        edges.clear();
+        tectonNodes.clear();
         removeAll();
 
-        // Clear our existing graph data
-        graph.nodes.clear();
-        graph.componentToNodeMap.clear();
+        if (tectons.isEmpty()) {
+            repaint();
+            return;
+        }
 
-        // Add the new nodes
-        for (Node node : newNodes) {
-            // Add the component to the panel
-            if (node.component != null) {
-                add(node.component);
+        // Add each tecton to the graph
+        Random random = new Random();
+        for (TectonView tecton : tectons) {
+            // Get the SwingTecton from ViewRepository
+            SwingTecton tectonComponent = (SwingTecton) ViewRepository.getView(tecton);
 
-                // Update our internal mappings
-                graph.nodes.add(node);
-                graph.componentToNodeMap.put(node.component, node);
+            // Add the component to the graph at a random initial position
+            double x = random.nextDouble() * (WIDTH - 2 * TECTON_SIZE) + TECTON_SIZE;
+            double y = random.nextDouble() * (HEIGHT - 2 * TECTON_SIZE) + TECTON_SIZE;
+            addSwingTecton(tectonComponent, x, y);
+        }
 
-                // Set the initial position
-                updateTectonPosition(node);
+        // Create edges based on tecton relationships
+        for (TectonView tecton : tectons) {
+            SwingTecton tectonComponent = (SwingTecton) ViewRepository.getView(tecton);
+
+            // Get neighbors using the TectonView interface's getNeighboursViews method
+            List<TectonView> neighbors = tecton.getNeighboursViews();
+
+            for (TectonView neighbor : neighbors) {
+                // Get the SwingTecton for this neighbor
+                SwingTecton neighborComponent = (SwingTecton) ViewRepository.getView(neighbor);
+                addEdge(tectonComponent, neighborComponent);
             }
         }
 
-        // Force revalidation and repaint
-        revalidate();
+        // Force an initial layout update
+        for (int i = 0; i < 10; i++) {
+            updateLayout();
+        }
+
         repaint();
     }
 
     /**
-     * Start the force-directed graph animation
+     * Set tectons received from procedual controller as nodes in the graph
+     * This method is called by StartGameListener when a new game starts
      */
-    public void startAnimation() {
-        if (!animationTimer.isRunning()) {
-            animationTimer.start();
-        }
+    public void SetTectons(List<TectonView> tectonsList) {
+        tectons.clear();
+        tectons.addAll(tectonsList);
+        BuildGraph();
     }
 
     /**
-     * Stop the animation
+     * Add a tecton component to the graph
      */
-    public void stopAnimation() {
-        if (animationTimer.isRunning()) {
-            animationTimer.stop();
-        }
+    public void addSwingTecton(SwingTecton tectonComponent, double x, double y) {
+        // Create a node for this tecton component
+        Node node = new Node(x, y);
+        tectonNodes.put(tectonComponent, node);
+
+        // Add the component to the panel
+        JPanel panel = (JPanel)tectonComponent;
+        panel.setBounds((int)x, (int)y, TECTON_SIZE, TECTON_SIZE);
+        add(panel);
+
+        repaint();
+    }
+
+    public void addTecton(Tecton tecton) {
+        tectons.add(tecton);
+        BuildGraph();
     }
 
     /**
-     * Calculate forces between nodes to create a force-directed layout
+     * Remove a tecton component from the graph
      */
-    private void applyForces() {
-        List<Node> nodes = graph.nodes;
-        int n = nodes.size();
+    public void removeTecton(SwingTecton tectonComponent) {
+        remove((JPanel) tectonComponent);
+        tectonNodes.remove(tectonComponent);
 
-        // Reset velocities to zero
-        for (Node node : nodes) {
-            node.vx = 0;
-            node.vy = 0;
-        }
+        // Remove any edges connected to this component
+        edges.removeIf(edge -> edge.involves(tectonComponent));
 
-        // Apply repulsive forces between all pairs of nodes
-        for (int i = 0; i < n; i++) {
-            Node nodeA = nodes.get(i);
+        repaint();
+    }
 
-            for (int j = i + 1; j < n; j++) {
-                Node nodeB = nodes.get(j);
-
-                // Calculate distance between nodes
-                double dx = nodeB.x - nodeA.x;
-                double dy = nodeB.y - nodeA.y;
-                double distance = Math.sqrt(dx * dx + dy * dy);
-
-                // Prevent division by zero
-                if (distance == 0) {
-                    distance = 0.1;
-                    dx = 0.1;
-                    dy = 0;
-                }
-
-                // Calculate repulsive force (inverse square law)
-                double force = REPULSION / (distance * distance);
-
-                // Apply force to both nodes in opposite directions
-                double fx = (dx / distance) * force;
-                double fy = (dy / distance) * force;
-
-                nodeA.vx -= fx;
-                nodeA.vy -= fy;
-                nodeB.vx += fx;
-                nodeB.vy += fy;
-            }
-        }
-
-        // Apply attractive forces between connected nodes
-        for (Node node : nodes) {
-            for (Node neighbor : node.neighbors) {
-                // Calculate distance between nodes
-                double dx = neighbor.x - node.x;
-                double dy = neighbor.y - node.y;
-                double distance = Math.sqrt(dx * dx + dy * dy);
-
-                // Prevent division by zero
-                if (distance == 0) {
-                    distance = 0.1;
-                    dx = 0.1;
-                    dy = 0;
-                }
-
-                // Calculate attractive force (linear with distance)
-                double force = ATTRACTION * distance;
-
-                // Apply force to node (neighbor gets the same force from its loop)
-                double fx = (dx / distance) * force;
-                double fy = (dy / distance) * force;
-
-                node.vx += fx;
-                node.vy += fy;
+    /**
+     * Connect two tectons with an edge
+     */
+    public void addEdge(SwingTecton tecton1, SwingTecton tecton2) {
+        // Only add if both tectons exist in the graph and no edge already exists
+        if (tectonNodes.containsKey(tecton1) && tectonNodes.containsKey(tecton2)) {
+            if (!edgeExists(tecton1, tecton2)) {
+                edges.add(new Edge(tecton1, tecton2));
+                repaint();
             }
         }
     }
 
     /**
-     * Update the positions of all nodes based on calculated velocities
+     * Check if an edge already exists between two tecton components
      */
-    private void updatePositions() {
-        // Apply velocities to positions with damping
-        for (Node node : graph.nodes) {
-            // Apply damping to velocity
-            node.vx *= DAMPING;
-            node.vy *= DAMPING;
-
-            // Limit maximum velocity
-            double speed = Math.sqrt(node.vx * node.vx + node.vy * node.vy);
-            if (speed > MAX_VELOCITY) {
-                node.vx = (node.vx / speed) * MAX_VELOCITY;
-                node.vy = (node.vy / speed) * MAX_VELOCITY;
+    private boolean edgeExists(SwingTecton tecton1, SwingTecton tecton2) {
+        for (Edge edge : edges) {
+            if ((edge.tecton1 == tecton1 && edge.tecton2 == tecton2) ||
+                    (edge.tecton1 == tecton2 && edge.tecton2 == tecton1)) {
+                return true;
             }
-
-            // Update position
-            node.x += node.vx;
-            node.y += node.vy;
-
-            // Keep nodes within bounds
-            node.x = Math.max(0, Math.min(WIDTH - TECTON_SIZE, node.x));
-            node.y = Math.max(0, Math.min(HEIGHT - TECTON_SIZE, node.y));
-
-            // Update the JComponent component position
-            updateTectonPosition(node);
         }
+        return false;
     }
 
-    /**
-     * Paint the edges between connected nodes
-     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
 
         // Draw edges
-        g2d.setColor(Color.BLACK);
-        g2d.setStroke(new BasicStroke(2));
+        g2d.setStroke(new BasicStroke(2f));
+        g2d.setColor(Color.GRAY);
 
-        for (Node node : graph.nodes) {
-            if (node.component != null) {
-                int x1 = (int)node.x;
-                int y1 = (int)node.y;
+        for (Edge edge : edges) {
+            Node n1 = tectonNodes.get(edge.tecton1);
+            Node n2 = tectonNodes.get(edge.tecton2);
 
-                for (Node neighbor : node.neighbors) {
-                    if (neighbor.component != null) {
-                        int x2 = (int)neighbor.x;
-                        int y2 = (int)neighbor.y;
-                        g2d.drawLine(x1, y1, x2, y2);
+            if (n1 != null && n2 != null) {
+                // Draw from center to center
+                g2d.drawLine(
+                        (int)n1.x,  // Use the node's x position directly
+                        (int)n1.y,  // Use the node's y position directly
+                        (int)n2.x,  // Use the node's x position directly
+                        (int)n2.y   // Use the node's y position directly
+                );
+            }
+        }
+    }
+
+
+    /**
+     * Update the force-directed layout
+     */
+    private void updateLayout() {
+        // Reset forces for all nodes
+        for (Node node : tectonNodes.values()) {
+            node.forceX = 0;
+            node.forceY = 0;
+        }
+
+        // Apply repulsion forces between all nodes
+        for (Map.Entry<SwingTecton, Node> entry1 : tectonNodes.entrySet()) {
+            Node node1 = entry1.getValue();
+
+            for (Map.Entry<SwingTecton, Node> entry2 : tectonNodes.entrySet()) {
+                if (entry1 == entry2) continue;
+
+                Node node2 = entry2.getValue();
+
+                // Calculate distance between nodes
+                double dx = node2.x - node1.x;
+                double dy = node2.y - node1.y;
+                double distance = Math.sqrt(dx * dx + dy * dy);
+
+                // Avoid division by zero and give small random displacement to prevent perfect overlap
+                if (distance < 0.1) {
+                    distance = 0.1;
+                    dx = (Math.random() - 0.5) * 0.1;
+                    dy = (Math.random() - 0.5) * 0.1;
+                }
+
+                // Minimum distance to prevent overlap (diameter of a node)
+                double minDistance = TECTON_SIZE;
+
+                // Calculate repulsion force - make it much stronger when nodes are close to overlapping
+                double force;
+                if (distance < minDistance) {
+                    // Strong repulsion when overlapping - cubic falloff for stronger effect
+                    force = repulsionForce * 3 * Math.pow(minDistance / distance, 3);
+                } else {
+                    force = repulsionForce / (distance * distance);
+                }
+
+                // Apply force along the direction vector
+                double fx = force * dx / distance;
+                double fy = force * dy / distance;
+
+                node1.forceX -= fx;
+                node1.forceY -= fy;
+            }
+        }
+
+        // Apply spring forces along edges
+        for (Edge edge : edges) {
+            Node node1 = tectonNodes.get(edge.tecton1);
+            Node node2 = tectonNodes.get(edge.tecton2);
+
+            if (node1 == null || node2 == null) continue;
+
+            // Calculate distance between nodes
+            double dx = node2.x - node1.x;
+            double dy = node2.y - node1.y;
+            double distance = Math.sqrt(dx * dx + dy * dy);
+
+            // Avoid division by zero
+            if (distance < 0.1) {
+                distance = 0.1;
+                dx = (Math.random() - 0.5) * 0.1;
+                dy = (Math.random() - 0.5) * 0.1;
+            }
+
+            // Calculate spring force (proportional to difference from spring length)
+            double displacement = distance - springLength;
+            double force = springConstant * displacement;
+
+            // Apply force along the direction vector
+            double fx = force * dx / distance;
+            double fy = force * dy / distance;
+
+            node1.forceX += fx;
+            node1.forceY += fy;
+            node2.forceX -= fx;
+            node2.forceY -= fy;
+        }
+
+        // Update velocities and positions
+        for (Node node : tectonNodes.values()) {
+            // Apply forces to update velocity (with damping)
+            node.velocityX = (node.velocityX + node.forceX) * damping;
+            node.velocityY = (node.velocityY + node.forceY) * damping;
+
+            // Update position
+            node.x += node.velocityX;
+            node.y += node.velocityY;
+
+            // Boundary constraints to keep nodes within the panel
+            if (node.x < TECTON_SIZE/2) {
+                node.x = TECTON_SIZE/2;
+                node.velocityX = Math.abs(node.velocityX) * 0.5; // Bounce with reduced velocity
+            } else if (node.x > WIDTH - TECTON_SIZE/2) {
+                node.x = WIDTH - TECTON_SIZE/2;
+                node.velocityX = -Math.abs(node.velocityX) * 0.5; // Bounce with reduced velocity
+            }
+
+            if (node.y < TECTON_SIZE/2) {
+                node.y = TECTON_SIZE/2;
+                node.velocityY = Math.abs(node.velocityY) * 0.5; // Bounce with reduced velocity
+            } else if (node.y > HEIGHT - TECTON_SIZE/2) {
+                node.y = HEIGHT - TECTON_SIZE/2;
+                node.velocityY = -Math.abs(node.velocityY) * 0.5; // Bounce with reduced velocity
+            }
+        }
+
+        // Add an explicit overlap resolution step
+        resolveOverlaps();
+
+        // Update actual component positions
+        for (Map.Entry<SwingTecton, Node> entry : tectonNodes.entrySet()) {
+            SwingTecton tecton = entry.getKey();
+            Node node = entry.getValue();
+
+            if (tecton != null) {
+                // Position the component so that its center is at the node position
+                JPanel panel = (JPanel)tecton;
+                panel.setBounds(
+                        (int)(node.x - TECTON_SIZE/2),
+                        (int)(node.y - TECTON_SIZE/2),
+                        TECTON_SIZE,
+                        TECTON_SIZE
+                );
+            }
+        }
+
+        repaint();
+    }
+
+
+    /**
+     * Resolve any remaining overlaps by directly separating nodes
+     */
+    private void resolveOverlaps() {
+        boolean overlapsExist = true;
+        int iterations = 0;
+        final int MAX_ITERATIONS = 5; // Limit iterations to avoid infinite loops
+
+        while (overlapsExist && iterations < MAX_ITERATIONS) {
+            overlapsExist = false;
+            iterations++;
+
+            for (Map.Entry<SwingTecton, Node> entry1 : tectonNodes.entrySet()) {
+                Node node1 = entry1.getValue();
+
+                for (Map.Entry<SwingTecton, Node> entry2 : tectonNodes.entrySet()) {
+                    if (entry1 == entry2) continue;
+
+                    Node node2 = entry2.getValue();
+
+                    // Calculate distance between node centers
+                    double dx = node2.x - node1.x;
+                    double dy = node2.y - node1.y;
+                    double distance = Math.sqrt(dx * dx + dy * dy);
+
+                    // Check if nodes overlap
+                    double minDistance = TECTON_SIZE;
+                    if (distance < minDistance) {
+                        overlapsExist = true;
+
+                        // Calculate separation vector
+                        double separationDistance = (minDistance - distance) / 2.0 + 2.0; // Add small buffer
+
+                        // Avoid division by zero
+                        if (distance < 0.1) {
+                            distance = 0.1;
+                            dx = (Math.random() - 0.5) * 0.1;
+                            dy = (Math.random() - 0.5) * 0.1;
+                        }
+
+                        double separationX = dx * separationDistance / distance;
+                        double separationY = dy * separationDistance / distance;
+
+                        // Move nodes apart
+                        node1.x -= separationX;
+                        node1.y -= separationY;
+                        node2.x += separationX;
+                        node2.y += separationY;
+
+                        // Keep nodes within bounds
+                        node1.x = Math.max(TECTON_SIZE/2, Math.min(WIDTH - TECTON_SIZE/2, node1.x));
+                        node1.y = Math.max(TECTON_SIZE/2, Math.min(HEIGHT - TECTON_SIZE/2, node1.y));
+                        node2.x = Math.max(TECTON_SIZE/2, Math.min(WIDTH - TECTON_SIZE/2, node2.x));
+                        node2.y = Math.max(TECTON_SIZE/2, Math.min(HEIGHT - TECTON_SIZE/2, node2.y));
                     }
                 }
             }
         }
     }
 
-}
+    /**
+     * Node class for force-directed graph layout
+     */
+    private static class Node {
+        double x, y;            // Position
+        double velocityX = 0;   // Velocity
+        double velocityY = 0;
+        double forceX = 0;      // Current forces
+        double forceY = 0;
 
-    public void SetTectons(List<TectonView> tectons) {
-        this.tectons = tectons;
+        Node(double x, double y) {
+            this.x = x;
+            this.y = y;
+        }
+    }
+
+    /**
+     * Edge class connecting two tectons
+     */
+    private static class Edge {
+        SwingTecton tecton1;
+        SwingTecton tecton2;
+
+        Edge(SwingTecton t1, SwingTecton t2) {
+            this.tecton1 = t1;
+            this.tecton2 = t2;
+        }
+
+        boolean involves(SwingTecton tecton) {
+            return tecton1 == tecton || tecton2 == tecton;
+        }
+
+        SwingTecton getOther(SwingTecton tecton) {
+            return tecton == tecton1 ? tecton2 : tecton1;
+        }
     }
 }
-

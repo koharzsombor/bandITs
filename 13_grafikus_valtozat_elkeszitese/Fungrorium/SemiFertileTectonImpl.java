@@ -6,13 +6,15 @@ public class SemiFertileTectonImpl extends TectonImpl {
 
     Random rand = new Random();
 
-    int MINNUMB = 2;
-    int MAXNUMB = 2;
+    int MINNUMB = 5;
+    int MAXNUMB = 10;
 
     SemiFertileTectonImpl() {
         setMyceliaCapacity(1);
 
         setBreakTimer(rand.nextInt(MAXNUMB - MINNUMB + 1) + MINNUMB);
+        TectonAbstractFactory tectonAbstractFactory = new SwingTectonFactory();
+        tectonAbstractFactory.onCreateTecton(this);
     }
 
     @Override
@@ -58,7 +60,12 @@ public class SemiFertileTectonImpl extends TectonImpl {
             String newFTname = ObjectRegistry.lookupName(this) + "-" + this.breakCounter;
             ObjectRegistry.registerObject(newFTname, newFertileTecton);
 
+            TectonAbstractFactory tectonAbstractFactory = new SwingTectonFactory();
+            tectonAbstractFactory.onCreateTecton(newFertileTecton);
+
             setBreakTimer(rand.nextInt(MAXNUMB - MINNUMB + 1) + MINNUMB);
+
+            ViewRepository.updateObject(this);
         }
     }
 
@@ -70,6 +77,7 @@ public class SemiFertileTectonImpl extends TectonImpl {
      * To string, a kiiráshoz
      * @return az tecton tulajdonságainak formázott stringje
      */
+    /*
     @Override
     public String toString() {
         String output = ObjectRegistry.lookupName(this) + ": SemiFertileTecton\n";
@@ -97,5 +105,5 @@ public class SemiFertileTectonImpl extends TectonImpl {
         }
         output += "\t}\n";
         return output;
-    }
+    }*/
 }

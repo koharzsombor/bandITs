@@ -3,10 +3,10 @@ import java.awt.event.MouseListener;
 
 public class TectonMouseListener implements MouseListener {
 
-    SwingFertileTecton swingFertileTecton;
+    SwingTecton swingTecton;
 
-    TectonMouseListener(SwingFertileTecton swingFertileTecton) {
-        this.swingFertileTecton = swingFertileTecton;
+    TectonMouseListener(SwingTecton swingTecton) {
+        this.swingTecton = swingTecton;
     }
 
 
@@ -22,7 +22,7 @@ public class TectonMouseListener implements MouseListener {
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        swingFertileTecton.showPopupMenu(e);
+        swingTecton.showPopupMenu(e);
     }
 
     @Override

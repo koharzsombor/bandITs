@@ -23,6 +23,10 @@ public class MyceliumImpl implements Mycelium{
      */
     protected int growTimer = 0;
 
+    public int getGrowTimer() {
+        return growTimer;
+    }
+
     /**
      * Az idő, ami mulva elszakad a fonál.
      */
@@ -32,7 +36,10 @@ public class MyceliumImpl implements Mycelium{
      * Létrehoz egy üres gombafonalat, ami nincs rajta egy tektonon.
      * Csak a játékmező létrehozására szabad használni.
      */
-    public MyceliumImpl() {}
+    public MyceliumImpl() {
+        MyceliumAbstractFactory myceliumAbstractFactory = new SwingMyceliumFactory();
+        myceliumAbstractFactory.onCreateMycelium(this);
+    }
 
     /**
      * Létrehoz egy gombafonalat az adott tektonra, ha a tekton befogadja, akkor létrejön a tektonon, ha nem megsemmisül.
@@ -47,6 +54,7 @@ public class MyceliumImpl implements Mycelium{
         myceliumGrowthEvaluator.visit(location);
         MyceliumAbstractFactory myceliumAbstractFactory = new SwingMyceliumFactory();
         myceliumAbstractFactory.onCreateMycelium(this);
+        ViewRepository.updateObject(location);
     }
 
     /**
@@ -62,6 +70,7 @@ public class MyceliumImpl implements Mycelium{
         myceliumGrowthEvaluator.visit(location);
         MyceliumAbstractFactory myceliumAbstractFactory = new SwingMyceliumFactory();
         myceliumAbstractFactory.onCreateMycelium(this);
+        ViewRepository.updateObject(location);
     }
 
     /**
@@ -69,8 +78,10 @@ public class MyceliumImpl implements Mycelium{
      */
     @Override
     public void delete() {
+        Tecton oldLoc = location;
         location.getMycelia().remove(this);
         location=null;
+        ViewRepository.updateObject(oldLoc);
     }
 
     /**
@@ -134,6 +145,7 @@ public class MyceliumImpl implements Mycelium{
                 insect.runAway();
             }
         }
+        ViewRepository.updateObject(tmpLocation);
     }
 
     /**

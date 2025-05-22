@@ -187,6 +187,7 @@ public class InsectImpl implements Insect{
             getLocation().cutMycelium();
             setRemainingMoves(0);
         }
+        ViewRepository.updateObject(location);
         ViewRepository.updateObject(this);
     }
 
@@ -198,6 +199,7 @@ public class InsectImpl implements Insect{
         if(getRemainingMoves() > 0) {
             getLocation().eatSpore(this);
         }
+        ViewRepository.updateObject(location);
         ViewRepository.updateObject(this);
     }
 
@@ -207,9 +209,12 @@ public class InsectImpl implements Insect{
      */
     @Override
     public void move(Tecton target) {
+        Tecton oldLocation = location;
         if(getRemainingMoves() > 0) {
             target.moveInsect(this);
         }
+        ViewRepository.updateObject(oldLocation);
+        ViewRepository.updateObject(location);
         ViewRepository.updateObject(this);
     }
 
@@ -272,6 +277,7 @@ public class InsectImpl implements Insect{
      */
     @Override
     public void runAway() {
+        Tecton oldLocation = location;
 
         Set<Tecton> available = new HashSet<>();
         Queue<Tecton> queue = new LinkedList<>();
@@ -314,6 +320,9 @@ public class InsectImpl implements Insect{
 
             selectedTecton.addOccupant(this);
         }
+
+        ViewRepository.updateObject(oldLocation);
+        ViewRepository.updateObject(location);
     }
 
     /**
@@ -333,7 +342,7 @@ public class InsectImpl implements Insect{
             getLocation().removeOccupant(this);
             setLocation(null);
         }
-        ViewRepository.updateObject(this);
+        ViewRepository.updateObject(location);
     }
 
     /**
@@ -350,7 +359,7 @@ public class InsectImpl implements Insect{
             }
         }
         setRemainingMoves(getMaxMoves());
-        ViewRepository.updateObject(this);
+        ViewRepository.updateObject(location);
     }
 
     /**

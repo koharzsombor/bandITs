@@ -5,15 +5,10 @@ import java.awt.event.MouseEvent;
 /**
  * A MushroomBodyhoz tartozó swinges nézet, amely az objektumot piros háromszögként jeleníti meg.
  */
-public class SwingMushroomBody extends JPanel implements Updatable {
+public class SwingMushroomBody extends JMenu implements Updatable {
 
     private final MushroomBodyView mbv;
-    private JPopupMenu mushroomBodyPopupMenu;
-    private static final int TRIANGLE_MARGIN = 5;
-    int width = getWidth();
-    int height = getHeight();
-    int nPoints = 3;
-    private Color triangleColor = Color.RED;
+    //private JPopupMenu mushroomBodyPopupMenu;
 
     /**
      * Konstruktor.
@@ -21,12 +16,14 @@ public class SwingMushroomBody extends JPanel implements Updatable {
      * @param mushroomBody A MushroomBody példány, amelyhez a SwingMushroomBody objektum létrehozásra kerül.
      */
     public SwingMushroomBody(MushroomBody mushroomBody) {
+        super("MushroomBody: " + ObjectRegistry.lookupName(mushroomBody));
         this.mbv = mushroomBody;
 
-        addMouseListener(new MushroomBodyMouseAdapter(this));
-        update();
+        //update();
 
-        mushroomBodyPopupMenu = new JPopupMenu();
+        //mushroomBodyPopupMenu = new JPopupMenu();
+
+        //addMouseListener(new MushroomBodyMouseAdapter(this));
     }
 
     /**
@@ -34,9 +31,28 @@ public class SwingMushroomBody extends JPanel implements Updatable {
      */
     @Override
     public void update() {
-        String name = ObjectRegistry.lookupName(mbv);
+        removeAll();
+
+        //JLabel label = new JLabel("MushroomBody: " + ObjectRegistry.lookupName(mbv));
+        //add(label);
+
+        JLabel subLabel = new JLabel("Choose one of the following reachable tectons to eject spores to:");
+        add(subLabel);
+
+        for (Tecton tecton : mbv.getReachableTectons()) {
+            JMenuItem button = new JMenuItem("=> " + ObjectRegistry.lookupName(tecton));
+            button.addActionListener(new EjectSporesButtonListener((MushroomBody)mbv, tecton));
+            add(button);
+        }
+
+        String name = "MushroomBody: " + ObjectRegistry.lookupName(mbv);
         int ejects = mbv.getRemainingEjects();
-        setToolTipText("MushroomBody: " + name + " | Remaining ejects: " + ejects);
+        int spores = mbv.getSpores().size();
+        setText(name);
+        setToolTipText("Remaining ejects: " + ejects + " | Spores available to eject: " + spores);
+
+        repaint();
+        revalidate();
     }
 
     /**
@@ -45,7 +61,6 @@ public class SwingMushroomBody extends JPanel implements Updatable {
      *  Minden gomb az adott tektonra történő spórakilövést indítja el.
      *
      * @param e MouseEvent objektum.
-     */
     public void showPopupMenu(MouseEvent e) {
         mushroomBodyPopupMenu.removeAll();
 
@@ -57,26 +72,10 @@ public class SwingMushroomBody extends JPanel implements Updatable {
 
         for (Tecton tecton : mbv.getReachableTectons()) {
             JButton button = new JButton("-> " + ObjectRegistry.lookupName(tecton));
-            button.addActionListener(new EjectSporesButtonListener((MushroomBody)mbv));
+            button.addActionListener(new EjectSporesButtonListener((MushroomBody)mbv, tecton));
             mushroomBodyPopupMenu.add(button);
         }
         mushroomBodyPopupMenu.show(e.getComponent(), e.getX(), e.getY());
     }
-
-    /**
-     * A MushroomBody grafikus megjelenítése piros háromszög megrajzolásával.
-     *
-     * @param g Grafikus objektum.
-     */
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        Graphics2D mbTriangle = (Graphics2D) g;
-
-        int[] xPoints = { width / 2, width - TRIANGLE_MARGIN, TRIANGLE_MARGIN };
-        int[] yPoints = { TRIANGLE_MARGIN, height - TRIANGLE_MARGIN, height - TRIANGLE_MARGIN };
-
-        mbTriangle.setColor(triangleColor);
-        mbTriangle.fillPolygon(xPoints, yPoints, nPoints);
-    }
+    */
 }

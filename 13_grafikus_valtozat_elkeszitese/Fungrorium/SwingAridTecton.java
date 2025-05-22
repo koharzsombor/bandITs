@@ -4,9 +4,9 @@ import java.awt.event.MouseEvent;
 import java.util.*;
 
 /**
- * Swing-es megjelenitese egy FertileTectonnak
+ * Swing-es megjelenitese egy AridTectonnak
  */
-public class SwingFertileTecton extends JPanel implements Updatable, SwingTecton{
+public class SwingAridTecton extends JPanel implements Updatable, SwingTecton{
 
     /**
      * Tecton, amihez tartozik a panel
@@ -26,7 +26,7 @@ public class SwingFertileTecton extends JPanel implements Updatable, SwingTecton
     /**
      * Tecton szine
      */
-    private Color tectonColor = new Color(56, 93, 56);
+    private Color tectonColor = new Color(255, 255, 0);
 
     /**
      * Mycelium & CarnivorousMycelium szine
@@ -62,15 +62,10 @@ public class SwingFertileTecton extends JPanel implements Updatable, SwingTecton
      * Konstruktor
      * @param tecton amihez tartozik
      */
-    SwingFertileTecton(FertileTectonImpl tecton) {
+    SwingAridTecton(AridTectonImpl tecton) {
         this.tectonView =  tecton;
 
         tectonPopupMenu = new JPopupMenu();
-
-        for (Insect i : tectonView.getOccupants()) {
-            SwingInsect insectMenu = new SwingInsect(i);
-            tectonPopupMenu.add(insectMenu);
-        }
 
         addMouseListener(new TectonMouseListener(this));
 
@@ -82,7 +77,7 @@ public class SwingFertileTecton extends JPanel implements Updatable, SwingTecton
      */
     @Override
     public void update() {
-        setToolTipText("FertileTecton: " + ObjectRegistry.lookupName(tectonView) + " | " +
+        setToolTipText("AridTecton: " + ObjectRegistry.lookupName(tectonView) + " | " +
                 "Spores: " + tectonView.getSpores().size() + " | " +
                 "Mycelia: " + tectonView.getMycelia().size());
         /*
@@ -92,7 +87,7 @@ public class SwingFertileTecton extends JPanel implements Updatable, SwingTecton
         if(tectonView.getMushroomBody()!=null) {
             ViewRepository.getView(tectonView.getMushroomBody()).update();
         }
-        */
+         */
         repaint();
     }
 
@@ -103,22 +98,22 @@ public class SwingFertileTecton extends JPanel implements Updatable, SwingTecton
     public void showPopupMenu(MouseEvent e) {
         tectonPopupMenu.removeAll();
 
-        String name = "FertileTecton: " + ObjectRegistry.lookupName(tectonView);
+        String name = "AridTecton: " + ObjectRegistry.lookupName(tectonView);
         tectonPopupMenu.add(new JLabel(name));
 
         for(Insect i : tectonView.getOccupants()) {
             //ViewRepository.getView(i).update();
-            JMenu insectPanel = (JMenu)ViewRepository.getView(i);
+            JMenuItem insectPanel = (JMenuItem) ViewRepository.getView(i);
             tectonPopupMenu.add(insectPanel);
         }
 
         if(tectonView.getMushroomBody()!=null) {
             //ViewRepository.getView(tectonView.getMushroomBody()).update();
-            JMenu mushroomBodyPanel = (JMenu)ViewRepository.getView(tectonView.getMushroomBody());
+            JMenuItem mushroomBodyPanel = (JMenuItem) ViewRepository.getView(tectonView.getMushroomBody());
             tectonPopupMenu.add(mushroomBodyPanel);
         }
 
-        SwingTectonButton tectonButton = new SwingTectonButton(name, tectonView, true, null);
+        SwingTectonButton tectonButton = new SwingTectonButton(name, tectonView, true, "Any mycelia on this tecton will decay in 5 rounds.");
         tectonPopupMenu.add(tectonButton);
 
         tectonPopupMenu.show(e.getComponent(), e.getX(), e.getY());
@@ -133,10 +128,7 @@ public class SwingFertileTecton extends JPanel implements Updatable, SwingTecton
      */
     private int hasCarnivorousMycelium() {
         LinkedList<Mycelium> myceliumList = new LinkedList<>(tectonView.getMycelia());
-        if(myceliumList.size()==0)
-        {
-            return 0;
-        }
+        if(myceliumList.size()==0) return 0;
         for (Mycelium m : myceliumList) {
             if (m instanceof CarnivorousMyceliumImpl) {
                 return 2;
@@ -155,14 +147,15 @@ public class SwingFertileTecton extends JPanel implements Updatable, SwingTecton
      */
     @Override
     protected void paintComponent(Graphics g) {
+        //update();
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
-        // A tecton
+        // Maga a kocka
         g2.setColor(tectonColor);
         g2.fillRect(0, 0, size, size);
 
-        // A mycelium
+        //Mycelium
         int myceliumType = hasCarnivorousMycelium(); //0-no Mycelium, 1-Mycelium, 2-CarnivorousMycelium
         if(myceliumType!=0) {
             if(myceliumType==2) {
@@ -174,7 +167,7 @@ public class SwingFertileTecton extends JPanel implements Updatable, SwingTecton
             g.fillOval(0, 0, size, size);
         }
 
-        // A mushroomBody
+        //MushroomBody
         if(tectonView.getMushroomBody()!=null) {
             g.setColor(mushroomBodyColor);
             int[] xPoints = {MB_width / 2, MB_width - MB_TRIANGLE_MARGIN_SIDES, MB_TRIANGLE_MARGIN_SIDES};
@@ -182,7 +175,7 @@ public class SwingFertileTecton extends JPanel implements Updatable, SwingTecton
             g2.fillPolygon(xPoints, yPoints, MB_nPoints);
         }
 
-        // Az insect
+        //Insect
         g2.setColor(insectColor);
         for(int i=0;i<tectonView.getOccupants().size(); i++){
             int colSize = size/5;
@@ -192,7 +185,7 @@ public class SwingFertileTecton extends JPanel implements Updatable, SwingTecton
             g2.fillOval(x, y, insectSize, insectSize);
         }
 
-        // A keret
+        // Kocka keretje
         g2.setColor(Color.BLACK);
         g2.drawRect(0, 0, size, size);
 

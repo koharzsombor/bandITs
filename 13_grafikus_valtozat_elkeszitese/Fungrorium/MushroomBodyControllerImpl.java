@@ -8,10 +8,13 @@ public class MushroomBodyControllerImpl implements MushroomBodyController {
      */
     private SporeFactory sporeFactory;
 
+    private final TurnController turnController;
+
     /**
      * A függőségeit saját maga példányosítsa.
      */
-    public MushroomBodyControllerImpl() {
+    public MushroomBodyControllerImpl(TurnController turnController) {
+        this.turnController = turnController;
         sporeFactory = new SporeFactoryImpl();
     }
 
@@ -23,7 +26,8 @@ public class MushroomBodyControllerImpl implements MushroomBodyController {
      */
     @Override
     public void eject(MushroomBody mushroomBody, Tecton target) {
-        mushroomBody.ejectSpores(target);
+        if (turnController.getCurrentPlayer().controlsMushroomBody(mushroomBody))
+            mushroomBody.ejectSpores(target);
     }
 
     /**

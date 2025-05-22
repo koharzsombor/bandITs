@@ -13,6 +13,7 @@ public class InsectFactoryImpl implements InsectFactory {
     public Insect create(String name, Tecton tecton) {
         Insect insect = new InsectImpl(tecton);
         ObjectRegistry.registerObject(name, insect);
+        ViewRepository.updateObject(insect);
         return insect;
     }
 }

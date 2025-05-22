@@ -13,26 +13,31 @@ public class TectonFactoryImpl implements TectonFactory {
             case "fertiletecton" -> {
                 FertileTectonImpl t = new FertileTectonImpl();
                 ObjectRegistry.registerObject(name, t);
+                ViewRepository.updateObject(t);
                 return t;
             }
             case "semifertiletecton" -> {
                 SemiFertileTectonImpl t = new SemiFertileTectonImpl();
                 ObjectRegistry.registerObject(name, t);
+                ViewRepository.updateObject(t);
                 return t;
             }
             case "multilayeredtecton" -> {
                 MultiLayeredTectonImpl t = new MultiLayeredTectonImpl();
                 ObjectRegistry.registerObject(name, t);
+                ViewRepository.updateObject(t);
                 return t;
             }
             case "aridtecton"-> {
                 AridTectonImpl t = new AridTectonImpl();
                 ObjectRegistry.registerObject(name, t);
+                ViewRepository.updateObject(t);
                 return t;
             }
             case "sustainingtecton" -> {
                 SustainingTectonImpl t = new SustainingTectonImpl();
                 ObjectRegistry.registerObject(name, t);
+                ViewRepository.updateObject(t);
                 return t;
             }
             default -> throw new UnsupportedOperationException("Not implemented!");

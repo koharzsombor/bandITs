@@ -10,4 +10,6 @@ public interface Mycelium extends MyceliumControl, MyceliumView, Mushroom{
      * Beállítja a deathTimer-t 2-re
      */
     public void cutWithDelay();
+
+    int getGrowTimer();
 }
