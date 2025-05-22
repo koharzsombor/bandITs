@@ -20,9 +20,10 @@ public class CheatMyceliumFactory implements MyceliumFactory {
         }
         ObjectRegistry.registerObject(name, mycelium);
 
-        if (location != null)
+        if (location != null) {
             location.addMycelium(mycelium);
-
+            mycelium.setLocation(location);
+        }
         return mycelium;
     }
 }

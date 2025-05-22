@@ -22,7 +22,7 @@ public class MoveButtonMouseListener implements MouseListener {
      * @param e feldolgozandó event
      */
     public void mouseReleased(MouseEvent e) {
-        moveButton.showPopupMenu(e);
+        //moveButton.showPopupMenu(e);
     }
 
     /**

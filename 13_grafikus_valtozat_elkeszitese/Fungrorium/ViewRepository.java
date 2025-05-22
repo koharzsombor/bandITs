@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,5 +31,9 @@ public class ViewRepository {
      */
     public static void bind(Object model, Updatable view) {
         objectRepository.put(model, view);
+    }
+
+    public static Updatable getView(Object model) {
+        return objectRepository.get(model);
     }
 }

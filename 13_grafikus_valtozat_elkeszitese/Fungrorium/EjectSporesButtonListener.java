@@ -18,14 +18,17 @@ public class EjectSporesButtonListener implements ActionListener {
      */
     MushroomBodyController mushroomBodyController;
 
+    Tecton targetTecton;
+
     /**
      * Konstruktor, amely eltárolja a kapcsolódó MushroomBody példányt és lekéri
      * a MushroomBodyController példányt az ObjectRegistry-ből.
      *
      * @param mb A MushroomBody, amelyre a művelet vonatkozik.
      */
-    public EjectSporesButtonListener(MushroomBody mb) {
+    public EjectSporesButtonListener(MushroomBody mb, Tecton tecton) {
         this.mushroomBody = mb;
+        this.targetTecton = tecton;
         this.mushroomBodyController = (MushroomBodyController) ObjectRegistry.getObject("MushroomBodyController");
     }
 
@@ -38,6 +41,6 @@ public class EjectSporesButtonListener implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        mushroomBodyController.eject(mushroomBody, mushroomBody.getLocation());
+        mushroomBodyController.eject(mushroomBody, targetTecton);
     }
 }

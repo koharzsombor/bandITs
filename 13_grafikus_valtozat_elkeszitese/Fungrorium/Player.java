@@ -30,4 +30,28 @@ public interface Player {
      * @return A játékos pontszáma.
      */
     int calculateScore();
+
+    /**
+     * Megmondja, hogy a játékos tudja-e irányítani az adott gombatestet.
+     *
+     * @param mushroomBody Az adott gombatest.
+     * @return A játékos tudja-e irányítani az adott gombatestet.
+     */
+    boolean controlsMushroomBody(MushroomBody mushroomBody);
+
+    /**
+     * Megmondja, hogy a játékos tudja-e irányítani az adott gombafonalat.
+     *
+     * @param mycelium Az adott gombafonál.
+     * @return A játékos tudja-e irányítani az adott gombafonalat.
+     */
+    boolean controlsMycelium(Mycelium mycelium);
+
+    /**
+     * Megmondja, hogy a játékos tudja-e irányítani az adott rovart.
+     *
+     * @param insect Az adott rovar.
+     * @return A játékos tudja-e irányítani az adott rovart.
+     */
+    boolean controlsInsect(Insect insect);
 }

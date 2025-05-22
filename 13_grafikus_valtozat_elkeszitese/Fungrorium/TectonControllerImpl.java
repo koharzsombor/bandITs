@@ -43,8 +43,10 @@ public class TectonControllerImpl implements TectonController {
      */
     @Override
     public void addNeighbour(Tecton tecton1, Tecton tecton2) {
-        tecton1.addNeighbour(tecton2);
-        tecton2.addNeighbour(tecton1);
+        if (!tecton1.getNeighbours().contains(tecton2)) {
+            tecton1.addNeighbour(tecton2);
+            tecton2.addNeighbour(tecton1);
+        }
     }
 
     /**

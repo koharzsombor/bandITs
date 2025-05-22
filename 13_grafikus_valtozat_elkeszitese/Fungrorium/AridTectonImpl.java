@@ -3,16 +3,19 @@ import java.util.Random;
 
 public class AridTectonImpl extends FertileTectonImpl {
 
-    private int abosrbCountdown;
+    private int absorbCountdown;
 
-    int MINNUMB = 2;
-    int MAXNUMB = 2;
+    int MINNUMB = 5;
+    int MAXNUMB = 10;
     Random rand = new Random();
 
     AridTectonImpl() {
         setMyceliaCapacity(1);
 
         setBreakTimer(rand.nextInt(MAXNUMB - MINNUMB + 1) + MINNUMB);
+        TectonAbstractFactory tectonAbstractFactory = new SwingTectonFactory();
+        tectonAbstractFactory.onCreateTecton(this);
+        absorbCountdown = 5;
     }
 
     @Override
@@ -26,7 +29,7 @@ public class AridTectonImpl extends FertileTectonImpl {
 
         int sporeCount = getSpores().size();
         mycelium.grow(sporeCount);
-        abosrbCountdown = 5;
+        absorbCountdown = 5;
     }
 
     public void accept(MushroomBodyGrowthEvaluator mushroomBodyGrowthEvaluator, MushroomBody mushroomBody) {
@@ -40,9 +43,9 @@ public class AridTectonImpl extends FertileTectonImpl {
     }
 
     public void onRoundBegin() {
-        if (abosrbCountdown > 0) {
-            abosrbCountdown--;
-            if (abosrbCountdown <= 0) {
+        if (absorbCountdown > 0) {
+            absorbCountdown--;
+            if (absorbCountdown <= 0) {
                 Mycelium mycelium = this.getMycelia().poll();
                 if (mycelium != null) {
                     mycelium.delete();
@@ -75,7 +78,12 @@ public class AridTectonImpl extends FertileTectonImpl {
             String newFTname = ObjectRegistry.lookupName(this) + "-" + this.breakCounter;
             ObjectRegistry.registerObject(newFTname, newFertileTecton);
 
+            TectonAbstractFactory tectonAbstractFactory = new SwingTectonFactory();
+            tectonAbstractFactory.onCreateTecton(newFertileTecton);
+
             setBreakTimer(rand.nextInt(MAXNUMB - MINNUMB + 1) + MINNUMB);
+
+            ViewRepository.updateObject(this);
         }
     }
 
@@ -87,6 +95,7 @@ public class AridTectonImpl extends FertileTectonImpl {
      * To string, a kiiráshoz
      * @return az tecton tulajdonságainak formázott stringje
      */
+    /*
     @Override
     public String toString() {
         String output = ObjectRegistry.lookupName(this) + ": AridTecton\n";
@@ -119,6 +128,6 @@ public class AridTectonImpl extends FertileTectonImpl {
     @Override
     public void addMycelium(Mycelium mycelium){
         super.addMycelium(mycelium);
-        abosrbCountdown = 5;
-    }
+        absorbCountdown = 5;
+    }*/
 }

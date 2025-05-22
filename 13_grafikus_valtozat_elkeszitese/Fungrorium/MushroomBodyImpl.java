@@ -1,3 +1,4 @@
+import javax.swing.text.View;
 import java.util.*;
 
 /**
@@ -52,6 +53,8 @@ public class MushroomBodyImpl implements MushroomBody {
         this.location = location;
         MushroomBodyGrowthEvaluator evaluator = new MushroomBodyGrowthEvaluator(this);
         evaluator.visit(location);
+        MushroomBodyAbstractFactory swingMBFactory = new SwingMushroomBodyFactory();
+        swingMBFactory.onCreateMushroomBody(this);
     }
 
     /**
@@ -72,6 +75,8 @@ public class MushroomBodyImpl implements MushroomBody {
      * Paraméter nélküli konstruktor.
      */
     public MushroomBodyImpl() {
+        MushroomBodyAbstractFactory swingMBFactory = new SwingMushroomBodyFactory();
+        swingMBFactory.onCreateMushroomBody(this);
     }
 
     /**
@@ -107,8 +112,7 @@ public class MushroomBodyImpl implements MushroomBody {
         if (remainingEjects <= 0)
             return;
 
-        int random = 4;
-        //int random = new Random().nextInt(5) + 1;
+        int random = new Random().nextInt(5) + 1;
         Spore newSpore = switch (random) {
             case 1 -> new SplitSpore();
             case 2 -> new StunSpore();
@@ -129,6 +133,7 @@ public class MushroomBodyImpl implements MushroomBody {
         String sporeName = mushroomBodyName + "-" + sporeType + count;
 
         ObjectRegistry.registerObject(sporeName, newSpore);
+        ViewRepository.updateObject(this);
     }
 
     /**
@@ -224,6 +229,9 @@ public class MushroomBodyImpl implements MushroomBody {
                 return;
             }
         }
+        ViewRepository.updateObject(location);
+        ViewRepository.updateObject(target);
+        ViewRepository.updateObject(this);
     }
 
     /**
@@ -242,6 +250,7 @@ public class MushroomBodyImpl implements MushroomBody {
      */
     public void setLocation(Tecton location) {
         this.location = location;
+        ViewRepository.updateObject(this);
     }
 
     /**

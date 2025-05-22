@@ -1,3 +1,5 @@
+import javax.swing.text.View;
+
 /**
  * Gombafonalat példányosító osztály a növesztés szabályait figyelembe véve.
  */
@@ -23,6 +25,7 @@ public class DefaultMushroomBodyFactory implements MushroomBodyFactory {
             throw new IllegalArgumentException("NOOOOO ;(");
         }
         ObjectRegistry.registerObject(name, mushroomBody);
+        ViewRepository.updateObject(mushroomBody);
         return mushroomBody;
     }
 }

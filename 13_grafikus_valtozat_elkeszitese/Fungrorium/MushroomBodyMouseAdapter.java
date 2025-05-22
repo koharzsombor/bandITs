@@ -28,7 +28,7 @@ public class MushroomBodyMouseAdapter implements MouseListener {
      */
     @Override
     public void mouseReleased(MouseEvent e) {
-        swingMushroomBody.showPopupMenu(e);
+        //swingMushroomBody.showPopupMenu(e);
     }
 
     /**
